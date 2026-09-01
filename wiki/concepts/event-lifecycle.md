@@ -33,7 +33,8 @@ The brief lists the following as an example set — "Events progress through sui
 | Cancelled | Event will not proceed; reservations released | Assigned Event Coordinator only |
 | Rejected | Request declined at review; decision record retained | Event Coordinator |
 
-> **Team decision required:** The customer named these statuses "for example" and did not fix the state machine. The exact status set, the transitions permitted between them, and whether *planning* and *awaiting arrangements* are distinct states or one state with a readiness flag are all for the team to propose (Source: customer-brief-no-1; is212-discussions-2026-08-31, #70).
+> [!question]- Team decision required — the status set and state machine
+> The customer named these statuses "for example" and did not fix the state machine. The exact status set, the transitions permitted between them, and whether *planning* and *awaiting arrangements* are distinct states or one state with a readiness flag are all for the team to propose (Source: customer-brief-no-1; is212-discussions-2026-08-31, #70).
 
 ## Approved vs Confirmed
 
@@ -83,13 +84,15 @@ There is no separate *postponed* status in the customer's answer. Postponement i
 
 The distinguishing property of postponement is that the event record survives — the client relationship and requirements are preserved for a later date, whereas cancellation ends the event.
 
-> **Team decision required:** The customer did not name a status for "postponed, date unknown". The team must decide whether this is a distinct status, a flag on an existing status, or a return to *approved*/*planning* with dates cleared.
+> [!question]- Team decision required — status for "postponed, date unknown"
+> The customer did not name a status for "postponed, date unknown". The team must decide whether this is a distinct status, a flag on an existing status, or a return to *approved*/*planning* with dates cleared.
 
 ## Rejection and Resubmission
 
 Rejected or returned requests must retain an appropriate record of the decision (Source: customer-brief-no-1, step 5).
 
-> **Team decision required:** Whether a rejected event can be resubmitted, or whether rejection is final, was explicitly **not specified**. The customer's full answer was "Please propose an appropriate approach if needed." (Source: is212-discussions-2026-08-31, #67). Options for the team: rejection is terminal and a new request must be created; rejection returns the request to draft for amendment and resubmission; or a distinct *returned for amendment* outcome is separated from a terminal *rejected*.
+> [!question]- Team decision required — resubmission after rejection
+> Whether a rejected event can be resubmitted, or whether rejection is final, was explicitly **not specified**. The customer's full answer was "Please propose an appropriate approach if needed." (Source: is212-discussions-2026-08-31, #67). Options for the team: rejection is terminal and a new request must be created; rejection returns the request to draft for amendment and resubmission; or a distinct *returned for amendment* outcome is separated from a terminal *rejected*.
 
 ## Re-entrant Transitions
 

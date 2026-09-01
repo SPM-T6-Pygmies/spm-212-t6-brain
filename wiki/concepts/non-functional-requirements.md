@@ -35,7 +35,8 @@ Section 8 of the brief states seven quality attributes for the [[event-planning-
 - No response-time figure, throughput target, or percentile was given. The named operations are read-heavy and calendar/availability-oriented — the performance profile is dominated by [[venue-booking]] availability queries and [[equipment-management]] availability checks.
 - Related: notifications carry **no** delivery-time requirement. Batch delivery at configurable intervals is acceptable, and "there is no hard requirement for notifications to be received within a specific time limit" (Source: is212-discussions-2026-08-31, #55). See [[notifications]].
 
-> **Team decision required:** Define measurable performance acceptance criteria (e.g. p95 latency per named operation) since the customer supplied none.
+> [!question]- Team decision required — performance acceptance criteria
+> Define measurable performance acceptance criteria (e.g. p95 latency per named operation) since the customer supplied none.
 
 ## b. Security
 
@@ -62,7 +63,8 @@ Two constraints that shrink the usability scope:
 
 (Source: is212-discussions-2026-08-31)
 
-> Note the tension: internal staff are explicitly expected to use the system "while preparing event spaces or equipment" (s7) and a team asked directly about poor venue connectivity, yet offline access was declined (#31). The mobile experience must therefore assume connectivity.
+> [!warning] Tension — offline access vs on-site use
+> Internal staff are explicitly expected to use the system "while preparing event spaces or equipment" (s7) and a team asked directly about poor venue connectivity, yet offline access was declined (#31). The mobile experience must therefore assume connectivity.
 
 ## d. Reliability and Consistency
 
@@ -99,7 +101,8 @@ Significant changes must trigger re-validation of affected arrangements; ordinar
 - **Timezone: Singapore only.** Because all venues ConnectSphere owns are in Singapore, the system uses the Singapore timezone, including for organisers based outside Singapore (Source: is212-discussions-2026-08-31, #36). No multi-timezone rendering, no per-user timezone preference.
 - ~500 staff is a working population, not a concurrency figure. Concurrency assumptions must be derived and stated by the team.
 
-> **Team decision required:** Concurrency assumptions and the architectural style (monolith, modular monolith, microservices) are entirely the team's to propose and defend (#7).
+> [!question]- Team decision required — concurrency and architecture
+> Concurrency assumptions and the architectural style (monolith, modular monolith, microservices) are entirely the team's to propose and defend (#7).
 
 ## f. Auditability
 

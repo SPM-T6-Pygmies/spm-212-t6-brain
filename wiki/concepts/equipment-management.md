@@ -28,7 +28,8 @@ The system maintains equipment records with (Source: customer-brief-no-1):
 
 Two separate rules constrain when a piece of equipment can be committed to an event. They govern **different ends** of the event.
 
-> ⚠️ **Contradiction (raised, then resolved).** On 2026-08-28 the team flagged #2 ("transfer and preparation time should be considered when determining availability") as apparently contradicting #5 ("equipment is returned to ConnectSphere for assessment and is only available again from Return Day + 1"), and asked which workflow stands. The customer resolved this on 2026-08-31: **both rules apply, at different points in the equipment lifecycle. They are not alternatives to each other.** (Source: is212-discussions-2026-08-31, #2 follow-up)
+> [!warning] Contradiction (raised, then resolved)
+> On 2026-08-28 the team flagged #2 ("transfer and preparation time should be considered when determining availability") as apparently contradicting #5 ("equipment is returned to ConnectSphere for assessment and is only available again from Return Day + 1"), and asked which workflow stands. The customer resolved this on 2026-08-31: **both rules apply, at different points in the equipment lifecycle. They are not alternatives to each other.** (Source: is212-discussions-2026-08-31, #2 follow-up)
 
 | Rule | Governs | Source |
 |---|---|---|
@@ -51,7 +52,8 @@ Current equipment location
 
 Note the return leg: equipment goes back **to ConnectSphere** for inspection, not directly to the next venue. Transfer time is therefore consumed on the outbound leg of every reservation, measured from wherever the item currently sits.
 
-> **Team decision required:** "How the system represents transfer time, preparation time and the equipment's current location is for the solution team to propose" (#2). Options include a per-item location field with a transfer-duration matrix, a flat buffer, or folding transfer into the D-1 window.
+> [!question]- Team decision required — representing transfer time and location
+> "How the system represents transfer time, preparation time and the equipment's current location is for the solution team to propose" (#2). Options include a per-item location field with a transfer-duration matrix, a flat buffer, or folding transfer into the D-1 window.
 
 ### Snapshot Note
 
@@ -86,7 +88,8 @@ Implication: an equipment requirement is not atomic. Its fulfilment state is per
 - The customer declined to prescribe whether equipment is tracked as individually serialised items or as a pooled quantity counter (#13).
 - The single binding constraint: **"the system needs to know the quantity of equipment available"** (Source: is212-discussions-2026-08-31, #13).
 
-> **Team decision required:** pooled vs serialised inventory modelling. This choice is load-bearing — the D-1 / Return Day +1 rule and the per-item **location** and **operational status** attributes (#2, #23) all imply per-item state, which is awkward to express against a bare pooled counter. A pooled model would need per-unit sub-state to satisfy #2 and #23 anyway.
+> [!question]- Team decision required — pooled vs serialised inventory
+> Pooled vs serialised inventory modelling. This choice is load-bearing — the D-1 / Return Day +1 rule and the per-item **location** and **operational status** attributes (#2, #23) all imply per-item state, which is awkward to express against a bare pooled counter. A pooled model would need per-unit sub-state to satisfy #2 and #23 anyway.
 
 ## Maintenance, Damage, and Defect Logging
 

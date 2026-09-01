@@ -48,7 +48,8 @@ The end-to-end process by which an event moves from an Event Organiser's initial
 
 ## Step 2 — Submission and Required Fields
 
-> **Team decision required — minimum required fields.** The customer has **not firmed up which fields are mandatory** for a request to be submittable, and asked the team to propose what is appropriate. There are also no field-length requirements (Source: is212-discussions-2026-08-31, #72).
+> [!question]- Team decision required — minimum required fields
+> The customer has **not firmed up which fields are mandatory** for a request to be submittable, and asked the team to propose what is appropriate. There are also no field-length requirements (Source: is212-discussions-2026-08-31, #72).
 
 Related unspecified constraint: **no minimum lead time** has been set between request creation and the event date. The team should propose one if the solution requires it (Source: is212-discussions-2026-08-31, #78).
 
@@ -95,7 +96,8 @@ Design implication: coordinator assignment is a **simple write, not a workflow**
 
 The brief allows information from a previous or recurring event to be reused to reduce repeated data entry, while still allowing different dates and requirements.
 
-> **Team decision required.** Asked whether this means cloning a whole event or copying selected fields, the customer answered that the requirement is "simply to reduce repeated data entry while still allowing the new event to have different dates and requirements. Which information is copied and how it is presented is for you to propose." (Source: is212-discussions-2026-08-31, #75). Fields that must *not* carry over silently — dates, venue booking, equipment reservations, registration state — are an obvious design boundary.
+> [!question]- Team decision required — what "reuse a previous event" copies
+> Asked whether this means cloning a whole event or copying selected fields, the customer answered that the requirement is "simply to reduce repeated data entry while still allowing the new event to have different dates and requirements. Which information is copied and how it is presented is for you to propose." (Source: is212-discussions-2026-08-31, #75). Fields that must *not* carry over silently — dates, venue booking, equipment reservations, registration state — are an obvious design boundary.
 
 ## Multi-Session Events
 

@@ -45,7 +45,8 @@ Performance, security, usability, reliability and consistency, scalability, audi
 
 ## Scope status
 
-> ⚠️ **Release 1 scope is not yet fixed.** The brief states the customer will identify core Release 1 functionality in Week 4, and answer #79 defers to a separate scope confirmation. The full functionality list above is the *consideration set*, not the delivery commitment. See [[open-questions]].
+> [!warning] Release 1 scope is not yet fixed
+> The brief states the customer will identify core Release 1 functionality in Week 4, and answer #79 defers to a separate scope confirmation. The full functionality list above is the *consideration set*, not the delivery commitment. See [[open-questions]].
 
 ## Explicitly out of scope
 

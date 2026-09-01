@@ -18,7 +18,28 @@ This file defines the conventions and workflows for maintaining the PM Intern Le
 - **Frontmatter**: Every wiki page has YAML frontmatter with `title`, `type` (source-summary | concept | entity), `sources` (list of raw files this page draws from), and `tags`.
 - **Citations**: When a claim comes from a specific source, note it inline, e.g. `(Source: pm-intern-learning)`.
 - **Tone**: Concise, structured, third-person. Use headers, bullet points, and tables. Avoid fluff.
-- **Contradictions**: If a new source contradicts an existing wiki page, flag it explicitly with a `> ⚠️ Contradiction:` callout.
+- **Contradictions**: If a new source contradicts an existing wiki page, flag it explicitly with a `> [!warning] Contradiction` callout (see below).
+
+## Callouts
+
+Use native Obsidian callouts, not bold-label blockquotes — a typed callout renders distinctly, a bold blockquote looks identical to a source quotation.
+
+Only these five types. Do not invent others.
+
+| Syntax | Use for |
+|---|---|
+| `> [!question]- Team decision required — <topic>` | Something the customer explicitly left for the team to propose. **Always foldable (`-`) and always given a specific topic** — the collapsed title must say which decision it is. |
+| `> [!warning] <title>` | Gaps, contradictions, ambiguous or garbled source text, unsettled scope, tensions between requirements. |
+| `> [!quote] Customer answer — #<n>` | Verbatim customer wording where the exact phrasing carries weight. |
+| `> [!info] <title>` | A settled constraint or scope boundary that is easy to miss. |
+| `> [!success] Resolved — #<n>` | A previously flagged contradiction or open item that has since been closed. |
+
+Rules:
+
+- **Budget.** Callouts mark exceptions, not structure. If a page has more than a handful of non-foldable callouts, the content belongs in a table.
+- Prose, bullets and tables are the default. Reach for a callout only when a reader who skims must not miss the item.
+- Never nest callouts, and never wrap a whole section in one.
+- Reserve `[!important]` for `index.md` only, for the customer's committed non-negotiable rules.
 
 ## Workflows
 

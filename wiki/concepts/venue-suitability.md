@@ -23,11 +23,13 @@ The brief lists *Venue Search and Filtering* and *Venue Suitability Checking* as
 | Output | A list of potential venues | An indication of whether that venue can satisfy the event |
 | Timing | Before selection | After a venue has been identified or selected |
 
+> [!quote] Customer answer — #83
 > Filtering is used to narrow the list of venues based on criteria such as date, time, capacity, accessibility, layout, and facilities. Suitability checking evaluates whether a selected or shortlisted venue can satisfy the current event requirements. (Source: is212-discussions-2026-08-31, #83)
 
 The two are not redundant: filtering answers *"which venues might work?"*; suitability answers *"does this venue still work?"* — a question that must be re-askable long after the search is over, because requirements change (see [[change-impact-management]]).
 
-> **Team decision required:** presentation and implementation are explicitly left to the team (#83). The result "may be presented as an indication in the venue list or checked after selection" — i.e. an inline badge on search results, a check on selection, or both are all acceptable. The customer did not mandate a single UX.
+> [!question]- Team decision required — how suitability is surfaced
+> Presentation and implementation are explicitly left to the team (#83). The result "may be presented as an indication in the venue list or checked after selection" — i.e. an inline badge on search results, a check on selection, or both are all acceptable. The customer did not mandate a single UX.
 
 ## Suitability Factors
 
@@ -54,7 +56,8 @@ Drawn from the brief's list of factors on which venue suitability may depend (So
 - The brief's canonical impact example: raising attendance from 80 to 150 may make the already-selected venue unsuitable.
 - Registration capacity is a related but separate limit — see [[attendee-registration]].
 
-> **Team decision required:** whether exceeding capacity blocks a booking outright or raises an overridable warning, and who (if anyone) may override.
+> [!question]- Team decision required — over-capacity: block or warn
+> Whether exceeding capacity blocks a booking outright or raises an overridable warning, and who (if anyone) may override.
 
 ## Supported Room Layouts
 
@@ -82,7 +85,8 @@ Drawn from the brief's list of factors on which venue suitability may depend (So
 
 Significant changes requiring re-evaluation are handled under [[change-impact-management]]; outstanding arrangements roll up into [[event-readiness]].
 
-> **Team decision required:** the exact trigger points and whether re-evaluation is automatic or coordinator-initiated. The customer said only that "the exact implementation is for you to propose" (#4) and gave no trigger list in #83.
+> [!question]- Team decision required — re-evaluation triggers
+> The exact trigger points and whether re-evaluation is automatic or coordinator-initiated. The customer said only that "the exact implementation is for you to propose" (#4) and gave no trigger list in #83.
 
 ## Snapshot Note
 

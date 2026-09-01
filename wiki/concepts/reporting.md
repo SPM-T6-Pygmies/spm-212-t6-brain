@@ -42,7 +42,8 @@ Consequences:
 
 The most under-specified report. Asked directly what a Venue Usage Report contains — occupancy rates, booking frequency, revenue, utilisation by day/time — the customer replied that the requirement is to let internal users review venue bookings and usage over a selected period for operational planning, that **"the exact measures and presentation are not specified yet"**, and that the team should propose appropriate information supporting venue usage and operational planning (Source: is212-discussions-2026-08-31, #29).
 
-> **Revenue is explicitly excluded.** "Revenue is not currently stated as part of this report." (#29). This is consistent with contracts and payments being handled physically and outside the system (#24) — the system holds no pricing or financial data, so no financial measure is derivable.
+> [!info] Revenue is explicitly excluded
+> "Revenue is not currently stated as part of this report." (#29). This is consistent with contracts and payments being handled physically and outside the system (#24) — the system holds no pricing or financial data, so no financial measure is derivable.
 
 Fixed inputs the team can build measures from:
 
@@ -58,7 +59,8 @@ Fixed inputs the team can build measures from:
 
 The three-slot booking model (#50) is the natural unit of utilisation: slots booked over slots available in the period, sliceable by venue, day, state, and event category. Turnaround time is a genuine occupancy cost and can be reported as consumed capacity distinct from event time. See [[venue-booking]].
 
-> **Team decision required:** Define the measure set and presentation for the venue usage report. Exclude revenue and any financial measure.
+> [!question]- Team decision required — venue usage report measures
+> Define the measure set and presentation for the venue usage report. Exclude revenue and any financial measure.
 
 ## Registration Reports
 
@@ -69,7 +71,8 @@ The three-slot booking model (#50) is the natural unit of utilisation: slots boo
 - Waiting-list state is reportable: FIFO with manual override (#26), 3-day acceptance window when a place opens (#44).
 - Manually added attendees (VIPs who do not self-register) reach the system via a list provided to the Event Coordinator for processing (#33), so they must appear in registration reports alongside self-registered attendees.
 
-> ⚠️ **PDPA was asked but not answered.** Question #32 asked "Can Event Organisers export attendee data (emails, names) for their own events? **Any privacy/PDPA restrictions?**" The customer answered only the first half — permission to view and export — and did not address privacy or PDPA obligations at all. The phrases "where appropriate" and "subject to access restrictions" are the entire constraint given.
+> [!warning] PDPA was asked but not answered
+> Question #32 asked "Can Event Organisers export attendee data (emails, names) for their own events? **Any privacy/PDPA restrictions?**" The customer answered only the first half — permission to view and export — and did not address privacy or PDPA obligations at all. The phrases "where appropriate" and "subject to access restrictions" are the entire constraint given.
 
 Practical implication: the team must decide unaided how to handle personal data in exports — what fields are exportable, whether exports are logged, whether attendee consent is captured at registration, and whether any field-level redaction applies. #91 confirms that attendee information is protected information and that **field-level permissions are for the team to propose**. This is a genuine risk item, not a settled one; it is carried in [[open-questions]].
 
@@ -86,7 +89,8 @@ Practical implication: the team must decide unaided how to handle personal data 
 - Practical reading: a tabular format for registration and venue usage data, and a document format for event summaries. The choice is unconstrained.
 - Export is not an integration mechanism. Integration with external tools is out of scope (#79), so export is a file handed to the user, not a feed.
 
-> **Team decision required:** Choose and justify export formats; decide whether exports of personal data are recorded in activity history.
+> [!question]- Team decision required — export formats and audit of exports
+> Choose and justify export formats; decide whether exports of personal data are recorded in activity history.
 
 ## Activity History and Change History
 

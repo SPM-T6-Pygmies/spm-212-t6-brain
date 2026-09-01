@@ -43,7 +43,8 @@ There is no global checklist. Essentiality is **per-event and derived from the e
 
 (Source: is212-discussions-2026-08-31, #80; customer-brief-no-1)
 
-> **Team decision required.** Because there is no fixed list, the team must design **how essentiality is determined and recorded**. Candidate approaches: derive required arrangements automatically from the request's declared requirements (equipment requested → equipment arrangement becomes essential); let the Event Coordinator mark each arrangement as essential or optional during planning; or a hybrid where the system proposes a derived set the coordinator can adjust. This is the mechanism the confirmation block in #80 answer 5 depends on, so it cannot be left implicit.
+> [!question]- Team decision required — how essentiality is determined and recorded
+> Because there is no fixed list, the team must design **how essentiality is determined and recorded**. Candidate approaches: derive required arrangements automatically from the request's declared requirements (equipment requested → equipment arrangement becomes essential); let the Event Coordinator mark each arrangement as essential or optional during planning; or a hybrid where the system proposes a derived set the coordinator can adjust. This is the mechanism the confirmation block in #80 answer 5 depends on, so it cannot be left implicit.
 
 ## Blocking Confirmation
 
@@ -59,6 +60,7 @@ Design implications:
 
 Equipment does not have to be all-or-nothing before a reservation is made (Source: is212-discussions-2026-08-31, #90):
 
+> [!quote] Customer answer — #90
 > Equipment that is available and suitable **may be reserved even if some other requested equipment is unavailable**. Technical Support Staff should identify which requirements can be fulfilled and highlight unavailable items or suggest alternatives. **The Event Coordinator then determines whether the outstanding requirement affects overall event readiness.**
 
 This establishes a three-part division of labour:

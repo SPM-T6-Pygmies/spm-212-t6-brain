@@ -21,7 +21,8 @@ First extract of the [[is212-g9-section]] GitHub Discussions board, the sole cha
 | Clarifies | [[customer-brief-no-1]] |
 | Superseded by | [[is212-discussions-2026-08-31]] |
 
-> ⚠️ **Superseded.** This is the earlier of two snapshots of the same board. Every discussion here also appears in [[is212-discussions-2026-08-31]], which resolves four of the five open items. Treat the Aug 31 snapshot as authoritative and use this page only to reconstruct what the team knew as of the Week 2–3 boundary.
+> [!warning] Superseded
+> This is the earlier of two snapshots of the same board. Every discussion here also appears in [[is212-discussions-2026-08-31]], which resolves four of the five open items. Treat the Aug 31 snapshot as authoritative and use this page only to reconstruct what the team knew as of the Week 2–3 boundary.
 
 ## Board conventions
 

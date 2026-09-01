@@ -32,7 +32,8 @@ Detail on each role's domain lives in [[venue-booking]], [[equipment-management]
 
 ## Gap: The Event Operations Manager
 
-> **⚠️ Gap between the brief and the clarifications.** A sixth role — the **Event Operations Manager** — appears only in the Q&A discussions and is **absent from the customer brief's role table, feature list, and 14-step process**. This is not a contradiction: nothing in the brief denies the role's existence, and the brief itself says "there may be special cases and business rules that have not been described in this initial briefing" (Source: customer-brief-no-1). It is a genuine omission that the team must resolve, because a role with no entry in the briefed access-control model now holds the coordinator-assignment authority.
+> [!warning] Gap between the brief and the clarifications
+> A sixth role — the **Event Operations Manager** — appears only in the Q&A discussions and is **absent from the customer brief's role table, feature list, and 14-step process**. This is not a contradiction: nothing in the brief denies the role's existence, and the brief itself says "there may be special cases and business rules that have not been described in this initial briefing" (Source: customer-brief-no-1). It is a genuine omission that the team must resolve, because a role with no entry in the briefed access-control model now holds the coordinator-assignment authority.
 
 What the discussions establish:
 
@@ -48,7 +49,8 @@ Consequences:
 - The Event Operations Manager is **internal** by implication but has no briefed responsibility statement, no dashboard definition, and no stated visibility scope.
 - Only assignment and reassignment are attributed to this role. Every other decision remains with the roles in the briefed table — notably, cancellation stays with the assigned Event Coordinator alone (Source: is212-discussions-2026-08-31, #68). See [[event-lifecycle]].
 
-> **Team decision required:** Whether to model the Event Operations Manager as a distinct sixth role, as a permission held by a senior Event Coordinator, or as an out-of-system actor whose decisions are simply recorded. The team must also define its visibility scope, since neither the brief nor the Q&A specifies what events or information the role can see.
+> [!question]- Team decision required — how to model the Event Operations Manager
+> Whether to model the Event Operations Manager as a distinct sixth role, as a permission held by a senior Event Coordinator, or as an out-of-system actor whose decisions are simply recorded. The team must also define its visibility scope, since neither the brief nor the Q&A specifies what events or information the role can see.
 
 Note that #93 and #94 were answered on 2026-08-31 and do **not** appear in the earlier snapshot (Source: is212-discussions-2026-08-26); #73 was already answered on 2026-08-25 and is present in both.
 
@@ -62,7 +64,8 @@ Confirmed without qualification — a Venue Staff member may also be an Attendee
 
 There is no admin role above the five briefed stakeholders. The customer states that no system-configuration feature is specified and that **user administration is not defined as a separate business role**; if a solution requires user-administration permissions, the team may propose an approach alongside the existing access-control requirements (Source: is212-discussions-2026-08-31, #52).
 
-> **Team decision required:** Whether to introduce an administrative capability at all. This interacts directly with #49 (no onboarding feature specified) and #64 (no account recovery specified) — if nobody can create or restore accounts, the system has no way to bootstrap its own users. See [[access-control]].
+> [!question]- Team decision required — whether to add an admin capability
+> Whether to introduce an administrative capability at all. This interacts directly with #49 (no onboarding feature specified) and #64 (no account recovery specified) — if nobody can create or restore accounts, the system has no way to bootstrap its own users. See [[access-control]].
 
 ### Staff are not scoped by venue, equipment type, or location
 

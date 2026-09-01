@@ -21,6 +21,7 @@ How the system detects that a change to an event may invalidate arrangements alr
 
 The system must distinguish between ordinary edits and changes that may affect arrangements already confirmed (Source: customer-brief-no-1).
 
+> [!quote] Customer answer — #4
 > **Changes that may affect existing arrangements should be treated as significant.** Examples include changes to date/time, attendance, venue requirements, equipment requirements, or other changes that could invalidate confirmed arrangements. Ordinary edits that do not affect existing arrangements need not trigger revalidation. The exact implementation is for you to propose.
 > (Source: is212-discussions-2026-08-31, #4)
 
@@ -39,7 +40,8 @@ The system must distinguish between ordinary edits and changes that may affect a
 
 The customer's definition is **functional, not enumerative**: significance is defined by *whether the change can invalidate an existing arrangement*, and the example list is illustrative. The table above is a reading of that rule, not a customer-supplied list.
 
-> **Team decision required.** The classification rule and the revalidation mechanism are explicitly left to the team ("The exact implementation is for you to propose", #4). Open sub-decisions: whether classification is a static per-field configuration or evaluated against what is currently booked; whether revalidation is automatic or coordinator-initiated; and whether affected arrangements are invalidated outright or flagged for review while remaining held.
+> [!question]- Team decision required — significance classification and revalidation
+> The classification rule and the revalidation mechanism are explicitly left to the team ("The exact implementation is for you to propose", #4). Open sub-decisions: whether classification is a static per-field configuration or evaluated against what is currently booked; whether revalidation is automatic or coordinator-initiated; and whether affected arrangements are invalidated outright or flagged for review while remaining held.
 
 ## What Revalidation Means
 
@@ -74,6 +76,7 @@ Rescheduling also interacts with venue slotting: venues are booked in AM (7am–
 
 ## No Change Cut-Off
 
+> [!quote] Customer answer — #8
 > No change cut-off period is required, but some changes may occur even after confirmation and may require affected arrangements to be reviewed again.
 > (Source: is212-discussions-2026-08-31, #8)
 
@@ -83,16 +86,19 @@ Consequences:
 - The change-impact path must work for confirmed events, not only events in planning.
 - Late changes must still reach affected staff and attendees — the brief names "Last-minute changes may not reach all affected staff or attendees" as a current pain point (Source: customer-brief-no-1, s2). See [[notifications]].
 
-> **Team decision required.** With no customer-mandated cut-off, the team may still propose lead-time guardrails (for example, warning on changes inside a venue's turnaround window) — but as a proposal, not as a customer requirement.
+> [!question]- Team decision required — lead-time guardrails
+> With no customer-mandated cut-off, the team may still propose lead-time guardrails (for example, warning on changes inside a venue's turnaround window) — but as a proposal, not as a customer requirement.
 
 ## Confirmed Events Moving Back to Planning
 
+> [!quote] Customer answer — #70
 > A major change may require existing arrangements to be reviewed again. You can propose if you need a transition process flow.
 > (Source: is212-discussions-2026-08-31, #70)
 
 The customer confirms the *need* to re-review but leaves the *state transition* undefined.
 
-> **Team decision required.** Options for the team: move the event back to *planning* / *awaiting arrangements*; keep it *confirmed* but flag affected arrangements as pending revalidation; or introduce an explicit *change under review* state. The decision has visible consequences for the Event Organiser and for Attendees of a confirmed event with open registration, since the brief requires that "Users should not be presented with contradictory information regarding event dates, venue bookings, equipment availability, or registration status" (Source: customer-brief-no-1, s8d). See [[event-lifecycle]] and [[non-functional-requirements]].
+> [!question]- Team decision required — status handling on post-confirmation change
+> Options for the team: move the event back to *planning* / *awaiting arrangements*; keep it *confirmed* but flag affected arrangements as pending revalidation; or introduce an explicit *change under review* state. The decision has visible consequences for the Event Organiser and for Attendees of a confirmed event with open registration, since the brief requires that "Users should not be presented with contradictory information regarding event dates, venue bookings, equipment availability, or registration status" (Source: customer-brief-no-1, s8d). See [[event-lifecycle]] and [[non-functional-requirements]].
 
 ## Venue Becoming Unavailable After Confirmation
 
@@ -109,7 +115,8 @@ An externally-driven change rather than an Organiser-requested one — for examp
 
 The equipment analogue behaves the same way: reserved equipment may become unavailable through damage or maintenance, Technical Support Staff maintain equipment status (Source: is212-discussions-2026-08-31, #9), and defects found on return update the operational status of the affected item (Source: is212-discussions-2026-08-31, #86).
 
-> **Team decision required.** Whether the system automatically detects that an availability block collides with an existing confirmed booking, and how forcefully it surfaces this (dashboard flag, notification, blocking alert, automatic arrangement invalidation), is unspecified. The brief's pain point "Cancelled events may continue to occupy venue or equipment reservations" argues for automatic detection rather than manual vigilance.
+> [!question]- Team decision required — detecting availability collisions
+> Whether the system automatically detects that an availability block collides with an existing confirmed booking, and how forcefully it surfaces this (dashboard flag, notification, blocking alert, automatic arrangement invalidation), is unspecified. The brief's pain point "Cancelled events may continue to occupy venue or equipment reservations" argues for automatic detection rather than manual vigilance.
 
 ## Change History and Activity History
 
@@ -122,7 +129,8 @@ The brief treats these as two related but distinct capabilities (Source: custome
 
 The underlying pain point: "It is difficult to determine who changed important event information and when the change occurred." The auditability requirement is that ConnectSphere can determine **what was changed, who changed it, and when** (Source: customer-brief-no-1, s8f).
 
-> **Team decision required.** The customer declined to mandate a mechanism: "The requirement is that important actions and changes are recorded so that ConnectSphere can determine what changed, who changed it, and when. The technical mechanism used to achieve this is for you to propose." A tamper-proof append-only log is **not** required; a regular database table may suffice (Source: is212-discussions-2026-08-31, #14).
+> [!question]- Team decision required — audit mechanism
+> The customer declined to mandate a mechanism: "The requirement is that important actions and changes are recorded so that ConnectSphere can determine what changed, who changed it, and when. The technical mechanism used to achieve this is for you to propose." A tamper-proof append-only log is **not** required; a regular database table may suffice (Source: is212-discussions-2026-08-31, #14).
 
 Related: document versioning is explicitly **not** required, as attachments are not legal documents (Source: is212-discussions-2026-08-31, #21) — so change history covers event data, not file revisions. Access to change history is subject to [[access-control]].
 

@@ -39,7 +39,8 @@ The brief lists the following as examples of situations that may generate a noti
 
 The list is illustrative ("Examples of situations that **may** generate a notification"), not exhaustive. Recipients above are inferred from role responsibilities in [[user-roles]] — the brief does not specify a recipient matrix.
 
-> **Team decision required:** The recipient matrix — which roles receive which notification, and whether recipients are derived from relationship to the event or configured. The brief lists triggers only.
+> [!question]- Team decision required — recipient matrix
+> The recipient matrix — which roles receive which notification, and whether recipients are derived from relationship to the event or configured. The brief lists triggers only.
 
 ## Channels
 
@@ -55,7 +56,8 @@ The question asked whether configuration was per user or mass-configured; the an
 
 Email is explicitly a **notification-channel requirement, not an integration requirement**: "No integration with existing external applications or services is required for the current scope. However, the notification requirements may include sending email notifications. This should be treated as a notification-channel requirement rather than a general integration requirement." (Source: is212-discussions-2026-08-31, #79).
 
-> **Team decision required:** Whether per-user preferences (from the User Profile Management feature) combine with the per-type channel configuration, and how conflicts resolve. #37 defines type-level configurability; the brief's profile "communication preferences" implies a user-level axis that has not been reconciled with it.
+> [!question]- Team decision required — per-user vs per-type preferences
+> Whether per-user preferences (from the User Profile Management feature) combine with the per-type channel configuration, and how conflicts resolve. #37 defines type-level configurability; the brief's profile "communication preferences" implies a user-level axis that has not been reconciled with it.
 
 ## Delivery Timing: Batch vs Real-Time
 
@@ -75,7 +77,8 @@ This answer evolved across the two snapshots and is the most consequential timin
 
 This is not a contradiction of the earlier "batch" answer — it is a relaxation that explains it. The operative constraint is the absence of a delivery-time SLA, not a mandate to build a queue. A team may implement real-time delivery and still satisfy #55.
 
-> **Team decision required:** Whether to implement batched delivery with a configurable interval, or immediate delivery. #55 explicitly permits either. The only firm requirement is that **no delivery-time guarantee is owed**. If batching is chosen, the interval must be configurable.
+> [!question]- Team decision required — batched vs immediate delivery
+> Whether to implement batched delivery with a configurable interval, or immediate delivery. #55 explicitly permits either. The only firm requirement is that **no delivery-time guarantee is owed**. If batching is chosen, the interval must be configurable.
 
 Because there is no delivery-time requirement, notification latency should **not** be treated as a performance target. The brief's performance requirement covers "common operations such as viewing an event, searching available venues, opening a venue calendar, checking equipment availability, or submitting a registration" — notification delivery is not among them (Source: customer-brief-no-1, s8a). See [[non-functional-requirements]].
 
@@ -91,7 +94,8 @@ This answers a direct question about whether the system should "nag" the coordin
 
 ### Reminder timing
 
-> **Team decision required:** How far in advance and how often reminders fire. Asked with concrete options ("1 week before event, 1 day before?") and returned in full: "**The timing and configurability are for you to propose.**" (Source: is212-discussions-2026-08-31, #40).
+> [!question]- Team decision required — reminder timing
+> How far in advance and how often reminders fire. Asked with concrete options ("1 week before event, 1 day before?") and returned in full: "**The timing and configurability are for you to propose.**" (Source: is212-discussions-2026-08-31, #40).
 
 Note the interaction between #40 and #47/#55: the customer requires that *frequency* be configurable for batched notifications and incomplete-arrangement reminders, but leaves *lead time* and the broader reminder configurability model entirely to the team. These are compatible — #47 fixes that reminders exist and are configurable; #40 leaves the parameter values and the configuration surface open.
 
@@ -108,7 +112,8 @@ The customer's answer to what happens when a confirmed venue becomes unavailable
 
 Responsibility is therefore split: Venue Staff record the fact, the system surfaces it, the Event Coordinator resolves it. The system is not stated to auto-cancel or auto-rebook. The same pattern applies to equipment becoming damaged or unavailable — Technical Support Staff maintain equipment status (Source: is212-discussions-2026-08-31, #9) and the resulting impact is reviewed by the coordinator. See [[change-impact-management]], [[venue-booking]], and [[equipment-management]].
 
-> **Team decision required:** The automation mechanism linking an availability change to the affected events — how affected upcoming events are detected, and whether anything beyond notification happens automatically (#54).
+> [!question]- Team decision required — availability-change automation
+> The automation mechanism linking an availability change to the affected events — how affected upcoming events are detected, and whether anything beyond notification happens automatically (#54).
 
 ## Design Constraints
 

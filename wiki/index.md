@@ -11,6 +11,18 @@ Content catalog of every wiki page. Update whenever a page is created, renamed, 
 
 **21 pages** — 3 sources, 15 concepts, 3 entities. All raw documents ingested as of 2026-09-02.
 
+> [!important] Hard rules the customer actually committed to
+> Most of this brief is deliberately open, so the few fixed constraints matter. Do not design around these — they are stated, not proposable.
+> - Venues book in **AM / PM / Night** slots; full day is all three ([[venue-booking]], #50)
+> - Double-booking must be **blocked outright**, not warned ([[venue-booking]], #35)
+> - Only **one** active tentative hold or confirmed booking per venue and overlapping period ([[venue-booking]], #41)
+> - Equipment is collectable from **D-1** and available again only from **Return Day + 1**; no same-day sharing ([[equipment-management]], #5)
+> - Confirmation must be **blocked** while an arrangement essential to that event is incomplete ([[event-readiness]], #80)
+> - Only the **assigned Event Coordinator** may cancel, at any stage ([[event-lifecycle]], #68)
+> - Waiting-list acceptance window is **3 days** ([[attendee-registration]], #44)
+> - Events auto-complete **7 days** after the end date if not closed manually ([[event-lifecycle]], #71)
+> - **Singapore time only**; English only ([[non-functional-requirements]], #36, #28)
+
 ## Start here
 
 | If you want to… | Read |
@@ -88,3 +100,4 @@ One summary page per ingested document in `raw/`.
 | `raw/Customer Brief no. 1.md` | ✅ Ingested 2026-09-02 |
 | `raw/IS212 2026 Discussions Aug 26.md` | ✅ Ingested 2026-09-02 |
 | `raw/IS212 2026 Discussions Aug 31.md` | ✅ Ingested 2026-09-02 |
+| `raw/llm-wiki.md` | ⏸️ Not ingested — methodology, not domain content; see log |

@@ -41,7 +41,8 @@
       "canonicalText": "update the wiki with the obsidian components cheatsheet, so key items are highlighted for a human reader, but dont overdo it we dont want too much noise for the llm",
       "images": [],
       "contentDigest": "34de6c155fcbe52180dffe66592e63455f860a370c656e2922880611dd218681",
-      "providerUserMessageId": "3f053817-ceb7-4765-ac25-2beed0cc9ddc"
+      "providerUserMessageId": "3f053817-ceb7-4765-ac25-2beed0cc9ddc",
+      "providerAssistantMessageId": "b79b071d-b39c-4a09-96a4-8eb59634a074"
     }
   ]
 }

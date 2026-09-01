@@ -38,7 +38,8 @@ Venues are booked in **three fixed daily time slots — AM, PM, Night**. A full-
 | PM | 1pm – 6pm |
 | Night | 7pm – 12am |
 
-> ⚠️ **Source ambiguity — slot labels.** The customer's answer to #50 reads verbatim: *"The venue will be booked based on 3 time slots (AM, PM, Night) if full day will be all 3 slots. AM (7am-12pm, 1pm-6pm, 7pm-12am)"*. Three time ranges are listed but only the **first** is labelled ("AM"). The table above applies the obvious positional mapping (AM / PM / Night in the order the slots were named), but this mapping is **inferred, not stated**. Note also the unbooked gaps at 12pm–1pm and 6pm–7pm, whose purpose (break, changeover, or a transcription slip) is not explained; they may or may not be intended to absorb setup and turnaround. Both points should be confirmed with the customer before the slot model is hard-coded.
+> [!warning] Source ambiguity — slot labels
+> The customer's answer to #50 reads verbatim: *"The venue will be booked based on 3 time slots (AM, PM, Night) if full day will be all 3 slots. AM (7am-12pm, 1pm-6pm, 7pm-12am)"*. Three time ranges are listed but only the **first** is labelled ("AM"). The table above applies the obvious positional mapping (AM / PM / Night in the order the slots were named), but this mapping is **inferred, not stated**. Note also the unbooked gaps at 12pm–1pm and 6pm–7pm, whose purpose (break, changeover, or a transcription slip) is not explained; they may or may not be intended to absorb setup and turnaround. Both points should be confirmed with the customer before the slot model is hard-coded.
 
 **Team decision required:** the exact UX and implementation of slot selection are left open (#50) — including whether slots are stored as an enum or as concrete start/end timestamps, and how a multi-day or [[event-lifecycle|multi-session]] event maps onto slots.
 
@@ -64,7 +65,8 @@ A venue may be temporarily held while an event is still being finalised (Source:
 | Auto-release mechanism | **Not specified** (#39, #41) |
 | Whether hold expiry is configurable | **Not specified** (#39) |
 
-> **Team decision required:** expiry period and release mechanism for tentative holds are explicitly for the team to propose (Source: is212-discussions-2026-08-31, #39 and #41). This matters because a hold that never expires is functionally a confirmed booking and will silently block the venue — a stated pain point in the brief ("cancelled events may continue to occupy venue or equipment reservations").
+> [!question]- Team decision required — tentative hold expiry and release
+> Expiry period and release mechanism for tentative holds are explicitly for the team to propose (Source: is212-discussions-2026-08-31, #39 and #41). This matters because a hold that never expires is functionally a confirmed booking and will silently block the venue — a stated pain point in the brief ("cancelled events may continue to occupy venue or equipment reservations").
 
 Competing holds are therefore impossible by rule: the first hold wins the slot until it is confirmed or released. Multiple coordinators cannot shortlist the same slot in parallel.
 
@@ -93,7 +95,8 @@ Note the tension with the fixed three-slot model: if slots are indivisible, per-
 - Blocking is at slot granularity, enabling partial-day unavailability (#50).
 - When a venue becomes unavailable **after** a booking is confirmed, Venue Staff are responsible for updating availability. The availability change affecting an upcoming event is a notification scenario, and **the Event Coordinator must then make the changes** (Source: is212-discussions-2026-08-31, #54).
 
-> **Team decision required:** automation of the response to a post-confirmation venue loss (auto-release, auto-flag, auto-suggest alternatives) is for the team to propose (#54).
+> [!question]- Team decision required — post-confirmation venue loss automation
+> Automation of the response to a post-confirmation venue loss (auto-release, auto-flag, auto-suggest alternatives) is for the team to propose (#54).
 
 ## Operating Hours
 

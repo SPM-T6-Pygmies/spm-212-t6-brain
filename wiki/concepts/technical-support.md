@@ -37,6 +37,7 @@ Step 8 of the planning process (Source: customer-brief-no-1). The flow is delibe
 2. **Technical Support Staff review** whether the requested equipment is suitable and available.
 3. Available equipment **can then be reserved** for the event.
 
+> [!info] No formal approval workflow for equipment
 > There is **no formal request → approval workflow** for equipment equivalent to the venue booking approval in [[venue-booking]]. The customer answered #19 directly: the coordinator records the requirement, TSS review suitability and availability, and available equipment is reserved. (Source: is212-discussions-2026-08-31, #19)
 
 Practical consequence: there is no "approved"/"rejected" decision object for equipment. The outcome is expressed as reservation state plus flagged unavailable items. Requested equipment being confirmed or found unavailable is still a [[notifications]] trigger (Source: customer-brief-no-1).
@@ -71,7 +72,8 @@ Comments are retained with the event record; whether they are threaded or flat i
 | Who does the rostering — system-assigned or manual? | **No hard requirement** either way. | #88 |
 | Minimum notice period for equipment / technical support requests | **None specified** — team to propose if the solution requires one. | #25 |
 
-> **Team decision required (three related items):** #88 and #89 together leave the entire staff-assignment mechanism open — availability representation, assignment method (manual vs automated), and update cadence. The only fixed constraint is that *enough* availability information must exist to make an assignment possible. A minimal design (coordinator or TSS lead picks a name, no availability calendar) satisfies the letter of both answers.
+> [!question]- Team decision required — staff availability, assignment and cadence
+> #88 and #89 together leave the entire staff-assignment mechanism open — availability representation, assignment method (manual vs automated), and update cadence. The only fixed constraint is that *enough* availability information must exist to make an assignment possible. A minimal design (coordinator or TSS lead picks a name, no availability calendar) satisfies the letter of both answers.
 
 Contrast the coordinator side, where assignment **is** specified: an Event Operations Manager assigns and reassigns Event Coordinators, with no acceptance step and no in-system approval (#73, #94, #95). No equivalent manager role was named for Technical Support Staff. Whether the Event Operations Manager, the Event Coordinator, or a TSS lead performs technical staffing is **not stated** and is an [[open-questions]] item.
 

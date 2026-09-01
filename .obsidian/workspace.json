@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Obsidian Components Cheatsheet.md",
+                "file": "wiki/concepts/open-questions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Obsidian Components Cheatsheet"
+              "title": "open-questions"
             }
           }
         ],
@@ -123,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian Components Cheatsheet.md",
+                "file": "wiki/concepts/open-questions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +133,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Obsidian Components Cheatsheet"
+              "title": "Backlinks for open-questions"
             }
           },
           {
@@ -142,12 +142,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Obsidian Components Cheatsheet.md",
+                "file": "wiki/concepts/open-questions.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Obsidian Components Cheatsheet"
+              "title": "Outgoing links from open-questions"
             }
           },
           {
@@ -185,13 +185,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian Components Cheatsheet.md",
+                "file": "wiki/concepts/open-questions.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Obsidian Components Cheatsheet"
+              "title": "Outline of open-questions"
             }
           },
           {
@@ -205,7 +205,7 @@
                   "openTabs": [
                     {
                       "tabId": "tab-1788288236758-ckqtsxk",
-                      "conversationId": "conv-1788288274327-36tjngspe"
+                      "conversationId": "conv-1788289482500-e26j6fy3n"
                     }
                   ],
                   "activeTabId": "tab-1788288236758-ckqtsxk"
@@ -235,18 +235,21 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "b3d88b0092561a19",
+  "active": "3f1234fc0f604637",
   "lastOpenFiles": [
-    "wiki/concepts/equipment-management.md",
-    "Obsidian Components Cheatsheet.md",
-    "wiki/concepts/venue-booking.md",
-    "wiki/concepts/user-roles.md",
-    "wiki/concepts/venue-suitability.md",
+    "wiki/concepts/non-functional-requirements.md",
     "wiki/concepts/event-readiness.md",
+    "raw/llm-wiki.md",
+    "CLAUDE.md",
+    "wiki/concepts/venue-booking.md",
     "wiki/concepts/event-lifecycle.md",
+    "wiki/concepts/equipment-management.md",
     "wiki/concepts/change-impact-management.md",
     "wiki/concepts/attendee-registration.md",
     "wiki/concepts/access-control.md",
+    "Obsidian Components Cheatsheet.md",
+    "wiki/concepts/user-roles.md",
+    "wiki/concepts/venue-suitability.md",
     "raw/Customer Brief no. 1.md",
     "wiki/concepts/open-questions.md",
     "wiki/sources/customer-brief-no-1.md",
@@ -259,10 +262,7 @@
     "wiki/entities/event-planning-venue-booking-system.md",
     "wiki/entities/connectsphere-event-services.md",
     "wiki/concepts/notifications.md",
-    "CLAUDE.md",
     "wiki/concepts/technical-support.md",
-    "wiki/concepts/non-functional-requirements.md",
-    "wiki/concepts/event-request-workflow.md",
     "wiki/entities",
     "wiki/concepts",
     "wiki/sources",

@@ -31,7 +31,8 @@ Consolidated register of everything the customer left to the team or left unansw
 
 ## Scope Is Not Yet Fixed
 
-> ⚠️ **Release 1 scope is not settled.** The customer closed #79 with "Please refer to the final Release 1 scope to be confirmed on **Friday**", and in #11 said "We will be having further internal discussions with other stakeholders after this round of clarifications to determine the features and flows to be prioritised for Release 1" (Source: is212-discussions-2026-08-31, #79, #11). The brief independently states that the customer "will eventually clarify the core functionalities to cover in your first release" and instructs teams to **wait for these to be identified in Week 4** before coding, using Weeks 2–4 to build a product backlog of epics and user stories (Source: customer-brief-no-1).
+> [!warning] Release 1 scope is not settled
+> The customer closed #79 with "Please refer to the final Release 1 scope to be confirmed on **Friday**", and in #11 said "We will be having further internal discussions with other stakeholders after this round of clarifications to determine the features and flows to be prioritised for Release 1" (Source: is212-discussions-2026-08-31, #79, #11). The brief independently states that the customer "will eventually clarify the core functionalities to cover in your first release" and instructs teams to **wait for these to be identified in Week 4** before coding, using Weeks 2–4 to build a product backlog of epics and user stories (Source: customer-brief-no-1).
 
 Implications:
 
@@ -162,6 +163,7 @@ The 2026-08-31 export lists **2 unanswered** discussions. Both are marked `re-op
 | **#2** | Does equipment have a physical location, and does moving it between venues affect turnaround (transit downtime)? | Marked **re-opened by a follow-up** (Isaidchia, 2026-08-28, flagging an apparent contradiction with #5). **SinYang13 posted a resolving answer on 2026-08-31**: both rules apply at different points in the lifecycle — transfer/preparation time affects **pre-event** availability, and the Return Day +1 rule governs **post-event** availability. They are not alternatives. Representation of transfer time, preparation time and current location is for the team to propose |
 | #55 | Batch vs real-time notifications | Marked re-opened; resolved 2026-08-31 — no hard delivery-time requirement, configurable batching, real-time acceptable |
 
+> [!success] Resolved — #2
 > The contradiction raised in #2 is now closed. The lifecycle the customer set out is: current equipment location → transfer/preparation to event venue → D-1 collection / event commitment period → event use → return to ConnectSphere → inspection/preparation → **available again from Return Day +1** (Source: is212-discussions-2026-08-31, #2). See [[equipment-management]].
 
 ## Items Explicitly Handled Outside the System

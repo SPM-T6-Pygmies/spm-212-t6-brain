@@ -43,7 +43,8 @@ Implications:
 - Because the period is extensible, closure must be modelled as a **mutable date**, not a terminal state. A closed registration can return to open.
 - Registration opening and closing are notification triggers (Source: customer-brief-no-1, s6). See [[notifications]].
 
-> **Team decision required:** Whether a re-opened registration period is a new period or an edit to the existing one, and whether waiting-list members are promoted before the period re-opens to the public. #42 confirms extension is allowed but does not sequence it against the waiting list.
+> [!question]- Team decision required — re-opened period vs waiting list
+> Whether a re-opened registration period is a new period or an edit to the existing one, and whether waiting-list members are promoted before the period re-opens to the public. #42 confirms extension is allowed but does not sequence it against the waiting list.
 
 ## Capacity
 
@@ -52,7 +53,8 @@ Implications:
 - Registration numbers reaching capacity earlier than expected is named in the brief as a routine change scenario (Source: customer-brief-no-1, s2).
 - Multi-session events may have **different attendance limits per session** (Source: is212-discussions-2026-08-31, #74).
 
-> **Team decision required:** The relationship between event capacity, venue capacity, and the registration limit. The brief treats them as related but does not state whether the registration cap is set independently by the coordinator or derived from the booked venue.
+> [!question]- Team decision required — event vs venue vs registration capacity
+> The relationship between event capacity, venue capacity, and the registration limit. The brief treats them as related but does not state whether the registration cap is set independently by the coordinator or derived from the booked venue.
 
 ## Waiting List
 
@@ -68,7 +70,8 @@ The 3-day window is one of the few **hard numeric business rules** the customer 
 
 Waiting-list status changes are a notification scenario (Source: customer-brief-no-1, s6). See [[notifications]].
 
-> **Team decision required:** Who may exercise the manual override (#26 does not name a role — the Event Coordinator is the natural candidate given #30), and what happens when the 3-day window expires: automatic pass to the next in queue, return to the back of the queue, or removal.
+> [!question]- Team decision required — waiting-list override and window expiry
+> Who may exercise the manual override (#26 does not name a role — the Event Coordinator is the natural candidate given #30), and what happens when the 3-day window expires: automatic pass to the next in queue, return to the back of the queue, or removal.
 
 ## Withdrawal
 
@@ -77,7 +80,8 @@ Waiting-list status changes are a notification scenario (Source: customer-brief-
 
 Withdrawal is the primary trigger that opens a spot and starts the 3-day waiting-list acceptance window under #44.
 
-> **Team decision required:** Whether withdrawal is permitted up to the event date or has a cut-off. The brief says "where permitted" without defining the permission rule; note that no change cut-off exists for events generally (Source: is212-discussions-2026-08-31, #8).
+> [!question]- Team decision required — withdrawal cut-off
+> Whether withdrawal is permitted up to the event date or has a cut-off. The brief says "where permitted" without defining the permission rule; note that no change cut-off exists for events generally (Source: is212-discussions-2026-08-31, #8).
 
 ## Attendees Who Do Not Self-Register
 
@@ -88,7 +92,8 @@ The question asked whether an *Event Organiser* could manually add attendees; th
 - Event Organisers do not get a bulk-add or manual-add capability of their own.
 - The system needs a coordinator-side path to create registration records for people who never authenticate, which must coexist with the capacity and waiting-list rules above.
 
-> **Team decision required:** The mechanism for coordinator-side entry (manual entry, bulk import, or off-system handover with only headcount recorded), and whether such attendees consume capacity and can be checked in.
+> [!question]- Team decision required — coordinator-side attendee entry
+> The mechanism for coordinator-side entry (manual entry, bulk import, or off-system handover with only headcount recorded), and whether such attendees consume capacity and can be checked in.
 
 ## Attendance Recording
 
@@ -112,7 +117,8 @@ Attendees must not be able to view internal planning information (Source: custom
 
 ## Registration Information Fields
 
-> **Team decision required:** What information an Attendee must provide when registering. Asked directly — "Name only? Dietary needs? Accessibility requirements?" — and returned in full: "Please propose an appropriate set of information based on the event needs." (Source: is212-discussions-2026-08-31, #22).
+> [!question]- Team decision required — registration fields
+> What information an Attendee must provide when registering. Asked directly — "Name only? Dietary needs? Accessibility requirements?" — and returned in full: "Please propose an appropriate set of information based on the event needs." (Source: is212-discussions-2026-08-31, #22).
 
 The phrase "based on the event needs" suggests the field set may vary per event rather than being globally fixed; the brief similarly says Attendees "provide the **required** registration information" (Source: customer-brief-no-1, s4), implying per-event configuration.
 

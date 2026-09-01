@@ -28,9 +28,11 @@ Access control is two-dimensional throughout: **role** (what kind of user) combi
 | Account recovery / locked accounts? | **Not specified in the current requirements** | #64 |
 | External user onboarding? | **Not in the feature list** | #49, #53 |
 
-> **Team decision required:** The authentication method. The customer's full answer to "email/password, SSO, or MFA?" was "Secure authentication is required, but the authentication method is not specified. Please propose an appropriate approach." (Source: is212-discussions-2026-08-31, #62).
+> [!question]- Team decision required — authentication method
+> The authentication method. The customer's full answer to "email/password, SSO, or MFA?" was "Secure authentication is required, but the authentication method is not specified. Please propose an appropriate approach." (Source: is212-discussions-2026-08-31, #62).
 
-> **Team decision required:** Account recovery and locked-account handling. Explicitly out of the stated requirements (Source: is212-discussions-2026-08-31, #64) — but a system with authentication and no recovery path is not usable in practice, so the team should decide whether to propose one or consciously defer it.
+> [!question]- Team decision required — account recovery
+> Account recovery and locked-account handling. Explicitly out of the stated requirements (Source: is212-discussions-2026-08-31, #64) — but a system with authentication and no recovery path is not usable in practice, so the team should decide whether to propose one or consciously defer it.
 
 ### Account provisioning gap
 
@@ -41,7 +43,8 @@ Two answers together leave the system with no defined way to create its own user
 
 Combined with #52 — no admin role and no user-administration business role defined (see [[user-roles]]) — nothing in the specified scope creates accounts for either internal or external users.
 
-> **Team decision required:** How users come to exist. Options: self-registration for external users, invitation issued by an Event Coordinator, pre-seeded internal accounts, or treating provisioning as out of scope with seeded data. #53 confirms Attendees are *users* of the system (they "register for events and view their registration status"), so an Attendee identity of some kind is required even if onboarding is not built.
+> [!question]- Team decision required — user provisioning
+> How users come to exist. Options: self-registration for external users, invitation issued by an Event Coordinator, pre-seeded internal accounts, or treating provisioning as out of scope with seeded data. #53 confirms Attendees are *users* of the system (they "register for events and view their registration status"), so an Attendee identity of some kind is required even if onboarding is not built.
 
 ## Protected Information
 
@@ -57,7 +60,8 @@ Clarified on 2026-08-31 (Source: is212-discussions-2026-08-31, #91). Protected i
 
 Access follows the user's role and responsibility for the event.
 
-> **Team decision required:** The exact access-control design and **field-level permissions** are explicitly delegated to the solution team (Source: is212-discussions-2026-08-31, #91). This is the highest-leverage open item on this page — the customer has given the categories but not the matrix.
+> [!question]- Team decision required — field-level permission matrix
+> The exact access-control design and **field-level permissions** are explicitly delegated to the solution team (Source: is212-discussions-2026-08-31, #91). This is the highest-leverage open item on this page — the customer has given the categories but not the matrix.
 
 Note that #91 was asked on 2026-08-28 and answered on 2026-08-31; it does not appear in the earlier snapshot (Source: is212-discussions-2026-08-26).
 
@@ -108,7 +112,8 @@ Indicative dashboard content per role:
 | Technical Support Staff | Equipment requests to review, upcoming reservations, on-site support assignments — see [[technical-support]] |
 | Attendee | Registered events, waiting-list positions, open events, registration status |
 
-> **Team decision required:** Dashboard composition per role. The brief gives examples ("such as"), not a specification, and the customer has consistently returned UI/UX questions to the team ("This is a UI/UX question, please propose and do the appropriate" — Source: is212-discussions-2026-08-31, #6, #27).
+> [!question]- Team decision required — dashboard composition per role
+> Dashboard composition per role. The brief gives examples ("such as"), not a specification, and the customer has consistently returned UI/UX questions to the team ("This is a UI/UX question, please propose and do the appropriate" — Source: is212-discussions-2026-08-31, #6, #27).
 
 Since a person may hold multiple roles (Source: is212-discussions-2026-08-31, #56), the dashboard must resolve the **union** of that user's roles, and permission checks must be evaluated per event rather than per account.
 
