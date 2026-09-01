@@ -40,7 +40,7 @@ No source specifies a lifecycle or a named status set for a support request/assi
 ## Binding rules
 
 - Technical Support Staff record questions, comments, and clarification needs against the event (#87).
-- Where clarification from the Event Organiser is required, the Event Coordinator remains the main liaison and coordinates the response — Technical Support Staff do not deal with the Organiser directly (#87).
+- Where clarification from the Event Organiser is required, the Event Coordinator remains the main liaison and coordinates the response (#87). ⚠️ Partial: the answer confirms the Coordinator's liaison role but does not state that Technical Support Staff are barred from contacting the Organiser directly — treat that as an inference, not a confirmed rule (#87).
 - The clarification and its response are retained with the event record (#87).
 - Technical support is one of the arrangements that may or may not be essential for a given event — some events may not require it at all (#80).
 - No minimum notice period is specified for technical support requests; propose an approach if the solution requires one (#25).

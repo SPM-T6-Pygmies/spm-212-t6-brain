@@ -46,13 +46,13 @@ Current equipment location
 
 The return leg goes back **to ConnectSphere**, not directly to the next venue — transfer time is consumed on the outbound leg of every reservation, measured from wherever the item currently sits (#2 follow-up). How transfer time, preparation time and current location are represented in the solution is left to the team (#2 follow-up) — see Open modelling questions.
 
-### Operational status
+### Operational status (Technical Support Staff-maintained field, #23)
+
+This diagram covers **only** the explicit operational-status attribute — the four customer-specified values (#23) that Technical Support Staff set directly. It does not include commitment-window availability; that is a separate, derived concept covered next.
 
 ```mermaid
 stateDiagram-v2
     [*] --> Available
-    Available --> Unavailable : reserved elsewhere, or inside its D-1 → Return Day+1 commitment window (#2, #5)
-    Unavailable --> Available : Return Day + 1, after inspection (#5)
     Available --> Damaged : TSS logs damage/defect, typically on return (#86)
     Available --> UnderMaintenance : TSS withdraws item for maintenance
     Damaged --> Available : TSS clears item back into service
@@ -61,12 +61,29 @@ stateDiagram-v2
 
 | State | Meaning | Entry / exit rule | Ref |
 |---|---|---|---|
-| Available | Free to be reserved | Entry: newly catalogued, or cleared back into service. Exit: reserved, or TSS marks damaged/under maintenance | #23 |
-| Unavailable | Not currently reservable — committed to another event or inside its commitment window | Entry: reserved for an event / within the D-1 → Return Day+1 window. Exit: Return Day + 1, after inspection | #2; #5 |
+| Available | No outstanding condition flag; TSS has not marked the item damaged or under maintenance | Entry: newly catalogued, or TSS clears the item back into service. Exit: TSS marks damaged or under maintenance | #23 |
 | Damaged | Found damaged, typically at return inspection | Entry: TSS logs a defect/damage (#86). Exit: not specified — trigger and process for clearing damaged status back to available are left to the team (🔶) | #23; #86 |
 | Under maintenance | Withdrawn for repair or maintenance | Entry: TSS places item under maintenance. Exit: not specified — no expected-return-date field, and the maintenance workflow itself is not a functional requirement (🔶) | #23 |
 
-The four values above are customer-specified (#23); the transition edges between them are this wiki's structural placeholder, not a specified process — the customer explicitly stated the equipment maintenance workflow is not currently listed as a functional requirement and is recorded only as a consideration (#23).
+The three non-default values above (unavailable, damaged, under maintenance) plus the implicit "available" default are customer-specified (#23); the transition edges between Available/Damaged/Under-maintenance are this wiki's structural placeholder, not a specified process — the customer explicitly stated the equipment maintenance workflow is not currently listed as a functional requirement and is recorded only as a consideration (#23). Note that #23's own "unavailable" value is not diagrammed separately here — see below.
+
+### Commitment-window availability (derived, #2 / #5)
+
+A second, independent mechanism can make an item non-reservable even when its operational-status field (above) says nothing is wrong with it: the item is already committed to another event and sitting inside that event's D-1 → Return Day + 1 window (see Availability lifecycle, above). This is **not** part of the #23 operational-status field — no source names a distinct field for it, so this diagram is this wiki's structural proposal for the derived state, not a customer-specified attribute.
+
+```mermaid
+stateDiagram-v2
+    [*] --> Free
+    Free --> Committed : reserved for an event — enters its D-1 → Return Day+1 window (#2, #5)
+    Committed --> Free : Return Day + 1, after inspection (#5)
+```
+
+| State | Meaning | Entry / exit rule | Ref |
+|---|---|---|---|
+| Free | Not currently committed to any event's D-1 → Return Day+1 window | Entry: Return Day + 1, after inspection, or never reserved. Exit: reserved for an event | #2; #5 |
+| Committed | Inside another event's D-1 → Return Day+1 window; not reservable for a conflicting event | Entry: reserved for an event, entering the window. Exit: Return Day + 1, after inspection | #2; #5 |
+
+An item is reservable for a new event only when its operational status is Available **and** it is Free (not Committed). The #23 answer's own "unavailable" value most likely corresponds to this Committed derived state in practice, but the source does not say the two are the same field — treating them as separate is the safer reading, and is this wiki's structural proposal, not a customer-specified data model.
 
 ## Relationships
 
