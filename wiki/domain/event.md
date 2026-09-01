@@ -20,7 +20,7 @@ The plannable record of a confirmed-or-confirmable occasion at [[connectsphere-e
 | Purpose | Why the event is being held | ✅ Specified | brief §2 |
 | Category / type | Conference, workshop, training session, exhibition, meeting, seminar, networking event, or another ConnectSphere-defined type | ✅ Specified | brief §4 |
 | Preferred date & time | Date/time as originally requested; may diverge from what is ultimately arranged | ✅ Specified | brief §2 |
-| Start time / end time | Event timing | ✅ Specified | brief §2 |
+| Start time / end time | Event timing | ✅ Specified | brief §4 |
 | Expected attendance | Organiser's stated attendance estimate | ✅ Specified | brief §2 |
 | Event capacity | Capacity ceiling used to gate registration | ✅ Specified | brief §4 |
 | Programme / agenda | Sessions, breaks, presentations, scheduled activities | ✅ Specified | brief §4 |
@@ -29,7 +29,7 @@ The plannable record of a confirmed-or-confirmable occasion at [[connectsphere-e
 | Equipment requirements | Organiser-stated equipment needs | ✅ Specified | brief §2 |
 | Registration-enabled flag | Whether Attendees may register for this event | ⚠️ Partial | brief §4 |
 | Special arrangements | Any other planning need not otherwise captured | ✅ Specified | brief §2 |
-| Venue requirements | Capacity, layout, accessibility, facilities the venue must satisfy | ✅ Specified | brief §2 |
+| Venue requirements | Capacity, layout, accessibility, facilities the venue must satisfy | ✅ Specified | brief §4 |
 | Technical-support flag + description | Whether the event needs technical support, and what is required | ✅ Specified | brief §4 |
 | Assigned Event Coordinator | The [[user-account]] acting as main internal point of contact | ✅ Specified | brief §4 |
 | Owning Event Organiser | The [[user-account]] responsible for the event on the client side | ✅ Specified | brief §2 |
@@ -45,7 +45,7 @@ The plannable record of a confirmed-or-confirmable occasion at [[connectsphere-e
 | Decision record | Retained record of an approve/reject/return decision | ✅ Specified | brief §5 (step 5) |
 
 > [!info] No versioning on supporting documents
-> Documents are not legal documents, so the system does not keep versions — attach or delete only, no revision history (#21).
+> Documents are not legal documents, so the system does not need to keep versions (#21).
 
 The comment-thread model (threaded vs flat) and document size/type limits are UI/UX and constraint decisions the customer left open — see Open modelling questions.
 
@@ -93,10 +93,10 @@ Cancellation is reachable from every non-terminal state, reflecting that only th
 | Planning | Venue, equipment, technical support and programme work in progress | Entry: from Approved. Exit: essential arrangements complete, or event cancelled | brief §4 |
 | Awaiting arrangements | One or more essential arrangements for this event remain incomplete | Entry: an essential arrangement is identified and not yet done. Exit: arrangement completed | #80 |
 | Confirmed | Every arrangement essential to this event is complete; arrangements visible to the Event Organiser | Entry: Coordinator confirms — **blocked** while any essential arrangement is incomplete. Exit: completion, cancellation, or (🔶) return to Planning on major change | #80 |
-| Completed | Event has taken place and been closed | Entry: Coordinator marks complete, or system auto-completes 7 days after end date if still open | #71 |
+| Completed | Event has taken place and been closed | Entry: Coordinator marks complete, or system **may** automatically mark it completed 7 days after end date if still open | #71 |
 | Cancelled | Event will not proceed | Entry: assigned Event Coordinator only, at any stage. Terminal | #68 |
 | Rejected | Request declined at review; decision record retained | Entry: Coordinator rejects. Terminal, unless resubmission is permitted (🔶) | brief §5 |
-| Returned | Sent back to the Event Organiser for amendment or clarification | Entry: Coordinator requests amendment. Exit: Organiser resubmits | brief §4 |
+| Returned | Sent back to the Event Organiser for amendment or clarification | Entry: Coordinator requests amendment. Exit: Organiser resubmits | brief §5 |
 
 > [!warning] No Postponed status
 > There is no separate *postponed* state. Postponement with a new date/time is treated as a reschedule and routed through the ordinary change-impact process; postponement with no known date releases the current venue/equipment bookings but retains the event record until a new date is provided (#69).
@@ -123,11 +123,11 @@ Cancellation is reachable from every non-terminal state, reflecting that only th
 - Confirmation is **allowed** with non-essential items still outstanding (#80).
 - The essential-arrangement set is determined **per event** — there is no single fixed list that applies to every event (#80).
 - Only the assigned Event Coordinator may cancel the event, and may do so at any stage (#68).
-- If not closed manually, the event auto-completes 7 days after its end date (#71).
+- If not closed manually, the system **may** automatically mark the event completed 7 days after its end date — this is a discretionary system behaviour, not a hard rule (#71).
 - There is no Postponed status: postponement with a new date is a reschedule; postponement without one releases bookings and retains the event record (#69).
 - All event times are Singapore time only — ConnectSphere's venues are all in Singapore (#36).
 - There is no change cut-off period before the event date; changes remain possible up to delivery (#8).
-- Supporting documents are add/delete only — no versioning, as they are not legal documents (#21).
+- Supporting documents are not versioned, as they are not legal documents (#21).
 
 ## Open modelling questions
 

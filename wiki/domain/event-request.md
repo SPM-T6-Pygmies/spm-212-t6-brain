@@ -25,11 +25,11 @@ Every field below is `⚠️ Partial`: the mandatory field set for submission ha
 | Purpose | Why the event is being held | ⚠️ Partial | brief §2; #72 |
 | Preferred dates / time | Organiser's requested date and time | ⚠️ Partial | brief §2; #72 |
 | Expected attendance | Organiser's attendance estimate | ⚠️ Partial | brief §2; #72 |
-| Venue requirements | Capacity, layout, accessibility, facilities sought | ⚠️ Partial | brief §2; #72 |
+| Venue requirements | Capacity, layout, accessibility, facilities sought | ⚠️ Partial | brief §4; #72 |
 | Accessibility needs | Organiser-stated accessibility requirements | ⚠️ Partial | brief §2; #72 |
 | Equipment requirements | Organiser-stated equipment needs | ⚠️ Partial | brief §2; #72 |
 | Registration requirements | Whether/how the event should support Attendee registration | ⚠️ Partial | brief §2; #72 |
-| Room-layout preferences | Preferred layout(s) | ⚠️ Partial | brief §4; #72 |
+| Room-layout preferences | Preferred layout(s) | ⚠️ Partial | brief §2; #72 |
 | General programme | Draft agenda/programme information | ⚠️ Partial | brief §2; #72 |
 | Other special arrangements | Anything else the Organiser flags | ⚠️ Partial | brief §2; #72 |
 | Requesting Event Organiser | The [[user-account]] who authored the request | ⚠️ Partial | brief §2; #72 |
@@ -48,7 +48,7 @@ The request's own status set is narrower than the full Event lifecycle in [[even
 | Under review | Assigned coordinator reviewing, may request clarification | Entry: review begins. Exit: approve / reject / return | brief §5 |
 | Approved | Sufficient information for planning to proceed; the request becomes an [[event]] | Entry: coordinator approves. Terminal for this record — see [[event]] | #80 |
 | Rejected | Declined at review; decision record retained | Entry: coordinator rejects. Terminal, unless resubmission is permitted (🔶 #67) | brief §5 |
-| Returned | Sent back to the Organiser for amendment or clarification | Entry: coordinator requests amendment. Exit: Organiser resubmits | brief §4 |
+| Returned | Sent back to the Organiser for amendment or clarification | Entry: coordinator requests amendment. Exit: Organiser resubmits | brief §5 |
 
 ## Relationships
 
@@ -61,12 +61,14 @@ The request's own status set is narrower than the full Event lifecycle in [[even
 
 ## Binding rules
 
-- The request may be created by an Event Organiser or an Event Coordinator (#78).
 - No minimum lead time is required between request creation and the event date (#78).
 - No contract or terms-acceptance step exists in the system — contracts and payments are handled physically, outside the system (#24).
 - No field-length requirements are specified for any request field (#72).
 
 ## Open modelling questions
+
+> [!question]- Team decision required — who may create an event request
+> The brief itself assigns request creation to the Event Organiser (brief §2, §5 step 1: "An Event Organiser creates a draft request..."). Discussion #78's question was phrased "...where an Event Organiser or Coordinator must create the event request?", presupposing both roles may create a request — but the customer's answer addressed only minimum lead time and never confirmed or denied that presupposition. Whether an Event Coordinator may also create a request on an Organiser's behalf is therefore unconfirmed and left to the team to decide (#78).
 
 > [!question]- Team decision required — resubmission after rejection
 > Whether a rejected request can be resubmitted, or whether rejection is final, was left to the team: "Please propose an appropriate approach if needed." (#67).

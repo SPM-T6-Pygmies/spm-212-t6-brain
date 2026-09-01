@@ -25,7 +25,7 @@ A record of a change an Event Organiser requests against an already-submitted or
 
 ## States
 
-Not specified. Neither source names a status set for the change-request record itself; the record is characterised by its `coordinator decision` attribute rather than a defined lifecycle. 🔶 Team decision — whether a change request needs an independent status field distinct from `coordinator decision`, or is not addressed further beyond brief §4.
+Not specified. Neither source names a status set for the change-request record itself; the record is characterised by its `coordinator decision` attribute rather than a defined lifecycle (brief §4). See Open modelling questions.
 
 ## Relationships
 
@@ -42,6 +42,9 @@ Not specified. Neither source names a status set for the change-request record i
 - There is no change cut-off period before the event date — changes, and the change requests that carry them, remain possible right up to delivery (#8).
 
 ## Open modelling questions
+
+> [!question]- Team decision required — independent status field for change requests
+> Neither source names a status set for the change-request record itself. The only confirmed fact is that the Event Coordinator reviews and decides on a requested change (brief §4). Whether the record needs its own status field (e.g. pending / approved / rejected) separate from the `coordinator decision` attribute, or whether the decision attribute *is* the status, is left to the team (brief §4).
 
 > [!question]- Team decision required — impact-analysis implementation
 > The significance test itself is customer-confirmed (see Binding rules), but its technical implementation — static per-field configuration vs. evaluation against what is currently booked, automatic vs. coordinator-initiated revalidation, and whether affected arrangements are invalidated outright or flagged pending review — is left to the team (#4).
