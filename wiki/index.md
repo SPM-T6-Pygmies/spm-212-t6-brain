@@ -9,7 +9,7 @@ tags: [meta, index]
 
 Content catalog of every wiki page. Update whenever a page is created, renamed, or removed.
 
-**21 pages** — 3 sources, 15 concepts, 3 entities. All raw documents ingested as of 2026-09-02.
+**36 pages** — 3 sources, 15 concepts, 15 domain objects, 3 entities. All raw documents ingested as of 2026-09-02.
 
 > [!important] Hard rules the customer actually committed to
 > Most of this brief is deliberately open, so the few fixed constraints matter. Do not design around these — they are stated, not proposable.
@@ -28,6 +28,7 @@ Content catalog of every wiki page. Update whenever a page is created, renamed, 
 | If you want to… | Read |
 |---|---|
 | Understand what is being built | [[event-planning-venue-booking-system]] |
+| Understand the object model | [[domain-model]] |
 | Understand who it is for | [[connectsphere-event-services]], [[user-roles]] |
 | See what the customer has *not* decided | [[open-questions]] |
 | See the latest customer answers | [[is212-discussions-2026-08-31]] |
@@ -84,6 +85,44 @@ One summary page per ingested document in `raw/`.
 | [[non-functional-requirements]] | Performance, security, usability, reliability, scalability, auditability, maintainability |
 | [[reporting]] | Event, venue usage and registration reports; history; dashboards |
 | [[open-questions]] | ⭐ Consolidated register of everything left to the team |
+
+## Domain objects
+
+The object model — what each thing *is*, as opposed to what happens to it. Start at [[domain-model]] for the ER diagram and the register of settled and deferred modelling decisions.
+
+### Event flow
+
+| Page | Covers |
+|---|---|
+| [[event]] | The central aggregate; attributes, 11 statuses, essential arrangements, comments, documents |
+| [[event-request]] | The pre-approval artefact; the request-vs-event modelling fork |
+| [[session]] | First-class child of an event, with its own venue, equipment and attendance limit |
+| [[change-request]] | Significant vs ordinary changes; the revalidation trigger |
+
+### Resources
+
+| Page | Covers |
+|---|---|
+| [[venue]] | AM/PM/Night slots, capacity, layouts, per-venue turnaround, unavailability |
+| [[booking]] | The booking record, tentative holds, slot exclusivity, conflict blocking |
+| [[equipment-item]] | Catalogue, statuses, the two availability rules, pooled-vs-serialised |
+| [[equipment-reservation]] | Requirement lines, partial fulfilment, defect logging |
+| [[support-request]] | Technical support requests and staff assignment |
+
+### People and participation
+
+| Page | Covers |
+|---|---|
+| [[user-account]] | Roles, multi-role, the capability matrix, coordinator assignment rules |
+| [[client-organisation]] | The two stated cardinalities; cross-organisation access |
+| [[registration]] | Registration period, waiting list, 3-day window, check-in |
+
+### Cross-cutting
+
+| Page | Covers |
+|---|---|
+| [[notification]] | 14 trigger scenarios, channels, batch delivery, reminders |
+| [[audit-record]] | Activity history vs change history; retention boundary |
 
 ## Entities
 
