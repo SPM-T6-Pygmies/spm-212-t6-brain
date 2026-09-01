@@ -34,37 +34,37 @@ Each object's own page remains the authority for its attributes, states, relatio
 
 ## ER diagram
 
-> [!warning] Everything except two edges below is this wiki's inference, not a customer deliverable
-> Exactly **two** cardinalities are stated by the customer, in so many words, anywhere in the source material — both in [[client-organisation]]'s domain (brief §4 *Client Management*): one client organisation has many Event Organisers, and one client organisation has many events (brief §4; reaffirmed at #65 and #81). Both are marked `(STATED — ...)` on their edges below. **Every other edge, and every other cardinality figure, in this diagram is this wiki's structural inference from the two sources' prose** — a proposal the team owns and may revise, not a requirement the customer handed down. Individual object pages already flag which of their own Relationships-table rows are read this way; this diagram is the first place all fourteen are drawn together, and inherits the same caveat wholesale. Do not present this diagram to the customer, or read it back into a requirements document, as if it were confirmed.
+> [!warning] Everything except three edges below is this wiki's inference, not a customer deliverable
+> Exactly **three** cardinalities are stated by the customer, in so many words, anywhere in the source material. Two are in [[client-organisation]]'s domain (brief §4 *Client Management*): "Multiple Event Organisers may belong to the same organisation, and an organisation may have several past and upcoming events" — one client organisation has many Event Organisers, and one client organisation has many events (brief §4; reaffirmed at #65 and #81). The third is in [[session]]'s domain (brief §4 *Multi-Session Events*): "Some events may contain several sessions within the same day or across multiple days" — one event has many sessions. All three are marked `(STATED — ...)` on their edges below. **Every other edge, and every other cardinality figure, in this diagram is this wiki's structural inference from the two sources' prose** — a proposal the team owns and may revise, not a requirement the customer handed down. Individual object pages already flag which of their own Relationships-table rows are read this way; this diagram is the first place all fourteen are drawn together, and inherits the same caveat wholesale. Do not present this diagram to the customer, or read it back into a requirements document, as if it were confirmed.
 
 ```mermaid
 erDiagram
-    %% ── The only two customer-stated cardinalities in this domain layer ──
+    %% ── The only three customer-stated cardinalities in this domain layer ──
     CLIENT_ORGANISATION ||--o{ USER_ACCOUNT : "employs (STATED — brief §4, #65)"
     CLIENT_ORGANISATION ||--o{ EVENT : "commissions (STATED — brief §4)"
+    EVENT ||--o{ SESSION : "contains (STATED — brief §4)"
 
     %% ── Everything below is inferred by this wiki, not customer-stated ──
     CLIENT_ORGANISATION ||--o{ EVENT_REQUEST : authors
     EVENT_REQUEST |o--o| EVENT : "becomes, on approval"
-    EVENT ||--o{ SESSION : contains
     EVENT ||--o{ BOOKING : reserves
-    SESSION |o--o| BOOKING : "books own"
+    SESSION ||--|| BOOKING : "books own"
     VENUE ||--o{ BOOKING : hosts
     EVENT ||--o{ EQUIPMENT_RESERVATION : reserves
-    SESSION ||--o{ EQUIPMENT_RESERVATION : reserves
+    SESSION |o--o{ EQUIPMENT_RESERVATION : reserves
     EQUIPMENT_ITEM }o--o{ EQUIPMENT_RESERVATION : fulfils
     EVENT ||--o{ SUPPORT_REQUEST : raises
     EVENT ||--o{ REGISTRATION : accepts
-    SESSION ||--o{ REGISTRATION : "may scope"
+    SESSION |o--o{ REGISTRATION : "may scope"
     EVENT ||--o{ CHANGE_REQUEST : receives
     EVENT ||--o{ AUDIT_RECORD : logs
     EVENT_REQUEST ||--o{ AUDIT_RECORD : logs
-    EVENT ||--o{ NOTIFICATION : triggers
-    EVENT_REQUEST ||--o{ NOTIFICATION : triggers
-    BOOKING ||--o{ NOTIFICATION : triggers
-    EQUIPMENT_RESERVATION ||--o{ NOTIFICATION : triggers
-    REGISTRATION ||--o{ NOTIFICATION : triggers
-    CHANGE_REQUEST ||--o{ NOTIFICATION : triggers
+    EVENT |o--o{ NOTIFICATION : triggers
+    EVENT_REQUEST |o--o{ NOTIFICATION : triggers
+    BOOKING |o--o{ NOTIFICATION : triggers
+    EQUIPMENT_RESERVATION |o--o{ NOTIFICATION : triggers
+    REGISTRATION |o--o{ NOTIFICATION : triggers
+    CHANGE_REQUEST |o--o{ NOTIFICATION : triggers
     USER_ACCOUNT ||--o{ NOTIFICATION : receives
     USER_ACCOUNT ||--o{ EVENT_REQUEST : authors
     USER_ACCOUNT ||--o{ EVENT : coordinates
