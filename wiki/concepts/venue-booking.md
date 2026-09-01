@@ -10,36 +10,22 @@ tags: [venue, booking, availability, scheduling, business-rules, connectsphere]
 
 # Venue Booking
 
+**Objects:** [[booking]] · [[venue]]
+
 How [[connectsphere-event-services]] venues are catalogued, held, requested, approved, and protected from double-booking in the [[event-planning-venue-booking-system]]. Covers steps 6–7 of the planning process (see [[event-lifecycle]]). Assessment of whether a given venue *fits* an event is covered separately in [[venue-suitability]].
 
 ## Venue Catalogue
 
-Venue Staff own venue master data (Source: customer-brief-no-1).
-
-| Attribute | Notes |
-|---|---|
-| Location | Facility/site; all venues are owned and operated by ConnectSphere in Singapore |
-| Capacity | Maximum attendance; drives suitability (see [[venue-suitability]]) |
-| Facilities | e.g. video-conferencing, AV fit-out |
-| Accessibility | Accessibility features of the space |
-| Supported room layouts | classroom, theatre, boardroom, banquet, exhibition, other |
-| Operating hours | Maintained by Venue Staff |
-| Setup / teardown / turnaround time | Recorded **per venue** (#43) |
+Venue Staff own venue master data — location, capacity, facilities, accessibility, supported room layouts, operating hours, and per-venue setup/teardown/turnaround time; see [[venue]] for the full attribute table (Source: customer-brief-no-1). Capacity drives suitability — see [[venue-suitability]].
 
 All venues are in Singapore and the system operates on Singapore time (Source: is212-discussions-2026-08-31, #36) — see [[non-functional-requirements]].
 
 ## Three-Slot Booking Model
 
-Venues are booked in **three fixed daily time slots — AM, PM, Night**. A full-day booking is all three slots. Partial blocking (e.g. mornings only during a renovation) is expressed by blocking individual slots (Source: is212-discussions-2026-08-31, #50).
+Bookings are made against the AM / PM / Night slots defined on [[venue]] — a full-day booking is all three slots, and partial blocking (e.g. mornings only during a renovation) is expressed by blocking individual slots (Source: is212-discussions-2026-08-31, #50).
 
-| Slot | Hours (as read) |
-|---|---|
-| AM | 7am – 12pm |
-| PM | 1pm – 6pm |
-| Night | 7pm – 12am |
-
-> [!warning] Source ambiguity — slot labels
-> The customer's answer to #50 reads verbatim: *"The venue will be booked based on 3 time slots (AM, PM, Night) if full day will be all 3 slots. AM (7am-12pm, 1pm-6pm, 7pm-12am)"*. Three time ranges are listed but only the **first** is labelled ("AM"). The table above applies the obvious positional mapping (AM / PM / Night in the order the slots were named), but this mapping is **inferred, not stated**. Note also the unbooked gaps at 12pm–1pm and 6pm–7pm, whose purpose (break, changeover, or a transcription slip) is not explained; they may or may not be intended to absorb setup and turnaround. Both points should be confirmed with the customer before the slot model is hard-coded.
+> [!warning] Slot labels — see [[venue]] for the unresolved ambiguity
+> The customer's answer to #50 pairs three time ranges with only one label ("AM"); which range is PM and which is Night is this wiki's inference, not a stated fact. [[venue]] carries the verbatim source text, the resulting ambiguity, and the unexplained 12pm–1pm / 6pm–7pm gaps in full — this page does not restate the inferred hours, to avoid the two pages drifting apart.
 
 **Team decision required:** the exact UX and implementation of slot selection are left open (#50) — including whether slots are stored as an enum or as concrete start/end timestamps, and how a multi-day or [[event-lifecycle|multi-session]] event maps onto slots.
 
@@ -55,15 +41,7 @@ Booking request, approval, rejection, and change are all notification triggers (
 
 ## Tentative Holds
 
-A venue may be temporarily held while an event is still being finalised (Source: customer-brief-no-1).
-
-| Rule | Status |
-|---|---|
-| Only **one** active tentative hold *or* confirmed booking may exist for the same venue and overlapping time period | Specified (#41) |
-| A tentative hold may later be confirmed or released | Specified (#41) |
-| Hold duration / expiry period | **Not specified** (#39, #41) |
-| Auto-release mechanism | **Not specified** (#39, #41) |
-| Whether hold expiry is configurable | **Not specified** (#39) |
+A venue may be temporarily held while an event is still being finalised (Source: customer-brief-no-1). The hold/confirm/release states, the one-active-hold-or-booking-per-venue rule, and the unresolved hold-expiry question are all defined on [[booking]] — see States and Binding rules.
 
 > [!question]- Team decision required — tentative hold expiry and release
 > Expiry period and release mechanism for tentative holds are explicitly for the team to propose (Source: is212-discussions-2026-08-31, #39 and #41). This matters because a hold that never expires is functionally a confirmed booking and will silently block the venue — a stated pain point in the brief ("cancelled events may continue to occupy venue or equipment reservations").

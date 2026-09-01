@@ -14,6 +14,8 @@ tags:
 
 # Notifications
 
+**Objects:** [[notification]] · [[event]]
+
 How the [[event-planning-venue-booking-system]] keeps users informed when events or arrangements relevant to them change. The brief's stated purpose: "Users should be kept informed when important events or arrangements relevant to them change" (Source: customer-brief-no-1, s6). Notifications directly address several of the brief's named pain points — last-minute changes not reaching affected staff or attendees, Technical Support Staff receiving insufficient notice, and Attendees receiving outdated event information (Source: customer-brief-no-1, s2).
 
 ## Notification Scenarios
@@ -37,7 +39,7 @@ The brief lists the following as examples of situations that may generate a noti
 | An upcoming event still has incomplete arrangements | Event Coordinator | [[event-readiness]] |
 | A venue or equipment availability change affects an upcoming event | Event Coordinator | [[venue-booking]], [[equipment-management]] |
 
-The list is illustrative ("Examples of situations that **may** generate a notification"), not exhaustive. Recipients above are inferred from role responsibilities in [[user-roles]] — the brief does not specify a recipient matrix.
+The list is illustrative ("Examples of situations that **may** generate a notification"), not exhaustive. Recipients above are inferred from role responsibilities in [[user-roles]] — the brief does not specify a recipient matrix. See [[notification]] for the canonical trigger-scenario table with full citations.
 
 > [!question]- Team decision required — recipient matrix
 > The recipient matrix — which roles receive which notification, and whether recipients are derived from relationship to the event or configured. The brief lists triggers only.

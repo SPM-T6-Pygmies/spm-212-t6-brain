@@ -16,9 +16,14 @@ tags:
 
 # Open Questions
 
+**Objects:** Spans all fifteen domain objects — see [[domain-model]] for the structural register these questions inform.
+
 Consolidated register of everything the customer left to the team or left unanswered, as of the **2026-08-31** discussion snapshot (87 discussions). Every row is a decision the team must make and document — the customer will not make it for them.
 
 `Ref` numbers are GitHub discussion numbers in the [[is212-g9-section]] repository, unless marked `brief`.
+
+> [!info] Two open-question registers
+> This page tracks open **requirements** questions — gaps in what the system must do, organised by feature area, with the customer's position and the resulting team obligation. [[domain-model]] maintains a separate, narrower register of open **structural/modelling** questions (44 items) — decisions about how the data model itself is shaped (fields, identity, state machines, record boundaries), once a requirements gap is accepted as a gap. The two overlap where a requirements gap and a structural gap are the same thing (e.g. #74's session identity scheme), and diverge everywhere else (e.g. Release 1 scope, tracked only here, has no structural-modelling counterpart there).
 
 ## How to Read the Customer's Positions
 

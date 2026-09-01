@@ -10,6 +10,8 @@ tags: [venue, suitability, search, filtering, capacity, room-layout, business-ru
 
 # Venue Suitability
 
+**Objects:** [[venue]] · [[event]]
+
 Assessing whether a venue can satisfy an event's requirements. Distinct from the mechanics of holding and approving a booking, which are covered in [[venue-booking]].
 
 ## Search/Filtering vs Suitability Checking

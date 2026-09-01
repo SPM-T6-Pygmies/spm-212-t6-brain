@@ -15,6 +15,8 @@ tags:
 
 # Event Readiness
 
+**Objects:** [[event]] · [[booking]] · [[equipment-reservation]] · [[support-request]] · [[registration]]
+
 Whether an event's arrangements are sufficiently complete for the Event Coordinator to confirm it, and how the system surfaces what is still outstanding. Readiness is the gate between *planning* and *confirmed* in the [[event-lifecycle]].
 
 ## The Core Rule

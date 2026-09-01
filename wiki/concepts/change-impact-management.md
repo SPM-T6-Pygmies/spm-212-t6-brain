@@ -15,6 +15,8 @@ tags:
 
 # Change Impact Management
 
+**Objects:** [[change-request]] · [[event]] · [[booking]] · [[equipment-reservation]] · [[audit-record]]
+
 How the system detects that a change to an event may invalidate arrangements already made, and drives those arrangements back through review. This is the customer's central stated motivation for the system: "Such changes can affect arrangements that have already been made… ConnectSphere therefore expects the proposed system to help users identify and manage these relationships." (Source: customer-brief-no-1, s2).
 
 ## Significant vs Ordinary Edits
@@ -72,7 +74,7 @@ Events can be rescheduled where necessary; existing venue, equipment, technical-
 
 Answer #3 is the key constraint for the team: **no UI path may become a back door around revalidation.** Whatever the interaction — form edit, calendar drag, bulk update — it funnels into the same change-impact process.
 
-Rescheduling also interacts with venue slotting: venues are booked in AM (7am–12pm), PM (1pm–6pm), and Night (7pm–12am) slots, with full day being all three (Source: is212-discussions-2026-08-31, #50), and setup/teardown/turnaround requirements are recorded **per venue** by Venue Staff (Source: is212-discussions-2026-08-31, #43). A time shift can therefore break turnaround compliance with an adjacent booking even when the venue itself is free.
+Rescheduling also interacts with venue slotting — bookings are made against the AM / PM / Night slots defined on [[venue]] (Source: is212-discussions-2026-08-31, #50) — and setup/teardown/turnaround requirements are recorded **per venue** by Venue Staff (Source: is212-discussions-2026-08-31, #43). A time shift can therefore break turnaround compliance with an adjacent booking even when the venue itself is free.
 
 ## No Change Cut-Off
 
@@ -120,12 +122,7 @@ The equipment analogue behaves the same way: reserved equipment may become unava
 
 ## Change History and Activity History
 
-The brief treats these as two related but distinct capabilities (Source: customer-brief-no-1, s4 and s8f):
-
-| Capability | Purpose |
-|---|---|
-| **Activity History** | Significant actions are recorded, including who performed the action and when — supports accountability and troubleshooting |
-| **Change History** | Users with appropriate access can review how important event information has changed **over time** |
+The brief treats these as two related but distinct capabilities, structurally defined on [[audit-record]] (Source: customer-brief-no-1, s4 and s8f).
 
 The underlying pain point: "It is difficult to determine who changed important event information and when the change occurred." The auditability requirement is that ConnectSphere can determine **what was changed, who changed it, and when** (Source: customer-brief-no-1, s8f).
 
