@@ -41,7 +41,7 @@ No lifecycle (e.g. active / inactive client) is specified for the Client Organis
 ## Binding rules
 
 - Event Organisers belonging to the same client organisation may view, but not edit or update, events they are not responsible for; Event Organisers must not access events belonging to an unrelated client organisation (#81).
-- Access to a same-organisation event is automatic and organisation-wide — it is not granted per event by another Organiser (#81).
+- Access to a same-organisation event is automatic and organisation-wide (#81). ⚠️ Partial: #81 describes the resulting access but is silent on the granting mechanism — it does not state that per-event granting by another Organiser is unavailable, only that no such step is described; see the "silence is not denial" warning below, which applies the same caveat to the administrator question.
 - No existing client database needs to be imported; there is no data-migration or system-integration requirement for client records (#12).
 - No primary-contact role has been specified for a client organisation; the customer invites a proposal only if one is needed (#65).
 

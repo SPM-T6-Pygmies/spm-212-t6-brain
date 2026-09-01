@@ -9,7 +9,7 @@ tags: [domain, registration, attendee]
 
 # Registration
 
-The record of a [[user-account]] (Attendee)'s registration for a confirmed [[event]] with registration enabled. Carries a Waiting List Entry when the event is at capacity, and is distinguished from the separate Attendance record created at check-in. Process detail lives in [[attendee-registration]]; this page is the structural reference.
+The record of a [[user-account]] (Attendee)'s registration for a confirmed [[event]] with registration enabled. Carries a Waiting List Entry when the event is at capacity. Registration is conceptually distinguishable from the Attendance information recorded at check-in, though whether that means a separate record or a field on this one is open — see Attendance / check-in. Process detail lives in [[attendee-registration]]; this page is the structural reference.
 
 ## Attributes
 
@@ -17,13 +17,14 @@ The record of a [[user-account]] (Attendee)'s registration for a confirmed [[eve
 |---|---|---|---|
 | Attendee | The [[user-account]] who registered | ✅ Specified | brief §4 |
 | Event | The [[event]] registered for | ✅ Specified | brief §4 |
-| Registration timestamp | When the registration record was created | ⚠️ Partial | brief §4 |
 | Status | Registered / waitlisted / withdrawn — see States | ✅ Specified | brief §4 |
 | Waiting-list position | Position in the FIFO queue, while waitlisted | ✅ Specified | #26 |
-| Attendance flag | Whether the Attendee ultimately attended, kept distinct from the registration itself — see Attendance / check-in | ✅ Specified | brief §4 |
+| Attendance flag | Whether the Attendee ultimately attended; brief §4 requires this be distinguishable from registration status, though whether it is a field here or on a separate record is open — see Attendance / check-in | ✅ Specified | brief §4 |
 | Registration period (open / close) | Not owned by the Registration record — set on the Event by the Event Coordinator, separate from the event dates | ✅ Specified | #30 |
 | Event capacity / attendance limit | Not owned by the Registration record — the cap on the Event (or session, for multi-session events) that gates how many registrations may hold "registered" status | ✅ Specified | brief §4; #74 |
 | Registration information fields | What an Attendee must supply when registering (name, dietary needs, accessibility, etc.) | 🔶 Team decision | #22 |
+
+A record-creation timestamp is not named as a field by either source; it is a structural necessity common to any record type (e.g. for FIFO ordering, auditability), not a customer-specified attribute, and is omitted from the table above on that basis.
 
 ## States
 
@@ -70,7 +71,7 @@ Promotion order is FIFO with manual override permitted (#26); the acceptance win
 
 ### Attendance / check-in
 
-Attendance is a record distinct from Registration, not a further status on it (brief §4: "allowing registration and attendance information to be distinguished").
+Attendance information is conceptually distinguishable from Registration status (brief §4: "allowing registration and attendance information to be distinguished"). Whether it is modelled as a field on this record or as a fully separate linked record is not specified by either source — see below.
 
 | State | Meaning | Entry rule | Ref |
 |---|---|---|---|
@@ -92,12 +93,12 @@ Whether attendance is modelled as a field on the Registration record or as a ful
 
 - Registration is available only for a **confirmed** event with registration enabled (brief §4, §5 step 11).
 - The registration period (open/close dates) is set by the Event Coordinator and is separate from the event dates (#30).
-- The registration period may be re-opened or extended after closing (#42).
+- The registration period may be extended after closing (#42's answer: "We will allow the extension of the registration period"). ⚠️ Partial: the question also asked about re-opening after a full close, but the answer confirms only extension — whether a fully closed period can be reopened outright is not addressed (#42).
 - No limit is specified on how many events one Attendee may register for; the customer invites a proposal only if the solution requires one (#48).
 - For attendees who do not self-register (e.g. VIPs), the attendee list must be provided to the Event Coordinator for processing — the Event Organiser cannot add them directly (#33).
 - Waiting-list promotion is FIFO with manual override (#26); the acceptance window is a fixed 3 days (#44).
 - Attendance is manual check-in at the counter, by QR-code scan or by staff — not self-reported and not auto-marked (#38).
-- Registration and attendance are distinct records (brief §4).
+- Registration status and attendance information must be kept distinguishable (brief §4); whether that is implemented as separate records or as fields on one record is left to the team — see Open modelling questions.
 
 ## Open modelling questions
 
