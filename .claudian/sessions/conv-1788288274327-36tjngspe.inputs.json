@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "conversationId": "conv-1788288274327-36tjngspe",
+  "records": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-1788288274489-vmt8efd",
+      "userTurnOrdinal": 1,
+      "state": "accepted",
+      "localMessageId": "msg-1788288274317-xr59b0t",
+      "timestamp": 1788288274317,
+      "rawDisplayText": "set up the wiki first in its structure",
+      "canonicalText": "set up the wiki first in its structure",
+      "images": [],
+      "contentDigest": "dde899fe2c697a3e6dcdb736e9d752569838e9419b27306365a324c07a13cfdc",
+      "providerUserMessageId": "c55803b9-f6ab-4fb6-99d0-2620e32d66cb",
+      "providerAssistantMessageId": "fc1df9ee-02ba-4c5a-b282-38c8a310541b"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1788288373045-xc1cnj7",
+      "userTurnOrdinal": 2,
+      "state": "accepted",
+      "localMessageId": "msg-1788288373037-e7fj539",
+      "timestamp": 1788288373037,
+      "rawDisplayText": "lets go ingest away",
+      "canonicalText": "lets go ingest away",
+      "images": [],
+      "contentDigest": "92e84104d170d55e9476f490818d6bdaba9ad58b19cf77301cf13b1a007831c7",
+      "providerUserMessageId": "8705191b-615b-4727-824f-7eb062050f29"
+    }
+  ]
+}

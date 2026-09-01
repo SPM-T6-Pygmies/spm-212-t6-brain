@@ -22,22 +22,6 @@
             }
           }
         ]
-      },
-      {
-        "id": "0b371c8870df7336",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "a3175eef506ff22b",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
-          }
-        ]
       }
     ],
     "direction": "vertical"
@@ -180,13 +164,34 @@
               "icon": "lucide-list",
               "title": "Outline of CLAUDE"
             }
+          },
+          {
+            "id": "3f1234fc0f604637",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {
+                "tabWorkspace": {
+                  "version": 1,
+                  "openTabs": [
+                    {
+                      "tabId": "tab-1788288236758-ckqtsxk",
+                      "conversationId": "conv-1788288274327-36tjngspe"
+                    }
+                  ],
+                  "activeTabId": "tab-1788288236758-ckqtsxk"
+                }
+              },
+              "icon": "bot",
+              "title": "Claudian"
+            }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 473.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -196,12 +201,50 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "audio-recorder:Start/stop recording": false,
+      "realclaudian:Open Claudian": false
     }
   },
-  "active": "1cab361add6976ee",
+  "active": "3f1234fc0f604637",
   "lastOpenFiles": [
-    "spm-212-t6-brain",
-    "CLAUDE.md"
+    "wiki/log.md",
+    "wiki/index.md",
+    "wiki/entities",
+    "wiki/concepts",
+    "wiki/sources",
+    "raw/Customer Brief no. 1.md",
+    "claudian/tsconfig.json",
+    "claudian/tsconfig.jest.json",
+    "claudian/tests/unit/utils/windowsCmdShim.test.ts",
+    "claudian/tests/unit/utils/utils.test.ts",
+    "claudian/tests/unit/utils/slashCommand.test.ts",
+    "claudian/tests/unit/utils/sdkSession.test.ts",
+    "claudian/tests/unit/utils/session.test.ts",
+    "claudian/src/style/CLAUDE.md",
+    "claudian/src/style/AGENTS.md",
+    "claudian/src/providers/pi/CLAUDE.md",
+    "claudian/src/providers/pi/AGENTS.md",
+    "claudian/src/providers/opencode/CLAUDE.md",
+    "claudian/src/providers/opencode/AGENTS.md",
+    "claudian/src/providers/grok/CLAUDE.md",
+    "claudian/src/providers/grok/AGENTS.md",
+    "claudian/src/providers/codex/CLAUDE.md",
+    "claudian/src/providers/codex/AGENTS.md",
+    "claudian/src/providers/claude/CLAUDE.md",
+    "claudian/src/providers/claude/AGENTS.md",
+    "claudian/src/features/collab/sidebar/CLAUDE.md",
+    "claudian/src/features/collab/sidebar/AGENTS.md",
+    "claudian/src/features/collab/modals/CLAUDE.md",
+    "claudian/src/features/collab/modals/AGENTS.md",
+    "claudian/src/features/collab/detail/CLAUDE.md",
+    "claudian/src/features/collab/detail/AGENTS.md",
+    "claudian/src/features/collab/CLAUDE.md",
+    "claudian/src/features/collab/AGENTS.md",
+    "claudian/src/features/chat/CLAUDE.md",
+    "claudian/src/features/chat/AGENTS.md",
+    "claudian/src/core/collab/CLAUDE.md",
+    "claudian/assets/sponsors/MOMA.png",
+    "claudian/assets/Preview.png"
   ]
 }
