@@ -1,0 +1,130 @@
+---
+title: Notifications
+type: concept
+sources:
+  - Customer Brief no. 1.md
+  - IS212 2026 Discussions Aug 31.md
+  - IS212 2026 Discussions Aug 26.md
+tags:
+  - notifications
+  - reminders
+  - communication
+  - connectsphere
+---
+
+# Notifications
+
+How the [[event-planning-venue-booking-system]] keeps users informed when events or arrangements relevant to them change. The brief's stated purpose: "Users should be kept informed when important events or arrangements relevant to them change" (Source: customer-brief-no-1, s6). Notifications directly address several of the brief's named pain points — last-minute changes not reaching affected staff or attendees, Technical Support Staff receiving insufficient notice, and Attendees receiving outdated event information (Source: customer-brief-no-1, s2).
+
+## Notification Scenarios
+
+The brief lists the following as examples of situations that may generate a notification (Source: customer-brief-no-1, s6). Grouped by concept:
+
+| Scenario | Primary recipients | Related page |
+|---|---|---|
+| A new event request is submitted | Event Operations Manager / Event Coordinators | [[event-request-workflow]] |
+| An Event Coordinator is assigned | Assigned coordinator, Event Organiser | [[user-roles]] |
+| Additional information or amendment is requested | Event Organiser | [[event-request-workflow]] |
+| An event request is approved, rejected, or returned | Event Organiser | [[event-lifecycle]] |
+| A venue booking is requested, approved, rejected, or changed | Venue Staff, Event Coordinator | [[venue-booking]] |
+| Requested equipment is confirmed or found to be unavailable | Event Coordinator | [[equipment-management]] |
+| An event becomes confirmed | Event Organiser, internal staff | [[event-lifecycle]] |
+| The Event Organiser requests a significant change | Event Coordinator | [[change-impact-management]] |
+| An event is rescheduled, postponed, or cancelled | All affected parties incl. Attendees | [[change-impact-management]] |
+| Registration opens or closes | Attendees | [[attendee-registration]] |
+| Registration reaches capacity or a waiting-list status changes | Event Coordinator, Attendees | [[attendee-registration]] |
+| A registered Attendee withdraws where that affects availability | Event Coordinator, waitlisted Attendees | [[attendee-registration]] |
+| An upcoming event still has incomplete arrangements | Event Coordinator | [[event-readiness]] |
+| A venue or equipment availability change affects an upcoming event | Event Coordinator | [[venue-booking]], [[equipment-management]] |
+
+The list is illustrative ("Examples of situations that **may** generate a notification"), not exhaustive. Recipients above are inferred from role responsibilities in [[user-roles]] — the brief does not specify a recipient matrix.
+
+> **Team decision required:** The recipient matrix — which roles receive which notification, and whether recipients are derived from relationship to the event or configured. The brief lists triggers only.
+
+## Channels
+
+**Both in-app and email**, configurable **per notification type** (Source: is212-discussions-2026-08-31, #37).
+
+The question asked whether configuration was per user or mass-configured; the answer was neither exactly — "We should allow both channels but it should also be configurable for the **type of notifications**." Configuration is therefore keyed on notification type rather than on the individual user.
+
+| Aspect | Position |
+|---|---|
+| Channels supported | In-app **and** email |
+| Configuration axis | Per notification **type** |
+| Per-user preference | Not stated in #37; the brief separately lists "communication preferences" as profile data (Source: customer-brief-no-1, s4) |
+
+Email is explicitly a **notification-channel requirement, not an integration requirement**: "No integration with existing external applications or services is required for the current scope. However, the notification requirements may include sending email notifications. This should be treated as a notification-channel requirement rather than a general integration requirement." (Source: is212-discussions-2026-08-31, #79).
+
+> **Team decision required:** Whether per-user preferences (from the User Profile Management feature) combine with the per-type channel configuration, and how conflicts resolve. #37 defines type-level configurability; the brief's profile "communication preferences" implies a user-level axis that has not been reconciled with it.
+
+## Delivery Timing: Batch vs Real-Time
+
+This answer evolved across the two snapshots and is the most consequential timing decision on the page.
+
+| Snapshot | State of #55 |
+|---|---|
+| 2026-08-25 (Source: is212-discussions-2026-08-26) | Listed as **unanswered / re-opened by a follow-up**. Previous answer: "We will put it as a batch but the frequency should be configurable". Follow-up from JameszLau asking what "batch" means was outstanding. |
+| 2026-08-31 (Source: is212-discussions-2026-08-31) | Still listed as unanswered, but the customer **did respond** in a follow-up dated 2026-08-31. |
+
+**The 2026-08-31 clarification, verbatim in substance** (Source: is212-discussions-2026-08-31, #55):
+
+- Notifications **do not need to be delivered immediately in real time**.
+- They **may be grouped and sent at configurable intervals**, and the exact frequency **should be configurable**.
+- **If real-time delivery is technically simpler, that is also acceptable.**
+- The underlying requirement: **there is no hard requirement for notifications to be received within a specific time limit.**
+
+This is not a contradiction of the earlier "batch" answer — it is a relaxation that explains it. The operative constraint is the absence of a delivery-time SLA, not a mandate to build a queue. A team may implement real-time delivery and still satisfy #55.
+
+> **Team decision required:** Whether to implement batched delivery with a configurable interval, or immediate delivery. #55 explicitly permits either. The only firm requirement is that **no delivery-time guarantee is owed**. If batching is chosen, the interval must be configurable.
+
+Because there is no delivery-time requirement, notification latency should **not** be treated as a performance target. The brief's performance requirement covers "common operations such as viewing an event, searching available venues, opening a venue calendar, checking equipment availability, or submitting a registration" — notification delivery is not among them (Source: customer-brief-no-1, s8a). See [[non-functional-requirements]].
+
+## Reminders
+
+The brief's Reminder System feature: the system "may remind relevant users about upcoming events, incomplete arrangements, registration deadlines, preparation activities, or other time-sensitive matters" (Source: customer-brief-no-1, s4).
+
+### Incomplete arrangements
+
+Confirmed as required: "**Yes**, reminders for incomplete arrangements. The frequency would be **by batch** and should also be **configurable**." (Source: is212-discussions-2026-08-31, #47).
+
+This answers a direct question about whether the system should "nag" the coordinator about incomplete arrangements or pending approvals. It aligns with the brief's "An upcoming event still has incomplete arrangements" notification scenario and with the Outstanding Action Tracking feature. See [[event-readiness]].
+
+### Reminder timing
+
+> **Team decision required:** How far in advance and how often reminders fire. Asked with concrete options ("1 week before event, 1 day before?") and returned in full: "**The timing and configurability are for you to propose.**" (Source: is212-discussions-2026-08-31, #40).
+
+Note the interaction between #40 and #47/#55: the customer requires that *frequency* be configurable for batched notifications and incomplete-arrangement reminders, but leaves *lead time* and the broader reminder configurability model entirely to the team. These are compatible — #47 fixes that reminders exist and are configurable; #40 leaves the parameter values and the configuration surface open.
+
+## Availability Changes Affecting Upcoming Events
+
+An availability change that affects an upcoming event is a notification scenario (Source: customer-brief-no-1, s6; is212-discussions-2026-08-31, #54).
+
+The customer's answer to what happens when a confirmed venue becomes unavailable (Source: is212-discussions-2026-08-31, #54):
+
+1. **Venue Staff are responsible for updating venue availability** when operational circumstances change.
+2. An availability change affecting an upcoming event **is a notification scenario**.
+3. The **Event Coordinator** then makes the necessary changes to the event.
+4. "Please propose an appropriate automation mechanisms if required."
+
+Responsibility is therefore split: Venue Staff record the fact, the system surfaces it, the Event Coordinator resolves it. The system is not stated to auto-cancel or auto-rebook. The same pattern applies to equipment becoming damaged or unavailable — Technical Support Staff maintain equipment status (Source: is212-discussions-2026-08-31, #9) and the resulting impact is reviewed by the coordinator. See [[change-impact-management]], [[venue-booking]], and [[equipment-management]].
+
+> **Team decision required:** The automation mechanism linking an availability change to the affected events — how affected upcoming events are detected, and whether anything beyond notification happens automatically (#54).
+
+## Design Constraints
+
+- The system must be desktop- and mobile-friendly; internal staff may need access while preparing venues or equipment (Source: customer-brief-no-1, s7). This is relevant to in-app notification design.
+- Offline access is **not** a requirement (Source: is212-discussions-2026-08-31, #31).
+- Notification content is subject to [[access-control]] — a notification must not disclose protected information to a recipient not entitled to see it (Source: is212-discussions-2026-08-31, #91).
+- Notification volume interacts with the role-based dashboard, which surfaces the same "events requiring attention" information in-app (Source: customer-brief-no-1, s4).
+
+## Open Items
+
+| Item | Status | Reference |
+|---|---|---|
+| Batch interval vs real-time delivery | **Either acceptable — team to choose; no delivery-time requirement** | #55 |
+| Reminder lead time and configurability model | **Team to propose** | #40 |
+| Recipient matrix per notification type | Not specified | brief s6 |
+| Reconciliation of per-type channel config with per-user communication preferences | Not specified | #37, brief s4 |
+| Automation mechanism for availability-change impact | **Team to propose if required** | #54 |
+
+See [[open-questions]] for the consolidated list.

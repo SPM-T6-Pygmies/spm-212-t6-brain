@@ -1,0 +1,118 @@
+---
+title: Event Lifecycle
+type: concept
+sources:
+  - Customer Brief no. 1.md
+  - IS212 2026 Discussions Aug 31.md
+  - IS212 2026 Discussions Aug 26.md
+tags:
+  - event-status
+  - state-machine
+  - business-rules
+  - connectsphere
+---
+
+# Event Lifecycle
+
+The set of statuses an event passes through in the [[event-planning-venue-booking-system]], and the rules governing transitions between them. The lifecycle is the backbone that [[event-request-workflow]], [[event-readiness]], and [[change-impact-management]] all attach to.
+
+## Statuses
+
+The brief lists the following as an example set — "Events progress through suitable statuses so that users can understand their current stage, for example draft, submitted, under review, approved, planning, awaiting arrangements, confirmed, completed, cancelled, or rejected" (Source: customer-brief-no-1).
+
+| Status | Meaning | Set by |
+|---|---|---|
+| Draft | Request saved but not submitted; incomplete information may be completed later | Event Organiser |
+| Submitted | Request sent to ConnectSphere, awaiting coordinator assignment | Event Organiser |
+| Under review | Assigned Event Coordinator is reviewing; clarifications may be requested | Event Coordinator |
+| Approved | Sufficient information exists for planning to proceed | Event Coordinator |
+| Planning | Venue, equipment, technical support and programme work in progress | Event Coordinator |
+| Awaiting arrangements | One or more essential arrangements remain incomplete | System / Event Coordinator |
+| Confirmed | All essential arrangements complete; arrangements visible to the Event Organiser | Event Coordinator |
+| Completed | Event has taken place and been closed | Event Coordinator, or system after 7 days |
+| Cancelled | Event will not proceed; reservations released | Assigned Event Coordinator only |
+| Rejected | Request declined at review; decision record retained | Event Coordinator |
+
+> **Team decision required:** The customer named these statuses "for example" and did not fix the state machine. The exact status set, the transitions permitted between them, and whether *planning* and *awaiting arrangements* are distinct states or one state with a readiness flag are all for the team to propose (Source: customer-brief-no-1; is212-discussions-2026-08-31, #70).
+
+## Approved vs Confirmed
+
+The single most load-bearing distinction in the lifecycle, clarified in full on 2026-08-31 (Source: is212-discussions-2026-08-31, #80).
+
+| Dimension | Approved | Confirmed |
+|---|---|---|
+| What it asserts | The request contains sufficient information for planning to proceed | The essential arrangements for that event are complete |
+| Commitment | **None** to venue, equipment, technical support, registration setup, or final delivery | ConnectSphere commits to the arrangements; the Event Organiser can view them |
+| Position in flow | Step 5 of the 14-step process | Step 10 of the 14-step process |
+| Precondition | Coordinator judges information adequate after review and clarification | All arrangements identified as essential for that event are complete |
+
+Key consequences of #80:
+
+- Approval is an **information-sufficiency gate**, not a resource commitment. Nothing is reserved by approving.
+- Confirmation is a **readiness gate**. See [[event-readiness]] for what counts as essential.
+- An event **may** be confirmed while non-essential follow-up actions remain outstanding, provided every essential arrangement is complete (#80, answer 4).
+- The system **should block confirmation** when an arrangement identified as required for that event is still incomplete (#80, answer 5).
+
+## Completion
+
+- After the event has taken place, the Event Coordinator can mark it as completed.
+- If it remains open, the system **may automatically mark it completed 7 days after the event end date** (Source: is212-discussions-2026-08-31, #71).
+- At completion, attendance information, operational notes, or issues may be recorded and the event closed (Source: customer-brief-no-1, step 14).
+- Completed and cancelled events remain available as historical records; there is no retention policy and archival is out of scope (Source: is212-discussions-2026-08-31, #20). See [[non-functional-requirements]].
+
+## Cancellation
+
+| Question | Answer |
+|---|---|
+| Who may cancel? | **Only the Event Coordinator in charge of that event** |
+| At what stage? | **Any stage** |
+
+(Source: is212-discussions-2026-08-31, #68)
+
+This is narrower than the brief, which says "an authorised user can cancel an event" (Source: customer-brief-no-1). The Q&A answer scopes that to the assigned coordinator alone — Event Organisers cannot cancel directly and must route a cancellation through their coordinator. Related venue and equipment reservations must no longer remain committed to a cancelled event (Source: customer-brief-no-1); see [[venue-booking]] and [[equipment-management]].
+
+## Postponement vs Cancellation
+
+There is no separate *postponed* status in the customer's answer. Postponement is resolved into two existing paths (Source: is212-discussions-2026-08-31, #69):
+
+| Case | Treatment | Effect on arrangements |
+|---|---|---|
+| Postponed **with** a new date/time | Treat as a **rescheduling request** | Review affected arrangements — see [[change-impact-management]] |
+| Postponed **with no** new date known | Release current bookings, **retain the event record** until a new date is provided | Venue and equipment released; event not cancelled |
+| Cancelled | Terminal; only the assigned coordinator may set it | Reservations released, event closed |
+
+The distinguishing property of postponement is that the event record survives — the client relationship and requirements are preserved for a later date, whereas cancellation ends the event.
+
+> **Team decision required:** The customer did not name a status for "postponed, date unknown". The team must decide whether this is a distinct status, a flag on an existing status, or a return to *approved*/*planning* with dates cleared.
+
+## Rejection and Resubmission
+
+Rejected or returned requests must retain an appropriate record of the decision (Source: customer-brief-no-1, step 5).
+
+> **Team decision required:** Whether a rejected event can be resubmitted, or whether rejection is final, was explicitly **not specified**. The customer's full answer was "Please propose an appropriate approach if needed." (Source: is212-discussions-2026-08-31, #67). Options for the team: rejection is terminal and a new request must be created; rejection returns the request to draft for amendment and resubmission; or a distinct *returned for amendment* outcome is separated from a terminal *rejected*.
+
+## Re-entrant Transitions
+
+The lifecycle is not strictly forward-only:
+
+- A confirmed event may need to move back to planning when a major change occurs (Source: is212-discussions-2026-08-31, #70) — see [[change-impact-management]].
+- Rescheduling via the calendar must still follow the relevant event-change process and must not bypass required checks or approvals (Source: is212-discussions-2026-08-31, #3).
+- There is **no change cut-off period** before the event date, so backward transitions remain possible up to delivery (Source: is212-discussions-2026-08-31, #8).
+
+## Cross-Cutting Rules
+
+- Status changes are notification triggers: submission, coordinator assignment, approval/rejection/return, confirmation, reschedule, postponement, cancellation (Source: customer-brief-no-1, s6). See [[notifications]].
+- Significant status actions are captured in activity history — what changed, who changed it, when (Source: customer-brief-no-1, s8f).
+- Visibility of a status and its underlying detail depends on role and relationship to the event. See [[access-control]] and [[user-roles]].
+- The current status, confirmed arrangements, and outstanding actions must be easy for the appropriate user to understand without knowledge of ConnectSphere's internal processes (Source: customer-brief-no-1, s7).
+
+## Open Items
+
+| Item | Status | Reference |
+|---|---|---|
+| Exact status set and permitted transitions | Team to propose | #70, brief |
+| Rejected event resubmission | **Unspecified — team to propose** | #67 |
+| Status representation for indefinite postponement | Team to propose | #69 |
+| Whether auto-completion at +7 days is mandatory or optional ("may") | Team to interpret | #71 |
+
+See [[open-questions]] for the consolidated list.

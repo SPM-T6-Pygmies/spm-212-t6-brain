@@ -27,7 +27,21 @@
       "canonicalText": "lets go ingest away",
       "images": [],
       "contentDigest": "92e84104d170d55e9476f490818d6bdaba9ad58b19cf77301cf13b1a007831c7",
-      "providerUserMessageId": "8705191b-615b-4727-824f-7eb062050f29"
+      "providerUserMessageId": "8705191b-615b-4727-824f-7eb062050f29",
+      "providerAssistantMessageId": "8aad2b79-353b-4384-9f17-c7becaf5b92a"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-1788289177422-o5aqa1n",
+      "userTurnOrdinal": 3,
+      "state": "accepted",
+      "localMessageId": "msg-1788289177417-hn5wpi2",
+      "timestamp": 1788289177417,
+      "rawDisplayText": "update the wiki with the obsidian components cheatsheet, so key items are highlighted for a human reader, but dont overdo it we dont want too much noise for the llm",
+      "canonicalText": "update the wiki with the obsidian components cheatsheet, so key items are highlighted for a human reader, but dont overdo it we dont want too much noise for the llm",
+      "images": [],
+      "contentDigest": "34de6c155fcbe52180dffe66592e63455f860a370c656e2922880611dd218681",
+      "providerUserMessageId": "3f053817-ceb7-4765-ac25-2beed0cc9ddc"
     }
   ]
 }
