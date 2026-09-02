@@ -10,13 +10,14 @@ This file defines the conventions and workflows for maintaining the PM Intern Le
   - `wiki/concepts/` — Pages for key ideas, frameworks, and methodologies.
   - `wiki/domain/` — Pages for domain objects: the nouns the system stores records about (Event, Venue, Booking, Equipment Item…). Structure, not process — attributes, states, relationships, cardinality. Concept pages describe what happens; domain pages describe what a thing *is*.
   - `wiki/entities/` — Pages for organizations, products, and people.
+- **`outputs/`** — LLM-generated one-off artefacts: reviews, scrutiny passes, ad-hoc analysis of a raw document. Not standing domain knowledge, so it sits outside the four wiki page types — but it's still linked from `wiki/index.md` (so nothing is orphaned) and still logged in `wiki/log.md`.
 - **`index.md`** — Content catalog of every wiki page, organized by category.
 - **`log.md`** — Chronological append-only record of wiki activity.
 
 ## Conventions
 
 - **Links**: Use Obsidian-style `[[wikilinks]]` for all cross-references between wiki pages. Use the page's filename without extension (e.g. `[[decision-making]]`).
-- **Frontmatter**: Every wiki page has YAML frontmatter with `title`, `type` (source-summary | concept | entity | domain-object), `sources` (list of raw files this page draws from), and `tags`.
+- **Frontmatter**: Every wiki page has YAML frontmatter with `title`, `type` (source-summary | concept | entity | domain-object | review), `sources` (list of raw files this page draws from), and `tags`. `review` is reserved for `outputs/` pages.
 - **Citations**: When a claim comes from a specific source, note it inline, e.g. `(Source: pm-intern-learning)`.
 - **Tone**: Concise, structured, third-person. Use headers, bullet points, and tables. Avoid fluff.
 - **Contradictions**: If a new source contradicts an existing wiki page, flag it explicitly with a `> [!warning] Contradiction` callout (see below).
@@ -72,8 +73,15 @@ Rules:
 2. Read those pages and synthesize an answer.
 3. If the answer is worth preserving, file it as a new wiki page.
 
+### Review
+1. Produce the artefact in `outputs/`, not `wiki/` — a review, scrutiny pass, or other one-off analysis of a raw document isn't standing domain knowledge.
+2. Give it frontmatter with `type: review` and `sources` citing the document(s) it scrutinizes.
+3. Link it from `wiki/index.md` under a **Reviews** section so it isn't orphaned.
+4. Append an entry to `wiki/log.md`.
+5. If the review surfaces a correction to standing wiki knowledge (not just a defect in the raw document under review), fix the affected `wiki/` page directly — don't leave the correction stranded in the review artefact.
+
 ### Lint
-1. Check for orphan pages (no inbound links).
+1. Check for orphan pages (no inbound links) across both `wiki/` and `outputs/`.
 2. Check for missing pages (referenced but don't exist).
 3. Check for stale information superseded by newer sources.
 4. Check for missing cross-references between related pages.

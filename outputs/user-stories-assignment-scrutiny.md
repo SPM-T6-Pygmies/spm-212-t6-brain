@@ -9,10 +9,7 @@ tags: [review, user-stories, standard-compliance, backlog, scrutiny]
 
 # User Stories Assignment — Scrutiny and Proposed Changes
 
-A scrutiny of `raw/User Stories Assignment.md` against `raw/IS212 User Story Standard — v1.0.md`, using the standard's own [Scrutiny Rubric (§13)](#) as the checklist. Every claimed rule in the assignment is additionally checked against what the customer actually said, as recorded in this wiki's domain and concept pages (which cite `Customer Brief no. 1` and the Aug 31 discussions directly). This page is a review artefact, not a domain/concept/source/entity page, so it sits outside the four-type taxonomy in `CLAUDE.md`; it is linked from [[index]] so it isn't an orphan.
-
-> [!info] Note on page type
-> This page doesn't fit `source-summary | concept | entity | domain-object`. It records a one-off scrutiny of a raw document, not standing knowledge about ConnectSphere. If the team wants a permanent "reviews" layer, that's a `CLAUDE.md` change to propose separately — not assumed here.
+A scrutiny of `raw/User Stories Assignment.md` against `raw/IS212 User Story Standard — v1.0.md`, using the standard's own [Scrutiny Rubric (§13)](#) as the checklist. Every claimed rule in the assignment is additionally checked against what the customer actually said, as recorded in this wiki's domain and concept pages (which cite `Customer Brief no. 1` and the Aug 31 discussions directly). This page is a review artefact, `type: review`, living in `outputs/` rather than `wiki/` — it records a one-off scrutiny of a raw document, not standing knowledge about ConnectSphere. It is linked from [[index]] so it isn't an orphan.
 
 ## How to read this
 
