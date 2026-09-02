@@ -30,16 +30,16 @@ Read `Customer Brief no. 1.md`, `IS212 2026 Discussions Aug 26.md`, and `IS212 2
 
 | Finding | Where |
 |---|---|
-| Approval vs confirmation resolved (#80) — approval commits nothing; confirmation must be blocked while an essential arrangement is incomplete | [[event-lifecycle]], [[event-readiness]] |
-| Equipment contradiction raised by T6 (#2 vs #5) **resolved** — transfer time governs pre-event availability, Return Day + 1 governs post-event | [[equipment-management]] |
+| Approval vs confirmation resolved ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)) — approval commits nothing; confirmation must be blocked while an essential arrangement is incomplete | [[event-lifecycle]], [[event-readiness]] |
+| Equipment contradiction raised by T6 ([#2](https://github.com/SinYang13/IS212-2026/discussions/2) vs [#5](https://github.com/SinYang13/IS212-2026/discussions/5)) **resolved** — transfer time governs pre-event availability, Return Day + 1 governs post-event | [[equipment-management]] |
 | **Event Operations Manager** appears in the discussions but not in the brief's five-role table — recorded as a gap, not a contradiction | [[user-roles]] |
-| Discussion #50 text is garbled — three venue time ranges listed, only "AM" labelled, with unexplained 12–1pm and 6–7pm gaps | [[venue-booking]] |
-| Double-booking is a hard block (#35), but the capacity rule still carries the brief's hedge word "normally" and was never tightened | [[venue-suitability]] |
-| Pooled-vs-serialised equipment modelling (#13) is load-bearing — per-item location (#2) and status (#23) imply per-unit state | [[equipment-management]] |
+| Discussion [#50](https://github.com/SinYang13/IS212-2026/discussions/50) text is garbled — three venue time ranges listed, only "AM" labelled, with unexplained 12–1pm and 6–7pm gaps | [[venue-booking]] |
+| Double-booking is a hard block ([#35](https://github.com/SinYang13/IS212-2026/discussions/35)), but the capacity rule still carries the brief's hedge word "normally" and was never tightened | [[venue-suitability]] |
+| Pooled-vs-serialised equipment modelling ([#13](https://github.com/SinYang13/IS212-2026/discussions/13)) is load-bearing — per-item location ([#2](https://github.com/SinYang13/IS212-2026/discussions/2)) and status ([#23](https://github.com/SinYang13/IS212-2026/discussions/23)) imply per-unit state | [[equipment-management]] |
 | No manager role is named for technical staff rostering, unlike coordinator assignment | [[technical-support]] |
-| PDPA question in #32 was asked but only half-answered | [[reporting]] |
-| Both items flagged "unanswered" in the Aug 31 export (#2, #55) were in fact resolved in follow-up replies the status flag missed | [[is212-discussions-2026-08-31]] |
-| Release 1 scope is **not yet fixed** — deferred in #79 and to Week 4 by the brief | [[open-questions]] |
+| PDPA question in [#32](https://github.com/SinYang13/IS212-2026/discussions/32) was asked but only half-answered | [[reporting]] |
+| Both items flagged "unanswered" in the Aug 31 export ([#2](https://github.com/SinYang13/IS212-2026/discussions/2), [#55](https://github.com/SinYang13/IS212-2026/discussions/55)) were in fact resolved in follow-up replies the status flag missed | [[is212-discussions-2026-08-31]] |
+| Release 1 scope is **not yet fixed** — deferred in [#79](https://github.com/SinYang13/IS212-2026/discussions/79) and to Week 4 by the brief | [[open-questions]] |
 
 **Integrity checks run:** 0 broken wikilinks, 0 unexpected orphans, frontmatter valid on all 21 pages.
 
@@ -82,12 +82,61 @@ Created 15 pages in a new `wiki/domain/` layer — a hub plus one page per domai
 | Finding | Where |
 |---|---|
 | Neither source contains an ER diagram, glossary, or data dictionary — [[domain-model]] is the first place the object model is assembled anywhere in the project | [[domain-model]] |
-| Only **three** cardinalities are stated by the customer, in so many words, anywhere in the source material — two in brief §4 *Client Management* (organisation → Event Organisers; organisation → events), one in brief §4 *Multi-Session Events* (event → sessions). Every other cardinality in the domain layer is this wiki's inference and is labelled as such | [[domain-model]], [[client-organisation]], [[session]] |
+| Only **three** cardinalities are stated by the customer, in so many words, anywhere in the source material — two in [[event-planning-venue-booking-system\|brief §4]] *Client Management* (organisation → Event Organisers; organisation → events), one in [[event-planning-venue-booking-system\|brief §4]] *Multi-Session Events* (event → sessions). Every other cardinality in the domain layer is this wiki's inference and is labelled as such | [[domain-model]], [[client-organisation]], [[session]] |
 | The deferred-modelling register collects **44** distinct open structural decisions across the fourteen object pages | [[domain-model]] |
-| The equipment #2-vs-#5 apparent contradiction (flagged by T6, 2026-08-28) resolves as **two rules coexisting at different lifecycle points** — transfer time governs pre-event availability, Return Day + 1 governs post-event availability — not as alternatives | [[equipment-item]] |
-| Pooled-vs-serialised equipment (#13) is the single highest-value deferral in the layer; the one binding constraint is that the system must always know available quantity | [[equipment-item]] |
-| The invented **PM** and **Night** venue-slot hour labels (e.g. "PM (1pm–6pm)") were found hard-coded in four concept pages — [[venue-booking]], [[event-request-workflow]], [[reporting]], [[change-impact-management]] — and removed. #50's source text labels only "AM"; [[venue]] now carries the ambiguity in full and leaves the remaining two slots unlabelled | [[venue]] |
+| The equipment [#2](https://github.com/SinYang13/IS212-2026/discussions/2)-vs-[#5](https://github.com/SinYang13/IS212-2026/discussions/5) apparent contradiction (flagged by T6, 2026-08-28) resolves as **two rules coexisting at different lifecycle points** — transfer time governs pre-event availability, Return Day + 1 governs post-event availability — not as alternatives | [[equipment-item]] |
+| Pooled-vs-serialised equipment ([#13](https://github.com/SinYang13/IS212-2026/discussions/13)) is the single highest-value deferral in the layer; the one binding constraint is that the system must always know available quantity | [[equipment-item]] |
+| The invented **PM** and **Night** venue-slot hour labels (e.g. "PM (1pm–6pm)") were found hard-coded in four concept pages — [[venue-booking]], [[event-request-workflow]], [[reporting]], [[change-impact-management]] — and removed. [#50](https://github.com/SinYang13/IS212-2026/discussions/50)'s source text labels only "AM"; [[venue]] now carries the ambiguity in full and leaves the remaining two slots unlabelled | [[venue]] |
 
-**Citation discipline:** a recurring correction throughout this work was distinguishing what a customer **answer** actually says from what the **question** presupposed. For example, #78's question was phrased "...where an Event Organiser or Coordinator must create the event request?", presupposing both roles may do so — but the answer addressed only minimum lead time and never confirmed or denied that presupposition. Similarly, #59 asked about a "deactivated" account, but the answer addressed only ownership transfer and never confirmed account deactivation as a modelled state. Several claims across the domain layer were downgraded to `⚠️ Partial` or hedged with an explicit "the question presupposed X, the answer only confirmed Y" note as a result. Recorded here as a lesson for future ingests: read what the answer says on its own terms, not through the frame of the question that prompted it.
+**Citation discipline:** a recurring correction throughout this work was distinguishing what a customer **answer** actually says from what the **question** presupposed. For example, [#78](https://github.com/SinYang13/IS212-2026/discussions/78)'s question was phrased "...where an Event Organiser or Coordinator must create the event request?", presupposing both roles may do so — but the answer addressed only minimum lead time and never confirmed or denied that presupposition. Similarly, [#59](https://github.com/SinYang13/IS212-2026/discussions/59) asked about a "deactivated" account, but the answer addressed only ownership transfer and never confirmed account deactivation as a modelled state. Several claims across the domain layer were downgraded to `⚠️ Partial` or hedged with an explicit "the question presupposed X, the answer only confirmed Y" note as a result. Recorded here as a lesson for future ingests: read what the answer says on its own terms, not through the frame of the question that prompted it.
 
 **Integrity checks run:** all 15 domain pages linked from [[index]]; 0 unexpected broken wikilinks (one known false positive — the literal `` `[[wikilinks]]` `` code span in [[booking]]'s naming note); exactly one `[!important]` callout, still in [[index]].
+
+### Linked bare "brief §N" citations
+
+The `Ref` columns of domain-object pages (and one prose mention in this log) cited the customer brief only as inert text — `brief §4`, `brief §6`, etc. — with no way to click through to where that content actually lives in the wiki. `raw/Customer Brief no. 1.md` uses bold text for its section headers, not Markdown headings, so it can't be deep-linked without editing the immutable source; instead, each citation was turned into a piped wikilink to the wiki page that `[[customer-brief-no-1]]`'s own Content map already assigns to that section, keeping "brief §N" as the visible text:
+
+| Ref | Links to |
+|---|---|
+| §2 | [[connectsphere-event-services]] |
+| §3 | [[user-roles]] |
+| §4 | [[event-planning-venue-booking-system]] |
+| §5 | [[event-request-workflow]] |
+| §6 | [[notifications]] |
+| §8f | [[non-functional-requirements]] |
+
+256 occurrences across 15 files (14 domain pages + this log). Inside Markdown tables the link's pipe was escaped (`\|`) to avoid splitting table columns; verified column counts were unchanged in every affected table afterward. Other citation spellings in the wiki (`brief s4`, `(Source: customer-brief-no-1, s4)`, used mainly in `wiki/concepts/`) were left as plain text — out of scope for this pass.
+
+### Linked bare "#N" discussion citations
+
+Same problem, different source: `#N` citations (e.g. `#80`, `#35`) refer to individual GitHub Discussion threads on the class board, not to anything with a stable per-number anchor inside the wiki — the two discussion source-summary pages ([[is212-discussions-2026-08-26]], [[is212-discussions-2026-08-31]]) only have headings for a handful of highlighted numbers, nowhere near all ~87. Unlike the brief's §-sections, there was no existing content-map to land on, so each number was linked straight to its exact GitHub thread instead: `#80` → `[#80](https://github.com/SinYang13/IS212-2026/discussions/80)`.
+
+958 occurrences linked across 35 files. Two exclusions:
+- Text inside ` ```mermaid ` / ` ```stateDiagram ` code fences (equipment-item.md, equipment-reservation.md, registration.md, booking.md, domain-model.md) was left as plain text — diagram syntax, not prose.
+- The two discussion source files themselves were skipped, since their own `#N` mentions are in their own section headings (self-links serve no purpose there).
+
+While scoping this, found that the *previous* brief-§N pass had linked a few citations that sit inside those same code fences (`domain-model.md`'s ER diagram, `equipment-reservation.md` and `registration.md`'s state diagrams) — `[[...|brief §4]]` inside a Mermaid label. Reverted those 8 back to plain `brief §4` text as part of this pass, same reasoning: code fences aren't prose.
+
+### Scrutinised `raw/User Stories Assignment.md` against the standard
+
+Reviewed all 15 story cards in `raw/User Stories Assignment.md` against `raw/IS212 User Story Standard — v1.0.md`'s scrutiny rubric (§13), cross-checking every claimed rule against the sourced domain/concept pages rather than the standard alone. Recorded as a new page, [[user-stories-assignment-scrutiny]], added to [[index]] under a new **Reviews** section since it doesn't fit the four-type wiki taxonomy.
+
+**Headline findings:**
+
+| Finding | Severity |
+|---|---|
+| The entire `## Registration` section is a byte-for-byte duplicate of the `## Venue` section — no Attendee-registration story exists anywhere, despite registration being one of the most fully specified areas of the real requirements (waiting list, 3-day window, capacity, check-in) | Structural — highest priority |
+| "Configure Venue Turnaround and Setup Buffer" is a copy-paste of a different card ("Review and Decide on Venue Booking Requests"); the actual feature is unwritten | Structural |
+| "Cancel Venue Booking" gives cancellation authority to Venue Staff, contradicting the customer's hard rule that only the assigned Event Coordinator may cancel, at any stage (`#68`) | Contradicts a committed rule |
+| "Assignment of event requests" invents an "eligible coordinators" filter and an assignment "failure" state, both directly contradicted by `#93`/`#95` (no selection criteria are encoded; assignment has no accept/decline step) | Contradicts sourced answers |
+| No card in the document carries a Priority, Estimate, or Epic, and none cite any source | Systemic — every card fails Gate A7 and Gate D1 |
+
+Proposed a replacement 5-card Registration set and a rewritten Venue Turnaround card, both drafted to the standard's card anatomy and citing only customer-confirmed facts, with genuine gaps left as open questions rather than invented.
+
+### Correction: Registration section was a save/paste error, now fixed
+
+The `## Registration` duplication flagged above was the assignment author's own copy-paste mistake, not a permanent gap — it has since been replaced in `raw/User Stories Assignment.md` with three real cards (Register for an event, Enable registration for an event, Set registration capacity for an event). Updated [[user-stories-assignment-scrutiny]] §5 to review the real cards instead: two are `NEEDS WORK` (an unresolved mandatory-field assumption on Register; a per-card audit AC on Enable that duplicates the global auditability NFR), one (Set registration capacity) is the best-grounded card in the whole document, correctly but silently resolving two previously-open questions ([[venue-suitability]]'s over-capacity block-vs-warn question, and [[attendee-registration]]'s venue-vs-registration-capacity question). Waiting-list promotion, withdrawal, and check-in remain uncovered by any card — those three draft additions from the original pass were kept, renumbered Reg4–Reg6.
+
+### Added a full proposed rewrite for every non-`READY` card
+
+The scrutiny up to this point identified defects with a "Fix" column but only fully rewrote a handful of cards (Venue Turnaround, the Registration additions). Extended it so every `NEEDS WORK` or `REJECT` verdict now carries a complete replacement card — title, story, and ACs, citing only this wiki's sourced pages and flagging genuine gaps as open questions rather than resolving them silently. This covers all four Users cards, both Equipment cards under review, four of six Venue cards, all three original Registration cards, and all three Event cards (the last split into three independent replacement cards, since the original bundled "review" and "clarification" under one title but only delivered the first).

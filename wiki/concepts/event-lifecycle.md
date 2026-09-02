@@ -23,11 +23,11 @@ The set of statuses an event passes through in the [[event-planning-venue-bookin
 The brief lists the following as an example set — "Events progress through suitable statuses so that users can understand their current stage, for example draft, submitted, under review, approved, planning, awaiting arrangements, confirmed, completed, cancelled, or rejected" (Source: customer-brief-no-1). The full status table, entry/exit rules, and state diagram are maintained on [[event]] — see States.
 
 > [!question]- Team decision required — the status set and state machine
-> The customer named these statuses "for example" and did not fix the state machine. The exact status set, the transitions permitted between them, and whether *planning* and *awaiting arrangements* are distinct states or one state with a readiness flag are all for the team to propose (Source: customer-brief-no-1; is212-discussions-2026-08-31, #70).
+> The customer named these statuses "for example" and did not fix the state machine. The exact status set, the transitions permitted between them, and whether *planning* and *awaiting arrangements* are distinct states or one state with a readiness flag are all for the team to propose (Source: customer-brief-no-1; is212-discussions-2026-08-31, [#70](https://github.com/SinYang13/IS212-2026/discussions/70)).
 
 ## Approved vs Confirmed
 
-The single most load-bearing distinction in the lifecycle, clarified in full on 2026-08-31 (Source: is212-discussions-2026-08-31, #80).
+The single most load-bearing distinction in the lifecycle, clarified in full on 2026-08-31 (Source: is212-discussions-2026-08-31, [#80](https://github.com/SinYang13/IS212-2026/discussions/80)).
 
 | Dimension | Approved | Confirmed |
 |---|---|---|
@@ -36,19 +36,19 @@ The single most load-bearing distinction in the lifecycle, clarified in full on 
 | Position in flow | Step 5 of the 14-step process | Step 10 of the 14-step process |
 | Precondition | Coordinator judges information adequate after review and clarification | All arrangements identified as essential for that event are complete |
 
-Key consequences of #80:
+Key consequences of [#80](https://github.com/SinYang13/IS212-2026/discussions/80):
 
 - Approval is an **information-sufficiency gate**, not a resource commitment. Nothing is reserved by approving.
 - Confirmation is a **readiness gate**. See [[event-readiness]] for what counts as essential.
-- An event **may** be confirmed while non-essential follow-up actions remain outstanding, provided every essential arrangement is complete (#80, answer 4).
-- The system **should block confirmation** when an arrangement identified as required for that event is still incomplete (#80, answer 5).
+- An event **may** be confirmed while non-essential follow-up actions remain outstanding, provided every essential arrangement is complete ([#80](https://github.com/SinYang13/IS212-2026/discussions/80), answer 4).
+- The system **should block confirmation** when an arrangement identified as required for that event is still incomplete ([#80](https://github.com/SinYang13/IS212-2026/discussions/80), answer 5).
 
 ## Completion
 
 - After the event has taken place, the Event Coordinator can mark it as completed.
-- If it remains open, the system **may automatically mark it completed 7 days after the event end date** (Source: is212-discussions-2026-08-31, #71).
+- If it remains open, the system **may automatically mark it completed 7 days after the event end date** (Source: is212-discussions-2026-08-31, [#71](https://github.com/SinYang13/IS212-2026/discussions/71)).
 - At completion, attendance information, operational notes, or issues may be recorded and the event closed (Source: customer-brief-no-1, step 14).
-- Completed and cancelled events remain available as historical records; there is no retention policy and archival is out of scope (Source: is212-discussions-2026-08-31, #20). See [[non-functional-requirements]].
+- Completed and cancelled events remain available as historical records; there is no retention policy and archival is out of scope (Source: is212-discussions-2026-08-31, [#20](https://github.com/SinYang13/IS212-2026/discussions/20)). See [[non-functional-requirements]].
 
 ## Cancellation
 
@@ -57,13 +57,13 @@ Key consequences of #80:
 | Who may cancel? | **Only the Event Coordinator in charge of that event** |
 | At what stage? | **Any stage** |
 
-(Source: is212-discussions-2026-08-31, #68)
+(Source: is212-discussions-2026-08-31, [#68](https://github.com/SinYang13/IS212-2026/discussions/68))
 
 This is narrower than the brief, which says "an authorised user can cancel an event" (Source: customer-brief-no-1). The Q&A answer scopes that to the assigned coordinator alone — Event Organisers cannot cancel directly and must route a cancellation through their coordinator. Related venue and equipment reservations must no longer remain committed to a cancelled event (Source: customer-brief-no-1); see [[venue-booking]] and [[equipment-management]].
 
 ## Postponement vs Cancellation
 
-There is no separate *postponed* status in the customer's answer. Postponement is resolved into two existing paths (Source: is212-discussions-2026-08-31, #69):
+There is no separate *postponed* status in the customer's answer. Postponement is resolved into two existing paths (Source: is212-discussions-2026-08-31, [#69](https://github.com/SinYang13/IS212-2026/discussions/69)):
 
 | Case | Treatment | Effect on arrangements |
 |---|---|---|
@@ -81,15 +81,15 @@ The distinguishing property of postponement is that the event record survives �
 Rejected or returned requests must retain an appropriate record of the decision (Source: customer-brief-no-1, step 5).
 
 > [!question]- Team decision required — resubmission after rejection
-> Whether a rejected event can be resubmitted, or whether rejection is final, was explicitly **not specified**. The customer's full answer was "Please propose an appropriate approach if needed." (Source: is212-discussions-2026-08-31, #67). Options for the team: rejection is terminal and a new request must be created; rejection returns the request to draft for amendment and resubmission; or a distinct *returned for amendment* outcome is separated from a terminal *rejected*.
+> Whether a rejected event can be resubmitted, or whether rejection is final, was explicitly **not specified**. The customer's full answer was "Please propose an appropriate approach if needed." (Source: is212-discussions-2026-08-31, [#67](https://github.com/SinYang13/IS212-2026/discussions/67)). Options for the team: rejection is terminal and a new request must be created; rejection returns the request to draft for amendment and resubmission; or a distinct *returned for amendment* outcome is separated from a terminal *rejected*.
 
 ## Re-entrant Transitions
 
 The lifecycle is not strictly forward-only:
 
-- A confirmed event may need to move back to planning when a major change occurs (Source: is212-discussions-2026-08-31, #70) — see [[change-impact-management]].
-- Rescheduling via the calendar must still follow the relevant event-change process and must not bypass required checks or approvals (Source: is212-discussions-2026-08-31, #3).
-- There is **no change cut-off period** before the event date, so backward transitions remain possible up to delivery (Source: is212-discussions-2026-08-31, #8).
+- A confirmed event may need to move back to planning when a major change occurs (Source: is212-discussions-2026-08-31, [#70](https://github.com/SinYang13/IS212-2026/discussions/70)) — see [[change-impact-management]].
+- Rescheduling via the calendar must still follow the relevant event-change process and must not bypass required checks or approvals (Source: is212-discussions-2026-08-31, [#3](https://github.com/SinYang13/IS212-2026/discussions/3)).
+- There is **no change cut-off period** before the event date, so backward transitions remain possible up to delivery (Source: is212-discussions-2026-08-31, [#8](https://github.com/SinYang13/IS212-2026/discussions/8)).
 
 ## Cross-Cutting Rules
 
@@ -102,9 +102,9 @@ The lifecycle is not strictly forward-only:
 
 | Item | Status | Reference |
 |---|---|---|
-| Exact status set and permitted transitions | Team to propose | #70, brief |
-| Rejected event resubmission | **Unspecified — team to propose** | #67 |
-| Status representation for indefinite postponement | Team to propose | #69 |
-| Whether auto-completion at +7 days is mandatory or optional ("may") | Team to interpret | #71 |
+| Exact status set and permitted transitions | Team to propose | [#70](https://github.com/SinYang13/IS212-2026/discussions/70), brief |
+| Rejected event resubmission | **Unspecified — team to propose** | [#67](https://github.com/SinYang13/IS212-2026/discussions/67) |
+| Status representation for indefinite postponement | Team to propose | [#69](https://github.com/SinYang13/IS212-2026/discussions/69) |
+| Whether auto-completion at +7 days is mandatory or optional ("may") | Team to interpret | [#71](https://github.com/SinYang13/IS212-2026/discussions/71) |
 
 See [[open-questions]] for the consolidated list.

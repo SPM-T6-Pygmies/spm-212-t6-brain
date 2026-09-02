@@ -40,7 +40,7 @@ The end-to-end process by which an event moves from an Event Organiser's initial
 
 (Source: customer-brief-no-1, s5)
 
-**Scope caveat:** The 14 steps are a typical end-to-end flow, not an exhaustive specification. The customer stated there may be other branching or exception flows not yet identified, and that features and flows for Release 1 would be prioritised after further internal stakeholder discussion (Source: is212-discussions-2026-08-31, #11). A subset is acceptable.
+**Scope caveat:** The 14 steps are a typical end-to-end flow, not an exhaustive specification. The customer stated there may be other branching or exception flows not yet identified, and that features and flows for Release 1 would be prioritised after further internal stakeholder discussion (Source: is212-discussions-2026-08-31, [#11](https://github.com/SinYang13/IS212-2026/discussions/11)). A subset is acceptable.
 
 ## Step 1 — Draft Requests
 
@@ -51,25 +51,25 @@ The end-to-end process by which an event moves from an Event Organiser's initial
 ## Step 2 — Submission and Required Fields
 
 > [!question]- Team decision required — minimum required fields
-> The customer has **not firmed up which fields are mandatory** for a request to be submittable, and asked the team to propose what is appropriate. There are also no field-length requirements (Source: is212-discussions-2026-08-31, #72).
+> The customer has **not firmed up which fields are mandatory** for a request to be submittable, and asked the team to propose what is appropriate. There are also no field-length requirements (Source: is212-discussions-2026-08-31, [#72](https://github.com/SinYang13/IS212-2026/discussions/72)).
 
-Related unspecified constraint: **no minimum lead time** has been set between request creation and the event date. The team should propose one if the solution requires it (Source: is212-discussions-2026-08-31, #78).
+Related unspecified constraint: **no minimum lead time** has been set between request creation and the event date. The team should propose one if the solution requires it (Source: is212-discussions-2026-08-31, [#78](https://github.com/SinYang13/IS212-2026/discussions/78)).
 
-Also out of scope at submission: **no contract or terms acceptance** is tracked. Contracts and payments are handled physically, outside the system (Source: is212-discussions-2026-08-31, #24). The system therefore holds no commercial or financial data.
+Also out of scope at submission: **no contract or terms acceptance** is tracked. Contracts and payments are handled physically, outside the system (Source: is212-discussions-2026-08-31, [#24](https://github.com/SinYang13/IS212-2026/discussions/24)). The system therefore holds no commercial or financial data.
 
 ## Step 3 — Coordinator Assignment
 
-Assignment is performed by an **Event Operations Manager** — a role that appears only in the Q&A, not in the brief's five-role table (Source: is212-discussions-2026-08-31, #73). See [[user-roles]].
+Assignment is performed by an **Event Operations Manager** — a role that appears only in the Q&A, not in the brief's five-role table (Source: is212-discussions-2026-08-31, [#73](https://github.com/SinYang13/IS212-2026/discussions/73)). See [[user-roles]].
 
 | Question | Answer | Ref |
 |---|---|---|
-| Who assigns the coordinator? | The Event Operations Manager, after the request is submitted | #73 |
-| Auto-assignment or manual? | Manual, by the manager | #73 |
-| Is there assignment criteria in the system? | No — it is up to the Event Operations Manager, who follows an SOP maintained **outside** the system | #93 |
-| Can a coordinator be on two events concurrently? | **Yes** | #92 |
-| Must the coordinator accept the assignment? | **No acceptance step.** Any issue is handled outside the system | #95 |
-| Can a coordinator decline? | No decline path in the system | #95 |
-| Who may reassign? | The Event Operations Manager. Request and approval for reassignment happen outside the system; the system may assume any reassignment entered by the manager is already approved | #94 |
+| Who assigns the coordinator? | The Event Operations Manager, after the request is submitted | [#73](https://github.com/SinYang13/IS212-2026/discussions/73) |
+| Auto-assignment or manual? | Manual, by the manager | [#73](https://github.com/SinYang13/IS212-2026/discussions/73) |
+| Is there assignment criteria in the system? | No — it is up to the Event Operations Manager, who follows an SOP maintained **outside** the system | [#93](https://github.com/SinYang13/IS212-2026/discussions/93) |
+| Can a coordinator be on two events concurrently? | **Yes** | [#92](https://github.com/SinYang13/IS212-2026/discussions/92) |
+| Must the coordinator accept the assignment? | **No acceptance step.** Any issue is handled outside the system | [#95](https://github.com/SinYang13/IS212-2026/discussions/95) |
+| Can a coordinator decline? | No decline path in the system | [#95](https://github.com/SinYang13/IS212-2026/discussions/95) |
+| Who may reassign? | The Event Operations Manager. Request and approval for reassignment happen outside the system; the system may assume any reassignment entered by the manager is already approved | [#94](https://github.com/SinYang13/IS212-2026/discussions/94) |
 
 (Source: is212-discussions-2026-08-31)
 
@@ -79,31 +79,31 @@ Design implication: coordinator assignment is a **simple write, not a workflow**
 
 - The Event Coordinator reviews and contacts the Event Organiser for clarification before confirmation, acting as main liaison (Source: customer-brief-no-1, s2).
 - Typical ambiguities cited by the customer: an Organiser requesting a "large room" without stating expected attendance, or a hybrid event without stating video-conferencing needs (Source: customer-brief-no-1).
-- Technical Support Staff can record questions or clarification needs against the event, but the **Event Coordinator remains the main liaison** and coordinates the response to the Organiser. The clarification and response are retained with the event record (Source: is212-discussions-2026-08-31, #87).
+- Technical Support Staff can record questions or clarification needs against the event, but the **Event Coordinator remains the main liaison** and coordinates the response to the Organiser. The clarification and response are retained with the event record (Source: is212-discussions-2026-08-31, [#87](https://github.com/SinYang13/IS212-2026/discussions/87)).
 - Approval means only that information is sufficient for planning to proceed — it commits nothing. See [[event-lifecycle]] for the approved-vs-confirmed distinction.
-- Rejected or returned requests retain a record of the decision. Whether they may be resubmitted is unspecified (#67) — see [[event-lifecycle]].
+- Rejected or returned requests retain a record of the decision. Whether they may be resubmitted is unspecified ([#67](https://github.com/SinYang13/IS212-2026/discussions/67)) — see [[event-lifecycle]].
 
 ## Comments, Discussion, and Supporting Documents
 
-Comments, supporting documents, and their constraints (retention, versioning, size/type limits) are defined on [[event]] — see Attributes and Open modelling questions (Source: is212-discussions-2026-08-31, #15, #18, #21).
+Comments, supporting documents, and their constraints (retention, versioning, size/type limits) are defined on [[event]] — see Attributes and Open modelling questions (Source: is212-discussions-2026-08-31, [#15](https://github.com/SinYang13/IS212-2026/discussions/15), [#18](https://github.com/SinYang13/IS212-2026/discussions/18), [#21](https://github.com/SinYang13/IS212-2026/discussions/21)).
 
 ## Reuse of Previous Event Information
 
 The brief allows information from a previous or recurring event to be reused to reduce repeated data entry, while still allowing different dates and requirements.
 
 > [!question]- Team decision required — what "reuse a previous event" copies
-> Asked whether this means cloning a whole event or copying selected fields, the customer answered that the requirement is "simply to reduce repeated data entry while still allowing the new event to have different dates and requirements. Which information is copied and how it is presented is for you to propose." (Source: is212-discussions-2026-08-31, #75). Fields that must *not* carry over silently — dates, venue booking, equipment reservations, registration state — are an obvious design boundary.
+> Asked whether this means cloning a whole event or copying selected fields, the customer answered that the requirement is "simply to reduce repeated data entry while still allowing the new event to have different dates and requirements. Which information is copied and how it is presented is for you to propose." (Source: is212-discussions-2026-08-31, [#75](https://github.com/SinYang13/IS212-2026/discussions/75)). Fields that must *not* carry over silently — dates, venue booking, equipment reservations, registration state — are an obvious design boundary.
 
 ## Multi-Session Events
 
-Some events contain several sessions within a day or across multiple days. The customer confirmed sessions may have **different venues, different equipment requirements, and different attendance limits** for each session (Source: is212-discussions-2026-08-31, #74).
+Some events contain several sessions within a day or across multiple days. The customer confirmed sessions may have **different venues, different equipment requirements, and different attendance limits** for each session (Source: is212-discussions-2026-08-31, [#74](https://github.com/SinYang13/IS212-2026/discussions/74)).
 
 Consequences:
 
 - Venue booking, equipment reservation, and capacity are properties that may be held at **session** level, not only event level. See [[venue-booking]], [[equipment-management]], [[attendee-registration]].
 - Event readiness must aggregate across sessions — see [[event-readiness]].
 - Extending or splitting a programme is a change with downstream impact — see [[change-impact-management]].
-- Venues are booked in three fixed slots, defined on [[venue]], which constrain how sessions map onto bookings (Source: is212-discussions-2026-08-31, #50).
+- Venues are booked in three fixed slots, defined on [[venue]], which constrain how sessions map onto bookings (Source: is212-discussions-2026-08-31, [#50](https://github.com/SinYang13/IS212-2026/discussions/50)).
 
 ## Downstream Steps
 
@@ -120,11 +120,11 @@ Consequences:
 
 | Item | Status | Ref |
 |---|---|---|
-| Minimum mandatory fields for submission | **Unspecified — team to propose** | #72 |
-| Minimum lead time before event date | **Unspecified — team to propose** | #78 |
-| Which fields are copied when reusing a previous event | **Unspecified — team to propose** | #75 |
-| Comment threading model | UI/UX — team to propose | #15 |
-| Document size and type limits | **Unspecified — team to propose** | #18 |
-| Which of the 14 steps fall into Release 1 | Pending customer's Release 1 scope | #11, #79 |
+| Minimum mandatory fields for submission | **Unspecified — team to propose** | [#72](https://github.com/SinYang13/IS212-2026/discussions/72) |
+| Minimum lead time before event date | **Unspecified — team to propose** | [#78](https://github.com/SinYang13/IS212-2026/discussions/78) |
+| Which fields are copied when reusing a previous event | **Unspecified — team to propose** | [#75](https://github.com/SinYang13/IS212-2026/discussions/75) |
+| Comment threading model | UI/UX — team to propose | [#15](https://github.com/SinYang13/IS212-2026/discussions/15) |
+| Document size and type limits | **Unspecified — team to propose** | [#18](https://github.com/SinYang13/IS212-2026/discussions/18) |
+| Which of the 14 steps fall into Release 1 | Pending customer's Release 1 scope | [#11](https://github.com/SinYang13/IS212-2026/discussions/11), [#79](https://github.com/SinYang13/IS212-2026/discussions/79) |
 
 See [[open-questions]].

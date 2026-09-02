@@ -22,7 +22,7 @@ The mock customer organisation for the IS212 project and the commissioning clien
 | Event types | Conferences, seminars, workshops, exhibitions, training sessions, meetings, networking events |
 | Assets | Event venues, plus equipment and supporting resources |
 
-Because all owned venues are in Singapore, the system operates on **Singapore time only** (Source: is212-discussions-2026-08-31, #36).
+Because all owned venues are in Singapore, the system operates on **Singapore time only** (Source: is212-discussions-2026-08-31, [#36](https://github.com/SinYang13/IS212-2026/discussions/36)).
 
 ## Internal roles
 
@@ -32,19 +32,19 @@ The ~500 staff take on the roles of Event Coordinator, Venue Staff, and Technica
 
 Event coordination runs on a mixture of email, spreadsheets, shared calendars, messaging applications, online forms, and manually maintained documents. A single event's information is therefore spread across several places and owned by different employees.
 
-The specific tools in use were never named, and integration with them is out of scope; the new system becomes the authoritative source for the event information it manages (Source: is212-discussions-2026-08-31, #79). There is no data migration requirement (Source: is212-discussions-2026-08-31, #12).
+The specific tools in use were never named, and integration with them is out of scope; the new system becomes the authoritative source for the event information it manages (Source: is212-discussions-2026-08-31, [#79](https://github.com/SinYang13/IS212-2026/discussions/79)). There is no data migration requirement (Source: is212-discussions-2026-08-31, [#12](https://github.com/SinYang13/IS212-2026/discussions/12)).
 
 ## Operating rules worth remembering
 
 | Rule | Detail | Ref |
 |---|---|---|
-| Venue slots | Bookings are made in AM / PM / Night slots; full day is all three | #50 |
-| Equipment turnaround | Collectable from D-1; available again only from Return Day + 1 | #5 |
-| Double-booking | Must be blocked outright | #35 |
-| Cancellation authority | Only the assigned Event Coordinator | #68 |
-| Coordinator assignment | Event Operations Manager, per an SOP held outside the system | #93, #94 |
-| Contracts and payments | Handled physically, outside the system | #24 |
-| Equipment health checklist | Kept outside the system | #85 |
+| Venue slots | Bookings are made in AM / PM / Night slots; full day is all three | [#50](https://github.com/SinYang13/IS212-2026/discussions/50) |
+| Equipment turnaround | Collectable from D-1; available again only from Return Day + 1 | [#5](https://github.com/SinYang13/IS212-2026/discussions/5) |
+| Double-booking | Must be blocked outright | [#35](https://github.com/SinYang13/IS212-2026/discussions/35) |
+| Cancellation authority | Only the assigned Event Coordinator | [#68](https://github.com/SinYang13/IS212-2026/discussions/68) |
+| Coordinator assignment | Event Operations Manager, per an SOP held outside the system | [#93](https://github.com/SinYang13/IS212-2026/discussions/93), [#94](https://github.com/SinYang13/IS212-2026/discussions/94) |
+| Contracts and payments | Handled physically, outside the system | [#24](https://github.com/SinYang13/IS212-2026/discussions/24) |
+| Equipment health checklist | Kept outside the system | [#85](https://github.com/SinYang13/IS212-2026/discussions/85) |
 
 ## Business drivers
 
