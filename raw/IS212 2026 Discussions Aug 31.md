@@ -93,25 +93,43 @@ _Read me first!_
 
 **Follow-ups since the answer:**
 
-- **Isaidchia** (2026-08-28): Hi, it seems like this requirement contradicts with https://github.com/SinYang13/IS212-2026/discussions/5
-
+- **Isaidchia** (2026-08-28): Hi, it seems like this requirement contradicts with https://github.com/SinYang13/IS212-2026/discussions/5
+
+
+
 where the equipment is returned to ConnectSphere for assessment and then collected from ConnectSphere on Return day + 1 onwards, do assist in clarifying which workflow stands
-- **SinYang13** (2026-08-31): Both rules apply, but at different points in the equipment lifecycle.
-
-Equipment has a physical location, and if it must be moved from its current location to the event venue, the required transfer and preparation time should be considered when determining whether it is available for that event.
-
-After the event, the current operating assumption is that equipment is returned to ConnectSphere for inspection and preparation before it becomes available again. Under the clarified rule, equipment may be collected from D-1 and is only treated as available again from Return Day +1.
-
-Therefore, transfer time affects pre-event availability, while the Return Day +1 rule governs post-event availability. They are not alternatives to each other.
-
-How the system represents transfer time, preparation time and the equipment's current location is for the solution team to propose.
-
-Current equipment location
-→ transfer/preparation to event venue
-→ D-1 collection / event commitment period
-→ event use
-→ return to ConnectSphere
-→ inspection/preparation
+- **SinYang13** (2026-08-31): Both rules apply, but at different points in the equipment lifecycle.
+
+
+
+Equipment has a physical location, and if it must be moved from its current location to the event venue, the required transfer and preparation time should be considered when determining whether it is available for that event.
+
+
+
+After the event, the current operating assumption is that equipment is returned to ConnectSphere for inspection and preparation before it becomes available again. Under the clarified rule, equipment may be collected from D-1 and is only treated as available again from Return Day +1.
+
+
+
+Therefore, transfer time affects pre-event availability, while the Return Day +1 rule governs post-event availability. They are not alternatives to each other.
+
+
+
+How the system represents transfer time, preparation time and the equipment's current location is for the solution team to propose.
+
+
+
+Current equipment location
+
+→ transfer/preparation to event venue
+
+→ D-1 collection / event commitment period
+
+→ event use
+
+→ return to ConnectSphere
+
+→ inspection/preparation
+
 → available again from Return Day +1
 
 ### Answered (14)

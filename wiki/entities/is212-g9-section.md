@@ -37,7 +37,7 @@ Each section has a **different** customer. Clarifications from other sections ma
 
 Questions are prefixed with a group tag. Observed: T1, T3, T6.
 
-**T6 is this vault's team.** T6 contributors on the board are `Isaidchia`, `jerricknsc` and `WilliamsSmithM`. T6 questions cluster on technical support operations (#85–#90), coordinator assignment mechanics (#92–#95), venue suitability (#83) and protected information (#91) — and T6 raised the equipment-availability contradiction resolved in #2.
+**T6 is this vault's team.** T6 contributors on the board are `Isaidchia`, `jerricknsc` and `WilliamsSmithM`. T6 questions cluster on technical support operations ([#85](https://github.com/SinYang13/IS212-2026/discussions/85)–[#90](https://github.com/SinYang13/IS212-2026/discussions/90)), coordinator assignment mechanics ([#92](https://github.com/SinYang13/IS212-2026/discussions/92)–[#95](https://github.com/SinYang13/IS212-2026/discussions/95)), venue suitability ([#83](https://github.com/SinYang13/IS212-2026/discussions/83)) and protected information ([#91](https://github.com/SinYang13/IS212-2026/discussions/91)) — and T6 raised the equipment-availability contradiction resolved in [#2](https://github.com/SinYang13/IS212-2026/discussions/2).
 
 ## Board rules
 

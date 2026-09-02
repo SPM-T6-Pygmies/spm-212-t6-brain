@@ -23,9 +23,9 @@ How the system detects that a change to an event may invalidate arrangements alr
 
 The system must distinguish between ordinary edits and changes that may affect arrangements already confirmed (Source: customer-brief-no-1).
 
-> [!quote] Customer answer — #4
+> [!quote] Customer answer — [#4](https://github.com/SinYang13/IS212-2026/discussions/4)
 > **Changes that may affect existing arrangements should be treated as significant.** Examples include changes to date/time, attendance, venue requirements, equipment requirements, or other changes that could invalidate confirmed arrangements. Ordinary edits that do not affect existing arrangements need not trigger revalidation. The exact implementation is for you to propose.
-> (Source: is212-discussions-2026-08-31, #4)
+> (Source: is212-discussions-2026-08-31, [#4](https://github.com/SinYang13/IS212-2026/discussions/4))
 
 | Change | Class | Why |
 |---|---|---|
@@ -38,12 +38,12 @@ The system must distinguish between ordinary edits and changes that may affect a
 | Event name, description, purpose, internal notes | Ordinary | Does not touch arrangements |
 | Contact details, comments, attached documents | Ordinary | Does not touch arrangements |
 
-(Source: customer-brief-no-1, s2 and s4; is212-discussions-2026-08-31, #4)
+(Source: customer-brief-no-1, s2 and s4; is212-discussions-2026-08-31, [#4](https://github.com/SinYang13/IS212-2026/discussions/4))
 
 The customer's definition is **functional, not enumerative**: significance is defined by *whether the change can invalidate an existing arrangement*, and the example list is illustrative. The table above is a reading of that rule, not a customer-supplied list.
 
 > [!question]- Team decision required — significance classification and revalidation
-> The classification rule and the revalidation mechanism are explicitly left to the team ("The exact implementation is for you to propose", #4). Open sub-decisions: whether classification is a static per-field configuration or evaluated against what is currently booked; whether revalidation is automatic or coordinator-initiated; and whether affected arrangements are invalidated outright or flagged for review while remaining held.
+> The classification rule and the revalidation mechanism are explicitly left to the team ("The exact implementation is for you to propose", [#4](https://github.com/SinYang13/IS212-2026/discussions/4)). Open sub-decisions: whether classification is a static per-field configuration or evaluated against what is currently booked; whether revalidation is automatic or coordinator-initiated; and whether affected arrangements are invalidated outright or flagged for review while remaining held.
 
 ## What Revalidation Means
 
@@ -65,22 +65,22 @@ Events can be rescheduled where necessary; existing venue, equipment, technical-
 
 | Aspect | Rule | Ref |
 |---|---|---|
-| Equipment on reschedule | **No auto carry-over guaranteed.** A reschedule may affect equipment availability, so the equipment arrangement needs to be reviewed again. The workflow, status changes, and UX are for the team to propose | #16 |
-| Rescheduling via calendar drag-and-drop | Permitted as a UI choice, but "any rescheduling must still follow the relevant event-change process and should not bypass required checks or approvals" | #3 |
-| Postponement with a new date | Treated as a rescheduling request; affected arrangements reviewed | #69 |
-| Postponement with no known date | Release current bookings, retain the event record until a new date is provided | #69 |
+| Equipment on reschedule | **No auto carry-over guaranteed.** A reschedule may affect equipment availability, so the equipment arrangement needs to be reviewed again. The workflow, status changes, and UX are for the team to propose | [#16](https://github.com/SinYang13/IS212-2026/discussions/16) |
+| Rescheduling via calendar drag-and-drop | Permitted as a UI choice, but "any rescheduling must still follow the relevant event-change process and should not bypass required checks or approvals" | [#3](https://github.com/SinYang13/IS212-2026/discussions/3) |
+| Postponement with a new date | Treated as a rescheduling request; affected arrangements reviewed | [#69](https://github.com/SinYang13/IS212-2026/discussions/69) |
+| Postponement with no known date | Release current bookings, retain the event record until a new date is provided | [#69](https://github.com/SinYang13/IS212-2026/discussions/69) |
 
 (Source: is212-discussions-2026-08-31)
 
-Answer #3 is the key constraint for the team: **no UI path may become a back door around revalidation.** Whatever the interaction — form edit, calendar drag, bulk update — it funnels into the same change-impact process.
+Answer [#3](https://github.com/SinYang13/IS212-2026/discussions/3) is the key constraint for the team: **no UI path may become a back door around revalidation.** Whatever the interaction — form edit, calendar drag, bulk update — it funnels into the same change-impact process.
 
-Rescheduling also interacts with venue slotting — bookings are made against the AM / PM / Night slots defined on [[venue]] (Source: is212-discussions-2026-08-31, #50) — and setup/teardown/turnaround requirements are recorded **per venue** by Venue Staff (Source: is212-discussions-2026-08-31, #43). A time shift can therefore break turnaround compliance with an adjacent booking even when the venue itself is free.
+Rescheduling also interacts with venue slotting — bookings are made against the AM / PM / Night slots defined on [[venue]] (Source: is212-discussions-2026-08-31, [#50](https://github.com/SinYang13/IS212-2026/discussions/50)) — and setup/teardown/turnaround requirements are recorded **per venue** by Venue Staff (Source: is212-discussions-2026-08-31, [#43](https://github.com/SinYang13/IS212-2026/discussions/43)). A time shift can therefore break turnaround compliance with an adjacent booking even when the venue itself is free.
 
 ## No Change Cut-Off
 
-> [!quote] Customer answer — #8
+> [!quote] Customer answer — [#8](https://github.com/SinYang13/IS212-2026/discussions/8)
 > No change cut-off period is required, but some changes may occur even after confirmation and may require affected arrangements to be reviewed again.
-> (Source: is212-discussions-2026-08-31, #8)
+> (Source: is212-discussions-2026-08-31, [#8](https://github.com/SinYang13/IS212-2026/discussions/8))
 
 Consequences:
 
@@ -93,9 +93,9 @@ Consequences:
 
 ## Confirmed Events Moving Back to Planning
 
-> [!quote] Customer answer — #70
+> [!quote] Customer answer — [#70](https://github.com/SinYang13/IS212-2026/discussions/70)
 > A major change may require existing arrangements to be reviewed again. You can propose if you need a transition process flow.
-> (Source: is212-discussions-2026-08-31, #70)
+> (Source: is212-discussions-2026-08-31, [#70](https://github.com/SinYang13/IS212-2026/discussions/70))
 
 The customer confirms the *need* to re-review but leaves the *state transition* undefined.
 
@@ -113,9 +113,9 @@ An externally-driven change rather than an Organiser-requested one — for examp
 | Who resolves it | The **Event Coordinator** makes the necessary changes |
 | Automation | **Team to propose** — "please propose an appropriate automation mechanisms if required" |
 
-(Source: is212-discussions-2026-08-31, #54; customer-brief-no-1, s6)
+(Source: is212-discussions-2026-08-31, [#54](https://github.com/SinYang13/IS212-2026/discussions/54); customer-brief-no-1, s6)
 
-The equipment analogue behaves the same way: reserved equipment may become unavailable through damage or maintenance, Technical Support Staff maintain equipment status (Source: is212-discussions-2026-08-31, #9), and defects found on return update the operational status of the affected item (Source: is212-discussions-2026-08-31, #86).
+The equipment analogue behaves the same way: reserved equipment may become unavailable through damage or maintenance, Technical Support Staff maintain equipment status (Source: is212-discussions-2026-08-31, [#9](https://github.com/SinYang13/IS212-2026/discussions/9)), and defects found on return update the operational status of the affected item (Source: is212-discussions-2026-08-31, [#86](https://github.com/SinYang13/IS212-2026/discussions/86)).
 
 > [!question]- Team decision required — detecting availability collisions
 > Whether the system automatically detects that an availability block collides with an existing confirmed booking, and how forcefully it surfaces this (dashboard flag, notification, blocking alert, automatic arrangement invalidation), is unspecified. The brief's pain point "Cancelled events may continue to occupy venue or equipment reservations" argues for automatic detection rather than manual vigilance.
@@ -127,9 +127,9 @@ The brief treats these as two related but distinct capabilities, structurally de
 The underlying pain point: "It is difficult to determine who changed important event information and when the change occurred." The auditability requirement is that ConnectSphere can determine **what was changed, who changed it, and when** (Source: customer-brief-no-1, s8f).
 
 > [!question]- Team decision required — audit mechanism
-> The customer declined to mandate a mechanism: "The requirement is that important actions and changes are recorded so that ConnectSphere can determine what changed, who changed it, and when. The technical mechanism used to achieve this is for you to propose." A tamper-proof append-only log is **not** required; a regular database table may suffice (Source: is212-discussions-2026-08-31, #14).
+> The customer declined to mandate a mechanism: "The requirement is that important actions and changes are recorded so that ConnectSphere can determine what changed, who changed it, and when. The technical mechanism used to achieve this is for you to propose." A tamper-proof append-only log is **not** required; a regular database table may suffice (Source: is212-discussions-2026-08-31, [#14](https://github.com/SinYang13/IS212-2026/discussions/14)).
 
-Related: document versioning is explicitly **not** required, as attachments are not legal documents (Source: is212-discussions-2026-08-31, #21) — so change history covers event data, not file revisions. Access to change history is subject to [[access-control]].
+Related: document versioning is explicitly **not** required, as attachments are not legal documents (Source: is212-discussions-2026-08-31, [#21](https://github.com/SinYang13/IS212-2026/discussions/21)) — so change history covers event data, not file revisions. Access to change history is subject to [[access-control]].
 
 ## Notification Triggers
 
@@ -142,17 +142,17 @@ Change-related scenarios the brief lists as notification-generating (Source: cus
 - A venue or equipment availability change affects an upcoming event.
 - An upcoming event still has incomplete arrangements.
 
-Delivery is batch at a configurable frequency, with no hard latency requirement; real-time delivery is acceptable if simpler (Source: is212-discussions-2026-08-31, #55). See [[notifications]].
+Delivery is batch at a configurable frequency, with no hard latency requirement; real-time delivery is acceptable if simpler (Source: is212-discussions-2026-08-31, [#55](https://github.com/SinYang13/IS212-2026/discussions/55)). See [[notifications]].
 
 ## Open Items
 
 | Item | Status | Ref |
 |---|---|---|
-| Rule and mechanism for classifying significant vs ordinary edits | **Unspecified — team to propose** | #4 |
-| Revalidation workflow and status changes on reschedule | **Unspecified — team to propose** | #16 |
-| Transition flow for confirmed → planning after a major change | **Unspecified — team to propose** | #70 |
-| Automation for venue/equipment unavailability affecting confirmed events | **Unspecified — team to propose** | #54 |
-| Audit log mechanism and tamper-resistance | **Unspecified — team to propose** | #14 |
-| Whether to propose voluntary change lead-time guardrails | Team's discretion; no customer requirement | #8 |
+| Rule and mechanism for classifying significant vs ordinary edits | **Unspecified — team to propose** | [#4](https://github.com/SinYang13/IS212-2026/discussions/4) |
+| Revalidation workflow and status changes on reschedule | **Unspecified — team to propose** | [#16](https://github.com/SinYang13/IS212-2026/discussions/16) |
+| Transition flow for confirmed → planning after a major change | **Unspecified — team to propose** | [#70](https://github.com/SinYang13/IS212-2026/discussions/70) |
+| Automation for venue/equipment unavailability affecting confirmed events | **Unspecified — team to propose** | [#54](https://github.com/SinYang13/IS212-2026/discussions/54) |
+| Audit log mechanism and tamper-resistance | **Unspecified — team to propose** | [#14](https://github.com/SinYang13/IS212-2026/discussions/14) |
+| Whether to propose voluntary change lead-time guardrails | Team's discretion; no customer requirement | [#8](https://github.com/SinYang13/IS212-2026/discussions/8) |
 
 See [[open-questions]].
