@@ -146,3 +146,16 @@ The scrutiny up to this point identified defects with a "Fix" column but only fu
 [[user-stories-assignment-scrutiny]] itself flagged that it didn't fit the wiki's four-type taxonomy and proposed, but deliberately didn't assume, a permanent "reviews" layer as a separate `CLAUDE.md` change. That change is made now: `CLAUDE.md` gains a fifth architecture layer, `outputs/`, for LLM-generated one-off artefacts (reviews, scrutiny passes, ad-hoc analysis) that aren't standing domain knowledge; a fifth frontmatter `type` value, `review`, reserved for pages in that layer; a new **Review** workflow (produce in `outputs/`, frontmatter `type: review`, link from `wiki/index.md`'s **Reviews** section, log it, and fix any correction to standing knowledge directly in `wiki/` rather than leaving it stranded in the review); and the Lint workflow's orphan check now covers `outputs/` as well as `wiki/`.
 
 The scrutiny page itself moved from `wiki/user-stories-assignment-scrutiny.md` to `outputs/user-stories-assignment-scrutiny.md` to match, and its now-resolved "Note on page type" callout was folded into a plain sentence in the intro. `wiki/index.md`'s **Reviews** section needed no change — it already linked the page by wikilink rather than by path, so it resolves correctly regardless of which folder the file lives in.
+
+### Added a Citation linking rule, then applied it retroactively to both `outputs/` pages
+
+`CLAUDE.md` previously only described the `#N`-and-`brief-§N` linking convention inside this log's own "Linked bare ..." entries — nothing required it going forward, so freshly written pages kept landing with bare, unlinked citations (flagged directly against [[user-stories-assignment-scrutiny]] line 259's bare `brief §4`). Added a **Citation linking** section to `CLAUDE.md`: `#N` → `[#N](https://github.com/SinYang13/IS212-2026/discussions/N)`, `brief §N` → a piped wikilink to whatever `[[customer-brief-no-1]]`'s Content map assigns that section (pipe escaped as `\|` inside table cells), applies in prose, table cells, and callouts alike, with only diagram code fences and the discussion source pages' own self-references exempt — written at creation time, not fixed up in a later pass. Also added a matching Lint check (item 8).
+
+Applied the rule retroactively to the two existing `outputs/` pages, which had zero linked citations between them:
+
+| Page | `#N` linked | `brief §N` linked |
+|---|---|---|
+| [[user-stories-assignment-scrutiny]] | 95 | 11 |
+| [[user-stories-proposed-rewrites]] | 54 | 10 |
+
+`[[user-stories-proposed-rewrites]]` (a new page consolidating every proposed rewrite from the scrutiny into a ready-to-paste backlog) was also found un-linked from [[index]] while doing this pass — added to the **Reviews** section so it isn't an orphan.

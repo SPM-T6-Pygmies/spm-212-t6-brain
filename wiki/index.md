@@ -139,6 +139,7 @@ One-off scrutiny artefacts — not domain knowledge, kept here so they aren't or
 | Page | Covers |
 |---|---|
 | [[user-stories-assignment-scrutiny]] | `raw/User Stories Assignment.md` checked against `raw/IS212 User Story Standard — v1.0.md` and against this wiki's sourced requirements; proposed fixes for every story plus three recommended additions to Registration |
+| [[user-stories-proposed-rewrites]] | Every proposed rewrite and recommended new card from [[user-stories-assignment-scrutiny]], consolidated into one build-ordered, ready-to-paste replacement backlog |
 
 ## Ingestion status
 

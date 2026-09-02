@@ -18,10 +18,38 @@ This file defines the conventions and workflows for maintaining the PM Intern Le
 
 - **Links**: Use Obsidian-style `[[wikilinks]]` for all cross-references between wiki pages. Use the page's filename without extension (e.g. `[[decision-making]]`).
 - **Frontmatter**: Every wiki page has YAML frontmatter with `title`, `type` (source-summary | concept | entity | domain-object | review), `sources` (list of raw files this page draws from), and `tags`. `review` is reserved for `outputs/` pages.
-- **Citations**: When a claim comes from a specific source, note it inline, e.g. `(Source: pm-intern-learning)`.
+- **Citations**: When a claim comes from a specific source, note it inline, e.g. `(Source: pm-intern-learning)`. Discussion (`#N`) and brief (`brief §N`) citations follow the stricter linking rule below — write them pre-linked, don't leave them as bare text for a later pass to fix.
 - **Tone**: Concise, structured, third-person. Use headers, bullet points, and tables. Avoid fluff.
 - **Contradictions**: If a new source contradicts an existing wiki page, flag it explicitly with a `> [!warning] Contradiction` callout (see below).
 - **Page names**: Obsidian resolves `[[wikilinks]]` by filename, so two pages sharing a basename in different folders make every link to that name ambiguous. Before creating a page, check the basename is unused across the whole wiki. Domain pages take the singular object noun (`booking`); concept pages take the process name (`venue-booking`).
+
+## Citation linking
+
+`#N` and `brief §N` citations are click-through links, not inert text — link them at the moment you write them, in every location prose can appear: paragraphs, table cells, and callouts alike. A retroactive linking pass is a lint failure waiting to happen, not the normal workflow. `[[wikilink]]` cross-references (see Links, above) already resolve on their own and need no special handling.
+
+| Citation | Rendered as | Rule |
+|---|---|---|
+| `#N` (GitHub Discussion) | `[#N](https://github.com/SinYang13/IS212-2026/discussions/N)` | Substitute the real number for `N` in both places. |
+| `brief §N` | `[[<page>\|brief §N]]` | `<page>` is whatever `[[customer-brief-no-1]]`'s Content map assigns to that section — keep "brief §N" as the visible text. |
+
+Brief section → page map (mirrors `[[customer-brief-no-1]]`'s Content map — that page is the source of truth; update it first if a source cites a section not yet listed, then mirror the change here):
+
+| § | Links to |
+|---|---|
+| §1–2 | [[connectsphere-event-services]] |
+| §3 | [[user-roles]] |
+| §4 | [[event-planning-venue-booking-system]] |
+| §5 | [[event-request-workflow]] |
+| §6 | [[notifications]] |
+| §7 | [[non-functional-requirements]] |
+| §8 (incl. subsections, e.g. §8f) | [[non-functional-requirements]] |
+
+Rules:
+
+- **Tables**: escape the wikilink's pipe as `\|` so it doesn't split table columns (e.g. `[[event-planning-venue-booking-system\|brief §4]]`). Verify the cell count is unchanged after adding it.
+- **Code fences are the only exemption**: text inside ` ```mermaid ` / ` ```stateDiagram ` (or any diagram) fence is syntax, not prose — leave `#N` and `brief §N` unlinked there.
+- **Self-reference exemption**: the discussion source-summary pages (`wiki/sources/is212-discussions-*.md`) don't link their own `#N` heading mentions — a self-link serves no purpose.
+- Other citation spellings (`brief s4`, `(Source: customer-brief-no-1, s4)`) are not equivalent to `brief §N` — normalize to `brief §N` and link it rather than leaving the variant spelling bare.
 
 ## Attribute status
 
@@ -88,3 +116,4 @@ Rules:
 5. Suggest new sources or questions to investigate.
 6. Check every domain object page has a definition, an attribute table and a relationship table.
 7. Check every `🔶 Team decision` row cites a discussion number or brief section.
+8. Check every `#N` and `brief §N` citation is linked per the Citation linking rule above (bare, unlinked occurrences outside code fences are a lint failure), including inside table cells and callouts.
