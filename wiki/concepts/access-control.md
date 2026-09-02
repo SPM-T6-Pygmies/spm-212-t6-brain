@@ -15,6 +15,8 @@ tags:
 
 # Access Control
 
+**Objects:** [[user-account]] · [[event]] · [[client-organisation]]
+
 Authentication and authorisation rules for the [[event-planning-venue-booking-system]]. The governing principle from the brief: "The system should only allow authorised users to access protected information. Access should depend on the user's **role and relationship to an event**" (Source: customer-brief-no-1, s8b). Roles themselves are defined in [[user-roles]].
 
 Access control is two-dimensional throughout: **role** (what kind of user) combined with **relationship** (which events this specific user is connected to). Neither alone is sufficient.

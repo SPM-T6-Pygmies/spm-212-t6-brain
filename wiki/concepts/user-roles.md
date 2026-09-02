@@ -14,6 +14,8 @@ tags:
 
 # User Roles
 
+**Objects:** [[user-account]] · [[client-organisation]]
+
 The actors recognised by the [[event-planning-venue-booking-system]]. Roles determine both responsibility in [[event-request-workflow]] and visibility under [[access-control]]. [[connectsphere-event-services]] employs approximately 500 staff across the internal roles (Source: customer-brief-no-1).
 
 ## Briefed Roles

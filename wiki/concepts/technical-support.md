@@ -10,6 +10,8 @@ tags: [technical-support, staffing, rostering, equipment, roles, business-rules]
 
 # Technical Support
 
+**Objects:** [[support-request]] · [[equipment-item]] · [[user-account]]
+
 The Technical Support Staff role: reviewing equipment and technical requirements, reserving resources, and being assigned to support events on-site. The equipment inventory and availability rules themselves are in [[equipment-management]].
 
 ## Responsibilities

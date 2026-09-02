@@ -15,6 +15,8 @@ tags:
 
 # Attendee Registration
 
+**Objects:** [[registration]] · [[event]] · [[user-account]]
+
 How Attendees register for events in the [[event-planning-venue-booking-system]], and how capacity, waiting lists, withdrawal, and attendance are handled. Registration is step 11 of the 14-step process and sits downstream of event confirmation — see [[event-lifecycle]].
 
 ## Preconditions
@@ -28,14 +30,7 @@ Not every event requires registration. Registration setup is one of the arrangem
 
 ## Registration Period
 
-| Rule | Detail | Source |
-|---|---|---|
-| Separate dates | There is a **registration start date and end date, separate from the event date** | #30 |
-| Who sets them | The **Event Coordinator** | #30 |
-| Enforcement | Attendees should only be able to register when registration is available | brief s4 |
-| Extension / re-opening | The registration period **may be extended** — registration can be re-opened after closing, e.g. when additional capacity becomes available | #42 |
-
-(Source: is212-discussions-2026-08-31, #30, #42)
+Registration open/close dates are set by the Event Coordinator on the [[event]] record, separate from the event dates, and may be extended after closing (Source: is212-discussions-2026-08-31, #30, #42). Attendees should only be able to register when registration is available (brief s4).
 
 Implications:
 
@@ -58,13 +53,7 @@ Implications:
 
 ## Waiting List
 
-| Rule | Detail | Source |
-|---|---|---|
-| Supported? | Yes — additional Attendees may join a waiting list when an event reaches capacity | brief s4, #44 |
-| Promotion order | **FIFO**, with **manual override** permitted | #26 |
-| Acceptance window | **3 days** for a waitlisted Attendee to accept when a spot opens, before it passes on | #44 |
-
-(Source: is212-discussions-2026-08-31, #26, #44)
+Additional Attendees may join a waiting list when an event reaches capacity (brief s4, #44). Promotion order, the manual override, and the 3-day acceptance window are defined on [[registration]] (Waiting List Entry) (Source: is212-discussions-2026-08-31, #26, #44).
 
 The 3-day window is one of the few **hard numeric business rules** the customer has committed to; it should be treated as a fixed requirement rather than a proposal. FIFO is the default ordering, but the manual override means promotion cannot be a purely automatic queue — an authorised user must be able to promote out of order.
 

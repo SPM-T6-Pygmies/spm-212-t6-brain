@@ -10,19 +10,13 @@ tags: [equipment, inventory, availability, reservation, maintenance, business-ru
 
 # Equipment Management
 
+**Objects:** [[equipment-item]] · [[equipment-reservation]] · [[event]]
+
 Catalogue, availability, reservation, and condition tracking for ConnectSphere's event equipment. The staffing and review side of the same workflow is covered in [[technical-support]].
 
 ## Equipment Catalogue
 
-The system maintains equipment records with (Source: customer-brief-no-1):
-
-| Attribute | Notes |
-|---|---|
-| Type | e.g. projector, microphone, VC unit |
-| Description | Free-form detail / technical specification |
-| Quantity | Must be known to the system (#13) |
-| Location | Equipment has a **physical location** (#2) |
-| Operational status | Available, unavailable, damaged, under maintenance (#23) |
+The system maintains equipment records with the fields defined on [[equipment-item]] — type, description, quantity, physical location, and operational status (Source: customer-brief-no-1).
 
 ## Availability: Two Rules That Coexist
 
@@ -38,17 +32,7 @@ Two separate rules constrain when a piece of equipment can be committed to an ev
 
 ### Lifecycle Chain
 
-As given verbatim by the customer (Source: is212-discussions-2026-08-31, #2 follow-up, 2026-08-31):
-
-```
-Current equipment location
-→ transfer/preparation to event venue
-→ D-1 collection / event commitment period
-→ event use
-→ return to ConnectSphere
-→ inspection/preparation
-→ available again from Return Day +1
-```
+The full lifecycle chain, as given verbatim by the customer (Source: is212-discussions-2026-08-31, #2 follow-up, 2026-08-31), is diagrammed on [[equipment-item]] (Availability lifecycle).
 
 Note the return leg: equipment goes back **to ConnectSphere** for inspection, not directly to the next venue. Transfer time is therefore consumed on the outbound leg of every reservation, measured from wherever the item currently sits.
 

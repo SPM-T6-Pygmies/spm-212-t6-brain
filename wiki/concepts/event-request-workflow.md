@@ -15,6 +15,8 @@ tags:
 
 # Event Request Workflow
 
+**Objects:** [[event-request]] · [[event]] · [[user-account]]
+
 The end-to-end process by which an event moves from an Event Organiser's initial idea to a delivered and closed event at [[connectsphere-event-services]]. The statuses attached to each step are described in [[event-lifecycle]].
 
 ## The 14-Step Typical Process
@@ -83,14 +85,7 @@ Design implication: coordinator assignment is a **simple write, not a workflow**
 
 ## Comments, Discussion, and Supporting Documents
 
-| Feature | Rule | Ref |
-|---|---|---|
-| Comments and discussion | Requirement is to **retain** comments, questions and updates with the event record. Threaded vs chronological is a UI/UX decision for the team | #15 |
-| Supporting documents | Users can attach programmes, floor plans, presentation requirements, and other materials | brief |
-| Document versioning | **Not required.** These are not legal documents, so no versions need be kept | #21 |
-| Document size / file types | No limits specified; team to propose if constraints are needed | #18 |
-
-(Source: is212-discussions-2026-08-31)
+Comments, supporting documents, and their constraints (retention, versioning, size/type limits) are defined on [[event]] — see Attributes and Open modelling questions (Source: is212-discussions-2026-08-31, #15, #18, #21).
 
 ## Reuse of Previous Event Information
 
@@ -108,7 +103,7 @@ Consequences:
 - Venue booking, equipment reservation, and capacity are properties that may be held at **session** level, not only event level. See [[venue-booking]], [[equipment-management]], [[attendee-registration]].
 - Event readiness must aggregate across sessions — see [[event-readiness]].
 - Extending or splitting a programme is a change with downstream impact — see [[change-impact-management]].
-- Venues are booked in three fixed slots (AM 7am–12pm, PM 1pm–6pm, Night 7pm–12am), which constrains how sessions map onto bookings (Source: is212-discussions-2026-08-31, #50).
+- Venues are booked in three fixed slots, defined on [[venue]], which constrain how sessions map onto bookings (Source: is212-discussions-2026-08-31, #50).
 
 ## Downstream Steps
 

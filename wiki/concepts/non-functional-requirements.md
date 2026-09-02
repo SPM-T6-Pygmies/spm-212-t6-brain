@@ -15,6 +15,8 @@ tags:
 
 # Non-Functional Requirements
 
+**Objects:** [[event]] · [[booking]] · [[audit-record]] · [[user-account]]
+
 Section 8 of the brief states seven quality attributes for the [[event-planning-venue-booking-system]] (Source: customer-brief-no-1). Every one is stated qualitatively — the customer set **no numeric targets** anywhere. The Q&A rounds narrowed the operating envelope (timezone, language, retention, integration) rather than adding thresholds, and repeatedly returned mechanism decisions to the team.
 
 ## Summary

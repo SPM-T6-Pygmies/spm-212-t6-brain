@@ -15,6 +15,8 @@ tags:
 
 # Reporting
 
+**Objects:** [[audit-record]] · [[registration]] · [[event]] · [[venue]]
+
 The read-and-extract surface of the [[event-planning-venue-booking-system]]: reports, exports, history views, and role-based dashboards. The brief specifies four report types plus export, and two history mechanisms (Source: customer-brief-no-1, s4). The Q&A rounds settled the generation model and the access model, but left almost all report **content** to the team.
 
 ## Report Types
@@ -50,7 +52,7 @@ Fixed inputs the team can build measures from:
 | Available dimension | Source |
 |---|---|
 | Selected reporting period | brief, s4 |
-| Booking slots — AM (7am–12pm), PM (1pm–6pm), Night (7pm–12am); full day = all three | #50 |
+| Booking slots — AM / PM / Night, as defined on [[venue]]; full day = all three | #50 |
 | Booking state — available, tentatively held, confirmed, blocked, unavailable | brief, s4 |
 | Blocked reasons — maintenance, renovation, safety, internal activity | brief, s4 |
 | Setup, teardown and turnaround time, recorded **per venue** | #43 |
@@ -94,12 +96,7 @@ Practical implication: the team must decide unaided how to handle personal data 
 
 ## Activity History and Change History
 
-Two distinct mechanisms in the brief (Source: customer-brief-no-1, s4):
-
-| Mechanism | Records | Visibility |
-|---|---|---|
-| Activity History | Significant actions, **who** performed them and **when** — supports accountability and troubleshooting | Per role and access rights |
-| Change History | **How important event information changed over time** | Users with appropriate access |
+Two distinct mechanisms, defined structurally on [[audit-record]] (Source: customer-brief-no-1, s4).
 
 - Both serve the auditability requirement: determine what was changed, who changed it, and when (Source: customer-brief-no-1, s8f). The customer left the **technical mechanism** to the team — append-only log or ordinary table both acceptable (#14). See [[non-functional-requirements]].
 - Retention is unbounded: no retention policy exists, and completed and cancelled events may remain available as historical records; archival and housekeeping are outside current scope (#20). History therefore accumulates indefinitely by default.

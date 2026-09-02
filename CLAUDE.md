@@ -8,6 +8,7 @@ This file defines the conventions and workflows for maintaining the PM Intern Le
 - **`wiki/`** — LLM-generated markdown pages. The LLM owns this layer entirely.
   - `wiki/sources/` — One summary page per ingested source document.
   - `wiki/concepts/` — Pages for key ideas, frameworks, and methodologies.
+  - `wiki/domain/` — Pages for domain objects: the nouns the system stores records about (Event, Venue, Booking, Equipment Item…). Structure, not process — attributes, states, relationships, cardinality. Concept pages describe what happens; domain pages describe what a thing *is*.
   - `wiki/entities/` — Pages for organizations, products, and people.
 - **`index.md`** — Content catalog of every wiki page, organized by category.
 - **`log.md`** — Chronological append-only record of wiki activity.
@@ -15,10 +16,23 @@ This file defines the conventions and workflows for maintaining the PM Intern Le
 ## Conventions
 
 - **Links**: Use Obsidian-style `[[wikilinks]]` for all cross-references between wiki pages. Use the page's filename without extension (e.g. `[[decision-making]]`).
-- **Frontmatter**: Every wiki page has YAML frontmatter with `title`, `type` (source-summary | concept | entity), `sources` (list of raw files this page draws from), and `tags`.
+- **Frontmatter**: Every wiki page has YAML frontmatter with `title`, `type` (source-summary | concept | entity | domain-object), `sources` (list of raw files this page draws from), and `tags`.
 - **Citations**: When a claim comes from a specific source, note it inline, e.g. `(Source: pm-intern-learning)`.
 - **Tone**: Concise, structured, third-person. Use headers, bullet points, and tables. Avoid fluff.
 - **Contradictions**: If a new source contradicts an existing wiki page, flag it explicitly with a `> [!warning] Contradiction` callout (see below).
+- **Page names**: Obsidian resolves `[[wikilinks]]` by filename, so two pages sharing a basename in different folders make every link to that name ambiguous. Before creating a page, check the basename is unused across the whole wiki. Domain pages take the singular object noun (`booking`); concept pages take the process name (`venue-booking`).
+
+## Attribute status
+
+Domain object pages mark every attribute, rule and relationship with exactly one status. No other values.
+
+| Marker | Meaning |
+|---|---|
+| `✅ Specified` | The customer stated it. Design to it; do not re-litigate. |
+| `⚠️ Partial` | Stated but incomplete — a hedge word, a half-answered question, or a rule with an unspecified parameter. |
+| `🔶 Team decision` | Explicitly left to the solution team. **Must** cite the `#n` where it was deferred. |
+
+A `🔶` row with no citation is a lint failure.
 
 ## Callouts
 
@@ -48,9 +62,10 @@ Rules:
 2. Read the source fully.
 3. Create a source summary page in `wiki/sources/`.
 4. Create or update concept pages in `wiki/concepts/` for each major topic.
-5. Create or update entity pages in `wiki/entities/` for organizations, products, people.
-6. Update `wiki/index.md` with new/changed pages.
-7. Append an entry to `wiki/log.md`.
+5. Create or update domain object pages in `wiki/domain/` for every object the source adds an attribute, state, relationship, cardinality or modelling decision to.
+6. Create or update entity pages in `wiki/entities/` for organizations, products, people.
+7. Update `wiki/index.md` with new/changed pages.
+8. Append an entry to `wiki/log.md`.
 
 ### Query
 1. Read `wiki/index.md` to find relevant pages.
@@ -63,3 +78,5 @@ Rules:
 3. Check for stale information superseded by newer sources.
 4. Check for missing cross-references between related pages.
 5. Suggest new sources or questions to investigate.
+6. Check every domain object page has a definition, an attribute table and a relationship table.
+7. Check every `🔶 Team decision` row cites a discussion number or brief section.

@@ -14,24 +14,13 @@ tags:
 
 # Event Lifecycle
 
+**Objects:** [[event]]
+
 The set of statuses an event passes through in the [[event-planning-venue-booking-system]], and the rules governing transitions between them. The lifecycle is the backbone that [[event-request-workflow]], [[event-readiness]], and [[change-impact-management]] all attach to.
 
 ## Statuses
 
-The brief lists the following as an example set — "Events progress through suitable statuses so that users can understand their current stage, for example draft, submitted, under review, approved, planning, awaiting arrangements, confirmed, completed, cancelled, or rejected" (Source: customer-brief-no-1).
-
-| Status | Meaning | Set by |
-|---|---|---|
-| Draft | Request saved but not submitted; incomplete information may be completed later | Event Organiser |
-| Submitted | Request sent to ConnectSphere, awaiting coordinator assignment | Event Organiser |
-| Under review | Assigned Event Coordinator is reviewing; clarifications may be requested | Event Coordinator |
-| Approved | Sufficient information exists for planning to proceed | Event Coordinator |
-| Planning | Venue, equipment, technical support and programme work in progress | Event Coordinator |
-| Awaiting arrangements | One or more essential arrangements remain incomplete | System / Event Coordinator |
-| Confirmed | All essential arrangements complete; arrangements visible to the Event Organiser | Event Coordinator |
-| Completed | Event has taken place and been closed | Event Coordinator, or system after 7 days |
-| Cancelled | Event will not proceed; reservations released | Assigned Event Coordinator only |
-| Rejected | Request declined at review; decision record retained | Event Coordinator |
+The brief lists the following as an example set — "Events progress through suitable statuses so that users can understand their current stage, for example draft, submitted, under review, approved, planning, awaiting arrangements, confirmed, completed, cancelled, or rejected" (Source: customer-brief-no-1). The full status table, entry/exit rules, and state diagram are maintained on [[event]] — see States.
 
 > [!question]- Team decision required — the status set and state machine
 > The customer named these statuses "for example" and did not fix the state machine. The exact status set, the transitions permitted between them, and whether *planning* and *awaiting arrangements* are distinct states or one state with a readiness flag are all for the team to propose (Source: customer-brief-no-1; is212-discussions-2026-08-31, #70).

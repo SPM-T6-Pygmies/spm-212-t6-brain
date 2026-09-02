@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/concepts/open-questions.md",
+                "file": "wiki/domain/event.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "open-questions"
+              "title": "event"
             }
           }
         ],
@@ -123,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "wiki/concepts/open-questions.md",
+                "file": "wiki/domain/event.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +133,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for open-questions"
+              "title": "Backlinks for event"
             }
           },
           {
@@ -142,12 +142,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "wiki/concepts/open-questions.md",
+                "file": "wiki/domain/event.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from open-questions"
+              "title": "Outgoing links from event"
             }
           },
           {
@@ -185,13 +185,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/concepts/open-questions.md",
+                "file": "wiki/domain/event.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of open-questions"
+              "title": "Outline of event"
             }
           },
           {
@@ -235,44 +235,44 @@
       "realclaudian:Open Claudian": false
     }
   },
-  "active": "3f1234fc0f604637",
+  "active": "b3d88b0092561a19",
   "lastOpenFiles": [
-    "wiki/concepts/non-functional-requirements.md",
-    "wiki/concepts/event-readiness.md",
-    "raw/llm-wiki.md",
-    "CLAUDE.md",
+    "wiki/domain/domain-model.md",
+    "wiki/domain/event.md",
+    "wiki/domain/notification.md",
+    "wiki/domain/event-request.md",
+    "wiki/concepts/open-questions.md",
+    "wiki/concepts/technical-support.md",
     "wiki/concepts/venue-booking.md",
-    "wiki/concepts/event-lifecycle.md",
-    "wiki/concepts/equipment-management.md",
-    "wiki/concepts/change-impact-management.md",
-    "wiki/concepts/attendee-registration.md",
-    "wiki/concepts/access-control.md",
-    "Obsidian Components Cheatsheet.md",
+    "raw/Customer Brief no. 1.md",
+    "wiki/domain/registration.md",
+    "wiki/domain/user-account.md",
+    "wiki/sources/customer-brief-no-1.md",
+    "wiki/domain/client-organisation.md",
+    "wiki/domain/change-request.md",
+    "wiki/domain/booking.md",
+    "wiki/domain/audit-record.md",
+    "wiki/concepts/event-request-workflow.md",
+    "wiki/concepts/non-functional-requirements.md",
+    "wiki/concepts/notifications.md",
+    "wiki/concepts/reporting.md",
     "wiki/concepts/user-roles.md",
     "wiki/concepts/venue-suitability.md",
-    "raw/Customer Brief no. 1.md",
-    "wiki/concepts/open-questions.md",
-    "wiki/sources/customer-brief-no-1.md",
-    "wiki/sources/is212-discussions-2026-08-31.md",
-    "wiki/sources/is212-discussions-2026-08-26.md",
-    "wiki/index.md",
-    "wiki/log.md",
-    "wiki/concepts/reporting.md",
-    "wiki/entities/is212-g9-section.md",
-    "wiki/entities/event-planning-venue-booking-system.md",
-    "wiki/entities/connectsphere-event-services.md",
-    "wiki/concepts/notifications.md",
-    "wiki/concepts/technical-support.md",
+    "wiki/domain/equipment-item.md",
+    "wiki/domain/equipment-reservation.md",
+    "wiki/domain/session.md",
+    "wiki/domain/support-request.md",
+    "wiki/domain/venue.md",
+    "wiki/domain",
+    "docs/superpowers/plans",
+    "docs/superpowers/specs",
+    "docs/superpowers",
+    "docs",
     "wiki/entities",
     "wiki/concepts",
     "wiki/sources",
     "claudian/tsconfig.json",
     "claudian/tsconfig.jest.json",
-    "claudian/tests/unit/utils/windowsCmdShim.test.ts",
-    "claudian/tests/unit/utils/utils.test.ts",
-    "claudian/tests/unit/utils/slashCommand.test.ts",
-    "claudian/tests/unit/utils/sdkSession.test.ts",
-    "claudian/tests/unit/utils/session.test.ts",
     "claudian/assets/sponsors/MOMA.png",
     "claudian/assets/Preview.png"
   ]
