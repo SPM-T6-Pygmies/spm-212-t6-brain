@@ -14,6 +14,8 @@ tags: [venue, booking, availability, scheduling, business-rules, connectsphere]
 
 How [[connectsphere-event-services]] venues are catalogued, held, requested, approved, and protected from double-booking in the [[event-planning-venue-booking-system]]. Covers steps 6–7 of the planning process (see [[event-lifecycle]]). Assessment of whether a given venue *fits* an event is covered separately in [[venue-suitability]].
 
+**Release 1 scope:** Venue catalogue, booking request, booking approval, and conflict detection (double-booking) are `🎯 Release 1` (core features 8, 12–14). Venue unavailability management and setup/turnaround time are `🧩 Adjacent` — pulled in by feature 9's unavailability language and feature 14's conflict detection respectively. Tentative holding is `📋 Backlog` — not named in the core 20. See [[release-1-scope]] for the full register and rationale.
+
 ## Venue Catalogue
 
 Venue Staff own venue master data — location, capacity, facilities, accessibility, supported room layouts, operating hours, and per-venue setup/teardown/turnaround time; see [[venue]] for the full attribute table (Source: customer-brief-no-1). Capacity drives suitability — see [[venue-suitability]].

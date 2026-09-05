@@ -19,6 +19,8 @@ tags:
 
 How the system detects that a change to an event may invalidate arrangements already made, and drives those arrangements back through review. This is the customer's central stated motivation for the system: "Such changes can affect arrangements that have already been made… ConnectSphere therefore expects the proposed system to help users identify and manage these relationships." (Source: customer-brief-no-1, s2).
 
+**Release 1 scope:** Per [[release-1-scope]], event change requests and impact-of-change revalidation are 🎯 Release 1 (core feature 19); rescheduling is 🧩 Adjacent, pulled in by feature 19 naming date/time as a significant change category. Change history and activity history (see below) are 📋 Backlog as browsable surfaces, though the underlying what/who/when record stays 🎯 via the auditability NFR.
+
 ## Significant vs Ordinary Edits
 
 The system must distinguish between ordinary edits and changes that may affect arrangements already confirmed (Source: customer-brief-no-1).

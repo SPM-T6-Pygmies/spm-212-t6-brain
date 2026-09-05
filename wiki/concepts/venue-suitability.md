@@ -14,6 +14,8 @@ tags: [venue, suitability, search, filtering, capacity, room-layout, business-ru
 
 Assessing whether a venue can satisfy an event's requirements. Distinct from the mechanics of holding and approving a booking, which are covered in [[venue-booking]].
 
+**Release 1 scope:** Venue suitability checking and venue search/filtering are both `🎯 Release 1` (core features 10–11) — see [[release-1-scope]] for why the customer treats them as genuinely separate functions. Room layout management (Supported Room Layouts, below) is `🧩 Adjacent`, pulled in by feature 8's catalogue attribute and feature 10's filter criterion, not a standalone layout-management feature. The ongoing, throughout-planning capacity tracking described under Event Capacity Management is `📋 Backlog` — only the point-in-time capacity check against expected attendance (feature 11) is required.
+
 ## Search/Filtering vs Suitability Checking
 
 The brief lists *Venue Search and Filtering* and *Venue Suitability Checking* as separate functionality areas without explaining the boundary. [#83](https://github.com/SinYang13/IS212-2026/discussions/83) asked whether filtering alone counts as the suitability check; the customer answered on 2026-08-31 that they are **two different functions** (Source: is212-discussions-2026-08-31, [#83](https://github.com/SinYang13/IS212-2026/discussions/83)).

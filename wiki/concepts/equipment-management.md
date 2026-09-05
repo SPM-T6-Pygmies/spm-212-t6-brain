@@ -14,6 +14,8 @@ tags: [equipment, inventory, availability, reservation, maintenance, business-ru
 
 Catalogue, availability, reservation, and condition tracking for ConnectSphere's event equipment. The staffing and review side of the same workflow is covered in [[technical-support]].
 
+**Release 1 scope:** Equipment request management, equipment availability checking, and equipment reservation are all `🎯 Release 1` (core features 15–17) — covering the Availability rules, No Same-Day Sharing and Reservation Rules sections below. The equipment catalogue itself (Equipment Catalogue, Pooled vs Serialised Modelling) is `🧩 Adjacent`, pulled in because features 15–17 need equipment types and quantities to exist before anything can be requested, checked or reserved; equipment maintenance status (Maintenance, Damage, and Defect Logging) is likewise `🧩 Adjacent`, pulled in by feature 16's requirement that unavailable equipment not be treated as available. See [[release-1-scope]] for the full register.
+
 ## Equipment Catalogue
 
 The system maintains equipment records with the fields defined on [[equipment-item]] — type, description, quantity, physical location, and operational status (Source: customer-brief-no-1).

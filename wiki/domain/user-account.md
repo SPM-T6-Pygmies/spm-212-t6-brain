@@ -13,16 +13,18 @@ The record of a person who interacts with the system — ConnectSphere internal 
 
 ## Attributes
 
-| Field | Meaning | Status | Ref |
-|---|---|---|---|
-| Name | Full name | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Organisation | The user's organisation — [[event-planning-venue-booking-system\|brief §4]] lists this as a generic profile field for all users, not restricted to external ones; only Event Organiser accounts are separately confirmed to carry a linked [[client-organisation]] record (see Relationships) | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Contact details | Means of reaching the user | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Communication preferences | Preferred channel/format for notifications | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Department / responsibilities | Internal-user-only field | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Role(s) | One or more roles held by the account; a person may hold multiple roles at once | ✅ Specified | [#56](https://github.com/SinYang13/IS212-2026/discussions/56) |
-| Availability | Factor used to determine whether a Technical Support Staff member can be allocated to support an event; no self-declaration mechanism or update frequency is specified | ⚠️ Partial | [[event-planning-venue-booking-system\|brief §4]]; [#88](https://github.com/SinYang13/IS212-2026/discussions/88), [#89](https://github.com/SinYang13/IS212-2026/discussions/89) |
-| Credentials | Authentication credentials; method not specified | 🔶 Team decision | [#62](https://github.com/SinYang13/IS212-2026/discussions/62) |
+`Scope` is the Release 1 marker from [[release-1-scope]] — 🎯 for the authentication/authorisation attributes (core feature 1), 🧩 for the client-management link (pulled in by feature 1's "relationship to an event" scoping), 📋 for the remaining profile fields (User profile management is not named in the core 20).
+
+| Field | Meaning | Status | Scope | Ref |
+|---|---|---|---|---|
+| Name | Full name | ✅ Specified | 📋 Backlog | [[event-planning-venue-booking-system\|brief §4]] |
+| Organisation | The user's organisation — [[event-planning-venue-booking-system\|brief §4]] lists this as a generic profile field for all users, not restricted to external ones; only Event Organiser accounts are separately confirmed to carry a linked [[client-organisation]] record (see Relationships) | ✅ Specified | 🧩 Adjacent — feature 1 | [[event-planning-venue-booking-system\|brief §4]] |
+| Contact details | Means of reaching the user | ✅ Specified | 📋 Backlog | [[event-planning-venue-booking-system\|brief §4]] |
+| Communication preferences | Preferred channel/format for notifications | ✅ Specified | 📋 Backlog | [[event-planning-venue-booking-system\|brief §4]] |
+| Department / responsibilities | Internal-user-only field | ✅ Specified | 📋 Backlog | [[event-planning-venue-booking-system\|brief §4]] |
+| Role(s) | One or more roles held by the account; a person may hold multiple roles at once | ✅ Specified | 🎯 Release 1 | [#56](https://github.com/SinYang13/IS212-2026/discussions/56) |
+| Availability | Factor used to determine whether a Technical Support Staff member can be allocated to support an event; no self-declaration mechanism or update frequency is specified | ⚠️ Partial | 📋 Backlog | [[event-planning-venue-booking-system\|brief §4]]; [#88](https://github.com/SinYang13/IS212-2026/discussions/88), [#89](https://github.com/SinYang13/IS212-2026/discussions/89) |
+| Credentials | Authentication credentials; method not specified | 🔶 Team decision | 🎯 Release 1 | [#62](https://github.com/SinYang13/IS212-2026/discussions/62) |
 
 The many-to-many treatment of Role(s) (one account, several roles, resolved per event rather than per account) is this wiki's structural reading of [#56](https://github.com/SinYang13/IS212-2026/discussions/56) and is elaborated in [[user-roles]] and [[access-control]].
 

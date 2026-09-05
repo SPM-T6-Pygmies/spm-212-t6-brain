@@ -11,6 +11,8 @@ tags: [domain, event]
 
 The plannable record of a confirmed-or-confirmable occasion at [[connectsphere-event-services]], created when an [[event-request]] is approved. Carries the requirements, arrangements, assignments and status that the rest of the system (session, booking, equipment-reservation, registration) attaches to. Process detail lives in [[event-request-workflow]], [[event-lifecycle]], [[event-readiness]] and [[change-impact-management]]; this page is the structural reference.
 
+**Release 1 scope:** Per [[release-1-scope]], event status management and event information management are 🎯 Release 1 (core features 6–7); event confirmation and event readiness tracking (the essential-arrangement gate below) are 🧩 Adjacent — inherited from feature 6's status requirements and the [#80](https://github.com/SinYang13/IS212-2026/discussions/80) blocking rule respectively. Multi-session support ([[session]]) remains 📋 Backlog.
+
 ## Attributes
 
 | Field                                | Meaning                                                                                                                                          | Status           | Ref                |

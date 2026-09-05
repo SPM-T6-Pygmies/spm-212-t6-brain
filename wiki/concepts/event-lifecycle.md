@@ -18,6 +18,8 @@ tags:
 
 The set of statuses an event passes through in the [[event-planning-venue-booking-system]], and the rules governing transitions between them. The lifecycle is the backbone that [[event-request-workflow]], [[event-readiness]], and [[change-impact-management]] all attach to.
 
+**Release 1 scope:** Per [[release-1-scope]], event status management is 🎯 Release 1 (core feature 6); event confirmation and cancellation management are 🧩 Adjacent — confirmation because `confirmed` is a feature 6 status and a feature 20 notification trigger, cancellation because `cancelled` is likewise a feature 6 status and feature 20 trigger.
+
 ## Statuses
 
 The brief lists the following as an example set — "Events progress through suitable statuses so that users can understand their current stage, for example draft, submitted, under review, approved, planning, awaiting arrangements, confirmed, completed, cancelled, or rejected" (Source: customer-brief-no-1). The full status table, entry/exit rules, and state diagram are maintained on [[event]] — see States.

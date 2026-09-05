@@ -19,6 +19,8 @@ tags:
 
 The read-and-extract surface of the [[event-planning-venue-booking-system]]: reports, exports, history views, and role-based dashboards. The brief specifies four report types plus export, and two history mechanisms (Source: customer-brief-no-1, s4). The Q&A rounds settled the generation model and the access model, but left almost all report **content** to the team.
 
+**Release 1 scope** ([[release-1-scope]]): every report type, export mechanism, history-browsing surface and dashboard on this page is `📋 Backlog` — none of Event Reports, Venue Usage Reports, Registration Reports, Report Generation and Exporting, Activity History, Change History, or Role-Based Dashboards is named in the core 20. This does not touch the underlying auditability requirement itself — recording what changed, who, and when is 🎯 Release 1 as a non-functional requirement; only the browsable history surface described here is deferred. See [[non-functional-requirements]] and [[audit-record]].
+
 ## Report Types
 
 | Report | Audience | Purpose per the brief |

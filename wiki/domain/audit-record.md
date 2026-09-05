@@ -11,6 +11,8 @@ tags: [domain, audit, history]
 
 The record captured by the system in support of auditability: **Activity History** (who did what, and when — [[event-planning-venue-booking-system|brief §4]]) and **Change History** (how a field's value evolved over time — [[event-planning-venue-booking-system|brief §4]]), together satisfying the requirement that ConnectSphere can determine "what was changed, who changed it, and when the change was made" ([[non-functional-requirements|brief §8f]]). Process detail lives in [[reporting]] and [[non-functional-requirements]]; this page is the structural reference.
 
+**Release 1 scope** ([[release-1-scope]]): the underlying requirement that actions and changes be recorded — the Actor, Timestamp and what-changed attributes below — is 🎯 Release 1 as a non-functional requirement, independent of which functional area produced the change. The user-facing Activity History and Change History browsing surfaces described below are `📋 Backlog`: neither is named in the core 20, and Release 1 requires only that the record exist, not that it be browsable.
+
 ## Attributes
 
 | Field | Meaning | Status | Ref |

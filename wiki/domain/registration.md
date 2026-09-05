@@ -11,6 +11,8 @@ tags: [domain, registration, attendee]
 
 The record of a [[user-account]] (Attendee)'s registration for a confirmed [[event]] with registration enabled. Carries a Waiting List Entry when the event is at capacity. Registration is conceptually distinguishable from the Attendance information recorded at check-in, though whether that means a separate record or a field on this one is open — see Attendance / check-in. Process detail lives in [[attendee-registration]]; this page is the structural reference.
 
+**Release 1 scope** ([[release-1-scope]]): the Attendee, Event and Status attributes, and the Registered/Withdrawn states and Withdrawal transition, are 🎯 Release 1 — core feature 18. Registration period and Event capacity / attendance limit are `🧩 Adjacent` — feature 18 is conditional on registration being "enabled," and an unbounded cap against a capacity-checked venue is incoherent. The Waitlisted status, the Waiting List Entry state machine, and Attendance / check-in are `📋 Backlog` — none is named in the core 20.
+
 ## Attributes
 
 | Field | Meaning | Status | Ref |

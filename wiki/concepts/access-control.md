@@ -21,6 +21,8 @@ Authentication and authorisation rules for the [[event-planning-venue-booking-sy
 
 Access control is two-dimensional throughout: **role** (what kind of user) combined with **relationship** (which events this specific user is connected to). Neither alone is sufficient.
 
+**Release 1 scope** ([[release-1-scope]]): authentication and the access rules below are 🎯 Release 1 (core feature 1 — User authorisation and authentication), and the auditability rule cited in that section is likewise 🎯 as a binding non-functional requirement. Client Organisation Visibility is `🧩 Adjacent`, pulled in because feature 1 scopes access by "relationship to an event"; Role-Based Dashboards are `📋 Backlog` — not named in the core 20.
+
 ## Authentication
 
 | Aspect | Position | Source |

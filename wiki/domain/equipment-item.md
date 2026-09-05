@@ -13,15 +13,17 @@ A unit (or type/pool — see Open modelling questions) of technical equipment ma
 
 ## Attributes
 
-| Field | Meaning | Status | Ref |
-|---|---|---|---|
-| Type | e.g. projector, microphone, VC unit | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Description | Free-form technical detail / specification | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Quantity | Number of units available; the system must know this regardless of how the item is modelled internally | ✅ Specified | [#13](https://github.com/SinYang13/IS212-2026/discussions/13) |
-| Physical location | The item's current location | ✅ Specified | [#2](https://github.com/SinYang13/IS212-2026/discussions/2) |
-| Operational status | One of: available, unavailable, damaged, under maintenance | ✅ Specified | [#23](https://github.com/SinYang13/IS212-2026/discussions/23) |
-| Transfer / preparation time | Time required to move the item from its current location to the event venue; factored into pre-event availability | ✅ Specified | [#2](https://github.com/SinYang13/IS212-2026/discussions/2) |
-| Expected return date (while under maintenance) | Whether a maintenance record carries a target return date | 🔶 Team decision | [#23](https://github.com/SinYang13/IS212-2026/discussions/23) |
+`Scope` is the Release 1 marker from [[release-1-scope]].
+
+| Field | Meaning | Status | Scope | Ref |
+|---|---|---|---|---|
+| Type | e.g. projector, microphone, VC unit | ✅ Specified | 🧩 Adjacent (features 15–17) | [[event-planning-venue-booking-system\|brief §4]] |
+| Description | Free-form technical detail / specification | ✅ Specified | 🧩 Adjacent (features 15–17) | [[event-planning-venue-booking-system\|brief §4]] |
+| Quantity | Number of units available; the system must know this regardless of how the item is modelled internally | ✅ Specified | 🧩 Adjacent (features 15–17) | [#13](https://github.com/SinYang13/IS212-2026/discussions/13) |
+| Physical location | The item's current location | ✅ Specified | 🧩 Adjacent (features 15–17) | [#2](https://github.com/SinYang13/IS212-2026/discussions/2) |
+| Operational status | One of: available, unavailable, damaged, under maintenance | ✅ Specified | 🧩 Adjacent (feature 16) | [#23](https://github.com/SinYang13/IS212-2026/discussions/23) |
+| Transfer / preparation time | Time required to move the item from its current location to the event venue; factored into pre-event availability | ✅ Specified | 🧩 Adjacent (features 15–17) | [#2](https://github.com/SinYang13/IS212-2026/discussions/2) |
+| Expected return date (while under maintenance) | Whether a maintenance record carries a target return date | 🔶 Team decision | 📋 Backlog | [#23](https://github.com/SinYang13/IS212-2026/discussions/23) |
 
 Operational status is an explicit, TSS-maintained attribute (see Binding rules); it is a different concept from an item being transiently unavailable because it is already committed to another event's D-1 → Return Day + 1 window (see Availability lifecycle, below). Neither source distinguishes the two by separate field names — treating them as two layers on top of the same "available/not available" question is this wiki's structural proposal, not a customer-specified data model.
 

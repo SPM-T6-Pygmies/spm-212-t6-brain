@@ -9,7 +9,7 @@ tags: [meta, index]
 
 Content catalog of every wiki page. Update whenever a page is created, renamed, or removed.
 
-**37 pages** — 3 sources, 15 concepts, 15 domain objects, 3 entities, 1 review. All raw documents ingested as of 2026-09-02.
+**39 pages** — 4 sources, 16 concepts, 15 domain objects, 3 entities, 1 review. All raw documents ingested as of 2026-09-05.
 
 > [!important] Hard rules the customer actually committed to
 > Most of this brief is deliberately open, so the few fixed constraints matter. Do not design around these — they are stated, not proposable.
@@ -33,6 +33,7 @@ Content catalog of every wiki page. Update whenever a page is created, renamed, 
 | See what the customer has *not* decided | [[open-questions]] |
 | See the latest customer answers | [[is212-discussions-2026-08-31]] |
 | Understand the course process and deadlines | [[is212-g9-section]] |
+| See what's actually in the Week 12 release | [[release-1-scope]] |
 
 ## Sources
 
@@ -43,6 +44,7 @@ One summary page per ingested document in `raw/`.
 | [[customer-brief-no-1]] | `Customer Brief no. 1.md` | Baseline requirements |
 | [[is212-discussions-2026-08-26]] | `IS212 2026 Discussions Aug 26.md` | ⚠️ Superseded snapshot |
 | [[is212-discussions-2026-08-31]] | `IS212 2026 Discussions Aug 31.md` | ✅ Authoritative |
+| [[week-4-customer-briefing]] | `Week 4 - Customer Briefing.md` | ✅ Authoritative on Release 1 scope |
 
 ## Concepts
 
@@ -82,6 +84,7 @@ One summary page per ingested document in `raw/`.
 
 | Page | Covers |
 |---|---|
+| [[release-1-scope]] | ⭐ Authoritative in/adjacent/out register for the Week 12 release — every functionality area, marked 🎯/🧩/📋 |
 | [[non-functional-requirements]] | Performance, security, usability, reliability, scalability, auditability, maintainability |
 | [[reporting]] | Event, venue usage and registration reports; history; dashboards |
 | [[open-questions]] | ⭐ Consolidated register of everything left to the team |
@@ -148,4 +151,5 @@ One-off scrutiny artefacts — not domain knowledge, kept here so they aren't or
 | `raw/Customer Brief no. 1.md` | ✅ Ingested 2026-09-02 |
 | `raw/IS212 2026 Discussions Aug 26.md` | ✅ Ingested 2026-09-02 |
 | `raw/IS212 2026 Discussions Aug 31.md` | ✅ Ingested 2026-09-02 |
+| `raw/Week 4 - Customer Briefing.md` | ✅ Ingested 2026-09-05 |
 | `raw/llm-wiki.md` | ⏸️ Not ingested — methodology, not domain content; see log |

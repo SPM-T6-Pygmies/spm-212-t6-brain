@@ -18,6 +18,8 @@ tags:
 
 How the [[event-planning-venue-booking-system]] keeps users informed when events or arrangements relevant to them change. The brief's stated purpose: "Users should be kept informed when important events or arrangements relevant to them change" (Source: customer-brief-no-1, s6). Notifications directly address several of the brief's named pain points — last-minute changes not reaching affected staff or attendees, Technical Support Staff receiving insufficient notice, and Attendees receiving outdated event information (Source: customer-brief-no-1, s2).
 
+**Release 1 scope** ([[release-1-scope]]): the notification system described below — scenarios, channels, delivery timing — is 🎯 Release 1, core feature 20. The Reminders section is `📋 Backlog` — not named in the core 20; feature 20 lists event-driven triggers only, and the confirmed incomplete-arrangements reminder ([#47](https://github.com/SinYang13/IS212-2026/discussions/47)) remains a documented requirement, not a built one, in Release 1.
+
 ## Notification Scenarios
 
 The brief lists the following as examples of situations that may generate a notification (Source: customer-brief-no-1, s6). Grouped by concept:

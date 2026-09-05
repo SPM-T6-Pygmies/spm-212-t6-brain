@@ -19,6 +19,8 @@ tags:
 
 Section 8 of the brief states seven quality attributes for the [[event-planning-venue-booking-system]] (Source: customer-brief-no-1). Every one is stated qualitatively — the customer set **no numeric targets** anywhere. The Q&A rounds narrowed the operating envelope (timezone, language, retention, integration) rather than adding thresholds, and repeatedly returned mechanism decisions to the team.
 
+**Release 1 scope** ([[release-1-scope]]): every quality attribute on this page is 🎯 Release 1. The Week 4 briefing is silent on non-functional requirements, so the requirements below bind unchanged across whatever functionality ships in Release 1 — silence is not descoping.
+
 ## Summary
 
 | # | Attribute | Customer position | Team obligation |

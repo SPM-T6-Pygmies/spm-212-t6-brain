@@ -16,17 +16,19 @@ A Booking is distinct from the Event it supports: the two are separate records, 
 
 ## Attributes
 
-| Field | Meaning | Status | Ref |
-|---|---|---|---|
-| Venue | The [[venue]] being reserved | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Slot(s) | AM / PM / Night; a full-day booking is all three | ✅ Specified | [#50](https://github.com/SinYang13/IS212-2026/discussions/50) |
-| Event / session | The [[event]] or [[session]] the booking is made for | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]]; [#74](https://github.com/SinYang13/IS212-2026/discussions/74) |
-| Status | Tentative hold / confirmed / rejected / released — see States | ✅ Specified | [#41](https://github.com/SinYang13/IS212-2026/discussions/41) |
-| Requested by | The [[user-account]] (Event Coordinator) who submitted the request | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Decided by | The [[user-account]] (Venue Staff) who approved or rejected the request | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Rejection note / suggested alternative | Free-text reason and/or a suggested alternative venue or arrangement; **not** a formal counter-offer object | ✅ Specified | [#45](https://github.com/SinYang13/IS212-2026/discussions/45) |
-| Effective occupancy window | Published event start/end **plus** the venue's setup time before and turnaround/reset time after — not the same as the published event times | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Hold expiry | When and how a tentative hold auto-releases | 🔶 Team decision | [#39](https://github.com/SinYang13/IS212-2026/discussions/39), [#41](https://github.com/SinYang13/IS212-2026/discussions/41) |
+`Scope` is the Release 1 marker from [[release-1-scope]].
+
+| Field | Meaning | Status | Scope | Ref |
+|---|---|---|---|---|
+| Venue | The [[venue]] being reserved | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
+| Slot(s) | AM / PM / Night; a full-day booking is all three | ✅ Specified | 🎯 Release 1 | [#50](https://github.com/SinYang13/IS212-2026/discussions/50) |
+| Event / session | The [[event]] or [[session]] the booking is made for | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]]; [#74](https://github.com/SinYang13/IS212-2026/discussions/74) |
+| Status | Tentative hold / confirmed / rejected / released — see States | ✅ Specified | 🎯 / 📋 — see States below | [#41](https://github.com/SinYang13/IS212-2026/discussions/41) |
+| Requested by | The [[user-account]] (Event Coordinator) who submitted the request | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
+| Decided by | The [[user-account]] (Venue Staff) who approved or rejected the request | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
+| Rejection note / suggested alternative | Free-text reason and/or a suggested alternative venue or arrangement; **not** a formal counter-offer object | ✅ Specified | 🎯 Release 1 | [#45](https://github.com/SinYang13/IS212-2026/discussions/45) |
+| Effective occupancy window | Published event start/end **plus** the venue's setup time before and turnaround/reset time after — not the same as the published event times | ✅ Specified | 🧩 Adjacent (feature 14) | [[event-planning-venue-booking-system\|brief §4]] |
+| Hold expiry | When and how a tentative hold auto-releases | 🔶 Team decision | 📋 Backlog | [#39](https://github.com/SinYang13/IS212-2026/discussions/39), [#41](https://github.com/SinYang13/IS212-2026/discussions/41) |
 
 > [!warning] Effective occupancy ≠ published event times
 > The published event start/end is not what actually occupies the venue. Setup time before, and turnaround/reset time after, pad the occupied window ([[event-planning-venue-booking-system|brief §4]], *Setup and Turnaround Time*). Conflict detection, and any capacity/schedule report, must reason about this padded window, not the bare event times — easy to overlook.
@@ -34,6 +36,8 @@ A Booking is distinct from the Event it supports: the two are separate records, 
 ## States
 
 Neither source names an explicit set of booking states — the labels below (Requested, Tentative hold, Confirmed, Rejected, Released) are this wiki's proposal for a record whose *behaviour* is specified even though its state names are not: a hold may later be confirmed or released ([#41](https://github.com/SinYang13/IS212-2026/discussions/41)), a request may be approved or rejected with a suggested alternative ([#45](https://github.com/SinYang13/IS212-2026/discussions/45)), and double-booking is blocked outright ([#35](https://github.com/SinYang13/IS212-2026/discussions/35)). Treat the diagram as a structural aid, not a customer-confirmed state machine.
+
+Requested, Confirmed and Rejected sit under the `🎯 Release 1` booking request/approval flow (features 12–13). Tentative hold is `📋 Backlog` — only the confirmed-booking half of the [#41](https://github.com/SinYang13/IS212-2026/discussions/41) exclusivity rule binds in Release 1; the hold half is deferred. Released is `🧩 Adjacent`, pulled in by cancellation as a feature 6 status and a feature 20 notification trigger. See [[release-1-scope]].
 
 ```mermaid
 stateDiagram-v2

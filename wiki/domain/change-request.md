@@ -11,6 +11,8 @@ tags: [domain, change-request, event]
 
 A record of a change an Event Organiser requests against an already-submitted or already-confirmed [[event]], reviewed and decided by the assigned Event Coordinator. Its central function is to carry the **significance test** that decides whether existing arrangements must be revalidated. Process detail lives in [[change-impact-management]]; this page is the structural reference.
 
+**Release 1 scope:** Per [[release-1-scope]], event change requests and the impact-of-change revalidation this page structures are 🎯 Release 1 (core feature 19); rescheduling is 🧩 Adjacent, pulled in by feature 19's naming of date/time as a significant change category.
+
 ## Attributes
 
 | Field | Meaning | Status | Ref |

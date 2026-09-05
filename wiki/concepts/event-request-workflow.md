@@ -19,6 +19,8 @@ tags:
 
 The end-to-end process by which an event moves from an Event Organiser's initial idea to a delivered and closed event at [[connectsphere-event-services]]. The statuses attached to each step are described in [[event-lifecycle]].
 
+**Release 1 scope:** Per [[release-1-scope]], event request creation, draft requests, coordinator assignment, and review/approval (Steps 1–5 above) are 🎯 Release 1 (core features 2–5); comments and discussion are 🧩 Adjacent, pulled in by feature 4's requirement that coordinators can request clarification with the outcome visible; event categories, reuse of previous events, multi-session events, and supporting documents are 📋 Backlog.
+
 ## The 14-Step Typical Process
 
 | Step | Name | Actor | Description |

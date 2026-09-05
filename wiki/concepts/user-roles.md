@@ -18,6 +18,8 @@ tags:
 
 The actors recognised by the [[event-planning-venue-booking-system]]. Roles determine both responsibility in [[event-request-workflow]] and visibility under [[access-control]]. [[connectsphere-event-services]] employs approximately 500 staff across the internal roles (Source: customer-brief-no-1).
 
+**Release 1 scope** ([[release-1-scope]]): all five briefed roles are 🎯 Release 1, load-bearing for core feature 1 (User authorisation and authentication) and for every named feature that assigns them actions. The Event Operations Manager gap below sits under the same 🎯 obligation from a different angle — Coordinator Assignment is core feature 5, which needs a resolved actor to be buildable at all.
+
 ## Briefed Roles
 
 The customer brief names exactly five roles and states that these "are the roles referred to throughout this customer briefing" (Source: customer-brief-no-1, s3).

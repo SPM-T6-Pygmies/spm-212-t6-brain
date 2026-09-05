@@ -159,3 +159,47 @@ Applied the rule retroactively to the two existing `outputs/` pages, which had z
 | [[user-stories-proposed-rewrites]] | 54 | 10 |
 
 `[[user-stories-proposed-rewrites]]` (a new page consolidating every proposed rewrite from the scrutiny into a ready-to-paste backlog) was also found un-linked from [[index]] while doing this pass — added to the **Reviews** section so it isn't an orphan.
+
+## 2026-09-05
+
+### Ingested `Week 4 - Customer Briefing.md`
+
+Placed in `raw/` and read in full. It fixes Release 1 scope: 20 core features selected from [[customer-brief-no-1]]'s ~60 functionality areas, due Week 12, with an "adjacency" clause requiring "coherent end-to-end event workflows" across them.
+
+**Created 2 pages:**
+
+- Source summary: [[week-4-customer-briefing]]
+- Concept: [[release-1-scope]] — the authoritative in/adjacent/out register (a third `🧩 Adjacent` marker alongside `🎯 Release 1` / `📋 Backlog`, since the adjacency clause rules out a plain binary split)
+
+**Updated 2 pages:**
+
+- [[event-planning-venue-booking-system]] — functionality-areas table gained a Scope column; the "Release 1 scope is not yet fixed" warning resolved to a `[!success]` closing [#79](https://github.com/SinYang13/IS212-2026/discussions/79) and [#11](https://github.com/SinYang13/IS212-2026/discussions/11); "Explicitly out of scope" section distinguished from `📋 Backlog` (denied vs. deferred)
+- [[open-questions]] — gained a Scope column keyed to [[release-1-scope]], to show which open questions must be resolved before Week 12 vs. can wait
+
+**Notable findings:**
+
+| Finding | Where |
+|---|---|
+| Confirmation ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)'s blocking rule) is a committed hard rule with no feature of its own in the core 20 — inherited via feature 6's "status changes should be consistent with the actions performed" | [[event-readiness]], [[release-1-scope]] |
+| Attendee registration (feature 18) ships with no stated ceiling and no way for an Attendee account to come into existence — external onboarding is out of scope and there is no admin role | [[attendee-registration]], [[access-control]], [[release-1-scope]] |
+| Equipment is described entirely in type/quantity terms in the core 20; nothing requires per-unit identity, bearing on but not resolving the pooled-vs-serialised deferral ([#13](https://github.com/SinYang13/IS212-2026/discussions/13)) | [[equipment-item]], [[release-1-scope]] |
+| The Event Operations Manager gap hardens: feature 5 assigns coordinators passively ("can be assigned"), naming no actor, while the five authorised roles (feature 1) don't include one | [[user-roles]], [[release-1-scope]] |
+| Two brief wordings ("help prevent inappropriate double-booking", "not **normally** suitable") are looser than rules already settled elsewhere — the settled answers still govern | [[release-1-scope]] |
+
+**Integrity checks run:** 0 unlinked `#N`/`brief §N` citations in the new/changed content; all `🧩 Adjacent` rows in [[release-1-scope]] cite the core feature that pulls them in; all wikilinks resolve.
+
+### Closed the ingest gap: catalogued in `index.md`
+
+The four pages above were created/updated in the previous session but never catalogued — [[index]] still counted 37 pages and listed 3 sources. Added [[week-4-customer-briefing]] to the Sources table, [[release-1-scope]] to Concepts → Cross-cutting, a "Week 12 release" pointer to Start here, a `raw/Week 4 - Customer Briefing.md` row to Ingestion status, and updated the page count to 39.
+
+### Rolled Release 1 scope markers out to every concept and domain page
+
+CLAUDE.md's Release scope schema requires every page describing functionality to carry exactly one of `🎯 Release 1` / `🧩 Adjacent` / `📋 Backlog` — but until now only [[open-questions]] and [[event-planning-venue-booking-system]] actually had one; the other ~28 pages in `wiki/concepts/` and `wiki/domain/` were silent. Mirrored [[release-1-scope]] (the source of truth) onto all of them, in three batches:
+
+- **Event flow:** [[event-request-workflow]], [[event-lifecycle]], [[event-readiness]], [[change-impact-management]], [[event]], [[event-request]], [[session]], [[change-request]] — a short "Release 1 scope" paragraph after each page's intro.
+- **Resources:** [[venue-booking]], [[venue-suitability]], [[equipment-management]], [[technical-support]], [[venue]], [[booking]], [[equipment-item]], [[equipment-reservation]], [[support-request]] — paragraphs on the concept pages; a `Scope` column added to the Attributes/States tables on the domain pages, since venue and booking attributes split across multiple markers.
+- **People and cross-cutting:** [[user-roles]], [[access-control]], [[attendee-registration]], [[notifications]], [[non-functional-requirements]], [[reporting]], [[user-account]], [[client-organisation]], [[registration]], [[notification]], [[audit-record]], [[domain-model]] — paragraphs, plus a `Scope` column on [[user-account]]'s Attributes table; [[domain-model]] notes it spans all three markers as a hub and carries no marker of its own.
+
+Pages spanning several functionality areas (e.g. [[venue]], [[registration]], [[user-account]]) got per-attribute or per-row markers rather than one blanket marker, since e.g. Attendee registration and withdrawal are `🎯` while waiting list and attendance recording on the same page are `📋 Backlog`. Every `🧩 Adjacent` marker added cites the specific core feature that pulls it in, mirroring [[release-1-scope]]'s own citations rather than inventing new rationale.
+
+**Integrity checks run:** every wikilink added resolves to an existing page; no new unlinked `#N`/`brief §N` citations were introduced (verified against the diff, not just the file); existing ✅/⚠️/🔶 attribute-status markers were left untouched on all pages — the two marker systems are orthogonal per CLAUDE.md.

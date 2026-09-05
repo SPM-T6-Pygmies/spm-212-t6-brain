@@ -11,6 +11,8 @@ tags: [domain, session, event]
 
 A first-class unit of a multi-session [[event]] — not merely a date range on the event, but a record that can carry its **own venue, own equipment requirements, own timing and own attendance limit** distinct from its parent event and from sibling sessions ([#74](https://github.com/SinYang13/IS212-2026/discussions/74)).
 
+**Release 1 scope:** Per [[release-1-scope]], multi-session events are 📋 Backlog — not named in the briefing's core 20, making this page's full domain-object treatment a material simplification of the venue/equipment model relative to what a single-session event needs.
+
 ## Attributes
 
 Neither source gives a session attribute list, an identity scheme, or a session-level status set. Only the fact that certain properties *vary per session* is confirmed. Treat the rows below as confirmed properties, not a finalised schema.
