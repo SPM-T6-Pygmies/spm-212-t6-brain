@@ -191,3 +191,15 @@ Placed in `raw/` and read in full. It fixes Release 1 scope: 20 core features se
 ### Closed the ingest gap: catalogued in `index.md`
 
 The four pages above were created/updated in the previous session but never catalogued — [[index]] still counted 37 pages and listed 3 sources. Added [[week-4-customer-briefing]] to the Sources table, [[release-1-scope]] to Concepts → Cross-cutting, a "Week 12 release" pointer to Start here, a `raw/Week 4 - Customer Briefing.md` row to Ingestion status, and updated the page count to 39.
+
+### Rolled Release 1 scope markers out to every concept and domain page
+
+CLAUDE.md's Release scope schema requires every page describing functionality to carry exactly one of `🎯 Release 1` / `🧩 Adjacent` / `📋 Backlog` — but until now only [[open-questions]] and [[event-planning-venue-booking-system]] actually had one; the other ~28 pages in `wiki/concepts/` and `wiki/domain/` were silent. Mirrored [[release-1-scope]] (the source of truth) onto all of them, in three batches:
+
+- **Event flow:** [[event-request-workflow]], [[event-lifecycle]], [[event-readiness]], [[change-impact-management]], [[event]], [[event-request]], [[session]], [[change-request]] — a short "Release 1 scope" paragraph after each page's intro.
+- **Resources:** [[venue-booking]], [[venue-suitability]], [[equipment-management]], [[technical-support]], [[venue]], [[booking]], [[equipment-item]], [[equipment-reservation]], [[support-request]] — paragraphs on the concept pages; a `Scope` column added to the Attributes/States tables on the domain pages, since venue and booking attributes split across multiple markers.
+- **People and cross-cutting:** [[user-roles]], [[access-control]], [[attendee-registration]], [[notifications]], [[non-functional-requirements]], [[reporting]], [[user-account]], [[client-organisation]], [[registration]], [[notification]], [[audit-record]], [[domain-model]] — paragraphs, plus a `Scope` column on [[user-account]]'s Attributes table; [[domain-model]] notes it spans all three markers as a hub and carries no marker of its own.
+
+Pages spanning several functionality areas (e.g. [[venue]], [[registration]], [[user-account]]) got per-attribute or per-row markers rather than one blanket marker, since e.g. Attendee registration and withdrawal are `🎯` while waiting list and attendance recording on the same page are `📋 Backlog`. Every `🧩 Adjacent` marker added cites the specific core feature that pulls it in, mirroring [[release-1-scope]]'s own citations rather than inventing new rationale.
+
+**Integrity checks run:** every wikilink added resolves to an existing page; no new unlinked `#N`/`brief §N` citations were introduced (verified against the diff, not just the file); existing ✅/⚠️/🔶 attribute-status markers were left untouched on all pages — the two marker systems are orthogonal per CLAUDE.md.
