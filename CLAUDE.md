@@ -63,6 +63,23 @@ Domain object pages mark every attribute, rule and relationship with exactly one
 
 A `🔶` row with no citation is a lint failure.
 
+## Release scope
+
+The Week 4 customer briefing fixed the Release 1 feature set. Pages that describe functionality carry exactly one of these markers, and no others.
+
+| Marker | Meaning |
+|---|---|
+| `🎯 Release 1` | Named in the Week 4 briefing's core-20 table. Must work by Week 12. |
+| `🧩 Adjacent` | Not named in the core-20, but load-bearing for one that is — pulled in by the briefing's requirement that the release "support coherent end-to-end event workflows". Must cite which core feature depends on it. |
+| `📋 Backlog` | In the Week 1 brief's consideration set, deferred past Release 1. Kept for the product backlog and C4 models, not deleted. |
+
+Rules:
+
+- The register in `[[release-1-scope]]` is the source of truth. A page's marker must match its row there; update that page first, then mirror.
+- A `🧩 Adjacent` claim with no named dependent core feature is a lint failure — it is the marker most easily used to smuggle scope back in.
+- Scope markers are orthogonal to the attribute-status markers above. An attribute can be `✅ Specified` and `📋 Backlog` at once.
+- Nothing is deleted for being out of Release 1. The briefing explicitly directs teams to keep later features in the backlog and C4 models.
+
 ## Callouts
 
 Use native Obsidian callouts, not bold-label blockquotes — a typed callout renders distinctly, a bold blockquote looks identical to a source quotation.
