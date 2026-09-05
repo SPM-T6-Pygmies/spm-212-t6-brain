@@ -11,6 +11,9 @@ tags: [domain, support, technical-support]
 
 The record of an event's need for technical support and its staffing: what support is required, the clarification exchange around it, and which Technical Support Staff are assigned. This object is **largely left to the team** — the sources fix a handful of binding rules (below) but do not specify a request/assignment lifecycle, an assignment mechanism, or how staff availability is represented. Treat the sections below as a floor, not evidence of a more fully-specified object. Process detail lives in [[technical-support]]; this page is the structural reference.
 
+> [!info] This object is `📋 Backlog`
+> Technical support requests and technical staff assignment/rostering are both `📋 Backlog` in [[release-1-scope]] — neither is named in the Week 4 briefing's core 20. The Technical Support Staff **role** stays in scope via authentication (feature 1) and the equipment request/availability/reservation flow (features 15–17); this object — the support-request/assignment record itself — is not required for Week 12.
+
 ## Attributes
 
 | Field | Meaning | Status | Ref |

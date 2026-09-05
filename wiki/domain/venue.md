@@ -13,19 +13,21 @@ A physical event space owned and operated by [[connectsphere-event-services]], c
 
 ## Attributes
 
-| Field | Meaning | Status | Ref |
-|---|---|---|---|
-| Location | Facility/site; every venue is in Singapore | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]]; [#36](https://github.com/SinYang13/IS212-2026/discussions/36) |
-| Capacity | Maximum attendance the venue can hold | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Facilities | e.g. video-conferencing, AV fit-out | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Accessibility | Accessibility features of the space | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Supported room layouts | Which of classroom, theatre, boardroom, banquet, exhibition or another arrangement the venue supports, recorded by Venue Staff | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Operating hours | Maintained by Venue Staff; no day-of-week variation | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]]; [#46](https://github.com/SinYang13/IS212-2026/discussions/46) |
-| Setup time | Preparation time needed before the published start time | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Turnaround / reset time | Reset time needed after an event, before the venue is available again; recorded **per venue** | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]]; [#43](https://github.com/SinYang13/IS212-2026/discussions/43) |
-| Availability (per slot) | Available / tentatively held / confirmed / blocked / otherwise unavailable — see States | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Room Layout as a modelled object | Whether "layout" is a first-class object (its own attributes, possibly capacity-per-layout) or just an enum value on Venue — never elaborated beyond its use as a filter term | 🔶 Team decision | [#83](https://github.com/SinYang13/IS212-2026/discussions/83) |
-| Booking horizon | How far in advance a venue may be booked | 🔶 Team decision | [#57](https://github.com/SinYang13/IS212-2026/discussions/57) |
+`Scope` is the Release 1 marker from [[release-1-scope]] for that attribute's functionality area.
+
+| Field | Meaning | Status | Scope | Ref |
+|---|---|---|---|---|
+| Location | Facility/site; every venue is in Singapore | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]]; [#36](https://github.com/SinYang13/IS212-2026/discussions/36) |
+| Capacity | Maximum attendance the venue can hold | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
+| Facilities | e.g. video-conferencing, AV fit-out | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
+| Accessibility | Accessibility features of the space | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
+| Supported room layouts | Which of classroom, theatre, boardroom, banquet, exhibition or another arrangement the venue supports, recorded by Venue Staff | ✅ Specified | 🧩 Adjacent (features 8, 10) | [[event-planning-venue-booking-system\|brief §4]] |
+| Operating hours | Maintained by Venue Staff; no day-of-week variation | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]]; [#46](https://github.com/SinYang13/IS212-2026/discussions/46) |
+| Setup time | Preparation time needed before the published start time | ✅ Specified | 🧩 Adjacent (feature 14) | [[event-planning-venue-booking-system\|brief §4]] |
+| Turnaround / reset time | Reset time needed after an event, before the venue is available again; recorded **per venue** | ✅ Specified | 🧩 Adjacent (feature 14) | [[event-planning-venue-booking-system\|brief §4]]; [#43](https://github.com/SinYang13/IS212-2026/discussions/43) |
+| Availability (per slot) | Available / tentatively held / confirmed / blocked / otherwise unavailable — see States | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
+| Room Layout as a modelled object | Whether "layout" is a first-class object (its own attributes, possibly capacity-per-layout) or just an enum value on Venue — never elaborated beyond its use as a filter term | 🔶 Team decision | 🧩 Adjacent (features 8, 10) | [#83](https://github.com/SinYang13/IS212-2026/discussions/83) |
+| Booking horizon | How far in advance a venue may be booked | 🔶 Team decision | 📋 Backlog | [#57](https://github.com/SinYang13/IS212-2026/discussions/57) |
 
 > [!warning] Capacity threshold never tightened
 > The brief's own worked rule is hedged: "a venue should **not normally** be treated as suitable when expected attendance exceeds its capacity" ([[event-planning-venue-booking-system|brief §4]]). The word "normally" was never tightened in either discussion snapshot, so whether over-capacity is a hard block or an overridable warning is unresolved — contrast the Booking rule below, where double-booking *was* explicitly confirmed as a hard block. Full discussion at [[venue-suitability]].
@@ -46,6 +48,8 @@ Venues are booked in three discrete daily slots; a full-day booking uses all thr
 ## States
 
 Per-slot availability status ([[event-planning-venue-booking-system|brief §4]], *Venue Availability Calendar*). This is the status of a venue's **slot**, not a lifecycle of the Venue record itself — transitions between these are driven by the occupying [[booking]]; see [[booking]] for the tentative-hold lifecycle.
+
+Release 1 scope differs by state: Available and Confirmed sit under the `🎯 Release 1` venue availability calendar and booking flow (features 9, 12–14); Blocked is `🧩 Adjacent`, pulled in by feature 9's unavailability language; Tentatively held is `📋 Backlog` — tentative holding is not among the core 20. See [[release-1-scope]].
 
 | State | Meaning | Entry / exit rule | Ref |
 |---|---|---|---|

@@ -13,14 +13,16 @@ The record created when a Coordinator-recorded equipment requirement for an [[ev
 
 ## Attributes
 
-| Field | Meaning | Status | Ref |
-|---|---|---|---|
-| Equipment requirement line | Item/type, quantity, and technical requirements as recorded by the Event Coordinator | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Reserved equipment | The specific item(s)/type(s) and quantity committed | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
-| Event / session | The event or session the reservation is made against | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]]; [#74](https://github.com/SinYang13/IS212-2026/discussions/74) |
-| Reviewed / reserved by | The Technical Support Staff [[user-account]] who reviewed suitability and availability | ✅ Specified | [#19](https://github.com/SinYang13/IS212-2026/discussions/19) |
-| Requirement fulfilment flag | Whether this line is met, or unavailable and flagged (with an optional suggested alternative) | ✅ Specified | [#90](https://github.com/SinYang13/IS212-2026/discussions/90) |
-| Defect / return-inspection log | Defects, damage, or missing items TSS record when the equipment is returned | ✅ Specified | [#86](https://github.com/SinYang13/IS212-2026/discussions/86) |
+`Scope` is the Release 1 marker from [[release-1-scope]].
+
+| Field | Meaning | Status | Scope | Ref |
+|---|---|---|---|---|
+| Equipment requirement line | Item/type, quantity, and technical requirements as recorded by the Event Coordinator | ✅ Specified | 🎯 Release 1 (feature 15) | [[event-planning-venue-booking-system\|brief §4]] |
+| Reserved equipment | The specific item(s)/type(s) and quantity committed | ✅ Specified | 🎯 Release 1 (feature 17) | [[event-planning-venue-booking-system\|brief §4]] |
+| Event / session | The event or session the reservation is made against | ✅ Specified | 🎯 Release 1 (features 15, 17) | [[event-planning-venue-booking-system\|brief §4]]; [#74](https://github.com/SinYang13/IS212-2026/discussions/74) |
+| Reviewed / reserved by | The Technical Support Staff [[user-account]] who reviewed suitability and availability | ✅ Specified | 🎯 Release 1 (features 16–17) | [#19](https://github.com/SinYang13/IS212-2026/discussions/19) |
+| Requirement fulfilment flag | Whether this line is met, or unavailable and flagged (with an optional suggested alternative) | ✅ Specified | 🎯 Release 1 (feature 17) | [#90](https://github.com/SinYang13/IS212-2026/discussions/90) |
+| Defect / return-inspection log | Defects, damage, or missing items TSS record when the equipment is returned | ✅ Specified | 🧩 Adjacent (feature 16) | [#86](https://github.com/SinYang13/IS212-2026/discussions/86) |
 
 A requirement line's fulfilment is per-line, not all-or-nothing for the reservation as a whole: TSS may reserve the items that are available and suitable while flagging others as unavailable, and the Event Coordinator then judges whether the shortfall affects overall readiness ([#90](https://github.com/SinYang13/IS212-2026/discussions/90)). Treating fulfilment as a property of each line rather than of the reservation record is this wiki's structural reading of that answer, not a directly named field.
 

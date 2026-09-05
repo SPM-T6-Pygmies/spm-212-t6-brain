@@ -14,6 +14,9 @@ tags: [technical-support, staffing, rostering, equipment, roles, business-rules]
 
 The Technical Support Staff role: reviewing equipment and technical requirements, reserving resources, and being assigned to support events on-site. The equipment inventory and availability rules themselves are in [[equipment-management]].
 
+> [!info] Technical support requests and staffing are `📋 Backlog`
+> Technical support requests and technical staff assignment/rostering are both `📋 Backlog` in [[release-1-scope]] — neither is named in the Week 4 briefing's core 20. The Technical Support Staff **role** itself remains in scope, since it participates in authentication (feature 1) and the equipment request/availability/reservation flow (features 15–17) — see [[equipment-management]].
+
 ## Responsibilities
 
 Technical Support Staff are internal users responsible for equipment, technical requirements, equipment reservations, and technical support for events (Source: customer-brief-no-1). Concretely:
