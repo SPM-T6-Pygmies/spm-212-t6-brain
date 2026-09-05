@@ -19,6 +19,8 @@ tags:
 
 How Attendees register for events in the [[event-planning-venue-booking-system]], and how capacity, waiting lists, withdrawal, and attendance are handled. Registration is step 11 of the 14-step process and sits downstream of event confirmation — see [[event-lifecycle]].
 
+**Release 1 scope** ([[release-1-scope]]): Attendee registration and Withdrawal (below) are 🎯 Release 1 — core feature 18. Registration Period and Capacity are `🧩 Adjacent` — feature 18 is conditional on registration being "enabled", and registering against a capacity-checked venue with no ceiling is incoherent, so a minimum enabled-state and cap are needed. Waiting List and Attendance Recording are `📋 Backlog` — neither is named in the core 20.
+
 ## Preconditions
 
 Registration is available only when **both** conditions hold (Source: customer-brief-no-1, s4, s5):

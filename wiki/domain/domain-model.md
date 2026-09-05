@@ -13,6 +13,8 @@ The hub for the fourteen domain-object pages in `wiki/domain/`. Neither source d
 
 Each object's own page remains the authority for its attributes, states, relationships and binding rules, with full citations. This page indexes and cross-references; it does not restate their detail.
 
+**Release 1 scope**: this hub spans every domain object at every scope level — 🎯 Release 1, 🧩 Adjacent and 📋 Backlog attributes and relationships sit side by side here, sometimes on the same object page (e.g. [[registration]], [[audit-record]]). It carries no scope marker of its own; check [[release-1-scope]] for any given object's or attribute's actual Release 1 status.
+
 ## Object catalogue
 
 | Object | What it is | Page |

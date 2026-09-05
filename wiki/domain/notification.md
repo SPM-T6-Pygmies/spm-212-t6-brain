@@ -11,6 +11,8 @@ tags: [domain, notification, reminder]
 
 A message sent to a user when something relevant to them changes: either **event-driven** (fired by one of fourteen named trigger scenarios, [[notifications|brief §6]]) or **time-driven** (a Reminder, [[event-planning-venue-booking-system|brief §4]] — see below). Delivered in-app and/or by email, with channel and delivery timing configurable per notification type. Process detail and the evolution of the channel/timing answers live in [[notifications]] (the concept-level narrative — not to be confused with this page, the structural reference for the object itself).
 
+**Release 1 scope** ([[release-1-scope]]): the event-driven Notification object described here — trigger scenarios, channels, delivery timing — is 🎯 Release 1, core feature 20. The Reminders (time-driven) section below is `📋 Backlog` — not named in the core 20; the confirmed incomplete-arrangements reminder ([#47](https://github.com/SinYang13/IS212-2026/discussions/47)) remains a documented requirement, not a built one, in Release 1.
+
 ## Attributes
 
 | Field            | Meaning                                                                                                                                                     | Status      | Ref                         |
