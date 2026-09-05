@@ -90,6 +90,351 @@ Notes on specific edges, where this wiki resolved a disagreement or a gap betwee
 - `USER_ACCOUNT ↔ EVENT` and `USER_ACCOUNT ↔ BOOKING` are drawn as two separate labelled edges each (coordinates/organises; requests/decides), following [[event]] and [[booking]]'s own `(×2)` notation, rather than the single aggregated `many : many` row [[user-account]] uses for the same pairs — the split form is more precise about which of the two roles is which.
 - **A second `USER_ACCOUNT` ↔ `REGISTRATION` relationship is deliberately not drawn.** [[registration]]'s Relationships table has a second row beyond the Attendee-owns-Registration edge already in the diagram: `[[user-account]] (Event Coordinator) | many : 1`, citing [#33](https://github.com/SinYang13/IS212-2026/discussions/33) — "Attendees who do not self-register (e.g. VIPs) are supplied as a list to the Event Coordinator for processing, rather than added directly by the Event Organiser." This is omitted from the ER diagram, not overlooked: [#33](https://github.com/SinYang13/IS212-2026/discussions/33) and registration.md's own attribute table describe a procedural, input-provenance role (the Coordinator processes a supplied list) rather than a stored field or ownership relationship on the Registration record itself — no "processed by" or "entered by" attribute appears anywhere in [[registration]]'s Attributes table. This is the same reasoning already applied to omitting [[support-request]] ↔ [[equipment-reservation]] ("loose", [[event-planning-venue-booking-system|brief §4]]) from the diagram: a page-documented relationship that is explicitly procedural rather than structural is disclosed here, not drawn as an edge.
 
+## Proposed relational schema (tables, PK/FK)
+
+> [!warning] A candidate physical data model, not a customer deliverable or a settled team decision
+> Nothing below is stated by either source. This section takes the fourteen domain-object pages' Attributes and Relationships tables and proposes one way to normalise them into relational tables with primary and foreign keys — the next layer down from the conceptual [[domain-model|ER diagram]] above. Every table, key and junction here is this wiki's structural proposal, carrying the same weight as the deferred items in the [[domain-model#Deferred-modelling register|register below]] — several rows below correspond directly to an existing `🔶 Team decision required` callout on the owning page, cited where that is the case. Table and column names are illustrative (`snake_case`, singular table names, surrogate `id` primary keys) and freely renameable; nothing here should be read back into a requirements document as confirmed.
+
+All primary keys below are surrogate (`*_id`), since no source specifies a natural key for any object. Columns marked `"nullable"` are optional; unmarked foreign keys are mandatory. Attribute-level status (✅/⚠️/🔶) and Release 1 scope (🎯/🧩/📋) are not repeated per column here — see each object's own page for those.
+
+```mermaid
+erDiagram
+    CLIENT_ORGANISATION {
+        int client_organisation_id PK
+        string name
+    }
+
+    ROLE {
+        int role_id PK
+        string role_name UK
+    }
+
+    USER_ACCOUNT {
+        int user_account_id PK
+        string name
+        string contact_details
+        string communication_preferences
+        string department
+        string availability
+        string credentials_hash
+        int client_organisation_id FK "nullable — Event Organiser accounts only"
+    }
+
+    USER_ACCOUNT_ROLE {
+        int user_account_id PK, FK
+        int role_id PK, FK
+    }
+
+    EVENT_REQUEST {
+        int event_request_id PK
+        string event_name
+        string description
+        string purpose
+        date preferred_date
+        string preferred_time
+        int expected_attendance
+        string venue_requirements
+        string accessibility_needs
+        string equipment_requirements
+        string registration_requirements
+        string room_layout_preferences
+        string general_programme
+        string other_special_arrangements
+        string status
+        string decision_record
+        int requesting_user_account_id FK
+        int client_organisation_id FK
+        datetime created_at
+        datetime updated_at
+    }
+
+    EVENT {
+        int event_id PK
+        int event_request_id FK, UK "nullable — 0..1 source request"
+        string name
+        string description
+        string purpose
+        string category_type
+        date preferred_date
+        datetime start_time
+        datetime end_time
+        int expected_attendance
+        int event_capacity
+        string programme_agenda
+        string room_layout_preference
+        string accessibility_requirements
+        string equipment_requirements
+        boolean registration_enabled_flag
+        string special_arrangements
+        string venue_requirements
+        boolean technical_support_flag
+        string technical_support_description
+        string status
+        date registration_open_date
+        date registration_close_date
+        int reused_from_event_id FK "nullable, self-referencing"
+        string operational_notes
+        string decision_record
+        int assigned_coordinator_user_account_id FK
+        int owning_organiser_user_account_id FK
+        int client_organisation_id FK
+        datetime created_at
+        datetime updated_at
+    }
+
+    EVENT_ESSENTIAL_ARRANGEMENT {
+        int event_id PK, FK
+        string arrangement_type PK "enum: venue, equipment, technical_support, programme, registration, other"
+        boolean is_essential
+    }
+
+    EVENT_COMMENT {
+        int comment_id PK
+        int event_id FK
+        int author_user_account_id FK
+        int parent_comment_id FK "nullable, self-referencing — only used if threading is adopted"
+        string body
+        datetime created_at
+    }
+
+    SUPPORTING_DOCUMENT {
+        int document_id PK
+        int event_id FK
+        int uploaded_by_user_account_id FK
+        string file_name
+        string file_url
+        datetime uploaded_at
+    }
+
+    SESSION {
+        int session_id PK
+        int event_id FK
+        int sequence_no
+        string name
+        datetime start_time
+        datetime end_time
+        int attendance_limit
+    }
+
+    VENUE {
+        int venue_id PK
+        string location
+        int capacity
+        string facilities
+        string accessibility
+        time operating_hours_start
+        time operating_hours_end
+        int setup_time_minutes
+        int turnaround_time_minutes
+        int booking_horizon_days "nullable"
+    }
+
+    ROOM_LAYOUT {
+        int room_layout_id PK
+        string name UK
+    }
+
+    VENUE_SUPPORTED_LAYOUT {
+        int venue_id PK, FK
+        int room_layout_id PK, FK
+    }
+
+    BOOKING {
+        int booking_id PK
+        int venue_id FK
+        int event_id FK "nullable — direct event booking"
+        int session_id FK "nullable — per-session booking"
+        int requested_by_user_account_id FK
+        int decided_by_user_account_id FK "nullable — unset while Requested"
+        string status
+        string rejection_note
+        int suggested_alternative_venue_id FK "nullable, self-referencing to VENUE"
+        datetime hold_expires_at "nullable"
+        datetime created_at
+    }
+
+    BOOKING_SLOT {
+        int booking_slot_id PK
+        int booking_id FK
+        date slot_date
+        string slot "enum: AM, PM, Night"
+    }
+
+    EQUIPMENT_ITEM {
+        int equipment_item_id PK
+        string type
+        string description
+        int quantity
+        string physical_location
+        string operational_status
+        int transfer_time_minutes
+    }
+
+    EQUIPMENT_RESERVATION {
+        int equipment_reservation_id PK
+        int event_id FK "nullable — direct event reservation"
+        int session_id FK "nullable — per-session reservation"
+        int reviewed_by_user_account_id FK
+        string status
+        datetime created_at
+    }
+
+    EQUIPMENT_RESERVATION_LINE {
+        int reservation_line_id PK
+        int equipment_reservation_id FK
+        int equipment_item_id FK
+        int quantity_requested
+        int quantity_reserved
+        string fulfilment_status
+        string defect_notes
+    }
+
+    SUPPORT_REQUEST {
+        int support_request_id PK
+        int event_id FK
+        boolean support_needed_flag
+        string description
+        string timing
+        string clarification_log
+        string response
+        datetime created_at
+    }
+
+    SUPPORT_REQUEST_ASSIGNMENT {
+        int support_request_id PK, FK
+        int technical_support_user_account_id PK, FK
+    }
+
+    REGISTRATION {
+        int registration_id PK
+        int event_id FK
+        int session_id FK "nullable"
+        int attendee_user_account_id FK
+        string status
+        datetime checked_in_at "nullable"
+        string checked_in_method "nullable"
+        datetime created_at
+    }
+
+    WAITING_LIST_ENTRY {
+        int waiting_list_entry_id PK
+        int registration_id FK, UK
+        int position
+        string status
+        datetime offered_at "nullable"
+        datetime expires_at "nullable"
+    }
+
+    CHANGE_REQUEST {
+        int change_request_id PK
+        int event_id FK
+        int requesting_user_account_id FK
+        string requested_change_description
+        boolean significance_flag
+        string fields_affected
+        string coordinator_decision
+        string impact_assessment
+        datetime created_at
+    }
+
+    NOTIFICATION {
+        int notification_id PK
+        int recipient_user_account_id FK
+        string trigger_scenario
+        string channel
+        string message_content
+        string status
+        int related_event_id FK "nullable"
+        int related_event_request_id FK "nullable"
+        int related_booking_id FK "nullable"
+        int related_equipment_reservation_id FK "nullable"
+        int related_registration_id FK "nullable"
+        int related_change_request_id FK "nullable"
+        datetime created_at
+        datetime sent_at "nullable"
+    }
+
+    AUDIT_RECORD {
+        int audit_record_id PK
+        int actor_user_account_id FK
+        string entity_type "polymorphic — no enforced FK, see design decisions below"
+        int entity_id "polymorphic reference"
+        string action "nullable — Activity History entries"
+        string field_changed "nullable — Change History entries"
+        string old_value "nullable"
+        string new_value "nullable"
+        datetime occurred_at
+    }
+
+    CLIENT_ORGANISATION ||--o{ USER_ACCOUNT : employs
+    CLIENT_ORGANISATION ||--o{ EVENT : commissions
+    CLIENT_ORGANISATION ||--o{ EVENT_REQUEST : authors
+    USER_ACCOUNT ||--o{ USER_ACCOUNT_ROLE : holds
+    ROLE ||--o{ USER_ACCOUNT_ROLE : grants
+    USER_ACCOUNT ||--o{ EVENT_REQUEST : authors
+    USER_ACCOUNT ||--o{ EVENT : "organises (owning)"
+    USER_ACCOUNT ||--o{ EVENT : "coordinates (assigned)"
+    EVENT_REQUEST |o--o| EVENT : becomes
+    EVENT ||--o{ SESSION : contains
+    EVENT ||--o{ EVENT_ESSENTIAL_ARRANGEMENT : requires
+    EVENT ||--o{ EVENT_COMMENT : has
+    USER_ACCOUNT ||--o{ EVENT_COMMENT : authors
+    EVENT ||--o{ SUPPORTING_DOCUMENT : has
+    USER_ACCOUNT ||--o{ SUPPORTING_DOCUMENT : uploads
+    EVENT ||--o{ BOOKING : reserves
+    SESSION |o--|| BOOKING : "books own"
+    VENUE ||--o{ BOOKING : hosts
+    VENUE ||--o{ BOOKING : "suggests alternative for"
+    BOOKING ||--o{ BOOKING_SLOT : occupies
+    USER_ACCOUNT ||--o{ BOOKING : requests
+    USER_ACCOUNT ||--o{ BOOKING : decides
+    VENUE ||--o{ VENUE_SUPPORTED_LAYOUT : supports
+    ROOM_LAYOUT ||--o{ VENUE_SUPPORTED_LAYOUT : "supported by"
+    EVENT ||--o{ EQUIPMENT_RESERVATION : reserves
+    SESSION |o--o{ EQUIPMENT_RESERVATION : reserves
+    USER_ACCOUNT ||--o{ EQUIPMENT_RESERVATION : reviews
+    EQUIPMENT_RESERVATION ||--o{ EQUIPMENT_RESERVATION_LINE : lists
+    EQUIPMENT_ITEM ||--o{ EQUIPMENT_RESERVATION_LINE : fulfils
+    EVENT ||--o{ SUPPORT_REQUEST : raises
+    SUPPORT_REQUEST ||--o{ SUPPORT_REQUEST_ASSIGNMENT : "staffed by"
+    USER_ACCOUNT ||--o{ SUPPORT_REQUEST_ASSIGNMENT : "assigned to"
+    EVENT ||--o{ REGISTRATION : accepts
+    SESSION |o--o{ REGISTRATION : "may scope"
+    USER_ACCOUNT ||--o{ REGISTRATION : holds
+    REGISTRATION |o--o| WAITING_LIST_ENTRY : "queues, while waitlisted"
+    EVENT ||--o{ CHANGE_REQUEST : receives
+    USER_ACCOUNT ||--o{ CHANGE_REQUEST : requests
+    USER_ACCOUNT ||--o{ NOTIFICATION : receives
+    EVENT |o--o{ NOTIFICATION : triggers
+    EVENT_REQUEST |o--o{ NOTIFICATION : triggers
+    BOOKING |o--o{ NOTIFICATION : triggers
+    EQUIPMENT_RESERVATION |o--o{ NOTIFICATION : triggers
+    REGISTRATION |o--o{ NOTIFICATION : triggers
+    CHANGE_REQUEST |o--o{ NOTIFICATION : triggers
+    USER_ACCOUNT ||--o{ AUDIT_RECORD : generates
+```
+
+### Schema design decisions
+
+Every row is a structural choice this diagram had to make where the sources leave the physical model open. Several restate an existing `🔶 Team decision required` callout from the owning page; those cite it directly.
+
+| Decision | Rationale | Ref |
+|---|---|---|
+| `ROLE` + `USER_ACCOUNT_ROLE` junction, not a single enum column on `USER_ACCOUNT` | A person may hold multiple roles at once; permission checks resolve per event, not per account | [#56](https://github.com/SinYang13/IS212-2026/discussions/56); [[user-account]] |
+| `EQUIPMENT_ITEM` ↔ `EQUIPMENT_RESERVATION` resolved via an `EQUIPMENT_RESERVATION_LINE` junction, carrying quantity and fulfilment per line | A reservation covers one or more items/types and quantities, and fulfilment is judged line by line, not all-or-nothing for the reservation | [#90](https://github.com/SinYang13/IS212-2026/discussions/90); [[equipment-reservation]] |
+| `EQUIPMENT_ITEM.quantity` as a pooled counter, not one row per physical unit | Pooled vs. serialised inventory is explicitly left to the team; a pooled counter is the minimal structure that still always knows available quantity | 🔶 [#13](https://github.com/SinYang13/IS212-2026/discussions/13); [[equipment-item]] |
+| `WAITING_LIST_ENTRY` split out from `REGISTRATION`, linked 1:0..1 | [[registration]] documents Registration status and Waiting List Entry as two independent state machines with different transitions and terminal states | [[registration]] |
+| Attendance modelled as `checked_in_at` / `checked_in_method` columns on `REGISTRATION`, not a separate table | Simplest structure consistent with "registration and attendance information distinguished"; the alternative (a separate Attendance record) is an open team decision | 🔶 [[event-planning-venue-booking-system\|brief §4]]; [[registration]] |
+| `NOTIFICATION` carries one nullable FK per related-object type (event, event request, booking, equipment reservation, registration, change request), not a generic `(entity_type, entity_id)` pair | Keeps referential integrity enforceable by the database for the six related types §6 actually names | [[notification]] |
+| `AUDIT_RECORD` carries a polymorphic `(entity_type, entity_id)` pair instead | Whether every object type carries its own activity trail or all entries roll up to the owning event is itself unresolved — a polymorphic reference avoids hard-coding that answer into the schema | 🔶 [#14](https://github.com/SinYang13/IS212-2026/discussions/14); [[audit-record]] |
+| `EVENT.reused_from_event_id`, self-referencing, nullable | Which fields are copied when an event is created by reuse is left to the team; a self-referencing pointer is the minimal structure that preserves the link without prejudging which fields copy | 🔶 [#75](https://github.com/SinYang13/IS212-2026/discussions/75); [[event]] |
+| `EVENT_COMMENT.parent_comment_id`, self-referencing, nullable | Threading (vs. flat) is a UI/UX decision left to the team; a nullable self-FK supports either reading — leave it null throughout for a flat model | 🔶 [#15](https://github.com/SinYang13/IS212-2026/discussions/15); [[event]] |
+| `BOOKING_SLOT` as its own table (`booking_id`, `slot_date`, `slot`) rather than three boolean columns on `BOOKING` | A booking may cover one, two, or all three daily slots (full day = AM + PM + Night); a child table avoids denormalising that into fixed columns | [#50](https://github.com/SinYang13/IS212-2026/discussions/50); [[venue]] |
+| `EVENT_ESSENTIAL_ARRANGEMENT` as a per-event join/config table, not a fixed column set on `EVENT` | The essential-arrangement set is determined per event — there is no single fixed list that applies to every event | [#80](https://github.com/SinYang13/IS212-2026/discussions/80); [[event]] |
+| `USER_ACCOUNT.credentials_hash` as a single opaque column | Authentication method (password, SSO, MFA) is an open team decision; a hash column is method-agnostic until one is chosen | 🔶 [#62](https://github.com/SinYang13/IS212-2026/discussions/62); [[user-account]] |
+
+Not modelled as separate tables, and why: **Room Layout** is a lookup table (`ROOM_LAYOUT`) here rather than a richer object, following the plain-enum reading of 🔶 [#83](https://github.com/SinYang13/IS212-2026/discussions/83) (the alternative — capacity-per-layout — would need its own table if the team decides Room Layout should be first-class); **Client Organisation**'s primary-contact/administrator question (🔶 [#65](https://github.com/SinYang13/IS212-2026/discussions/65), [#81](https://github.com/SinYang13/IS212-2026/discussions/81)) adds no column here since neither role is confirmed to exist; **Support Request**'s staff-availability representation (🔶 [#89](https://github.com/SinYang13/IS212-2026/discussions/89)) is left off `USER_ACCOUNT` entirely, since no source specifies what an availability record would even contain.
+
 ## Modelling-decision register
 
 Decisions the customer **settled**, verified against `raw/IS212 2026 Discussions Aug 31.md`. Each is already recorded, with full context, on the domain page that owns it — this table is the index.

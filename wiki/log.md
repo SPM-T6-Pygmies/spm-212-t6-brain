@@ -217,3 +217,15 @@ Worked through [[release-1-scope]]'s register row by row and drafted a candidate
 **Updated:** [[index]] — added the new page to the Reviews table, bumped the page count to 40 and the review count to 2.
 
 **Integrity checks run:** every wikilink resolves to an existing page; every `#N`/`brief §N` citation is linked; every `🎯`/`🧩` claim traces to the matching row in [[release-1-scope]]; no `📋 Backlog` functionality was carded.
+
+## 2026-09-05 (3)
+
+### Added a proposed relational schema to [[domain-model]]
+
+Requested: generate database tables, in mermaid, with proposed PK/FK, from the domain model. Added a new "Proposed relational schema (tables, PK/FK)" section to [[domain-model]], between the conceptual ER diagram and the Modelling-decision register, rather than a new page — it is the next layer down from the existing object-level ER diagram, not a fifteenth domain object.
+
+Normalised the fourteen domain-object pages' Attributes and Relationships tables into 26 tables (14 core objects + `ROLE`, `USER_ACCOUNT_ROLE`, `EVENT_ESSENTIAL_ARRANGEMENT`, `EVENT_COMMENT`, `SUPPORTING_DOCUMENT`, `ROOM_LAYOUT`, `VENUE_SUPPORTED_LAYOUT`, `BOOKING_SLOT`, `EQUIPMENT_RESERVATION_LINE`, `SUPPORT_REQUEST_ASSIGNMENT`, `WAITING_LIST_ENTRY`), one full attribute-level `mermaid erDiagram` with PK/FK/UK markers, and a "Schema design decisions" table recording every place normalisation had to make a structural choice the sources leave open — most cite an existing `🔶 Team decision required` callout on the owning page (pooled equipment counter [#13](https://github.com/SinYang13/IS212-2026/discussions/13), polymorphic Audit Record reference [#14](https://github.com/SinYang13/IS212-2026/discussions/14), nullable self-FK for comment threading [#15](https://github.com/SinYang13/IS212-2026/discussions/15), event-reuse self-FK [#75](https://github.com/SinYang13/IS212-2026/discussions/75), credentials as an opaque hash pending [#62](https://github.com/SinYang13/IS212-2026/discussions/62), among others).
+
+Flagged as a candidate physical data model in a warning callout up front — same weight as the conceptual ER diagram's own caveat, not a customer deliverable or a closed team decision.
+
+**Integrity checks run:** all `#N` citations in the new section are linked; all `[[wikilink]]` cross-references resolve to existing pages; no new page created, so [[index]] needed no update.
