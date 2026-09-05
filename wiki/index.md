@@ -9,7 +9,7 @@ tags: [meta, index]
 
 Content catalog of every wiki page. Update whenever a page is created, renamed, or removed.
 
-**39 pages** — 4 sources, 16 concepts, 15 domain objects, 3 entities, 1 review. All raw documents ingested as of 2026-09-05.
+**40 pages** — 4 sources, 16 concepts, 15 domain objects, 3 entities, 2 reviews. All raw documents ingested as of 2026-09-05.
 
 > [!important] Hard rules the customer actually committed to
 > Most of this brief is deliberately open, so the few fixed constraints matter. Do not design around these — they are stated, not proposable.
@@ -143,6 +143,7 @@ One-off scrutiny artefacts — not domain knowledge, kept here so they aren't or
 |---|---|
 | [[user-stories-assignment-scrutiny]] | `raw/User Stories Assignment.md` checked against `raw/IS212 User Story Standard — v1.0.md` and against this wiki's sourced requirements; proposed fixes for every story plus three recommended additions to Registration |
 | [[user-stories-proposed-rewrites]] | Every proposed rewrite and recommended new card from [[user-stories-assignment-scrutiny]], consolidated into one build-ordered, ready-to-paste replacement backlog |
+| [[release-1-candidate-user-stories]] | Candidate backlog derived row-by-row from [[release-1-scope]]'s `🎯`/`🧩` register — full coverage table, new cards for every uncarded area, and Release 1-scoped rewrites of Reg1/Reg5 now that waiting list and check-in are `📋 Backlog` |
 
 ## Ingestion status
 

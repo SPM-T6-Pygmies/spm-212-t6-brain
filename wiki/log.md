@@ -203,3 +203,17 @@ CLAUDE.md's Release scope schema requires every page describing functionality to
 Pages spanning several functionality areas (e.g. [[venue]], [[registration]], [[user-account]]) got per-attribute or per-row markers rather than one blanket marker, since e.g. Attendee registration and withdrawal are `🎯` while waiting list and attendance recording on the same page are `📋 Backlog`. Every `🧩 Adjacent` marker added cites the specific core feature that pulls it in, mirroring [[release-1-scope]]'s own citations rather than inventing new rationale.
 
 **Integrity checks run:** every wikilink added resolves to an existing page; no new unlinked `#N`/`brief §N` citations were introduced (verified against the diff, not just the file); existing ✅/⚠️/🔶 attribute-status markers were left untouched on all pages — the two marker systems are orthogonal per CLAUDE.md.
+
+## 2026-09-05 (2)
+
+### Produced Release 1 candidate user stories
+
+**Created 1 page:** [[release-1-candidate-user-stories]] (`outputs/release-1-candidate-user-stories.md`, `type: review`).
+
+Worked through [[release-1-scope]]'s register row by row and drafted a candidate card for every `🎯 Release 1` and `🧩 Adjacent` area, skipping `📋 Backlog` rows by design. Where a matching card already existed in [[user-stories-proposed-rewrites]] and still fit the Release 1 cut, this page points to it instead of duplicating it (U1–U4, E1–E2, V1/V2/V4/V5/V6, EV1–EV3c, Reg2–Reg3). 19 new cards were drafted for register rows with no existing card: client-organisation visibility, event status/information management, event confirmation, event completion, five venue cards (catalogue, availability calendar, search/filter, suitability check, booking-request submission), two equipment cards (catalogue, requirement specification), four change/cancellation cards, and one notification card. Every AC traces to a wiki page or a `#N`/brief citation; every unresolved customer question surfaces as an **Open question** rather than an invented rule, per the standard's §11.
+
+**Notable finding:** Reg1 (Register) and Reg5 (Withdraw) in [[user-stories-proposed-rewrites]] were written before [[release-1-scope]] existed and both assume a waiting list, which the Week 4 briefing places in `📋 Backlog`. Superseded them for Release 1 planning with **RG1** and **RG4** (waiting-list branches removed); flagged this explicitly rather than silently editing the older review, since it remains a correct full-scope backlog for later releases. Reg4 and Reg6 (waiting-list promotion, check-in) are themselves entirely out of Release 1 and were excluded from this backlog.
+
+**Updated:** [[index]] — added the new page to the Reviews table, bumped the page count to 40 and the review count to 2.
+
+**Integrity checks run:** every wikilink resolves to an existing page; every `#N`/`brief §N` citation is linked; every `🎯`/`🧩` claim traces to the matching row in [[release-1-scope]]; no `📋 Backlog` functionality was carded.
