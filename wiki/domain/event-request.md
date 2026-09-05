@@ -11,6 +11,8 @@ tags: [domain, event-request]
 
 The pre-approval artefact an Event Organiser creates and submits to ConnectSphere. Approval converts a request into a plannable [[event]]; the two are modelled as **separate records** because approval commits ConnectSphere to nothing — no venue, equipment, technical support, registration setup, or delivery ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)). The request exists to be reviewed and, if accepted, to seed an Event; it is not itself a plannable object.
 
+**Release 1 scope:** Per [[release-1-scope]], event request creation and draft event requests are 🎯 Release 1 (core features 2–3); the Approved/Rejected/Returned states below belong to event review and approval, also 🎯 Release 1 (core feature 4).
+
 > [!warning] The brief blurs Event Request and Event
 > Brief §4 lists *Event Request Creation* and *Event Status Management* as separate functionality areas, implying two distinct records. Yet the *Event*'s example status list in the same section includes `draft` and `submitted` — statuses that, on the pre/post-approval reading above, belong to the request, not the event. The brief never draws the request/event boundary explicitly; the split modelled on this page and on [[event]] is this wiki's resolution, not a customer-confirmed data model. This is the single largest open modelling decision in the event cluster.
 

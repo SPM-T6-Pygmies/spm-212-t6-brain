@@ -19,6 +19,8 @@ tags:
 
 Whether an event's arrangements are sufficiently complete for the Event Coordinator to confirm it, and how the system surfaces what is still outstanding. Readiness is the gate between *planning* and *confirmed* in the [[event-lifecycle]].
 
+**Release 1 scope:** Per [[release-1-scope]], event readiness tracking — the confirmation gate this page describes — is 🧩 Adjacent, inherited from the [#80](https://github.com/SinYang13/IS212-2026/discussions/80) blocking rule and feature 6's requirement that status changes stay "consistent with the actions performed"; only the gate itself is required, not a readiness dashboard. Outstanding action tracking, the list-and-chase surface below, is 📋 Backlog.
+
 ## The Core Rule
 
 Confirmation is permitted when **every arrangement identified as essential for that particular event** is complete. It is blocked otherwise (Source: is212-discussions-2026-08-31, [#80](https://github.com/SinYang13/IS212-2026/discussions/80)).
