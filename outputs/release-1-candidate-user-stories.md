@@ -19,43 +19,43 @@ A candidate backlog derived directly from [[release-1-scope]]'s register: every 
 
 ## Coverage — register row → card
 
-| Register area ([[release-1-scope]]) | Marker | Card(s) |
-|---|---|---|
-| User authorisation and authentication | 🎯 | U1, U2, U3, U4 *(see [[user-stories-proposed-rewrites]])* |
-| Client management | 🧩 | **ID1** |
-| Event request creation | 🎯 | EV2 *(see [[user-stories-proposed-rewrites]])* |
-| Draft event requests | 🎯 | EV2 *(same card — draft-save is AC1; see note under ID2 below)* |
-| Event review and approval | 🎯 | EV3a, EV3b, EV3c *(see [[user-stories-proposed-rewrites]])* |
-| Coordinator assignment | 🎯 | EV1 + Reassign companion *(see [[user-stories-proposed-rewrites]])* |
-| Event status management | 🎯 | **RA1**, plus the status transitions embedded in EV2/EV1/EV3c/RA3/RA4/CH4 |
-| Event information management | 🎯 | **RA2** |
-| Comments and discussion | 🧩 | EV3b *(see [[user-stories-proposed-rewrites]])* |
-| Venue catalogue | 🎯 | **VN1** |
-| Venue availability calendar | 🎯 | **VN2** |
-| Venue search and filtering | 🎯 | **VN3** |
-| Venue suitability checking | 🎯 | **VN4** |
-| Venue booking request | 🎯 | **VN5** |
-| Venue booking approval | 🎯 | V5 *(see [[user-stories-proposed-rewrites]])* |
-| Booking conflict detection | 🎯 | V1 *(see [[user-stories-proposed-rewrites]])* |
-| Venue unavailability management | 🧩 | V4 *(see [[user-stories-proposed-rewrites]])* |
-| Room layout management | 🧩 | No dedicated card — satisfied as an attribute on VN1 (see VN1's note) |
-| Setup and turnaround time | 🧩 | V6 *(see [[user-stories-proposed-rewrites]])* |
-| Equipment request management | 🎯 | **EQ2**, plus E2 *(see [[user-stories-proposed-rewrites]])* |
-| Equipment availability checking | 🎯 | E2 *(see [[user-stories-proposed-rewrites]])* |
-| Equipment reservation | 🎯 | E2 *(see [[user-stories-proposed-rewrites]])* |
-| Equipment catalogue | 🧩 | **EQ1** |
-| Equipment maintenance status | 🧩 | E1 *(see [[user-stories-proposed-rewrites]])* |
-| Event confirmation | 🧩 | **RA3** |
-| Event readiness tracking | 🧩 | **RA3** (the gate, not a dashboard — per [[release-1-scope]]) |
-| Attendee registration | 🎯 | **RG1** *(supersedes Reg1 — see callout below)* |
-| Withdrawal | 🎯 | **RG4** *(supersedes Reg5 — see callout below)* |
-| Registration period | 🧩 | Reg2 *(see [[user-stories-proposed-rewrites]])* |
-| Registration capacity | 🧩 | Reg3 *(see [[user-stories-proposed-rewrites]])* |
-| Event change requests | 🎯 | **CH1** |
-| Impact of event changes | 🎯 | **CH2** |
-| Rescheduling | 🧩 | **CH3** |
-| Cancellation management | 🧩 | **CH4** *(builds on V2 — see [[user-stories-proposed-rewrites]])* |
-| Notification system | 🎯 | **NT1** |
+| Register area ([[release-1-scope]])   | Marker | Card(s)                                                                   |
+| ------------------------------------- | ------ | ------------------------------------------------------------------------- |
+| User authorisation and authentication | 🎯     | U1, U2, U3, U4 *(see [[user-stories-proposed-rewrites]])*                 |
+| Client management                     | 🧩     | **ID1**                                                                   |
+| Event request creation                | 🎯     | EV2 *(see [[user-stories-proposed-rewrites]])*                            |
+| Draft event requests                  | 🎯     | EV2 *(same card — draft-save is AC1; see note under ID2 below)*           |
+| Event review and approval             | 🎯     | EV3a, EV3b, EV3c *(see [[user-stories-proposed-rewrites]])*               |
+| Coordinator assignment                | 🎯     | EV1 + Reassign companion *(see [[user-stories-proposed-rewrites]])*       |
+| Event status management               | 🎯     | **RA1**, plus the status transitions embedded in EV2/EV1/EV3c/RA3/RA4/CH4 |
+| Event information management          | 🎯     | **RA2**                                                                   |
+| Comments and discussion               | 🧩     | EV3b *(see [[user-stories-proposed-rewrites]])*                           |
+| Venue catalogue                       | 🎯     | **VN1**                                                                   |
+| Venue availability calendar           | 🎯     | **VN2**                                                                   |
+| Venue search and filtering            | 🎯     | **VN3**                                                                   |
+| Venue suitability checking            | 🎯     | **VN4**                                                                   |
+| Venue booking request                 | 🎯     | **VN5**                                                                   |
+| Venue booking approval                | 🎯     | V5 *(see [[user-stories-proposed-rewrites]])*                             |
+| Booking conflict detection            | 🎯     | V1 *(see [[user-stories-proposed-rewrites]])*                             |
+| Venue unavailability management       | 🧩     | V4 *(see [[user-stories-proposed-rewrites]])*                             |
+| Room layout management                | 🧩     | No dedicated card — satisfied as an attribute on VN1 (see VN1's note)     |
+| Setup and turnaround time             | 🧩     | V6 *(see [[user-stories-proposed-rewrites]])*                             |
+| Equipment request management          | 🎯     | **EQ2**, plus E2 *(see [[user-stories-proposed-rewrites]])*               |
+| Equipment availability checking       | 🎯     | E2 *(see [[user-stories-proposed-rewrites]])*                             |
+| Equipment reservation                 | 🎯     | E2 *(see [[user-stories-proposed-rewrites]])*                             |
+| Equipment catalogue                   | 🧩     | **EQ1**                                                                   |
+| Equipment maintenance status          | 🧩     | E1 *(see [[user-stories-proposed-rewrites]])*                             |
+| Event confirmation                    | 🧩     | **RA3**                                                                   |
+| Event readiness tracking              | 🧩     | **RA3** (the gate, not a dashboard — per [[release-1-scope]])             |
+| Attendee registration                 | 🎯     | **RG1** *(supersedes Reg1 — see callout below)*                           |
+| Withdrawal                            | 🎯     | **RG4** *(supersedes Reg5 — see callout below)*                           |
+| Registration period                   | 🧩     | Reg2 *(see [[user-stories-proposed-rewrites]])*                           |
+| Registration capacity                 | 🧩     | Reg3 *(see [[user-stories-proposed-rewrites]])*                           |
+| Event change requests                 | 🎯     | **CH1**                                                                   |
+| Impact of event changes               | 🎯     | **CH2**                                                                   |
+| Rescheduling                          | 🧩     | **CH3**                                                                   |
+| Cancellation management               | 🧩     | **CH4** *(builds on V2 — see [[user-stories-proposed-rewrites]])*         |
+| Notification system                   | 🎯     | **NT1**                                                                   |
 
 `📋 Backlog` rows (waiting list, check-in/attendance recording, event categories, recurring/reuse, multi-session, supporting documents, tentative holding, event capacity management as an ongoing tracker, outstanding action tracking, reminders, event calendar, event/venue search & filtering for events, role-based dashboard, activity/change history browsing, reporting) are out of scope for this backlog by design — see [[release-1-scope]] for why, and [[open-questions]] for what each still owes the customer.
 

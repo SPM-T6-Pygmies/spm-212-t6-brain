@@ -229,3 +229,21 @@ Normalised the fourteen domain-object pages' Attributes and Relationships tables
 Flagged as a candidate physical data model in a warning callout up front — same weight as the conceptual ER diagram's own caveat, not a customer deliverable or a closed team decision.
 
 **Integrity checks run:** all `#N` citations in the new section are linked; all `[[wikilink]]` cross-references resolve to existing pages; no new page created, so [[index]] needed no update.
+
+## 2026-09-06
+
+### Generated a Supabase SQL DDL script from [[domain-model]]
+
+Requested: an SQL script creating the tables and fields for the Supabase SQL editor, written to `outputs/` as a fenced code block. Produced [[supabase-schema-ddl]] — a review-type artefact, not a wiki page, since it's a one-off derivation of an existing model rather than standing domain knowledge.
+
+Translated the "Proposed relational schema (tables, PK/FK)" section of [[domain-model]] into runnable Postgres: all 25 tables (14 domain objects + 11 junction/child tables), `bigint generated always as identity` surrogate PKs, every FK with an explicit `on delete` rule (`cascade` for children and junctions, `restrict` for master data), `check` constraints for every status column, partial unique indexes for one live registration per attendee per event/session, indexes on all 41 foreign keys, `updated_at` triggers, RLS enabled on every table with no policies, and role seed data.
+
+**Verified**, not just written: the script was run end-to-end against Postgres 16 under `ON_ERROR_STOP=1` in a single transaction — clean `COMMIT`, 25 tables created. A first draft contained an index expression sub-querying another table (Postgres rejects it as non-`IMMUTABLE`); caught by that run and replaced with a documented two-option note rather than a broken statement.
+
+**Documented rather than silently dropped:** five rules that cannot be expressed as DDL — the venue double-booking hard block ([#35](https://github.com/SinYang13/IS212-2026/discussions/35), needs denormalised columns + a partial unique index, or a trigger), confirmation blocked on incomplete essential arrangements ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)), the two equipment availability rules ([#2](https://github.com/SinYang13/IS212-2026/discussions/2), [#5](https://github.com/SinYang13/IS212-2026/discussions/5)), auto-completion at end date + 7 days ([#71](https://github.com/SinYang13/IS212-2026/discussions/71), needs `pg_cron`), and RLS policies (blocked on the role model, [#56](https://github.com/SinYang13/IS212-2026/discussions/56)). Each is listed in a "Known gaps" table on the page.
+
+Status value lists are the script's own best reading of each domain page's state machine, flagged as such — the sources do not enumerate them.
+
+**Updated:** [[index]] — added the new page to the Reviews table; corrected the page count to 42 and the review count to 4 (the header had said 2 reviews while three review pages existed).
+
+**Integrity checks run:** every `#N` citation in the new page is linked; all `[[wikilink]]` cross-references resolve; the `#N` mentions inside the SQL code fence are left unlinked per the code-fence exemption; no `wiki/` page changed, so no domain knowledge was altered.
