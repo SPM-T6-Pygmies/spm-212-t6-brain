@@ -13,8 +13,8 @@ The pre-approval artefact an Event Organiser creates and submits to ConnectSpher
 
 **Release 1 scope:** Per [[release-1-scope]], event request creation and draft event requests are 🎯 Release 1 (core features 2–3); the Approved/Rejected/Returned states below belong to event review and approval, also 🎯 Release 1 (core feature 4).
 
-> [!warning] The brief blurs Event Request and Event
-> Brief §4 lists *Event Request Creation* and *Event Status Management* as separate functionality areas, implying two distinct records. Yet the *Event*'s example status list in the same section includes `draft` and `submitted` — statuses that, on the pre/post-approval reading above, belong to the request, not the event. The brief never draws the request/event boundary explicitly; the split modelled on this page and on [[event]] is this wiki's resolution, not a customer-confirmed data model. This is the single largest open modelling decision in the event cluster.
+> [!info] The request/event status split is settled in the schema
+> [[event-planning-venue-booking-system|brief §4]] lists *Event Request Creation* and *Event Status Management* as separate functionality areas, implying two distinct records — yet offers a single example status list spanning both ("draft, submitted, under review, approved, planning, awaiting arrangements, confirmed, completed, cancelled, or rejected"). The brief never draws the boundary explicitly. The team has now allocated those statuses **one per table**: the six below to `event_request`, and Planning/Blocked/Confirmed/Completed/Cancelled to [[event]]. No value is duplicated across the two, and [[schema]]'s check constraints enforce it. `Returned` comes from [[event-request-workflow|brief §5]] ("An event request is approved, rejected, or returned"), which names the request explicitly. This is the team's resolution of a genuine ambiguity in the brief, not a customer-confirmed data model.
 
 ## Attributes
 
@@ -36,12 +36,30 @@ Every field below is `⚠️ Partial`: the mandatory field set for submission ha
 | Other special arrangements | Anything else the Organiser flags | ⚠️ Partial | [[connectsphere-event-services\|brief §2]]; [#72](https://github.com/SinYang13/IS212-2026/discussions/72) |
 | Requesting Event Organiser | The [[user-account]] who authored the request | ⚠️ Partial | [[connectsphere-event-services\|brief §2]]; [#72](https://github.com/SinYang13/IS212-2026/discussions/72) |
 | Client organisation | The [[client-organisation]] the requester belongs to | ⚠️ Partial | [[event-planning-venue-booking-system\|brief §4]]; [#72](https://github.com/SinYang13/IS212-2026/discussions/72) |
-| Status | Draft / submitted / under review / approved / rejected / returned — see States | ⚠️ Partial | [[event-planning-venue-booking-system\|brief §4]]; [#72](https://github.com/SinYang13/IS212-2026/discussions/72) |
+| Status | Draft / submitted / under review / approved / rejected / returned — see States | ⚠️ Partial | [[event-planning-venue-booking-system\|brief §4]]; [[event-request-workflow\|brief §5]]; [[schema]] |
 | Decision record | Retained record of the coordinator's approve/reject/return decision | ⚠️ Partial | [[event-request-workflow\|brief §5]] (step 5); [#72](https://github.com/SinYang13/IS212-2026/discussions/72) |
 
 ## States
 
-The request's own status set is narrower than the full Event lifecycle in [[event-lifecycle]] — it covers only the pre-approval stages. This narrowing is this wiki's proposed resolution of the ambiguity flagged above, not a customer-specified split.
+The request's own status set covers only the **pre-approval** stages; the post-approval stages live on [[event]]. The two sets are disjoint, and [[schema]]'s `event_request_status_chk` enforces exactly the six below with `Draft` as the default. Neither `In Progress` nor a request-level `Withdrawn` is grounded in any source; both appeared in earlier schema drafts and have been removed.
+
+```mermaid
+stateDiagram-v2
+    state "Under review" as UnderReview
+    [*] --> Draft
+    Draft --> Submitted
+    Submitted --> UnderReview
+    UnderReview --> Approved
+    UnderReview --> Rejected
+    UnderReview --> Returned
+    Returned --> Submitted
+    Approved --> [*]
+    Rejected --> [*]
+```
+
+A request enters at `Draft` when the Organiser starts one and moves to `Submitted` and then `Under review` as the coordinator picks it up. `Approved` is terminal for this record — approval converts the request into a plannable [[event]], whose own (disjoint) status set takes over from there ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)). `Returned` is not terminal: [[event-request-workflow|brief §5]] has the Organiser amend and resubmit, modelled here as a return to `Submitted` since resubmission is the same act as the original submission.
+
+`Rejected` is drawn as terminal, matching the plain reading of [[event-request-workflow|brief §5]]; whether a rejected request may instead be resubmitted was explicitly left open by the customer ("Please propose an appropriate approach if needed" — [#67](https://github.com/SinYang13/IS212-2026/discussions/67)), so no `Rejected → Draft`/`Submitted` edge is drawn until the team settles that open question (see Open modelling questions below).
 
 | State | Meaning | Entry / exit rule | Ref |
 |---|---|---|---|

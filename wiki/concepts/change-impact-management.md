@@ -102,7 +102,7 @@ Consequences:
 The customer confirms the *need* to re-review but leaves the *state transition* undefined.
 
 > [!question]- Team decision required — status handling on post-confirmation change
-> Options for the team: move the event back to *planning* / *awaiting arrangements*; keep it *confirmed* but flag affected arrangements as pending revalidation; or introduce an explicit *change under review* state. The decision has visible consequences for the Event Organiser and for Attendees of a confirmed event with open registration, since the brief requires that "Users should not be presented with contradictory information regarding event dates, venue bookings, equipment availability, or registration status" (Source: customer-brief-no-1, s8d). See [[event-lifecycle]] and [[non-functional-requirements]].
+> Options for the team: move the event back to `Planning` / `Blocked`; keep it `Confirmed` but flag affected arrangements as pending revalidation; or introduce an explicit *change under review* state (which would mean widening [[schema]]'s five-value `event_status_chk`). The decision has visible consequences for the Event Organiser and for Attendees of a confirmed event with open registration, since the brief requires that "Users should not be presented with contradictory information regarding event dates, venue bookings, equipment availability, or registration status" (Source: customer-brief-no-1, s8d). See [[event-lifecycle]] and [[non-functional-requirements]].
 
 ## Venue Becoming Unavailable After Confirmation
 

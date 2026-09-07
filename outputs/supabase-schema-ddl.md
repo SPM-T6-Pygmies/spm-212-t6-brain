@@ -9,6 +9,9 @@ tags: [schema, sql, postgres, supabase, ddl, data-model]
 
 # Supabase SQL Schema (DDL)
 
+> [!warning] Superseded by [[schema]]
+> This is an earlier draft, retained for provenance only. It predates the one-per-table status split and the account-less registrant model: its `event.status` reads `Draft/Approved/Confirmed/In Progress/Completed/Cancelled` and its `event_request.status` ends in `Withdrawn` — `In Progress` and a request-level `Withdrawn` are grounded in no source. Use [[schema]] for the current physical model.
+
 A runnable Postgres translation of the "Proposed relational schema (tables, PK/FK)" section of [[domain-model]], ready to paste into the Supabase SQL editor. All 25 tables, their keys, foreign keys, uniqueness and check constraints, plus indexes on every FK and `updated_at` triggers. Verified: the script runs clean end-to-end on Postgres 16 (`ON_ERROR_STOP=1`, single transaction, 25 tables created).
 
 > [!warning] A candidate physical data model, not a customer deliverable
@@ -397,11 +400,7 @@ create table registration (
   registration_id         bigint generated always as identity primary key,
   event_id                bigint not null references event (event_id) on delete cascade,
   session_id              bigint references session (session_id) on delete cascade,
-  -- The Attendee is identified by what they supply, not by an account (#53).
-  -- The account reference stays for a future authenticated Attendee.
-  attendee_name           text not null,
-  attendee_email          text not null,
-  attendee_user_account_id bigint references user_account (user_account_id) on delete set null,
+  attendee_user_account_id bigint not null references user_account (user_account_id) on delete cascade,
   status                  text not null default 'Registered',
   checked_in_at           timestamptz,
   checked_in_method       text,
@@ -415,11 +414,11 @@ create table registration (
 
 -- One live registration per attendee per event (or per session where scoped):
 create unique index registration_unique_per_event_uidx
-  on registration (event_id, lower(attendee_email))
+  on registration (event_id, attendee_user_account_id)
   where session_id is null and status not in ('Cancelled', 'Withdrawn');
 
 create unique index registration_unique_per_session_uidx
-  on registration (session_id, lower(attendee_email))
+  on registration (session_id, attendee_user_account_id)
   where session_id is not null and status not in ('Cancelled', 'Withdrawn');
 
 create table waiting_list_entry (
@@ -531,7 +530,7 @@ create index support_request_event_idx          on support_request (event_id);
 create index support_request_assignment_user_idx on support_request_assignment (technical_support_user_account_id);
 create index registration_event_idx             on registration (event_id);
 create index registration_session_idx           on registration (session_id);
-create index registration_attendee_idx          on registration (lower(attendee_email));
+create index registration_attendee_idx          on registration (attendee_user_account_id);
 create index change_request_event_idx           on change_request (event_id);
 create index change_request_requester_idx       on change_request (requesting_user_account_id);
 create index notification_recipient_idx         on notification (recipient_user_account_id);

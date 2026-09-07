@@ -24,8 +24,17 @@ The set of statuses an event passes through in the [[event-planning-venue-bookin
 
 The brief lists the following as an example set — "Events progress through suitable statuses so that users can understand their current stage, for example draft, submitted, under review, approved, planning, awaiting arrangements, confirmed, completed, cancelled, or rejected" (Source: customer-brief-no-1). The full status table, entry/exit rules, and state diagram are maintained on [[event]] — see States.
 
-> [!question]- Team decision required — the status set and state machine
-> The customer named these statuses "for example" and did not fix the state machine. The exact status set, the transitions permitted between them, and whether *planning* and *awaiting arrangements* are distinct states or one state with a readiness flag are all for the team to propose (Source: customer-brief-no-1; is212-discussions-2026-08-31, [#70](https://github.com/SinYang13/IS212-2026/discussions/70)).
+The team has since fixed the status set, splitting the brief's single list across the two records it spans. Each value has exactly one owner:
+
+| Record | Statuses | Page |
+|---|---|---|
+| [[event-request]] | Draft, Submitted, Under Review, Approved, Rejected, Returned | [[event-request]] |
+| [[event]] | Planning, Blocked, Confirmed, Completed, Cancelled | [[event]] |
+
+`Returned` is [[event-request-workflow|brief §5]]'s return-for-amendment outcome ("An event request is approved, rejected, or returned"). `Blocked` is the team's name for the brief's *awaiting arrangements* — retained as a distinct state rather than collapsed into a readiness flag on *planning*, because [#80](https://github.com/SinYang13/IS212-2026/discussions/80)'s confirmation gate needs somewhere to live. [[schema]] enforces both sets.
+
+> [!question]- Team decision required — permitted transitions between the fixed statuses
+> The status *set* is now settled, but the customer never fixed the state machine over it. The transitions drawn on [[event]] and [[event-request]] remain this wiki's proposal — in particular the backward `Confirmed → Planning` edge for major post-confirmation change, which the customer confirmed only as "arrangements may require... to be reviewed again" ([#70](https://github.com/SinYang13/IS212-2026/discussions/70)).
 
 ## Approved vs Confirmed
 
@@ -76,7 +85,7 @@ There is no separate *postponed* status in the customer's answer. Postponement i
 The distinguishing property of postponement is that the event record survives — the client relationship and requirements are preserved for a later date, whereas cancellation ends the event.
 
 > [!question]- Team decision required — status for "postponed, date unknown"
-> The customer did not name a status for "postponed, date unknown". The team must decide whether this is a distinct status, a flag on an existing status, or a return to *approved*/*planning* with dates cleared.
+> The customer did not name a status for "postponed, date unknown". The team must decide whether this is a distinct status, a flag on an existing status, or a return to `Planning` (or `Blocked`) with dates cleared. Note that the settled status set above contains no such value, so today the case has no representation.
 
 ## Rejection and Resubmission
 
@@ -104,7 +113,8 @@ The lifecycle is not strictly forward-only:
 
 | Item | Status | Reference |
 |---|---|---|
-| Exact status set and permitted transitions | Team to propose | [#70](https://github.com/SinYang13/IS212-2026/discussions/70), brief |
+| Exact status set | **Settled** — split one-per-record across [[event-request]] and [[event]]; enforced by [[schema]] | [[event-planning-venue-booking-system\|brief §4]], [[event-request-workflow\|brief §5]] |
+| Permitted transitions between those statuses | Team to propose | [#70](https://github.com/SinYang13/IS212-2026/discussions/70), brief |
 | Rejected event resubmission | **Unspecified — team to propose** | [#67](https://github.com/SinYang13/IS212-2026/discussions/67) |
 | Status representation for indefinite postponement | Team to propose | [#69](https://github.com/SinYang13/IS212-2026/discussions/69) |
 | Whether auto-completion at +7 days is mandatory or optional ("may") | Team to interpret | [#71](https://github.com/SinYang13/IS212-2026/discussions/71) |

@@ -4,12 +4,12 @@ Source of truth for writing and scrutinising backlog items. Derived from the Wee
 
 ### 1. Backlog taxonomy
 
-|Item|What it is|When it exists|Estimated?|
-|---|---|---|---|
-|**Epic**|Large story representing a broad objective or significant piece of functionality. A _placeholder_ on the backlog.|Until the work is near enough to be worth decomposing|No (or T-shirt only)|
-|**User Story**|A thin vertical slice of user-visible value, INVEST-compliant|When it is a candidate for a sprint|Yes — Fibonacci|
-|**Task**|Implementation step inside a story (front-end, tests, docs). Owned by developers, not the customer.|Sprint planning|No (or hours, optional)|
-|**Spike**|Timeboxed investigation to remove an unknown. Last resort.|When a story cannot be estimated at all|Timebox, not points|
+| Item           | What it is                                                                                                        | When it exists                                        | Estimated?              |
+| -------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ----------------------- |
+| **Epic**       | Large story representing a broad objective or significant piece of functionality. A _placeholder_ on the backlog. | Until the work is near enough to be worth decomposing | No (or T-shirt only)    |
+| **User Story** | A thin vertical slice of user-visible value, INVEST-compliant                                                     | When it is a candidate for a sprint                   | Yes — Fibonacci         |
+| **Task**       | Implementation step inside a story (front-end, tests, docs). Owned by developers, not the customer.               | Sprint planning                                       | No (or hours, optional) |
+| **Spike**      | Timeboxed investigation to remove an unknown. Last resort.                                                        | When a story cannot be estimated at all               | Timebox, not points     |
 
 Rules:
 

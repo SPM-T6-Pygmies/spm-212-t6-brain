@@ -36,7 +36,7 @@ The plannable record of a confirmed-or-confirmable occasion at [[connectsphere-e
 | Assigned Event Coordinator           | The [[user-account]] acting as main internal point of contact                                                                                    | ✅ Specified      | [[event-planning-venue-booking-system\|brief §4]]           |
 | Owning Event Organiser               | The [[user-account]] responsible for the event on the client side                                                                                | ✅ Specified      | [[connectsphere-event-services\|brief §2]]           |
 | Client organisation                  | The [[client-organisation]] the Event Organiser represents                                                                                       | ✅ Specified      | [[event-planning-venue-booking-system\|brief §4]]           |
-| Status                               | Current lifecycle stage — see States below                                                                                                       | ✅ Specified      | [[event-planning-venue-booking-system\|brief §4]]           |
+| Status                               | Post-approval lifecycle stage: Planning / Blocked / Confirmed / Completed / Cancelled — see States below                                          | ✅ Specified      | [[event-planning-venue-booking-system\|brief §4]]; [[schema]] |
 | Registration open / close dates      | Registration period, separate from the event date, set by the Event Coordinator                                                                  | ✅ Specified      | [#30](https://github.com/SinYang13/IS212-2026/discussions/30)                |
 | Essential-arrangement set            | Which arrangements (venue, equipment, technical support, programme, registration, etc.) are required for *this* event before it can be confirmed | 🔶 Team decision | [#80](https://github.com/SinYang13/IS212-2026/discussions/80)                |
 | Reused-from / template source        | Reference to a previous event this one was seeded from, when created via reuse                                                                   | ⚠️ Partial       | [#75](https://github.com/SinYang13/IS212-2026/discussions/75)                |
@@ -53,52 +53,38 @@ The comment-thread model (threaded vs flat) and document size/type limits are UI
 
 ## States
 
+The Event's status set covers the **post-approval** lifecycle only. The six pre-approval states (Draft, Submitted, Under Review, Approved, Rejected, Returned) belong to [[event-request]] and are not reachable here — see the callout below.
+
 ```mermaid
 stateDiagram-v2
-    state "Under Review" as UnderReview
-    state "Awaiting Arrangements" as AwaitingArrangements
-    [*] --> Draft
-    Draft --> Submitted
-    Submitted --> UnderReview
-    UnderReview --> Returned
-    UnderReview --> Rejected
-    UnderReview --> Approved
-    Returned --> Submitted
-    Approved --> Planning
-    Planning --> AwaitingArrangements
-    AwaitingArrangements --> Planning
+    [*] --> Planning
+    Planning --> Blocked
+    Blocked --> Planning
     Planning --> Confirmed
-    AwaitingArrangements --> Confirmed
     Confirmed --> Planning
     Confirmed --> Completed
     Planning --> Completed
-    Draft --> Cancelled
-    Submitted --> Cancelled
-    UnderReview --> Cancelled
-    Approved --> Cancelled
     Planning --> Cancelled
-    AwaitingArrangements --> Cancelled
+    Blocked --> Cancelled
     Confirmed --> Cancelled
-    Rejected --> [*]
     Cancelled --> [*]
     Completed --> [*]
 ```
 
-Cancellation is reachable from every non-terminal state, reflecting that only the assigned Event Coordinator may cancel "at any stage" ([#68](https://github.com/SinYang13/IS212-2026/discussions/68)). The `Confirmed → Planning` edge represents a major post-confirmation change and is not customer-confirmed as a formal transition — see Open modelling questions.
+An Event enters at `Planning` the moment its [[event-request]] is approved; approval of the request *is* the creation event, so there is no separate `Approved` state on this record. Cancellation is reachable from every non-terminal state, reflecting that only the assigned Event Coordinator may cancel "at any stage" ([#68](https://github.com/SinYang13/IS212-2026/discussions/68)). The `Confirmed → Planning` edge represents a major post-confirmation change and is not customer-confirmed as a formal transition — see Open modelling questions.
+
+There is deliberately **no `Blocked → Confirmed` edge**. Confirmation is blocked precisely while an essential arrangement is incomplete ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)), so clearing the blockage must return the event to `Planning` first; a direct edge would make the gate bypassable in the state machine itself.
 
 | State | Meaning | Entry / exit rule | Ref |
 |---|---|---|---|
-| Draft | Request saved before submission; incomplete information may be completed later | Entry: Organiser creates. Exit: submit | [[event-planning-venue-booking-system\|brief §4]] |
-| Submitted | Sent to ConnectSphere, awaiting coordinator assignment | Entry: Organiser submits. Exit: coordinator reviews | [[event-request-workflow\|brief §5]] |
-| Under review | Assigned Event Coordinator reviewing; clarification may be requested | Entry: review begins. Exit: approve / reject / return | [[event-request-workflow\|brief §5]] |
-| Approved | Sufficient information exists for planning to proceed; commits ConnectSphere to nothing | Entry: Coordinator approves. Exit: planning begins | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) |
-| Planning | Venue, equipment, technical support and programme work in progress | Entry: from Approved. Exit: essential arrangements complete, or event cancelled | [[event-planning-venue-booking-system\|brief §4]] |
-| Awaiting arrangements | One or more essential arrangements for this event remain incomplete | Entry: an essential arrangement is identified and not yet done. Exit: arrangement completed | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) |
-| Confirmed | Every arrangement essential to this event is complete; arrangements visible to the Event Organiser | Entry: Coordinator confirms — **blocked** while any essential arrangement is incomplete. Exit: completion, cancellation, or (🔶) return to Planning on major change | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) |
+| Planning | Venue, equipment, technical support and programme work in progress | Entry: the source [[event-request]] is approved. Exit: essential arrangements complete, blocked, or event cancelled | [[event-planning-venue-booking-system\|brief §4]]; [#80](https://github.com/SinYang13/IS212-2026/discussions/80) |
+| Blocked | One or more essential arrangements for this event remain incomplete, so confirmation is barred | Entry: an essential arrangement is identified and not yet done. Exit: arrangement completed, returning the event to Planning | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) |
+| Confirmed | Every arrangement essential to this event is complete; arrangements visible to the Event Organiser | Entry: Coordinator confirms — barred while any essential arrangement is incomplete. Exit: completion, cancellation, or (🔶) return to Planning on major change | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) |
 | Completed | Event has taken place and been closed | Entry: Coordinator marks complete, or system **may** automatically mark it completed 7 days after end date if still open | [#71](https://github.com/SinYang13/IS212-2026/discussions/71) |
 | Cancelled | Event will not proceed | Entry: assigned Event Coordinator only, at any stage. Terminal | [#68](https://github.com/SinYang13/IS212-2026/discussions/68) |
-| Rejected | Request declined at review; decision record retained | Entry: Coordinator rejects. Terminal, unless resubmission is permitted (🔶) | [[event-request-workflow\|brief §5]] |
-| Returned | Sent back to the Event Organiser for amendment or clarification | Entry: Coordinator requests amendment. Exit: Organiser resubmits | [[event-request-workflow\|brief §5]] |
+
+> [!info] "Blocked" is the team's name for the brief's *awaiting arrangements*
+> [[event-planning-venue-booking-system|brief §4]] names this state *awaiting arrangements* in its example status list; the team adopted `Blocked` instead, and [[schema]] enforces it. §4 offers its list "for example", so the rename is within what the customer left proposable — recorded here only so a reader tracing §4's vocabulary into the model knows which word maps to which. That §4's *Venue Availability Calendar* also uses "blocked" for a venue state is not a conflict: status values are scoped per entity, and `event.status` already shares `Confirmed` and `Cancelled` with `booking.status` (as §4's own calendar sentence does) without ambiguity.
 
 > [!warning] No Postponed status
 > There is no separate *postponed* state. Postponement with a new date/time is treated as a reschedule and routed through the ordinary change-impact process; postponement with no known date releases the current venue/equipment bookings but retains the event record until a new date is provided ([#69](https://github.com/SinYang13/IS212-2026/discussions/69)).
@@ -134,13 +120,10 @@ Cancellation is reachable from every non-terminal state, reflecting that only th
 ## Open modelling questions
 
 > [!question]- Team decision required — formal Confirmed → Planning transition
-> Whether a major post-confirmation change moves the event back to a formal `Planning` (or `Awaiting arrangements`) state, or is represented some other way (e.g. a "pending revalidation" flag while the event stays `Confirmed`), is unspecified. The customer confirmed only that arrangements "may require... to be reviewed again," and left the transition design to the team ([#70](https://github.com/SinYang13/IS212-2026/discussions/70)).
+> Whether a major post-confirmation change moves the event back to a formal `Planning` (or `Blocked`) state, or is represented some other way (e.g. a "pending revalidation" flag while the event stays `Confirmed`), is unspecified. The customer confirmed only that arrangements "may require... to be reviewed again," and left the transition design to the team ([#70](https://github.com/SinYang13/IS212-2026/discussions/70)).
 
 > [!question]- Team decision required — fields copied on event reuse
 > When a new event is created by reusing a previous or recurring event, which fields are copied is left to the team; the only constraint is that the new event must still be able to have different dates and requirements ([#75](https://github.com/SinYang13/IS212-2026/discussions/75)).
-
-> [!question]- Team decision required — resubmission after rejection
-> Whether a `Rejected` event can be resubmitted, or whether rejection is terminal, was left to the team ("Please propose an appropriate approach if needed") ([#67](https://github.com/SinYang13/IS212-2026/discussions/67)).
 
 > [!question]- Team decision required — comment threading model
 > Whether comments are threaded (reply-to-comment) or flat (chronological) is a UI/UX decision; the only fixed requirement is that comments, questions and updates are retained with the event record ([#15](https://github.com/SinYang13/IS212-2026/discussions/15)).

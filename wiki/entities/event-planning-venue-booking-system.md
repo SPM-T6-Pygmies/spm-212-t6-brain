@@ -25,22 +25,22 @@ The custom-built system to be delivered for [[connectsphere-event-services]] —
 
 Group-level markers are a summary only — several groups split. [[release-1-scope]] is the source of truth and carries the per-area register.
 
-| Group | Functionality areas | Scope | Page |
-|---|---|---|---|
-| Identity and access | User authorisation and authentication · client management · user profile management | 🎯 / 🧩 / 📋 | [[access-control]], [[user-roles]] |
-| Request intake | Event request creation · draft event requests · event categories · recurring or similar events | 🎯 / 📋 | [[event-request-workflow]] |
-| Review and status | Event review and approval · coordinator assignment · event status management · event information management | 🎯 | [[event-lifecycle]], [[event-request-workflow]] |
-| Event content | Comments and discussion · event programme and agenda · multi-session events · supporting documents | 🧩 / 📋 | [[event-request-workflow]] |
-| Venue | Catalogue · availability calendar · search and filtering · suitability checking · booking request · booking approval · conflict detection · unavailability · room layouts · setup and turnaround · tentative holding · event capacity | 🎯 / 🧩 / 📋 | [[venue-booking]], [[venue-suitability]] |
-| Equipment | Request management · availability checking · reservation · catalogue · maintenance status | 🎯 / 🧩 | [[equipment-management]] |
-| Technical support | Technical support requests · technical staff assignment | 📋 | [[technical-support]] |
-| Readiness | Event confirmation · readiness tracking · outstanding action tracking | 🧩 / 📋 | [[event-readiness]] |
-| Registration | Attendee registration · withdrawal · registration period · registration capacity · waiting list · attendance recording | 🎯 / 🧩 / 📋 | [[attendee-registration]] |
-| Change | Event change requests · impact of event changes · rescheduling · cancellation management | 🎯 / 🧩 | [[change-impact-management]] |
-| Messaging | Notification system · reminder system | 🎯 / 📋 | [[notifications]] |
-| Discovery | Event calendar · event search and filtering · role-based dashboard | 📋 | [[reporting]] |
-| Records | Activity history · change history | 📋 | [[non-functional-requirements]] |
-| Output | Event reports · venue usage reports · registration reports · report generation and exporting | 📋 | [[reporting]] |
+| Group               | Functionality areas                                                                                                                                                                                                                   | Scope        | Page                                            |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ----------------------------------------------- |
+| Identity and access | User authorisation and authentication · client management · user profile management                                                                                                                                                   | 🎯 / 🧩 / 📋 | [[access-control]], [[user-roles]]              |
+| Request intake      | Event request creation · draft event requests · event categories · recurring or similar events                                                                                                                                        | 🎯 / 📋      | [[event-request-workflow]]                      |
+| Review and status   | Event review and approval · coordinator assignment · event status management · event information management                                                                                                                           | 🎯           | [[event-lifecycle]], [[event-request-workflow]] |
+| Event content       | Comments and discussion · event programme and agenda · multi-session events · supporting documents                                                                                                                                    | 🧩 / 📋      | [[event-request-workflow]]                      |
+| Venue               | Catalogue · availability calendar · search and filtering · suitability checking · booking request · booking approval · conflict detection · unavailability · room layouts · setup and turnaround · tentative holding · event capacity | 🎯 / 🧩 / 📋 | [[venue-booking]], [[venue-suitability]]        |
+| Equipment           | Request management · availability checking · reservation · catalogue · maintenance status                                                                                                                                             | 🎯 / 🧩      | [[equipment-management]]                        |
+| Technical support   | Technical support requests · technical staff assignment                                                                                                                                                                               | 📋           | [[technical-support]]                           |
+| Readiness           | Event confirmation · readiness tracking · outstanding action tracking                                                                                                                                                                 | 🧩 / 📋      | [[event-readiness]]                             |
+| Registration        | Attendee registration · withdrawal · registration period · registration capacity · waiting list · attendance recording                                                                                                                | 🎯 / 🧩 / 📋 | [[attendee-registration]]                       |
+| Change              | Event change requests · impact of event changes · rescheduling · cancellation management                                                                                                                                              | 🎯 / 🧩      | [[change-impact-management]]                    |
+| Messaging           | Notification system · reminder system                                                                                                                                                                                                 | 🎯 / 📋      | [[notifications]]                               |
+| Discovery           | Event calendar · event search and filtering · role-based dashboard                                                                                                                                                                    | 📋           | [[reporting]]                                   |
+| Records             | Activity history · change history                                                                                                                                                                                                     | 📋           | [[non-functional-requirements]]                 |
+| Output              | Event reports · venue usage reports · registration reports · report generation and exporting                                                                                                                                          | 📋           | [[reporting]]                                   |
 
 ## Quality attributes
 

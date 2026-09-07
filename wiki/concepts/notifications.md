@@ -43,8 +43,10 @@ The brief lists the following as examples of situations that may generate a noti
 
 The list is illustrative ("Examples of situations that **may** generate a notification"), not exhaustive. Recipients above are inferred from role responsibilities in [[user-roles]] — the brief does not specify a recipient matrix. See [[notification]] for the canonical trigger-scenario table with full citations.
 
+A **proposed** recipient matrix now exists, resolving each row above to exactly one recipient role per card — see [[notification]] "Recipient matrix". Where a scenario above lists two audiences (coordinator assignment, venue booking, reschedule/cancellation), the matrix splits it into separate cards, on the reasoning that a notification to an external Attendee and one to the client contact are bounded by different access-control rules ([#91](https://github.com/SinYang13/IS212-2026/discussions/91)) and are not one piece of work.
+
 > [!question]- Team decision required — recipient matrix
-> The recipient matrix — which roles receive which notification, and whether recipients are derived from relationship to the event or configured. The brief lists triggers only.
+> The recipient matrix — which roles receive which notification, and whether recipients are derived from relationship to the event or configured. The brief lists triggers only. A proposal is now recorded in [[notification]] "Recipient matrix"; what remains open is the customer's confirmation of it, not its absence.
 
 ## Channels
 
@@ -132,8 +134,8 @@ Responsibility is therefore split: Venue Staff record the fact, the system surfa
 |---|---|---|
 | Batch interval vs real-time delivery | **Either acceptable — team to choose; no delivery-time requirement** | [#55](https://github.com/SinYang13/IS212-2026/discussions/55) |
 | Reminder lead time and configurability model | **Team to propose** | [#40](https://github.com/SinYang13/IS212-2026/discussions/40) |
-| Recipient matrix per notification type | Not specified | brief s6 |
-| Reconciliation of per-type channel config with per-user communication preferences | Not specified | [#37](https://github.com/SinYang13/IS212-2026/discussions/37), brief s4 |
+| Recipient matrix per notification type | **Proposed by the team** — see [[notification]] "Recipient matrix"; awaiting customer confirmation | [[notifications\|brief §6]] |
+| Reconciliation of per-type channel config with per-user communication preferences | Not specified | [#37](https://github.com/SinYang13/IS212-2026/discussions/37), [[event-planning-venue-booking-system\|brief §4]] |
 | Automation mechanism for availability-change impact | **Team to propose if required** | [#54](https://github.com/SinYang13/IS212-2026/discussions/54) |
 
 See [[open-questions]] for the consolidated list.
