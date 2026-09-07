@@ -247,3 +247,21 @@ Status value lists are the script's own best reading of each domain page's state
 **Updated:** [[index]] — added the new page to the Reviews table; corrected the page count to 42 and the review count to 4 (the header had said 2 reviews while three review pages existed).
 
 **Integrity checks run:** every `#N` citation in the new page is linked; all `[[wikilink]]` cross-references resolve; the `#N` mentions inside the SQL code fence are left unlinked per the code-fence exemption; no `wiki/` page changed, so no domain knowledge was altered.
+
+## 2026-09-07
+
+### SPM-24 implementation — register for a confirmed event
+
+- Built the attendee registration slice in `connectsphere`: a public list of events open for registration, an event detail page, and a registration form capturing full name and email.
+- Filed [[spm-24-implementation-decisions]] in `outputs/`, recording eight decisions and the open items the ticket did not settle. Linked from [[index]] under Reviews.
+
+### Correction — attendees were never required to authenticate
+
+The implementation surfaced an inference this wiki had been presenting as customer fact. [#53](https://github.com/SinYang13/IS212-2026/discussions/53) describes Attendees as "external users who can register for events and view their registration status" and never requires them to hold an account; [#62](https://github.com/SinYang13/IS212-2026/discussions/62), cited as the source, is about the authentication *method*, not who must authenticate. Corrected:
+
+- [[access-control]] — the authentication table now separates internal staff (authentication required) from Attendees (never stated). The user-provisioning callout is scoped to staff, and a `> [!success] Resolved` callout records the guest-registration decision.
+- [[release-1-scope]] — the `Attendees can register but cannot be created` warning was withdrawn. It rested on feature 18's actions being "all authenticated actions under feature 1", which is not customer text.
+- [[registration]] — the Attendee attribute is now the name and email supplied, not a [[user-account]] reference; the `🔶` registration-fields row deferred at [#22](https://github.com/SinYang13/IS212-2026/discussions/22) is closed as full name and email; the [[user-account]] relationship is now optional.
+- [[open-questions]] — "Do Attendees need an account to register?" closed.
+- [[domain-model]] and [[supabase-schema-ddl]] — `USER_ACCOUNT ||--o{ REGISTRATION` is now optional, `attendee_user_account_id` is nullable, and the unique index is re-keyed to `lower(attendee_email)`.
+

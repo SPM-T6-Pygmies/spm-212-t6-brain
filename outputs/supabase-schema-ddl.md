@@ -397,7 +397,11 @@ create table registration (
   registration_id         bigint generated always as identity primary key,
   event_id                bigint not null references event (event_id) on delete cascade,
   session_id              bigint references session (session_id) on delete cascade,
-  attendee_user_account_id bigint not null references user_account (user_account_id) on delete cascade,
+  -- The Attendee is identified by what they supply, not by an account (#53).
+  -- The account reference stays for a future authenticated Attendee.
+  attendee_name           text not null,
+  attendee_email          text not null,
+  attendee_user_account_id bigint references user_account (user_account_id) on delete set null,
   status                  text not null default 'Registered',
   checked_in_at           timestamptz,
   checked_in_method       text,
@@ -411,11 +415,11 @@ create table registration (
 
 -- One live registration per attendee per event (or per session where scoped):
 create unique index registration_unique_per_event_uidx
-  on registration (event_id, attendee_user_account_id)
+  on registration (event_id, lower(attendee_email))
   where session_id is null and status not in ('Cancelled', 'Withdrawn');
 
 create unique index registration_unique_per_session_uidx
-  on registration (session_id, attendee_user_account_id)
+  on registration (session_id, lower(attendee_email))
   where session_id is not null and status not in ('Cancelled', 'Withdrawn');
 
 create table waiting_list_entry (
@@ -527,7 +531,7 @@ create index support_request_event_idx          on support_request (event_id);
 create index support_request_assignment_user_idx on support_request_assignment (technical_support_user_account_id);
 create index registration_event_idx             on registration (event_id);
 create index registration_session_idx           on registration (session_id);
-create index registration_attendee_idx          on registration (attendee_user_account_id);
+create index registration_attendee_idx          on registration (lower(attendee_email));
 create index change_request_event_idx           on change_request (event_id);
 create index change_request_requester_idx       on change_request (requesting_user_account_id);
 create index notification_recipient_idx         on notification (recipient_user_account_id);

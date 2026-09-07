@@ -27,7 +27,8 @@ Access control is two-dimensional throughout: **role** (what kind of user) combi
 
 | Aspect | Position | Source |
 |---|---|---|
-| Is authentication required? | **Yes** — secure authentication is required | [#62](https://github.com/SinYang13/IS212-2026/discussions/62), brief s4 |
+| Is authentication required? | **Yes, for the internal staff roles** — secure authentication is required to reach protected information | [#62](https://github.com/SinYang13/IS212-2026/discussions/62), [[non-functional-requirements\|brief §8]] |
+| …for Attendees? | **Never stated.** [#53](https://github.com/SinYang13/IS212-2026/discussions/53) describes Attendees as **external users** who "can register for events and view their registration status", and puts onboarding outside the brief. No source requires an Attendee to hold an account | [#53](https://github.com/SinYang13/IS212-2026/discussions/53) |
 | Which method? | **Not specified** — email/password, SSO and MFA were all asked about and none was chosen | [#62](https://github.com/SinYang13/IS212-2026/discussions/62) |
 | Account recovery / locked accounts? | **Not specified in the current requirements** | [#64](https://github.com/SinYang13/IS212-2026/discussions/64) |
 | External user onboarding? | **Not in the feature list** | [#49](https://github.com/SinYang13/IS212-2026/discussions/49), [#53](https://github.com/SinYang13/IS212-2026/discussions/53) |
@@ -48,7 +49,10 @@ Two answers together leave the system with no defined way to create its own user
 Combined with [#52](https://github.com/SinYang13/IS212-2026/discussions/52) — no admin role and no user-administration business role defined (see [[user-roles]]) — nothing in the specified scope creates accounts for either internal or external users.
 
 > [!question]- Team decision required — user provisioning
-> How users come to exist. Options: self-registration for external users, invitation issued by an Event Coordinator, pre-seeded internal accounts, or treating provisioning as out of scope with seeded data. [#53](https://github.com/SinYang13/IS212-2026/discussions/53) confirms Attendees are *users* of the system (they "register for events and view their registration status"), so an Attendee identity of some kind is required even if onboarding is not built.
+> How **internal staff** accounts come to exist. Options: invitation, pre-seeded accounts, or treating provisioning as out of scope with seeded data. The gap does not extend to Attendees — see the resolution below.
+
+> [!success] Resolved — #53
+> **Attendees register as guests; no account is involved.** An earlier reading of this page treated attendee registration as an authenticated action and concluded that Release 1 shipped a feature no one could use. That was inference, not customer text: [#53](https://github.com/SinYang13/IS212-2026/discussions/53) calls Attendees "external users who can register for events and view their registration status" and never requires them to authenticate, and [#49](https://github.com/SinYang13/IS212-2026/discussions/49) puts onboarding outside the brief. The team's answer is that the attendee-facing view is public and a registration is identified by the name and email the Attendee supplies. Recorded in [[spm-24-implementation-decisions]].
 
 ## Protected Information
 

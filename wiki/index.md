@@ -144,6 +144,7 @@ One-off scrutiny artefacts — not domain knowledge, kept here so they aren't or
 | [[user-stories-assignment-scrutiny]] | `raw/User Stories Assignment.md` checked against `raw/IS212 User Story Standard — v1.0.md` and against this wiki's sourced requirements; proposed fixes for every story plus three recommended additions to Registration |
 | [[user-stories-proposed-rewrites]] | Every proposed rewrite and recommended new card from [[user-stories-assignment-scrutiny]], consolidated into one build-ordered, ready-to-paste replacement backlog |
 | [[release-1-candidate-user-stories]] | Candidate backlog derived row-by-row from [[release-1-scope]]'s `🎯`/`🧩` register — full coverage table, new cards for every uncarded area, and Release 1-scoped rewrites of Reg1/Reg5 now that waiting list and check-in are `📋 Backlog` |
+| [[spm-24-implementation-decisions]] | Decisions taken building SPM-24 (register for a confirmed event) — guest registration, the fixed field set, duplicate and capacity rules, schema deviations — and the correction of this wiki's claim that Attendees must authenticate |
 | [[supabase-schema-ddl]] | Runnable Postgres/Supabase DDL for [[domain-model]]'s proposed relational schema — 25 tables with PK/FK, check constraints, FK indexes, `updated_at` triggers and RLS enabled; plus the constraints that can't be expressed declaratively |
 
 ## Ingestion status

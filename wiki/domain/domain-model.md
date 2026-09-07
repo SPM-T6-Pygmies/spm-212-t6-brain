@@ -76,7 +76,7 @@ erDiagram
     USER_ACCOUNT ||--o{ EQUIPMENT_RESERVATION : reviews
     USER_ACCOUNT }o--o{ SUPPORT_REQUEST : "is assigned to"
     USER_ACCOUNT ||--o{ CHANGE_REQUEST : requests
-    USER_ACCOUNT ||--o{ REGISTRATION : holds
+    USER_ACCOUNT |o--o{ REGISTRATION : "may hold (optional — #53)"
     USER_ACCOUNT ||--o{ AUDIT_RECORD : generates
 ```
 
@@ -309,7 +309,9 @@ erDiagram
         int registration_id PK
         int event_id FK
         int session_id FK "nullable"
-        int attendee_user_account_id FK
+        string attendee_name
+        string attendee_email
+        int attendee_user_account_id FK "nullable — #53, guest registration"
         string status
         datetime checked_in_at "nullable"
         string checked_in_method "nullable"
@@ -400,7 +402,7 @@ erDiagram
     USER_ACCOUNT ||--o{ SUPPORT_REQUEST_ASSIGNMENT : "assigned to"
     EVENT ||--o{ REGISTRATION : accepts
     SESSION |o--o{ REGISTRATION : "may scope"
-    USER_ACCOUNT ||--o{ REGISTRATION : holds
+    USER_ACCOUNT |o--o{ REGISTRATION : "may hold (optional — #53)"
     REGISTRATION |o--o| WAITING_LIST_ENTRY : "queues, while waitlisted"
     EVENT ||--o{ CHANGE_REQUEST : receives
     USER_ACCOUNT ||--o{ CHANGE_REQUEST : requests
