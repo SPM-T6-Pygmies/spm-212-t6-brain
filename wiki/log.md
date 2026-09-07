@@ -414,3 +414,31 @@ The team replaced the earlier schema drafts with a single authoritative DDL. Dif
 Two edges needed that treatment. `Returned → Submitted` is drawn (not `Returned → Under review`) on the reasoning that [[event-request-workflow|brief §5]] describes resubmission as the same act as the original submission — an inference, not a customer-stated transition, so it's flagged as such in the prose. `Rejected` is drawn terminal, matching the plain reading of brief §5, and the possible `Rejected → Draft`/`Submitted` resubmission edge is deliberately **not** drawn because whether rejection is final was explicitly left to the team ([#67](https://github.com/SinYang13/IS212-2026/discussions/67)) — this mirrors [[event]]'s precedent of omitting the `Blocked → Confirmed` edge to keep an unresolved gate out of the state machine itself. No new open question was added since [#67](https://github.com/SinYang13/IS212-2026/discussions/67) was already tracked in the page's Open modelling questions.
 
 **Updated:** [[event-request]] only — no attribute, relationship, or scope-marker changes, so no other page needed a mirrored edit.
+
+## 2026-09-08 (2)
+
+### SPM-24 implementation, merged back against the schema work
+
+The attendee registration slice for [SPM-24](https://linear.app/pygmies/issue/SPM-24) was built in the `connectsphere` repository — a public list of events open for registration, an event detail page, and a registration form taking full name and email — on a branch cut before [[schema]] landed. Both lines of work independently concluded that Attendees register **without an account**. This entry records the merge, not a second discovery.
+
+**Filed [[spm-24-implementation-decisions]]** in `outputs/`, recording nine decisions the ticket had to make and the items it did not settle. Linked from [[index]] (Reviews; page count 47 → 48, reviews 8 → 9).
+
+**What the branch contributed that the schema work had not:**
+
+- [[access-control]]'s Authentication table still answered "Is authentication required?" with a flat **Yes**, cited to [#62](https://github.com/SinYang13/IS212-2026/discussions/62) and a bare, unlinked `brief s4`. [#62](https://github.com/SinYang13/IS212-2026/discussions/62) is about the authentication *method*; it does not establish who must authenticate. The row now says authentication is required to reach protected information, and a second row records that no source requires an **Attendee** to hold a credential. The citation is normalised to [[event-planning-venue-booking-system|brief §4]] — where the brief actually puts feature 1 — and linked.
+- [[registration]]'s [#22](https://github.com/SinYang13/IS212-2026/discussions/22) field set now carries a Release 1 answer (full name and email, fixed for every event) instead of standing wholly open, with the per-event-configurable reading deferred rather than rejected.
+- Two rules the build settled and no source addresses: a duplicate registration is refused rather than silently absorbed, and a full event is refused outright, since `📋 Backlog`'s missing waiting list leaves [[event-planning-venue-booking-system|brief §4]]'s "prevent **or appropriately handle**" with only one available meaning.
+
+**What the branch got wrong and did not survive the merge:**
+
+- It withdrew [[release-1-scope]]'s registration risk callout outright, on the reasoning that going account-less removes the problem. It removes it for two of feature 18's four verbs, not all four. *View status* and *withdraw* still need a way to identify a guest, and the narrowed callout that landed with [[schema]] says so — kept, not withdrawn. Two corrections were made to it: its count (it was titled "three of four" while its body named two, and the build makes *view events* public, so it is two), and its opening clause, which still asserted all four verbs are "authenticated actions under feature 1" — the inference this ticket disproved.
+- It edited [[supabase-schema-ddl]], which had meanwhile been superseded by [[schema]] and marked provenance-only. Those edits were dropped; [[schema]] already carries the equivalent (`registration_one_live_per_attendee_email_uidx`).
+- Its [[domain-model]] ER edits were narrower than [[schema]]'s — no `registration_reference`, and name/email modelled as mandatory rather than nullable. Dropped in favour of the existing model.
+
+**One disagreement is left open rather than resolved.** [[schema]]'s `registration_attendee_identity_chk` is an XOR — a registration carries **either** an account **or** a name-and-email pair. The build treats name and email as always present with the account link optional on top. The two agree on every row Release 1 can produce, since no attendee has an account; they diverge as soon as one does, because under the XOR an account-holder's row carries no email and falls outside the duplicate index. [[schema]] is the model of record, so the XOR stands. Recorded in [[spm-24-implementation-decisions]] §9 so it is not found at migration time.
+
+**Also fixed in passing:** [[spm-24-implementation-decisions]] cited `brief §8b` as [[event-planning-venue-booking-system]] in two places. Per `CLAUDE.md`'s section map §8 and its subsections belong to [[non-functional-requirements]], which is what the rest of the wiki uses. Retargeted.
+
+**Integrity checks run:** the seven files this merge touched carry no bare `#N` or `brief §N` citations outside code fences; the tables edited in [[access-control]], [[registration]], [[open-questions]] and [[index]] keep their original column counts; every `[[wikilink]]` added resolves to an existing page.
+
+**Updated:** [[spm-24-implementation-decisions]] (new), [[access-control]], [[registration]], [[open-questions]], [[release-1-scope]], [[index]].

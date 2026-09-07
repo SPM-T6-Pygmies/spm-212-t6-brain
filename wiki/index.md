@@ -9,7 +9,7 @@ tags: [meta, index]
 
 Content catalog of every wiki page. Update whenever a page is created, renamed, or removed.
 
-**47 pages** — 4 sources, 16 concepts, 16 domain objects, 3 entities, 8 reviews. All raw documents ingested as of 2026-09-05.
+**48 pages** — 4 sources, 16 concepts, 16 domain objects, 3 entities, 9 reviews. All raw documents ingested as of 2026-09-05.
 
 > [!important] Hard rules the customer actually committed to
 > Most of this brief is deliberately open, so the few fixed constraints matter. Do not design around these — they are stated, not proposable.
@@ -150,6 +150,7 @@ One-off scrutiny artefacts — not domain knowledge, kept here so they aren't or
 | [[backlog-candidate-user-stories]] | Draft cards for every uncarded area [[user-story-coverage-stocktake]] found — nine epics, 30 stories and one spike covering Technical Support, Reporting, cross-event visibility, history browsing, event content, tentative holds, readiness chasing and reminders; every card carries its blocking unknown, and ten questions are escalated to the customer |
 | [[current-schema-scrutiny]] | `raw/current schema.md` — the deployed 25-table Postgres schema — checked against [[domain-model]], the fifteen domain pages and [[supabase-schema-ddl]]; seven critical defects including a `CHECK`-violating `event.status` default, two invented status values, an unenforceable double-booking block and zero `ON DELETE` clauses across 48 FKs, plus three wiki-side contradictions that caused them |
 | [[schema-migration-01]] | Runnable SQL fixing every defect in [[current-schema-scrutiny]] that a source actually grounds — restores 48 `on delete` clauses, 12 constraints and 41 indexes verbatim from `raw/original script.md`, reallocates [[event-planning-venue-booking-system\|brief §4]]'s ten named statuses one-per-table across `event_request` and `event`, and enforces the [#35](https://github.com/SinYang13/IS212-2026/discussions/35) double-booking block; eight further items are listed as team decisions rather than guessed at |
+| [[spm-24-implementation-decisions]] | Decisions taken building SPM-24 (register for a confirmed event) in the `connectsphere` repository — the public attendee view, the fixed name-and-email field set, duplicate and capacity refusal, and deviations from the candidate DDL; reconciled against [[schema]], with the one surviving disagreement (XOR vs always-present attendee identity) listed as open |
 
 ## Ingestion status
 
