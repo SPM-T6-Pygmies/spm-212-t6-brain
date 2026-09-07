@@ -29,7 +29,7 @@ Each object's own page remains the authority for its attributes, states, relatio
 | Equipment Item | A unit (or type/pool) of technical equipment maintained by Technical Support Staff | [[equipment-item]] |
 | Equipment Reservation | The record created when a coordinator-recorded equipment requirement is reviewed and committed | [[equipment-reservation]] |
 | Support Request | An event's need for technical support and its staffing | [[support-request]] |
-| Registration | A user account (Attendee)'s registration for a confirmed event | [[registration]] |
+| Registration | An Attendee's registration for a confirmed event, held by a user account or by a name-and-email pair | [[registration]] |
 | Change Request | A record of a change an Event Organiser requests against an event | [[change-request]] |
 | Notification | A message sent to a user when something relevant to them changes | [[notification]] |
 | Audit Record | Activity History and Change History captured for auditability | [[audit-record]] |
@@ -76,7 +76,7 @@ erDiagram
     USER_ACCOUNT ||--o{ EQUIPMENT_RESERVATION : reviews
     USER_ACCOUNT }o--o{ SUPPORT_REQUEST : "is assigned to"
     USER_ACCOUNT ||--o{ CHANGE_REQUEST : requests
-    USER_ACCOUNT ||--o{ REGISTRATION : holds
+    USER_ACCOUNT |o--o{ REGISTRATION : holds
     USER_ACCOUNT ||--o{ AUDIT_RECORD : generates
 ```
 
@@ -91,6 +91,9 @@ Notes on specific edges, where this wiki resolved a disagreement or a gap betwee
 - **A second `USER_ACCOUNT` ↔ `REGISTRATION` relationship is deliberately not drawn.** [[registration]]'s Relationships table has a second row beyond the Attendee-owns-Registration edge already in the diagram: `[[user-account]] (Event Coordinator) | many : 1`, citing [#33](https://github.com/SinYang13/IS212-2026/discussions/33) — "Attendees who do not self-register (e.g. VIPs) are supplied as a list to the Event Coordinator for processing, rather than added directly by the Event Organiser." This is omitted from the ER diagram, not overlooked: [#33](https://github.com/SinYang13/IS212-2026/discussions/33) and registration.md's own attribute table describe a procedural, input-provenance role (the Coordinator processes a supplied list) rather than a stored field or ownership relationship on the Registration record itself — no "processed by" or "entered by" attribute appears anywhere in [[registration]]'s Attributes table. This is the same reasoning already applied to omitting [[support-request]] ↔ [[equipment-reservation]] ("loose", [[event-planning-venue-booking-system|brief §4]]) from the diagram: a page-documented relationship that is explicitly procedural rather than structural is disclosed here, not drawn as an edge.
 
 ## Proposed relational schema (tables, PK/FK)
+
+> [!info] [[schema]] holds the applied DDL; this section is the diagram of it
+> The runnable Postgres/Supabase DDL for the tables below lives on [[schema]] and is the source of truth for column types, defaults, check constraints and indexes. This section is the conceptual diagram of that same model — if the two disagree, [[schema]] wins and this section is stale.
 
 > [!warning] A candidate physical data model, not a customer deliverable or a settled team decision
 > Nothing below is stated by either source. This section takes the fourteen domain-object pages' Attributes and Relationships tables and proposes one way to normalise them into relational tables with primary and foreign keys — the next layer down from the conceptual [[domain-model|ER diagram]] above. Every table, key and junction here is this wiki's structural proposal, carrying the same weight as the deferred items in the [[domain-model#Deferred-modelling register|register below]] — several rows below correspond directly to an existing `🔶 Team decision required` callout on the owning page, cited where that is the case. Table and column names are illustrative (`snake_case`, singular table names, surrogate `id` primary keys) and freely renameable; nothing here should be read back into a requirements document as confirmed.
@@ -307,9 +310,12 @@ erDiagram
 
     REGISTRATION {
         int registration_id PK
+        uuid registration_reference UK
         int event_id FK
         int session_id FK "nullable"
-        int attendee_user_account_id FK
+        int attendee_user_account_id FK "nullable — null for a guest registration"
+        string attendee_name "nullable — guest registrations only"
+        string attendee_email "nullable — guest registrations only"
         string status
         datetime checked_in_at "nullable"
         string checked_in_method "nullable"
@@ -400,7 +406,7 @@ erDiagram
     USER_ACCOUNT ||--o{ SUPPORT_REQUEST_ASSIGNMENT : "assigned to"
     EVENT ||--o{ REGISTRATION : accepts
     SESSION |o--o{ REGISTRATION : "may scope"
-    USER_ACCOUNT ||--o{ REGISTRATION : holds
+    USER_ACCOUNT |o--o{ REGISTRATION : holds
     REGISTRATION |o--o| WAITING_LIST_ENTRY : "queues, while waitlisted"
     EVENT ||--o{ CHANGE_REQUEST : receives
     USER_ACCOUNT ||--o{ CHANGE_REQUEST : requests
@@ -432,6 +438,10 @@ Every row is a structural choice this diagram had to make where the sources leav
 | `BOOKING_SLOT` as its own table (`booking_id`, `slot_date`, `slot`) rather than three boolean columns on `BOOKING`                                                                                 | A booking may cover one, two, or all three daily slots (full day = AM + PM + Night); a child table avoids denormalising that into fixed columns                                                   | [#50](https://github.com/SinYang13/IS212-2026/discussions/50); [[venue]]                 |
 | `EVENT_ESSENTIAL_ARRANGEMENT` as a per-event join/config table, not a fixed column set on `EVENT`                                                                                                  | The essential-arrangement set is determined per event — there is no single fixed list that applies to every event                                                                                 | [#80](https://github.com/SinYang13/IS212-2026/discussions/80); [[event]]                 |
 | `USER_ACCOUNT.credentials_hash` as a single opaque column                                                                                                                                          | Authentication method (password, SSO, MFA) is an open team decision; a hash column is method-agnostic until one is chosen                                                                         | 🔶 [#62](https://github.com/SinYang13/IS212-2026/discussions/62); [[user-account]]       |
+| The brief's ten example statuses allocated **one per table** — Draft/Submitted/Under Review/Approved/Rejected/Returned on `EVENT_REQUEST`, Planning/Blocked/Confirmed/Completed/Cancelled on `EVENT` | §4 offers a single example list spanning two records it elsewhere treats as separate; the split assigns each value exactly one owner, so no status is duplicated or ambiguous. `Returned` is named for the request by §5 | [[event-planning-venue-booking-system\|brief §4]]; [[event-request-workflow\|brief §5]]; [[event]]; [[event-request]] |
+| `EVENT.status` uses `Blocked` where §4's example list says *awaiting arrangements*                                                                                                                 | A team rename within what §4 left proposable ("for example"), recorded for traceability back to the brief's vocabulary. Status values are scoped per entity, so reusing a word §4's venue calendar also uses is no more a conflict than `Confirmed`/`Cancelled` already being shared between `EVENT` and `BOOKING` | 🔶 [[event-planning-venue-booking-system\|brief §4]]; [[event]]                          |
+| `REGISTRATION` identifies its holder by **either** `attendee_user_account_id` **or** an `attendee_name` + `attendee_email` pair, enforced by a check constraint                                     | Attendees are external users whose onboarding is out of scope, so Release 1 must accept registrations with no account to point at; a nullable FK plus an XOR check keeps every other writer unaffected | 🔶 [#53](https://github.com/SinYang13/IS212-2026/discussions/53); [[registration]]       |
+| `REGISTRATION.registration_reference` as a UUID alongside the surrogate PK                                                                                                                          | The application mints identity before the row exists, and a `generated always as identity` bigint cannot carry a caller-chosen value; it doubles as the reference a guest attendee can quote                | 🔶 [#53](https://github.com/SinYang13/IS212-2026/discussions/53); [[registration]]       |
 
 Not modelled as separate tables, and why: **Room Layout** is a lookup table (`ROOM_LAYOUT`) here rather than a richer object, following the plain-enum reading of 🔶 [#83](https://github.com/SinYang13/IS212-2026/discussions/83) (the alternative — capacity-per-layout — would need its own table if the team decides Room Layout should be first-class); **Client Organisation**'s primary-contact/administrator question (🔶 [#65](https://github.com/SinYang13/IS212-2026/discussions/65), [#81](https://github.com/SinYang13/IS212-2026/discussions/81)) adds no column here since neither role is confirmed to exist; **Support Request**'s staff-availability representation (🔶 [#89](https://github.com/SinYang13/IS212-2026/discussions/89)) is left off `USER_ACCOUNT` entirely, since no source specifies what an availability record would even contain.
 

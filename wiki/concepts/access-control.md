@@ -48,7 +48,7 @@ Two answers together leave the system with no defined way to create its own user
 Combined with [#52](https://github.com/SinYang13/IS212-2026/discussions/52) — no admin role and no user-administration business role defined (see [[user-roles]]) — nothing in the specified scope creates accounts for either internal or external users.
 
 > [!question]- Team decision required — user provisioning
-> How users come to exist. Options: self-registration for external users, invitation issued by an Event Coordinator, pre-seeded internal accounts, or treating provisioning as out of scope with seeded data. [#53](https://github.com/SinYang13/IS212-2026/discussions/53) confirms Attendees are *users* of the system (they "register for events and view their registration status"), so an Attendee identity of some kind is required even if onboarding is not built.
+> How users come to exist. Options: self-registration for external users, invitation issued by an Event Coordinator, pre-seeded internal accounts, or treating provisioning as out of scope with seeded data. [#53](https://github.com/SinYang13/IS212-2026/discussions/53) confirms Attendees are *users* of the system (they "register for events and view their registration status"), so an Attendee identity of some kind is required even if onboarding is not built. **Partially closed for Attendees:** [[schema]] now accepts a registration identified by a name-and-email pair with no account behind it, so the Attendee path no longer depends on provisioning — see [[registration]]. The question stands unchanged for internal staff roles and for Event Organisers.
 
 ## Protected Information
 

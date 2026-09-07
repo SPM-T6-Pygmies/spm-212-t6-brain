@@ -148,20 +148,20 @@ The following describes the broad functionality ConnectSphere is considering for
 |Booking Conflict Detection|The system should identify incompatible or overlapping venue bookings and help prevent double-booking.|
 |Setup and Turnaround Time|Venue availability may need to consider preparation before an event and reset time after an event, rather than only the published event start and end times.|
 
-|**Functionality Area**|**Description**|
-|---|---|
-|Venue Unavailability Management|Venue Staff can block venues because of maintenance, renovation, safety issues, internal activities, or other operational reasons.|
-|Room Layout Management|Event requirements may include layouts such as classroom, theatre, boardroom, banquet, exhibition, or another arrangement. Venue Staff can record which layouts are supported by each venue.|
-|Event Capacity Management|Expected attendance and venue capacity should be considered throughout planning. A significant attendance change may require the suitability of an existing venue booking to be reviewed.|
-|Equipment Catalogue|The system maintains information about equipment available for events, including type, description, quantity, location, and operational status.|
-|Equipment Request Management|Event Coordinators can record equipment required for an event, including quantities and relevant technical requirements.|
-|Equipment Availability Checking|Technical Support Staff can determine whether sufficient suitable equipment is available for the required date and time.|
-|Equipment Reservation|Available equipment can be reserved for an event so that the same limited equipment is not simultaneously committed to incompatible events.|
-|Equipment Maintenance Status|Equipment that is damaged, being repaired, or otherwise unavailable should not be treated as available for event use.|
-|Technical Support Requests|Event Coordinators can indicate when an event requires technical support before or during the event and describe the support required.|
-|Technical Staff Assignment|Where required, suitable Technical Support Staff can be allocated to support an event according to availability and event requirements.|
-|Event Readiness Tracking|Event Coordinators can determine whether important arrangements such as venue, equipment, technical support, programme, and registration setup are ready.|
-|Outstanding Action Tracking|The system can identify planning matters that are incomplete or require action before an event can be confirmed or delivered.|
+| **Functionality Area**          | **Description**                                                                                                                                                                              |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Venue Unavailability Management | Venue Staff can block venues because of maintenance, renovation, safety issues, internal activities, or other operational reasons.                                                           |
+| Room Layout Management          | Event requirements may include layouts such as classroom, theatre, boardroom, banquet, exhibition, or another arrangement. Venue Staff can record which layouts are supported by each venue. |
+| Event Capacity Management       | Expected attendance and venue capacity should be considered throughout planning. A significant attendance change may require the suitability of an existing venue booking to be reviewed.    |
+| Equipment Catalogue             | The system maintains information about equipment available for events, including type, description, quantity, location, and operational status.                                              |
+| Equipment Request Management    | Event Coordinators can record equipment required for an event, including quantities and relevant technical requirements.                                                                     |
+| Equipment Availability Checking | Technical Support Staff can determine whether sufficient suitable equipment is available for the required date and time.                                                                     |
+| Equipment Reservation           | Available equipment can be reserved for an event so that the same limited equipment is not simultaneously committed to incompatible events.                                                  |
+| Equipment Maintenance Status    | Equipment that is damaged, being repaired, or otherwise unavailable should not be treated as available for event use.                                                                        |
+| Technical Support Requests      | Event Coordinators can indicate when an event requires technical support before or during the event and describe the support required.                                                       |
+| Technical Staff Assignment      | Where required, suitable Technical Support Staff can be allocated to support an event according to availability and event requirements.                                                      |
+| Event Readiness Tracking        | Event Coordinators can determine whether important arrangements such as venue, equipment, technical support, programme, and registration setup are ready.                                    |
+| Outstanding Action Tracking     | The system can identify planning matters that are incomplete or require action before an event can be confirmed or delivered.                                                                |
 
 |**Functionality Area**|**Description**|
 |---|---|

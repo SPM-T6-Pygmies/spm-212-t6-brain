@@ -24,7 +24,7 @@ A message sent to a user when something relevant to them changes: either **event
 | Message content  | Description of what changed, generated per trigger scenario                                                                                                 | ⚠️ Partial  | [[notifications\|brief §6]] |
 | Delivery timing  | Real-time or batched at a configurable interval; no hard delivery-time SLA either way                                                                       | ✅ Specified | [#55](https://github.com/SinYang13/IS212-2026/discussions/55)                         |
 
-Recipient is marked ⚠️ Partial: §6 names situations that "may generate a notification" but never names *who* receives each one — see Trigger scenarios, below, and Open modelling questions. Message content is likewise ⚠️ Partial: the brief establishes that a notification exists per scenario, not its wording or template.
+Recipient is marked ⚠️ Partial: §6 names situations that "may generate a notification" but never names *who* receives each one. It stays ⚠️ Partial and does not become ✅ Specified now that a Recipient matrix exists below — the matrix is the team's proposal, and a proposal the customer has not confirmed is not a customer statement. Message content is likewise ⚠️ Partial: the brief establishes that a notification exists per scenario, not its wording or template.
 
 ## Trigger scenarios
 
@@ -51,6 +51,39 @@ The brief's full list of situations that "may generate a notification" ([[notifi
 > Brief §6 names the trigger only, in every one of the fourteen rows. No recipient matrix is given. The "Likely audience" values above are inferred from the role responsibilities described in [[connectsphere-event-services|brief §2]], §3 and §5 (e.g. the Event Coordinator is "the main internal point of contact," Venue Staff review booking requests) — they are a structural proposal, not a specified data model. See Open modelling questions.
 
 Rows 13 and 14 carry a second citation because they are also separately confirmed in Q&A, not only listed in §6: [#47](https://github.com/SinYang13/IS212-2026/discussions/47) confirms incomplete-arrangement reminders exist (see Reminders, below — note row 13 in §6 is the *notification* framing of the same underlying condition that [#47](https://github.com/SinYang13/IS212-2026/discussions/47)'s *reminder* answers), and [#54](https://github.com/SinYang13/IS212-2026/discussions/54) confirms that a venue availability change affecting an upcoming event "is a notification scenario," with the Event Coordinator responsible for acting on it.
+
+## Recipient matrix
+
+The decision §6 never made, now proposed. Each row is one backlog card: one trigger, one recipient role, one independently testable behaviour. This is the structural output of the "Likely audience" reasoning above — that column is the inference, this table is what the team committed to build from it.
+
+| § | Trigger | Recipient | Card | Scope |
+|---|---|---|---|---|
+| 1 | New event request submitted | Event Operations Manager | SPM-56 | 🎯 Release 1 |
+| 2 | Coordinator assigned | Assigned Event Coordinator | SPM-57 | 🎯 Release 1 |
+| 2 | Coordinator assigned | Event Organiser | SPM-58 | 🎯 Release 1 |
+| 3 | Clarification or amendment requested | Event Organiser | SPM-59 | 🎯 Release 1 |
+| 4 | Request approved, rejected, or returned | Event Organiser | SPM-60 | 🎯 Release 1 |
+| 5 | Venue booking requested | Venue Staff | SPM-61 | 🎯 Release 1 |
+| 5 | Venue booking approved or rejected | Requesting Event Coordinator | SPM-62 | 🎯 Release 1 |
+| 5 | Confirmed booking cancelled | Venue Staff | SPM-63 | 🎯 Release 1 |
+| 6 | Equipment requirement recorded or changed | Technical Support Staff | SPM-64 | 🎯 Release 1 |
+| 6 | Equipment confirmed or unavailable | Assigned Event Coordinator | SPM-65 | 🎯 Release 1 |
+| 7 | Event confirmed | Event Organiser | SPM-66 | 🎯 Release 1 |
+| 8 | Significant change requested | Assigned Event Coordinator | SPM-67 | 🎯 Release 1 |
+| 9 | Event rescheduled, postponed, or cancelled | Event Organiser | SPM-68 | 🎯 Release 1 |
+| 9 | Event rescheduled, postponed, or cancelled | Registered Attendees | SPM-69 | 🎯 Release 1 |
+| 10 | Registration opens or closes | Attendees | SPM-70 | 🎯 Release 1 |
+| 14 | Venue or equipment availability change affects an upcoming event | Assigned Event Coordinator | SPM-71 | 🧩 Adjacent — core feature 9 |
+| 11 | Registration reaches capacity | Assigned Event Coordinator | SPM-72 | 🧩 Adjacent — core feature 18 |
+| 11 | Waiting-list status changes | Waitlisted Attendee | SPM-73 | 📋 Backlog |
+| 12 | Registered Attendee withdraws, affecting availability | Assigned Event Coordinator | SPM-74 | 📋 Backlog |
+| 13 | Upcoming event still has incomplete arrangements | Assigned Event Coordinator | SPM-75 | 📋 Backlog |
+
+Three structural decisions the split forced, each a team proposal rather than a customer statement:
+
+- **A trigger with two audiences is two cards, not one.** §6 rows 2, 5 and 9 each reach materially different recipients — row 9 reaches both the client contact and an unbounded set of external Attendees, whose notification is bounded by [[access-control]] in a way the Organiser's is not ([#91](https://github.com/SinYang13/IS212-2026/discussions/91)).
+- **No self-notification.** A role is not notified of an action it performed itself. This is why event confirmation (row 7) is carded for the Event Organiser only, though the "Likely audience" column infers the Coordinator too.
+- **Row 12 collapses without a waiting list.** Its qualifier, "where that affects availability", presupposes promotion from a queue. With the waiting list `📋 Backlog`, a Release 1 withdrawal simply frees the place — a state change with no audience.
 
 ## Reminders (time-driven)
 
@@ -111,7 +144,7 @@ Whether a sent notification is further tracked as read/unread, acknowledged, or 
 ## Open modelling questions
 
 > [!question]- Team decision required — recipient matrix per trigger scenario
-> Which role(s) receive each of the fourteen §6 trigger scenarios, and whether recipients are derived automatically from relationship to the event or configured separately. §6 lists triggers only; no recipient matrix is given.
+> Which role(s) receive each of the fourteen §6 trigger scenarios, and whether recipients are derived automatically from relationship to the event or configured separately. §6 lists triggers only; no recipient matrix is given. **A proposal now exists** — see Recipient matrix, above, and the twenty cards behind it. It remains open until the customer confirms it: the open part is no longer "what should the matrix be" but "is this matrix right", which is a shorter conversation and a specific one to have at the next Q&A.
 
 > [!question]- Team decision required — per-user vs per-type channel preference
 > [#37](https://github.com/SinYang13/IS212-2026/discussions/37) fixes channel configurability at the notification-**type** level. The brief separately lists "communication preferences" as user-profile data ([[event-planning-venue-booking-system|brief §4]]). Whether and how a per-user preference interacts with, or overrides, the per-type configuration is not reconciled by either source.

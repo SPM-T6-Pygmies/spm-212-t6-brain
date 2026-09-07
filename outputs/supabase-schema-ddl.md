@@ -9,6 +9,9 @@ tags: [schema, sql, postgres, supabase, ddl, data-model]
 
 # Supabase SQL Schema (DDL)
 
+> [!warning] Superseded by [[schema]]
+> This is an earlier draft, retained for provenance only. It predates the one-per-table status split and the account-less registrant model: its `event.status` reads `Draft/Approved/Confirmed/In Progress/Completed/Cancelled` and its `event_request.status` ends in `Withdrawn` — `In Progress` and a request-level `Withdrawn` are grounded in no source. Use [[schema]] for the current physical model.
+
 A runnable Postgres translation of the "Proposed relational schema (tables, PK/FK)" section of [[domain-model]], ready to paste into the Supabase SQL editor. All 25 tables, their keys, foreign keys, uniqueness and check constraints, plus indexes on every FK and `updated_at` triggers. Verified: the script runs clean end-to-end on Postgres 16 (`ON_ERROR_STOP=1`, single transaction, 25 tables created).
 
 > [!warning] A candidate physical data model, not a customer deliverable

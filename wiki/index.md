@@ -9,7 +9,7 @@ tags: [meta, index]
 
 Content catalog of every wiki page. Update whenever a page is created, renamed, or removed.
 
-**42 pages** — 4 sources, 16 concepts, 15 domain objects, 3 entities, 4 reviews. All raw documents ingested as of 2026-09-05.
+**47 pages** — 4 sources, 16 concepts, 16 domain objects, 3 entities, 8 reviews. All raw documents ingested as of 2026-09-05.
 
 > [!important] Hard rules the customer actually committed to
 > Most of this brief is deliberately open, so the few fixed constraints matter. Do not design around these — they are stated, not proposable.
@@ -91,13 +91,13 @@ One summary page per ingested document in `raw/`.
 
 ## Domain objects
 
-The object model — what each thing *is*, as opposed to what happens to it. Start at [[domain-model]] for the ER diagram and the register of settled and deferred modelling decisions.
+The object model — what each thing *is*, as opposed to what happens to it. Start at [[domain-model]] for the ER diagram and the register of settled and deferred modelling decisions, and [[schema]] for the applied DDL.
 
 ### Event flow
 
 | Page | Covers |
 |---|---|
-| [[event]] | The central aggregate; attributes, 11 statuses, essential arrangements, comments, documents |
+| [[event]] | The central aggregate; attributes, the five post-approval statuses, essential arrangements, comments, documents |
 | [[event-request]] | The pre-approval artefact; the request-vs-event modelling fork |
 | [[session]] | First-class child of an event, with its own venue, equipment and attendance limit |
 | [[change-request]] | Significant vs ordinary changes; the revalidation trigger |
@@ -118,7 +118,7 @@ The object model — what each thing *is*, as opposed to what happens to it. Sta
 |---|---|
 | [[user-account]] | Roles, multi-role, the capability matrix, coordinator assignment rules |
 | [[client-organisation]] | The two stated cardinalities; cross-organisation access |
-| [[registration]] | Registration period, waiting list, 3-day window, check-in |
+| [[registration]] | Registration period, waiting list, 3-day window, check-in, account-less (guest) registrants |
 
 ### Cross-cutting
 
@@ -126,6 +126,7 @@ The object model — what each thing *is*, as opposed to what happens to it. Sta
 |---|---|
 | [[notification]] | 14 trigger scenarios, channels, batch delivery, reminders |
 | [[audit-record]] | Activity history vs change history; retention boundary |
+| [[schema]] | ⭐ The applied physical model — 25-table Postgres/Supabase DDL, keys, check constraints, indexes, RLS; source of truth for column types, defaults and status enumerations |
 
 ## Entities
 
@@ -144,7 +145,11 @@ One-off scrutiny artefacts — not domain knowledge, kept here so they aren't or
 | [[user-stories-assignment-scrutiny]] | `raw/User Stories Assignment.md` checked against `raw/IS212 User Story Standard — v1.0.md` and against this wiki's sourced requirements; proposed fixes for every story plus three recommended additions to Registration |
 | [[user-stories-proposed-rewrites]] | Every proposed rewrite and recommended new card from [[user-stories-assignment-scrutiny]], consolidated into one build-ordered, ready-to-paste replacement backlog |
 | [[release-1-candidate-user-stories]] | Candidate backlog derived row-by-row from [[release-1-scope]]'s `🎯`/`🧩` register — full coverage table, new cards for every uncarded area, and Release 1-scoped rewrites of Reg1/Reg5 now that waiting list and check-in are `📋 Backlog` |
-| [[supabase-schema-ddl]] | Runnable Postgres/Supabase DDL for [[domain-model]]'s proposed relational schema — 25 tables with PK/FK, check constraints, FK indexes, `updated_at` triggers and RLS enabled; plus the constraints that can't be expressed declaratively |
+| [[supabase-schema-ddl]] | ⚠️ **Superseded by [[schema]]** — the earlier DDL draft, kept for provenance. Its `event.status` (`Draft/Approved/Confirmed/In Progress/Completed/Cancelled`) and `event_request.status` (…`Withdrawn`) predate the one-per-table status split and contain two ungrounded values |
+| [[user-story-coverage-stocktake]] | Cross-references Linear's 76 `SPM - IS212` issues against [[release-1-candidate-user-stories]], [[user-stories-proposed-rewrites]] and [[event-planning-venue-booking-system]]'s functionality-area table; both flagged Release 1 anomalies now resolved, and all seventeen `📋 Backlog`/undecided areas with a citation but no card are now carded in [[backlog-candidate-user-stories]] |
+| [[backlog-candidate-user-stories]] | Draft cards for every uncarded area [[user-story-coverage-stocktake]] found — nine epics, 30 stories and one spike covering Technical Support, Reporting, cross-event visibility, history browsing, event content, tentative holds, readiness chasing and reminders; every card carries its blocking unknown, and ten questions are escalated to the customer |
+| [[current-schema-scrutiny]] | `raw/current schema.md` — the deployed 25-table Postgres schema — checked against [[domain-model]], the fifteen domain pages and [[supabase-schema-ddl]]; seven critical defects including a `CHECK`-violating `event.status` default, two invented status values, an unenforceable double-booking block and zero `ON DELETE` clauses across 48 FKs, plus three wiki-side contradictions that caused them |
+| [[schema-migration-01]] | Runnable SQL fixing every defect in [[current-schema-scrutiny]] that a source actually grounds — restores 48 `on delete` clauses, 12 constraints and 41 indexes verbatim from `raw/original script.md`, reallocates [[event-planning-venue-booking-system\|brief §4]]'s ten named statuses one-per-table across `event_request` and `event`, and enforces the [#35](https://github.com/SinYang13/IS212-2026/discussions/35) double-booking block; eight further items are listed as team decisions rather than guessed at |
 
 ## Ingestion status
 

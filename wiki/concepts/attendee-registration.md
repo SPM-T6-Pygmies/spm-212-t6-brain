@@ -102,7 +102,7 @@ Registration and attendance are distinguished — ConnectSphere may record wheth
 |---|---|---|
 | Can an Attendee register for multiple events simultaneously? Any limit? | **No limit has been specified.** The customer invites a proposal if the solution requires restrictions | [#48](https://github.com/SinYang13/IS212-2026/discussions/48) |
 | What can an Attendee see? | Events they have registered for **and** events open for registration | [#10](https://github.com/SinYang13/IS212-2026/discussions/10) |
-| Do Attendees need an account? | Attendees are supported as external users who register and view registration status; **onboarding features are not listed** | [#53](https://github.com/SinYang13/IS212-2026/discussions/53) |
+| Do Attendees need an account? | Attendees are supported as external users who register and view registration status; **onboarding features are not listed**. The team's answer: **no** — [[schema]] accepts a registration identified by a name-and-email pair where no account exists | [#53](https://github.com/SinYang13/IS212-2026/discussions/53); [[registration]] |
 
 Attendees must not be able to view internal planning information (Source: customer-brief-no-1, s8b). See [[access-control]].
 

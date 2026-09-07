@@ -77,7 +77,7 @@ Not carried over from [[customer-brief-no-1]]'s wider list: event category, prog
 
 ### One status disappeared
 
-[[customer-brief-no-1]] listed ten example statuses; this briefing lists nine. The one dropped is **awaiting arrangements**. Both lists are explicitly examples ("Examples may include…"), so this is not a contradiction — but it removes the only source mention of the status [[event]] models between *planning* and *confirmed*. See [[event-lifecycle]].
+[[customer-brief-no-1]] listed ten example statuses; this briefing lists nine. The one dropped is **awaiting arrangements**. Both lists are explicitly examples ("Examples may include…"), so this is not a contradiction — but it removes the only source mention of the state [[event]] models between *planning* and *confirmed* — now carried under the team's own name, `Blocked`. See [[event-lifecycle]], [[schema]].
 
 ### Confirmation arrives without a feature
 

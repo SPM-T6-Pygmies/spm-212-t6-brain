@@ -9,7 +9,7 @@ tags: [domain, registration, attendee]
 
 # Registration
 
-The record of a [[user-account]] (Attendee)'s registration for a confirmed [[event]] with registration enabled. Carries a Waiting List Entry when the event is at capacity. Registration is conceptually distinguishable from the Attendance information recorded at check-in, though whether that means a separate record or a field on this one is open — see Attendance / check-in. Process detail lives in [[attendee-registration]]; this page is the structural reference.
+The record of an Attendee's registration for a confirmed [[event]] with registration enabled. The Attendee is identified either by a [[user-account]] or, where none exists, by a name-and-email pair ([#53](https://github.com/SinYang13/IS212-2026/discussions/53)). Carries a Waiting List Entry when the event is at capacity. Registration is conceptually distinguishable from the Attendance information recorded at check-in, though whether that means a separate record or a field on this one is open — see Attendance / check-in. Process detail lives in [[attendee-registration]]; this page is the structural reference.
 
 **Release 1 scope** ([[release-1-scope]]): the Attendee, Event and Status attributes, and the Registered/Withdrawn states and Withdrawal transition, are 🎯 Release 1 — core feature 18. Registration period and Event capacity / attendance limit are `🧩 Adjacent` — feature 18 is conditional on registration being "enabled," and an unbounded cap against a capacity-checked venue is incoherent. The Waitlisted status, the Waiting List Entry state machine, and Attendance / check-in are `📋 Backlog` — none is named in the core 20.
 
@@ -17,7 +17,9 @@ The record of a [[user-account]] (Attendee)'s registration for a confirmed [[eve
 
 | Field | Meaning | Status | Ref |
 |---|---|---|---|
-| Attendee | The [[user-account]] who registered | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
+| Attendee | The [[user-account]] who registered — **optional**, since an attendee may register without an account | ⚠️ Partial | [[event-planning-venue-booking-system\|brief §4]]; [#53](https://github.com/SinYang13/IS212-2026/discussions/53) |
+| Attendee name + email | Identity for an account-less (external) registrant, supplied in place of a [[user-account]] | 🔶 Team decision | [#53](https://github.com/SinYang13/IS212-2026/discussions/53) |
+| Registration reference | Opaque UUID minted by the application, doubling as the reference an Attendee can quote when checking status | 🔶 Team decision | [#53](https://github.com/SinYang13/IS212-2026/discussions/53) |
 | Event | The [[event]] registered for | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
 | Status | Registered / waitlisted / withdrawn — see States | ✅ Specified | [[event-planning-venue-booking-system\|brief §4]] |
 | Waiting-list position | Position in the FIFO queue, while waitlisted | ✅ Specified | [#26](https://github.com/SinYang13/IS212-2026/discussions/26) |
@@ -27,6 +29,9 @@ The record of a [[user-account]] (Attendee)'s registration for a confirmed [[eve
 | Registration information fields | What an Attendee must supply when registering (name, dietary needs, accessibility, etc.) | 🔶 Team decision | [#22](https://github.com/SinYang13/IS212-2026/discussions/22) |
 
 A record-creation timestamp is not named as a field by either source; it is a structural necessity common to any record type (e.g. for FIFO ordering, auditability), not a customer-specified attribute, and is omitted from the table above on that basis.
+
+> [!question]- Team decision required — account-less (guest) registration
+> [#53](https://github.com/SinYang13/IS212-2026/discussions/53) confirms Attendees are *users* who "register for events and view their registration status", but leaves external-user onboarding out of the feature list — so Release 1 must accept registrations with no [[user-account]] to point at. [[schema]] takes the guest-registration route: `attendee_user_account_id` is nullable, an identity check requires **either** an account **or** a name-plus-email pair (never both, never neither), and a `registration_reference` UUID gives the registrant something to quote. Uniqueness is enforced per event on the lower-cased email as well as on the account id. This is a structural decision the team made to keep feature 18 demonstrable, not a customer instruction; what the guest path should collect beyond name and email is still open under [#22](https://github.com/SinYang13/IS212-2026/discussions/22). See [[access-control]] and [[attendee-registration]].
 
 ## States
 
@@ -86,7 +91,7 @@ Whether attendance is modelled as a field on the Registration record or as a ful
 
 | Related object | Cardinality | Rule | Ref |
 |---|---|---|---|
-| [[user-account]] | many : 1 | Each registration belongs to exactly one Attendee account; an Attendee account may hold many registrations, with no stated limit | [[event-planning-venue-booking-system\|brief §4]]; [#48](https://github.com/SinYang13/IS212-2026/discussions/48) |
+| [[user-account]] | many : 0..1 | A registration belongs to at most one Attendee account, and an account may hold many registrations with no stated limit — but the account is **optional**: a guest registration carries a name and email instead (see Attributes) | [[event-planning-venue-booking-system\|brief §4]]; [#48](https://github.com/SinYang13/IS212-2026/discussions/48); [#53](https://github.com/SinYang13/IS212-2026/discussions/53) |
 | [[event]] | many : 1 | Each registration is for exactly one event; an event has many registrations, when registration is enabled | [[event-planning-venue-booking-system\|brief §4]] |
 | [[session]] | many : 1 (0..1) | Multi-session events may set a different attendance limit per session; whether a Registration attaches to the event as a whole or to a specific session is not specified | [#74](https://github.com/SinYang13/IS212-2026/discussions/74) |
 | [[user-account]] (Event Coordinator) | many : 1 | Attendees who do not self-register (e.g. VIPs) are supplied as a list to the Event Coordinator for processing, rather than added directly by the Event Organiser | [#33](https://github.com/SinYang13/IS212-2026/discussions/33) |
@@ -101,6 +106,8 @@ Whether attendance is modelled as a field on the Registration record or as a ful
 - Waiting-list promotion is FIFO with manual override ([#26](https://github.com/SinYang13/IS212-2026/discussions/26)); the acceptance window is a fixed 3 days ([#44](https://github.com/SinYang13/IS212-2026/discussions/44)).
 - Attendance is manual check-in at the counter, by QR-code scan or by staff — not self-reported and not auto-marked ([#38](https://github.com/SinYang13/IS212-2026/discussions/38)).
 - Registration status and attendance information must be kept distinguishable ([[event-planning-venue-booking-system|brief §4]]); whether that is implemented as separate records or as fields on one record is left to the team — see Open modelling questions.
+- A registration identifies its holder by **either** a [[user-account]] **or** a name-and-email pair, never both and never neither ([[schema]]'s `registration_attendee_identity_chk`, 🔶 [#53](https://github.com/SinYang13/IS212-2026/discussions/53)).
+- One live registration per attendee per event, enforced on the account id and, for guests, on the lower-cased email ([[schema]]).
 
 ## Open modelling questions
 

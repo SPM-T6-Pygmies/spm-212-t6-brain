@@ -37,7 +37,7 @@ A candidate backlog derived directly from [[release-1-scope]]'s register: every 
 | Venue booking request                 | 🎯     | **VN5**                                                                   |
 | Venue booking approval                | 🎯     | V5 *(see [[user-stories-proposed-rewrites]])*                             |
 | Booking conflict detection            | 🎯     | V1 *(see [[user-stories-proposed-rewrites]])*                             |
-| Venue unavailability management       | 🧩     | V4 *(see [[user-stories-proposed-rewrites]])*                             |
+| Venue unavailability management       | 🧩     | V4 *(see [[user-stories-proposed-rewrites]])*, plus **NT17**              |
 | Room layout management                | 🧩     | No dedicated card — satisfied as an attribute on VN1 (see VN1's note)     |
 | Setup and turnaround time             | 🧩     | V6 *(see [[user-stories-proposed-rewrites]])*                             |
 | Equipment request management          | 🎯     | **EQ2**, plus E2 *(see [[user-stories-proposed-rewrites]])*               |
@@ -50,12 +50,12 @@ A candidate backlog derived directly from [[release-1-scope]]'s register: every 
 | Attendee registration                 | 🎯     | **RG1** *(supersedes Reg1 — see callout below)*                           |
 | Withdrawal                            | 🎯     | **RG4** *(supersedes Reg5 — see callout below)*                           |
 | Registration period                   | 🧩     | Reg2 *(see [[user-stories-proposed-rewrites]])*                           |
-| Registration capacity                 | 🧩     | Reg3 *(see [[user-stories-proposed-rewrites]])*                           |
+| Registration capacity                 | 🧩     | Reg3 *(see [[user-stories-proposed-rewrites]])*, plus **NT18**            |
 | Event change requests                 | 🎯     | **CH1**                                                                   |
 | Impact of event changes               | 🎯     | **CH2**                                                                   |
 | Rescheduling                          | 🧩     | **CH3**                                                                   |
 | Cancellation management               | 🧩     | **CH4** *(builds on V2 — see [[user-stories-proposed-rewrites]])*         |
-| Notification system                   | 🎯     | **NT1**                                                                   |
+| Notification system                   | 🎯     | **NT1** (mechanism) + **NT2–NT16** (one card per trigger × recipient)     |
 
 `📋 Backlog` rows (waiting list, check-in/attendance recording, event categories, recurring/reuse, multi-session, supporting documents, tentative holding, event capacity management as an ongoing tracker, outstanding action tracking, reminders, event calendar, event/venue search & filtering for events, role-based dashboard, activity/change history browsing, reporting) are out of scope for this backlog by design — see [[release-1-scope]] for why, and [[open-questions]] for what each still owes the customer.
 
@@ -305,17 +305,292 @@ See **RA3** above — [[release-1-scope]] is explicit that only the confirmation
 
 ## Notifications
 
-### NT1 — Receive notification of relevant event activity
+Brief §6 lists fourteen situations that "may generate a notification" and names a recipient for none of them. NT1 originally carried all fourteen as a single acceptance criterion — a card describing every notification in the system, which is not one piece of work and not testable as one. It is split here by the standard's §7.2 **Variations in data** pattern: the delivery mechanism stays on NT1, and each trigger × recipient pair becomes its own card.
+
+The split resolves the recipient matrix that [[notification]] and [[notifications]] both record as a team decision. Every card names exactly one recipient role, which is what makes it independently testable — and forces the recipient question to be answered card by card rather than deferred wholesale. The resulting matrix is mirrored in [[notification]] "Recipient matrix", which is the source of truth for it.
+
+**Three decisions the split forced**, none of them customer statements:
+
+1. **A trigger with two audiences is two cards.** §6 rows 2, 5 and 9 each reach materially different recipients. Row 9 is the clearest: notifying the Event Organiser and notifying an unbounded set of external Attendees differ in fan-out and in what [[access-control]] permits the message to contain ([#91](https://github.com/SinYang13/IS212-2026/discussions/91)).
+2. **No self-notification.** A role is not notified of an action it performed itself — so event confirmation (row 7) is carded for the Organiser only, though [[notification]]'s inferred-audience column names the Coordinator too.
+3. **Row 12 collapses without a waiting list.** "Where that affects availability" presupposes promotion from a queue; with the waiting list `📋 Backlog`, a Release 1 withdrawal just frees the place.
+
+**Applies to every card below and is not repeated on each:** the recipient can open the underlying record from the notification and act on it there, and can mark it read. Read/unread state is **not modelled by either source** — [[notification]] "States" records that whether a sent notification is tracked as read, acknowledged, or dismissed is unaddressed. The mark-read AC is the team's minimal proposal for the "acknowledge" half of the requirement and should be confirmed with the customer.
+
+### Register
+
+| Card | Recipient | Trigger (§6 row) | Scope | Linear |
+|---|---|---|---|---|
+| NT1 | — (mechanism) | all | 🎯 Release 1 | SPM-47 |
+| NT2 | Event Operations Manager | new event request submitted (1) | 🎯 Release 1 | SPM-56 |
+| NT3 | Assigned Event Coordinator | coordinator assigned (2) | 🎯 Release 1 | SPM-57 |
+| NT4 | Event Organiser | coordinator assigned (2) | 🎯 Release 1 | SPM-58 |
+| NT5 | Event Organiser | clarification or amendment requested (3) | 🎯 Release 1 | SPM-59 |
+| NT6 | Event Organiser | request approved, rejected, or returned (4) | 🎯 Release 1 | SPM-60 |
+| NT7 | Venue Staff | venue booking requested (5) | 🎯 Release 1 | SPM-61 |
+| NT8 | Requesting Event Coordinator | booking approved or rejected (5) | 🎯 Release 1 | SPM-62 |
+| NT9 | Venue Staff | confirmed booking cancelled (5) | 🎯 Release 1 | SPM-63 |
+| NT10 | Technical Support Staff | equipment requirement recorded or changed (6) | 🎯 Release 1 | SPM-64 |
+| NT11 | Assigned Event Coordinator | equipment confirmed or unavailable (6) | 🎯 Release 1 | SPM-65 |
+| NT12 | Event Organiser | event confirmed (7) | 🎯 Release 1 | SPM-66 |
+| NT13 | Assigned Event Coordinator | significant change requested (8) | 🎯 Release 1 | SPM-67 |
+| NT14 | Event Organiser | rescheduled, postponed, or cancelled (9) | 🎯 Release 1 | SPM-68 |
+| NT15 | Registered Attendees | rescheduled, postponed, or cancelled (9) | 🎯 Release 1 | SPM-69 |
+| NT16 | Attendees | registration opens or closes (10) | 🎯 Release 1 | SPM-70 |
+| NT17 | Assigned Event Coordinator | availability change affects an upcoming event (14) | 🧩 Adjacent — core feature 9 | SPM-71 |
+| NT18 | Assigned Event Coordinator | registration reaches capacity (11) | 🧩 Adjacent — core feature 18 | SPM-72 |
+| NT19 | Waitlisted Attendee | waiting-list status changes (11) | 📋 Backlog | SPM-73 |
+| NT20 | Assigned Event Coordinator | withdrawal affecting availability (12) | 📋 Backlog | SPM-74 |
+| NT21 | Assigned Event Coordinator | incomplete arrangements (13) | 📋 Backlog | SPM-75 |
+
+> [!warning] Four Release 1 notifications had no ticket at all before this split
+> NT2, NT4, NT11 and NT16 are behaviours [[notifications|brief §6]] names explicitly and no card carried. NT11 is the starkest: "requested equipment is confirmed or found to be unavailable" is §6 row 6 verbatim, and the coordinator who raised the requirement was never told the outcome. They were invisible precisely because notifications were scattered as one-line ACs across other people's cards — which is the argument for the split, not an incidental finding.
+
+### NT1 — Notification delivery mechanism
 
 **Story:** As a system user — invoking the standard's §4.2 "genuinely universal capability" exception: every role receives notifications through the same mechanism, only the triggering scenarios and content differ by role and relationship to the event — I want to be notified when something relevant to an event I'm involved in happens, so I don't have to check manually.
 
 **AC:**
-- Given one of the Release 1 trigger scenarios occurs — request submitted, coordinator assigned, request approved/rejected/returned, venue booking requested/approved/rejected/changed, equipment confirmed or found unavailable, event confirmed, significant change requested, event rescheduled or cancelled, registration opens or closes — then the relevant user(s) receive a notification (Source: customer-brief-no-1, s6; see [[notifications]] "Notification Scenarios")
 - Notifications are delivered both in-app and by email, configurable per notification type ([#37](https://github.com/SinYang13/IS212-2026/discussions/37))
 - A notification never discloses information the recipient is not otherwise entitled to see — e.g. an Attendee's notification never surfaces internal planning information ([#91](https://github.com/SinYang13/IS212-2026/discussions/91))
-- Out of scope for Release 1: reminders for incomplete arrangements and waiting-list status changes, since the underlying features are `📋 Backlog` ([[release-1-scope]])
+- Email is treated as a notification-channel requirement, not a general integration requirement ([#79](https://github.com/SinYang13/IS212-2026/discussions/79))
+- Out of scope for Release 1: reminders (NT21) and waiting-list status changes (NT19), since the underlying features are `📋 Backlog` ([[release-1-scope]])
 
-**Open question:** the recipient matrix — exactly which roles receive which notification, beyond "the party affected" — is not specified by the customer and is left to the team ([[notifications]] "Team decision required — recipient matrix"). Batch vs. real-time delivery is explicitly the team's choice, with no delivery-time SLA either way ([#55](https://github.com/SinYang13/IS212-2026/discussions/55)) — not written as an AC per §5.5, since no number was stated.
+**Open question:** batch vs. real-time delivery is explicitly the team's choice, with no delivery-time SLA either way ([#55](https://github.com/SinYang13/IS212-2026/discussions/55)) — not written as an AC per §5.5, since no number was stated. Notification latency must not be treated as a performance target: [[non-functional-requirements|brief §8]]'s performance requirement covers common operations, and notification delivery is not among them.
+
+### NT2 — Notify the Operations Manager of a new event request · 🎯
+
+**Story:** As an Event Operations Manager, I want to be notified when an Event Organiser submits a new event request, so that I can assign a coordinator without polling the pending queue.
+
+**AC:**
+- Given an Event Organiser submits an event request, then the Event Operations Manager receives a notification ([[notifications|brief §6]] trigger 1)
+- The notification names the requesting client organisation, the event, and its requested date(s)
+
+**Open question:** whether the Event Operations Manager is modelled as a system role with a defined visibility scope at all is an unresolved gap ([#73](https://github.com/SinYang13/IS212-2026/discussions/73), [#93](https://github.com/SinYang13/IS212-2026/discussions/93), [#94](https://github.com/SinYang13/IS212-2026/discussions/94); [[user-roles]] "Gap: The Event Operations Manager") — this card's recipient depends on the answer.
+
+### NT3 — Notify a coordinator of their assignment · 🎯
+
+**Story:** As an Event Coordinator, I want to be notified when an event is assigned to me, so that I can begin reviewing it without watching a queue.
+
+**AC:**
+- Given the Event Operations Manager assigns me to an event, then I receive a notification ([#73](https://github.com/SinYang13/IS212-2026/discussions/73), [[notifications|brief §6]] trigger 2)
+- The notification names the event, its client organisation, and its requested date(s)
+- The notification is informational, not an invitation — assignment takes effect immediately with no acceptance step ([#95](https://github.com/SinYang13/IS212-2026/discussions/95))
+- Given I am reassigned off an event, then the newly assigned coordinator receives this notification and I do not ([#94](https://github.com/SinYang13/IS212-2026/discussions/94))
+
+*Decoupled from EV3a's AC1 (SPM-32).*
+
+### NT4 — Notify the organiser that their event has a coordinator · 🎯
+
+**Story:** As an Event Organiser, I want to be notified when a coordinator is assigned to my event, so that I know who my point of contact at ConnectSphere is.
+
+**AC:**
+- Given a coordinator is assigned to my event, then I receive a notification ([[notifications|brief §6]] trigger 2)
+- The notification names the assigned Event Coordinator, ConnectSphere's main internal point of contact for the event ([[connectsphere-event-services|brief §2]])
+- Given the event is later reassigned, then I receive a further notification naming the new coordinator ([#94](https://github.com/SinYang13/IS212-2026/discussions/94))
+
+### NT5 — Notify the organiser of a clarification request · 🎯
+
+**Story:** As an Event Organiser, I want to be notified when my coordinator asks for clarification or an amendment, so that my request is not stalled waiting on me.
+
+**AC:**
+- Given the assigned Event Coordinator sends a clarification or amendment request, then I receive a notification ([[notifications|brief §6]] trigger 3; [[event-request-workflow]] Steps 4–5)
+- The notification states what has been asked for
+- The clarification and my response are retained with the event record ([#87](https://github.com/SinYang13/IS212-2026/discussions/87))
+
+*Decoupled from EV3b's AC2 (SPM-33).*
+
+### NT6 — Notify the organiser of the review decision · 🎯
+
+**Story:** As an Event Organiser, I want to be notified when my event request is approved, rejected, or returned, so that I know whether planning has begun.
+
+**AC:**
+- Given the coordinator approves, rejects, or returns my request, then I receive a notification naming which of the three occurred ([[notifications|brief §6]] trigger 4)
+- Given approved, the notification states that planning may begin but that ConnectSphere is not yet committed ([#80](https://github.com/SinYang13/IS212-2026/discussions/80), [[event-lifecycle]] "Approved vs Confirmed")
+- Given rejected or returned, the notification carries the recorded reason
+
+**Open question:** whether a rejected request can be resubmitted, or rejection is terminal, is left to the team ([#67](https://github.com/SinYang13/IS212-2026/discussions/67)) — it determines whether the act-on-it path applies to rejection as well as return.
+
+*Decoupled from EV3c's AC4 (SPM-34).*
+
+### NT7 — Notify venue staff of a new booking request · 🎯
+
+**Story:** As a Venue Staff member, I want to be notified when a coordinator submits a booking request for a venue I manage, so that requests do not sit unreviewed.
+
+**AC:**
+- Given an Event Coordinator submits a venue booking request, then Venue Staff receive a notification ([[notifications|brief §6]] trigger 5)
+- The notification names the venue, the date(s), and the AM/PM/Night slot(s) requested ([#50](https://github.com/SinYang13/IS212-2026/discussions/50))
+
+**Open question:** whether Venue Staff are scoped to particular venues or see every venue's requests is not stated — see [[access-control]].
+
+*Decoupled from VN5's AC4 (SPM-46) and V5's AC1 (SPM-22), which stated the same requirement twice — the duplication only became visible once the notifications were gathered in one place.*
+
+### NT8 — Notify the coordinator of the booking outcome · 🎯
+
+**Story:** As an Event Coordinator, I want to be notified when Venue Staff approve or reject my booking request, so that I know whether the venue is secured.
+
+**AC:**
+- Given Venue Staff decide a request I submitted, then I receive a notification naming the outcome ([[notifications|brief §6]] trigger 5; [[booking]] States)
+- Given rejected, the notification carries the reason and any alternative suggested — an informal suggestion, not a formal counter-offer ([#45](https://github.com/SinYang13/IS212-2026/discussions/45))
+
+*Decoupled from V5's AC5 (SPM-22).*
+
+### NT9 — Notify venue staff of a cancelled booking · 🎯
+
+**Story:** As a Venue Staff member, I want to be notified when a confirmed booking is cancelled, so that I do not prepare a venue for an event that is not happening.
+
+**AC:**
+- Given the assigned coordinator cancels a Confirmed booking, then Venue Staff receive a notification ([[notifications|brief §6]] trigger 5; [#68](https://github.com/SinYang13/IS212-2026/discussions/68))
+- The notification names the venue and the slot(s) released — the Confirmed → Released transition ([[booking]] States)
+
+*Decoupled from V2's AC3 (SPM-20).*
+
+### NT10 — Notify technical support of an equipment requirement · 🎯
+
+**Story:** As Technical Support Staff, I want to be notified when an event's equipment requirements are recorded or changed, so that I can check availability and reserve in time.
+
+**AC:**
+- Given a coordinator records or changes an equipment requirement line, then Technical Support Staff receive a notification ([[notifications|brief §6]] trigger 6)
+- The notification names the event, its date(s), and the equipment type(s) and quantity requested
+- Given the requirement changed after equipment was already reserved, the notification states that the reservation needs re-review rather than being carried over ([#4](https://github.com/SinYang13/IS212-2026/discussions/4), [#16](https://github.com/SinYang13/IS212-2026/discussions/16))
+
+**Open question:** this addresses the brief's named pain point of Technical Support Staff receiving insufficient notice ([[connectsphere-event-services|brief §2]]), but no minimum lead time is stated anywhere — whether a late requirement should warn as well as notify is unspecified.
+
+*Decoupled from EQ2's AC4 (SPM-41).*
+
+### NT11 — Notify the coordinator of the equipment outcome · 🎯
+
+**Story:** As an Event Coordinator, I want to be notified when requested equipment is confirmed or found to be unavailable, so that I can arrange an alternative before the event.
+
+**AC:**
+- Given Technical Support Staff reserve the requested equipment, then the assigned coordinator receives a notification naming the item type(s) and quantity reserved ([[notifications|brief §6]] trigger 6)
+- Given the equipment cannot be supplied — none of the type free for the D-1 → Return Day + 1 window ([#5](https://github.com/SinYang13/IS212-2026/discussions/5)), or all candidates unavailable, damaged, or under maintenance ([#23](https://github.com/SinYang13/IS212-2026/discussions/23)) — then the coordinator is notified, with the shortfall stated
+
+**Open question:** whether an unavailable-equipment notification should also block or flag confirmation depends on whether that equipment is "essential", and how essentiality is determined is explicitly left to the team ([#80](https://github.com/SinYang13/IS212-2026/discussions/80), [[event-readiness]]).
+
+### NT12 — Notify the organiser that their event is confirmed · 🎯
+
+**Story:** As an Event Organiser, I want to be notified when my event is confirmed, so that I can rely on the arrangements ConnectSphere has made.
+
+**AC:**
+- Given the assigned coordinator confirms the event, then the Event Organiser receives a notification ([[notifications|brief §6]] trigger 7)
+- The notification states that the event is Confirmed — the point at which ConnectSphere is committed, unlike Approved ([#80](https://github.com/SinYang13/IS212-2026/discussions/80))
+- The confirmed arrangements are viewable from it ([#80](https://github.com/SinYang13/IS212-2026/discussions/80))
+
+*Decoupled from RA3's AC4 (SPM-50). Organiser only, per the no-self-notification rule above.*
+
+### NT13 — Notify the coordinator of a change request · 🎯
+
+**Story:** As the assigned Event Coordinator, I want to be notified when my Event Organiser requests a significant change, so that arrangements already made can be re-checked promptly.
+
+**AC:**
+- Given the Event Organiser submits a change request against an event assigned to me, then I receive a notification ([[notifications|brief §6]] trigger 8)
+- The notification states what change is requested and whether it was classified significant or ordinary ([#4](https://github.com/SinYang13/IS212-2026/discussions/4), [[change-impact-management]])
+- It fires for change requests against already-Confirmed events too — there is no change cut-off before the event date ([#8](https://github.com/SinYang13/IS212-2026/discussions/8))
+
+*Decoupled from CH1's AC5 (SPM-52).*
+
+### NT14 — Notify the organiser of a reschedule or cancellation · 🎯
+
+**Story:** As an Event Organiser, I want to be notified when my event is rescheduled, postponed, or cancelled, so that I am never the last to know about my own event.
+
+**AC:**
+- Given the assigned coordinator reschedules, postpones, or cancels the event, then I receive a notification naming which occurred ([[notifications|brief §6]] trigger 9)
+- Given rescheduled, the notification carries the new date and time
+- Given cancelled, it states that the venue booking and equipment reservation have been released ([[event-lifecycle]] "Cancellation")
+
+*Decoupled from the Organiser half of CH4's AC4 (SPM-55).*
+
+### NT15 — Notify attendees of a reschedule or cancellation · 🎯
+
+**Story:** As a registered Attendee, I want to be notified when an event I registered for is rescheduled or cancelled, so that I do not turn up to something that is not happening.
+
+**AC:**
+- Given an event with registrations is rescheduled, postponed, or cancelled, then every Attendee holding a Registered registration receives a notification ([[notifications|brief §6]] trigger 9)
+- Given rescheduled, the notification carries the new date, time, and venue
+- The notification carries only attendee-appropriate detail and never discloses internal planning information, the internally recorded reason, or any other attendee's details ([#91](https://github.com/SinYang13/IS212-2026/discussions/91))
+
+**Open question:** whether a reschedule invalidates existing registrations or carries them over is not addressed by any source — the wording, and whether the Attendee must re-confirm, both depend on it.
+
+*Decoupled from the Attendee half of CH4's AC4 (SPM-55). Directly addresses the brief's named pain point of Attendees receiving outdated event information ([[connectsphere-event-services|brief §2]]).*
+
+### NT16 — Notify attendees when registration opens or closes · 🎯
+
+**Story:** As an Attendee, I want to be notified when registration for a confirmed event opens or closes, so that I do not miss my chance to register.
+
+**AC:**
+- Given registration is enabled for a Confirmed event, then Attendees receive a notification that registration is open ([[notifications|brief §6]] trigger 10)
+- Given registration is disabled, or its period ends, then Attendees receive a notification that it has closed ([#30](https://github.com/SinYang13/IS212-2026/discussions/30))
+
+**Open question — blocks this card:** *which* Attendees receive an opening notification is undefined. Release 1 has no subscription, interest, or invitation model; external attendee onboarding is out of scope ([#49](https://github.com/SinYang13/IS212-2026/discussions/49), [#53](https://github.com/SinYang13/IS212-2026/discussions/53)); there is no admin role to curate a list ([#52](https://github.com/SinYang13/IS212-2026/discussions/52)). A *closing* notification has an obvious recipient set — those already registered. An *opening* one does not. This is the same root cause as [[release-1-scope]]'s "Attendees can register but cannot be created" warning.
+
+### NT17 — Notify the coordinator of an availability change · 🧩
+
+**Scope:** `🧩 Adjacent` — pulled in by **core feature 9 (Venue availability calendar)**, whose requirement that "other recorded periods of unavailability should be reflected" is inert if a change to an already-booked period reaches nobody. Also serves core feature 16 on the equipment side.
+
+**Story:** As the assigned Event Coordinator, I want to be notified when a venue or equipment availability change affects one of my upcoming events, so that I can make the necessary changes before the event.
+
+**AC:**
+- Given Venue Staff update a venue's availability, or Technical Support Staff change an equipment item's status, in a way that affects an upcoming event's existing arrangement, then that event's assigned coordinator receives a notification ([[notifications|brief §6]] trigger 14; [#54](https://github.com/SinYang13/IS212-2026/discussions/54), [#9](https://github.com/SinYang13/IS212-2026/discussions/9))
+- The notification names the event, the affected arrangement, and the nature of the change
+- The system does not auto-cancel or auto-rebook — the Event Coordinator makes the necessary changes ([#54](https://github.com/SinYang13/IS212-2026/discussions/54))
+
+**Open question:** how affected upcoming events are detected, and whether anything beyond raising the notification happens automatically, is left to the team — "propose an appropriate automation mechanism if required" ([#54](https://github.com/SinYang13/IS212-2026/discussions/54)). That detection mechanism is the bulk of this card's cost.
+
+*V4 (SPM-21) lets Venue Staff block availability and E1 (SPM-17) lets Technical Support Staff change equipment status, but neither propagated the consequence to the affected coordinator — the exact gap [#54](https://github.com/SinYang13/IS212-2026/discussions/54) was asked about.*
+
+### NT18 — Notify the coordinator when registration reaches capacity · 🧩
+
+**Scope:** `🧩 Adjacent` — pulled in by **core feature 18 (Attendee registration)**. Registration capacity is itself `🧩` in [[release-1-scope]] on the reasoning that registering without a ceiling against a capacity-checked venue is incoherent; a ceiling nobody is told about is the same defect one step later.
+
+**Story:** As the assigned Event Coordinator, I want to be notified when an event reaches its registration capacity, so that I can decide whether to raise the cap or find a larger venue.
+
+**AC:**
+- Given registrations reach the event's registration capacity, then the assigned coordinator receives a notification ([[notifications|brief §6]] trigger 11)
+- The notification names the event and its registration count against capacity
+
+**Open question:** whether reaching capacity blocks further registration outright or merely warns is the same unresolved block-vs-warn question flagged against Reg3 — this notification's wording depends on it.
+
+### NT19 — Notify an attendee of a waiting-list status change · 📋
+
+**Scope:** `📋 Backlog` — the waiting list is not in Release 1 ([[release-1-scope]]). Kept for the product backlog and C4 models; do not pull into a Release 1 sprint.
+
+**Story:** As a waitlisted Attendee, I want to be notified when my waiting-list status changes, so that I can accept a released place before the offer expires.
+
+**AC:**
+- Given a place is released and I am next in FIFO order, subject to manual override, then I receive a notification offering it ([#26](https://github.com/SinYang13/IS212-2026/discussions/26), [[notifications|brief §6]] trigger 11)
+- The notification states the 3-day acceptance window and when it expires ([#44](https://github.com/SinYang13/IS212-2026/discussions/44))
+- Can accept or decline the offered place from it
+- Given no response within the window, the offer lapses and the next waitlisted Attendee is notified ([#44](https://github.com/SinYang13/IS212-2026/discussions/44))
+
+**Open question:** this card is the only place the committed 3-day rule ([#44](https://github.com/SinYang13/IS212-2026/discussions/44)) becomes user-visible — a non-negotiable customer rule sitting entirely in the backlog, which is worth confirming was intended.
+
+### NT20 — Notify the coordinator of a withdrawal affecting availability · 📋
+
+**Scope:** `📋 Backlog` — §6 trigger 12's qualifier presupposes a waiting list to promote from. With the waiting list `📋`, a Release 1 withdrawal simply decrements the count and frees the place to any new registrant (RG4) — a state change with no audience.
+
+**Story:** As the assigned Event Coordinator, I want to be notified when a registered Attendee withdraws in a way that affects availability, so that I can act on the freed place.
+
+**AC:**
+- Given a registered Attendee withdraws from a full event, then the assigned coordinator receives a notification ([[notifications|brief §6]] trigger 12)
+- The notification names the event and its resulting registration count against capacity
+
+**Open question:** whether the coordinator needs this at all once waiting-list promotion is automatic (NT19) — if the next Attendee is notified directly, a coordinator notification may be pure noise.
+
+### NT21 — Remind the coordinator of incomplete arrangements · 📋
+
+**Scope:** `📋 Backlog` — the Reminder System is not named in the core 20 ([[release-1-scope]]); feature 20 lists event-driven triggers only. This is the only **time-driven** card in the set and the only reminder category the customer confirmed directly. A documented requirement, not a built one, in Release 1.
+
+**Story:** As the assigned Event Coordinator, I want to be reminded while an upcoming event still has incomplete arrangements, so that nothing essential is left unbooked as the date approaches.
+
+**AC:**
+- Given an upcoming event still has an incomplete arrangement or a pending approval, then its assigned coordinator is reminded ([#47](https://github.com/SinYang13/IS212-2026/discussions/47), [[notifications|brief §6]] trigger 13)
+- Reminders are delivered by batch, at a configurable frequency ([#47](https://github.com/SinYang13/IS212-2026/discussions/47))
+- The reminder names the event, its date, and which arrangements are outstanding
+
+**Open question:** lead time and the configuration surface are left entirely to the team — asked with concrete options and returned in full: "The timing and configurability are for you to propose" ([#40](https://github.com/SinYang13/IS212-2026/discussions/40)).
+
+*This is the reminder framing of the same condition §6 trigger 13 frames as a notification — see [[notification]] "Reminders (time-driven)". Note the interaction with RA3: the [#80](https://github.com/SinYang13/IS212-2026/discussions/80) gate blocks confirmation and **is** in scope; this card would have chased the coordinator beforehand and is not.*
 
 ---
 
