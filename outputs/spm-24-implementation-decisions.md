@@ -100,7 +100,7 @@ That is deliberate: [[non-functional-requirements|brief §8b]] forbids showing A
 
 ## 8. Registration confirmation content
 
-[[notifications]] records fourteen notification triggers from [[event-planning-venue-booking-system|brief §6]]. **"An attendee successfully registers" is not among them**, and [[notification]] marks message content ⚠️ Partial throughout.
+Fourteen notification triggers are recorded from [[notifications|brief §6]]. **"An attendee successfully registers" is not among them**, and [[notification]] marks message content ⚠️ Partial throughout.
 
 **Decision: an on-screen confirmation showing event name, date, time and venue**, as [[release-1-candidate-user-stories]]'s card RG1 proposes. No email or in-app notification was built — that belongs with the notification tickets, and the customer has not specified the content of one.
 

@@ -4,6 +4,7 @@ type: domain-object
 sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 31.md"
+  - "IS212 2026 Discussions Sept 8.md"
 tags: [domain, audit, history]
 ---
 
@@ -11,7 +12,7 @@ tags: [domain, audit, history]
 
 The record captured by the system in support of auditability: **Activity History** (who did what, and when — [[event-planning-venue-booking-system|brief §4]]) and **Change History** (how a field's value evolved over time — [[event-planning-venue-booking-system|brief §4]]), together satisfying the requirement that ConnectSphere can determine "what was changed, who changed it, and when the change was made" ([[non-functional-requirements|brief §8f]]). Process detail lives in [[reporting]] and [[non-functional-requirements]]; this page is the structural reference.
 
-**Release 1 scope** ([[release-1-scope]]): the underlying requirement that actions and changes be recorded — the Actor, Timestamp and what-changed attributes below — is 🎯 Release 1 as a non-functional requirement, independent of which functional area produced the change. The user-facing Activity History and Change History browsing surfaces described below are `📋 Backlog`: neither is named in the core 20, and Release 1 requires only that the record exist, not that it be browsable.
+**Release 1 scope** ([[release-1-scope]]): the underlying requirement that actions and changes be recorded — the Actor, Timestamp and what-changed attributes below — is 🎯 Release 1 as a non-functional requirement, independent of which functional area produced the change. The user-facing Activity History and Change History browsing surfaces described below are `📋 Backlog`: neither is named in the core 20, and Release 1 requires only that the record exist, not that it be browsable. This is now the customer's own position, not an inference from the core-20's silence — "Activity History and Change History are not standalone core features, so there is no requirement to implement a complete audit-history function" ([#96](https://github.com/SinYang13/IS212-2026/discussions/96)). Note carefully what that relaxes: the **browsable surface**, not the what/who/when auditability requirement from [#14](https://github.com/SinYang13/IS212-2026/discussions/14) and [[non-functional-requirements|brief §8f]], which is untouched and still binds.
 
 ## Attributes
 
@@ -29,7 +30,9 @@ Neither source names "related object" as a field in its own right; it is this wi
 
 ## Activity History
 
-Significant actions are recorded, including who performed the action and when, to support accountability and troubleshooting ([[event-planning-venue-booking-system|brief §4]]). Brief §4's wording is not restricted to a single object type — "significant actions," unqualified — so this wiki reads the *coverage* of Activity History as extending wherever a significant action occurs (event review, coordinator assignment, venue booking decisions, equipment reservation, registration, etc.), not solely actions on the [[event]] record. That is a claim about scope of applicability only, not about how the data model attaches these entries — whether each object type carries its own trail or everything rolls up to the owning event's record is a separate, unresolved question (see Open modelling questions). No source enumerates which specific actions count as "significant."
+Significant actions are recorded, including who performed the action and when, to support accountability and troubleshooting ([[event-planning-venue-booking-system|brief §4]]). Brief §4's wording is not restricted to a single object type — "significant actions," unqualified — so this wiki reads the *coverage* of Activity History as extending wherever a significant action occurs (event review, coordinator assignment, venue booking decisions, equipment reservation, registration, etc.), not solely actions on the [[event]] record. That is a claim about scope of applicability only, not about how the data model attaches these entries — whether each object type carries its own trail or everything rolls up to the owning event's record is a separate, unresolved question (see Open modelling questions).
+
+**The customer has since supplied an illustrative list.** [#96](https://github.com/SinYang13/IS212-2026/discussions/96) names, as actions that "materially affect the event or its arrangements": submission, approval/rejection, coordinator assignment/reassignment, important event information changes, venue booking decisions, equipment reservation changes, confirmation, rescheduling and cancellation. Two cautions before treating this as a specification. It is explicitly non-exhaustive and prefaced "where the team chooses to support history" — "the exact set and presentation can be proposed by the team" — so it is a `🔶 Team decision` with a strong steer, not a `✅ Specified` enumeration. And it notably **omits registration events**, which the applicability reading above would include; the omission is not a denial, since the list is illustrative, but do not cite [#96](https://github.com/SinYang13/IS212-2026/discussions/96) as authority for covering registration.
 
 ## Change History
 

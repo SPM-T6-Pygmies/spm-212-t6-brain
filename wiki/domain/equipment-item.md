@@ -4,6 +4,7 @@ type: domain-object
 sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 31.md"
+  - "IS212 2026 Discussions Sept 8.md"
 tags: [domain, equipment]
 ---
 
@@ -83,7 +84,9 @@ stateDiagram-v2
 | State | Meaning | Entry / exit rule | Ref |
 |---|---|---|---|
 | Free | Not currently committed to any event's D-1 → Return Day+1 window | Entry: Return Day + 1, after inspection, or never reserved. Exit: reserved for an event | [#2](https://github.com/SinYang13/IS212-2026/discussions/2); [#5](https://github.com/SinYang13/IS212-2026/discussions/5) |
-| Committed | Inside another event's D-1 → Return Day+1 window; not reservable for a conflicting event | Entry: reserved for an event, entering the window. Exit: Return Day + 1, after inspection | [#2](https://github.com/SinYang13/IS212-2026/discussions/2); [#5](https://github.com/SinYang13/IS212-2026/discussions/5) |
+| Committed | Inside another event's D-1 → Return Day+1 window; not reservable for a conflicting event | Entry: reserved for an event, entering the window. Exit: Return Day + 1, after inspection — computable from the reservation's `return_date` where that is populated, undefined while it is null, since no default is fixed (🔶 [#113](https://github.com/SinYang13/IS212-2026/discussions/113)) | [#2](https://github.com/SinYang13/IS212-2026/discussions/2); [#5](https://github.com/SinYang13/IS212-2026/discussions/5); [#113](https://github.com/SinYang13/IS212-2026/discussions/113) |
+
+The Committed → Free transition is the one edge in this page whose trigger is conditional on data the customer did not commit to supplying. Its trigger date is Return Day + 1, computed from a return date that is carried on the reservation, not the item: `equipment_reservation.return_date`, added by migration D1 and **nullable** ([[schema]]; see [[equipment-reservation]]). So the edge is computable **when that date is populated** and undefined **when it is null** — the customer has confirmed there is **no fixed default return day**, and how the date is captured or determined, automatically or manually, is for the team to propose ([#113](https://github.com/SinYang13/IS212-2026/discussions/113)). The rule is `✅ Specified`; its input is `🔶 Team decision`. The practical consequence for this page: an item's availability is indeterminate — not "available", not "committed" — for as long as it sits on a reservation with a null return date, because the window it is inside has no known end.
 
 An item is reservable for a new event only when its operational status is Available **and** it is Free (not Committed). The [#23](https://github.com/SinYang13/IS212-2026/discussions/23) answer's own "unavailable" value most likely corresponds to this Committed derived state in practice, but the source does not say the two are the same field — treating them as separate is the safer reading, and is this wiki's structural proposal, not a customer-specified data model.
 
@@ -99,7 +102,8 @@ An item is reservable for a new event only when its operational status is Availa
 ## Binding rules
 
 - Technical Support Staff are responsible for maintaining equipment operational status ([#9](https://github.com/SinYang13/IS212-2026/discussions/9)). ⚠️ Partial: the question that prompted this answer also asked whether Event Coordinators can flag status themselves; the answer affirms TSS's responsibility but does not explicitly rule out a Coordinator-initiated flag — treat "Coordinators may not set status" as an inference, not a confirmed exclusion ([#9](https://github.com/SinYang13/IS212-2026/discussions/9)).
-- No same-day sharing between events: equipment may be collected from D-1 and, after return and inspection, is only available again from Return Day + 1 ([#5](https://github.com/SinYang13/IS212-2026/discussions/5)).
+- No same-day sharing between events: equipment may be collected from D-1 and, after return and inspection, is only available again from Return Day + 1 ([#5](https://github.com/SinYang13/IS212-2026/discussions/5)). ⚠️ Partial in practice: the rule is fixed and the date it needs now has a column to sit in ([[schema]]), but there is **no fixed default return day**, so the window's closing date depends on a population mechanism the team has yet to propose ([#113](https://github.com/SinYang13/IS212-2026/discussions/113)).
+- Equipment requirements may be changed after equipment has been reserved; affected arrangements are reviewed and updated, and Technical Support Staff re-check suitability and availability where necessary ([#114](https://github.com/SinYang13/IS212-2026/discussions/114)). An item released by such a change re-enters the Free state.
 - No maximum reservation period is specified ([#82](https://github.com/SinYang13/IS212-2026/discussions/82)). ⚠️ Partial: the same question also asked about a minimum period, but the answer ("No maximum reservation period.") addressed only the maximum — no minimum-period statement exists in the source ([#82](https://github.com/SinYang13/IS212-2026/discussions/82)).
 - No minimum notice period for equipment requests is specified; propose an approach if the solution requires one ([#25](https://github.com/SinYang13/IS212-2026/discussions/25)).
 - The post-event equipment health checklist is kept outside the system — "we do not need to keep track in the system" ([#85](https://github.com/SinYang13/IS212-2026/discussions/85)).

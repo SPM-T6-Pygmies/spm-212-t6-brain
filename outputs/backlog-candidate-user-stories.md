@@ -5,20 +5,46 @@ sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 26.md"
   - "IS212 2026 Discussions Aug 31.md"
+  - "IS212 2026 Discussions Sept 8.md"
   - "Week 4 - Customer Briefing.md"
   - "IS212 User Story Standard — v1.0.md"
   - "outputs/user-story-coverage-stocktake.md"
+  - "outputs/discussions-sept-8-critical-diffs.md"
 tags: [review, user-stories, backlog, deferred-scope, epics]
 ---
 
 # Backlog Candidate User Stories — the Uncarded Areas
 
-Draft cards for every area that [[user-story-coverage-stocktake]] §2 found with **a citation but no story card anywhere** — not in Linear, not in [[release-1-candidate-user-stories]], not in [[user-stories-proposed-rewrites]]. Written to the **IS212 User Story Standard v1.0** (`raw/`): nine epics, 30 story cards and one spike.
+Draft cards for every area that [[user-story-coverage-stocktake]] §2 found with **a citation but no story card anywhere** — not in Linear, not in [[release-1-candidate-user-stories]], not in [[user-stories-proposed-rewrites]]. Written to the **IS212 User Story Standard v1.0** (`raw/`): nine epics, 30 story cards and one spike. Drafted against the 2026-08-31 discussion snapshot and **revised on 2026-09-09 against the 2026-09-08 batch** — see the revision section immediately below.
 
 Everything here is `📋 Backlog` or undecided. Nothing in this document is proposed for Release 1. It exists because [[release-1-scope]]'s own rule is that out of Release 1 ≠ out of the project — the Week 4 briefing directs teams to keep deferred features "in your product backlog and C4 models", and a wiki paragraph alone does not satisfy that.
 
 > [!warning] These are drafts, not a backlog
 > The standard's workflow is `AI drafts → team decides → customer confirms` (§11), and the middle step is not optional. A card here has a **Card** and a **Confirmation** but no **Conversation** behind it (§2) — for most of these areas the conversation with the customer never happened, which is exactly why they were never carded. Treat the Open questions on each card as the agenda for that conversation, not as footnotes.
+
+## Revised for the 2026-09-08 batch
+
+This document was drafted before `raw/IS212 2026 Discussions Sept 8.md` was ingested. That batch's 26 new answers, analysed in [[discussions-sept-8-critical-diffs]], reach **twenty of the thirty-one items here** — but they change the ground under the cards, not the cards themselves. **No card was added, deleted, or moved into Release 1**, and the epic register is unchanged.
+
+| Answer | Reaches | Effect on this document |
+|---|---|---|
+| [#38](https://github.com/SinYang13/IS212-2026/discussions/38) follow-up | Reg6 | **A customer question closed.** No new check-in role is permitted; the team assigns an existing internal role. The card moves from *blocked on the customer* to *blocked on a design decision* |
+| [#96](https://github.com/SinYang13/IS212-2026/discussions/96) | EP-D, HB1, HB2 | **A blocking unknown downgraded.** History is confirmed not a core feature, and an illustrative list of "significant" actions is supplied — a strong steer on a team decision, not a specification |
+| [#100](https://github.com/SinYang13/IS212-2026/discussions/100) | EC1, CV3 | **The thinnest-sourced card now has a source.** Categories are non-core, the list is non-exhaustive, and a reasonable fixed set suffices — which caps EC1's size |
+| [#107](https://github.com/SinYang13/IS212-2026/discussions/107) + [#108](https://github.com/SinYang13/IS212-2026/discussions/108) | EC4, RP2 | **An open question became an AC.** Sessions and turnaround quantise to whole slots; overlap is set intersection, not interval arithmetic |
+| [#99](https://github.com/SinYang13/IS212-2026/discussions/99) + [#97](https://github.com/SinYang13/IS212-2026/discussions/97) | SPK-1 | Half of the spike's capacity question answered, and its premise confirmed: attendees are not required to use the application at all |
+| [#106](https://github.com/SinYang13/IS212-2026/discussions/106) + [#98](https://github.com/SinYang13/IS212-2026/discussions/98) | RC1, TS2 | The essentiality *decider* is named for equipment (a joint judgement), and the confirmation gate RC1's mechanism feeds is now a stated Release 1 obligation |
+| [#109](https://github.com/SinYang13/IS212-2026/discussions/109) | EP-F, VH1, EC4 | The epic's deferral is confirmed in the customer's words, and "how many holds per event" is answered for Release 1 |
+| [#118](https://github.com/SinYang13/IS212-2026/discussions/118) + [#117](https://github.com/SinYang13/IS212-2026/discussions/117) | CV4, RC2 | The dashboard deferral is now customer-stated — **and one worklist inside CV4's territory is a Release 1 obligation**, which forced a scope boundary onto the card |
+| [#101](https://github.com/SinYang13/IS212-2026/discussions/101) | CV4, TS4, RM3 | The Event Operations Manager is a real system role. That retires [[user-roles]]' "gap" framing, *sharpens* TS4's unnamed-authority question, and does **not** give RM3 an admin role |
+| [#102](https://github.com/SinYang13/IS212-2026/discussions/102) | EC6 | A new constraint the card was drafted without: after submission the Organiser has no direct write access to the request |
+| [#119](https://github.com/SinYang13/IS212-2026/discussions/119) | EC5 | Expected attendance is fixed as a single event-level figure — not to be conflated with [#74](https://github.com/SinYang13/IS212-2026/discussions/74)'s per-session attendance *limit* |
+| [#103](https://github.com/SinYang13/IS212-2026/discussions/103) | CV3 | A seventh request status, `Withdrawn`, which must stay distinguishable — one more case for any status filter |
+| [#49](https://github.com/SinYang13/IS212-2026/discussions/49) follow-up | EP-I, CO1 | No client onboarding in Release 1; pre-loaded accounts instead, so a primary contact would be designated on a seeded account set |
+| [#105](https://github.com/SinYang13/IS212-2026/discussions/105) + [#115](https://github.com/SinYang13/IS212-2026/discussions/115) | RM1, CV1 | Two further notification triggers — **neither of which is a reminder**, so RM1's and RM2's categories remain unconfirmed |
+| [#111](https://github.com/SinYang13/IS212-2026/discussions/111) | Cards not written | Creates a new optional feature the team may decline; declined here, with reasons, rather than carded |
+
+**What did not change.** Every card still fails Gate A7 by design; every row of the summary table still carries a blocking unknown; and nothing in the batch supplied a priority, an estimate, or a role for the nine cards that name none. Two areas the batch touched heavily — the schema and the Release 1 register — are outside this document entirely.
 
 ## Count correction
 
@@ -28,7 +54,7 @@ The stocktake's prose says "sixteen `📋`/undecided areas in §2"; its own tabl
 
 **Priority and estimate are deliberately blank on every card.** Priority is a strict 1..N ordering across the whole backlog (§3) and cannot be set for a subset; estimation is a team activity with no velocity baseline yet (§8). Every card therefore fails Gate A7 by design and none is Ready.
 
-**Three cards name no role.** Where the customer never named an actor, the card says so — `*[role not named — see open question]*` — rather than picking one. This is a deliberate Gate A3 failure. The standard's rule for the reviewing agent is explicit: "Never resolve an ambiguity by inventing the answer — raise it as a question." Filling in a plausible role would make the card *look* Ready while burying a customer question inside it.
+**Nine cards name no role.** Where the customer never named an actor, the card says so — `*[role not named — see open question]*` — rather than picking one. (Eight carry that placeholder in the story line; Reg6 leaves the actor unnamed in prose. An earlier draft of this paragraph said "three", which its own summary table contradicted; corrected 2026-09-09.) This is a deliberate Gate A3 failure. The standard's rule for the reviewing agent is explicit: "Never resolve an ambiguity by inventing the answer — raise it as a question." Filling in a plausible role would make the card *look* Ready while burying a customer question inside it.
 
 **Derived rules are not written as acceptance criteria.** Several wiki pages carry reasonable inferences that read like customer rules — the per-role dashboard tables, the reuse "do not copy" field list, the claim that VIP attendees appear in registration reports. Where the research trail flagged a line as this wiki's derivation rather than a customer statement, it appears in Open questions, never in an AC. Gate B6 forbids a rule with no customer source; a wiki inference is not a customer source.
 
@@ -87,6 +113,7 @@ Along with EP-B, the largest completely uncarded area: [[technical-support]] is 
 **Open questions:**
 - No source specifies a lifecycle or a named status set for a support request ([[support-request]] States) — whether "can be provided" is a status field, a free-text note, or a checkbox is a team decision, and it determines what AC 2 actually tests.
 - Whether a support requirement can be **partially** fulfilled the way equipment can is unstated. [#90](https://github.com/SinYang13/IS212-2026/discussions/90) establishes partial fulfilment for equipment only; do not assume it generalises.
+- **AC 4's essentiality judgement now has a named decider — for equipment only.** Whether an incomplete *equipment* requirement is essential is determined by the Event Coordinator **together with the relevant Technical Support Staff** ([#106](https://github.com/SinYang13/IS212-2026/discussions/106), [[event-readiness]]). AC 4 here turns on the same judgement applied to *technical support*, which [#106](https://github.com/SinYang13/IS212-2026/discussions/106) does not address. The shape is attractive and the transfer is unsourced: confirm rather than assume.
 
 **Dependency:** TS1 (no requirement to review without one). Declared per INVEST-I tolerance rather than pretended away.
 
@@ -116,6 +143,7 @@ Along with EP-B, the largest completely uncarded area: [[technical-support]] is 
 
 **Open questions:**
 - **Who performs the allocation is unstated.** [#88](https://github.com/SinYang13/IS212-2026/discussions/88) asked "Who does the rostering?" and the answer addressed only the system-vs-manual axis. No manager role equivalent to the Event Operations Manager is named for Technical Support Staff anywhere in the brief or the discussions ([[user-roles]], [[support-request]]). This is the card's blocking question.
+- **The 2026-09-08 batch sharpened that question rather than closing it.** [#101](https://github.com/SinYang13/IS212-2026/discussions/101) settles that the Event Operations Manager "must be implemented as a separate system role", retiring the wiki's long-standing reading of it as a briefing gap ([[user-roles]]). But the answer confines the role to assigning and reassigning **Event Coordinators** and names no equivalent authority over Technical Support Staff, while [#52](https://github.com/SinYang13/IS212-2026/discussions/52)'s "no admin role" still stands. The customer has now demonstrated that it will create a role when it wants one — which makes the silence here harder to read as an oversight and more worth asking about directly.
 - Whether allocation is system-computed or manual is explicitly the team's — "There is no hard requirement of system assign or manual for assigning the support staff" ([#88](https://github.com/SinYang13/IS212-2026/discussions/88)).
 - Whether a Technical Support Staff member may decline an allocation is unstated. [#95](https://github.com/SinYang13/IS212-2026/discussions/95)'s no-acceptance-step answer covers **Event Coordinators only** — do not transfer it.
 - Whether one staff member can hold concurrent allocations, and any workload cap, is unstated. [#92](https://github.com/SinYang13/IS212-2026/discussions/92)'s "Yes" likewise covers Event Coordinators only.
@@ -167,7 +195,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 **AC:**
 - Can select a reporting period and see venue bookings and usage across it ([[event-planning-venue-booking-system|brief §4]], [#29](https://github.com/SinYang13/IS212-2026/discussions/29))
 - Usage is expressed in the venue's booking slots — AM, PM and Night, a full day being all three ([#50](https://github.com/SinYang13/IS212-2026/discussions/50))
-- Given a venue has setup or turnaround time recorded, then the occupancy shown for its bookings includes that padding rather than the published event times alone ([#43](https://github.com/SinYang13/IS212-2026/discussions/43), [[booking]])
+- Given a venue has setup or turnaround time recorded, then the occupancy shown for its bookings includes that padding rather than the published event times alone ([#43](https://github.com/SinYang13/IS212-2026/discussions/43), [[booking]]) — expressed in **whole slots**, since one slot is the smallest unit of setup and turnaround and Release 1 need not support sub-slot durations ([#108](https://github.com/SinYang13/IS212-2026/discussions/108))
 - No revenue or other financial measure appears — the customer excluded revenue explicitly and the system holds no pricing data ([#29](https://github.com/SinYang13/IS212-2026/discussions/29))
 
 **Open questions:**
@@ -226,6 +254,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Time granularity — 30-minute intra-day versus a wider weekly view — is a UI/UX decision the customer returned to the team ([#6](https://github.com/SinYang13/IS212-2026/discussions/6)).
 - How far forward "upcoming" extends, and whether past events are viewable in calendar form, are unstated. [#20](https://github.com/SinYang13/IS212-2026/discussions/20) keeps completed events as historical records but says nothing about calendar rendering.
 - Whether a multi-session event renders as one entry or one per session is unstated.
+- The calendar cannot be assumed to be where an attendee *learns* anything. Attendees "should be able to access appropriate event information through the system", but the customer does not require them to use the application, and updates may be communicated through other channels ([#97](https://github.com/SinYang13/IS212-2026/discussions/97)) — a reschedule, for instance, may reach them entirely outside the system ([#115](https://github.com/SinYang13/IS212-2026/discussions/115)). That does not shrink this card; it bars an AC that makes the calendar the sole channel.
 
 *The Attendee is the only role the customer addressed in a calendar context ([#10](https://github.com/SinYang13/IS212-2026/discussions/10)), which is why this card comes first in the epic.*
 
@@ -255,10 +284,11 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Completed and cancelled events remain findable as historical records ([#20](https://github.com/SinYang13/IS212-2026/discussions/20))
 
 **Open questions:**
-- **Category is one of the seven criteria the brief names, and it is missing from AC 1 on purpose.** Event categories are themselves `📋 Backlog` with no data source in Release 1 ([[release-1-scope]]), so the criterion cannot be built until EC1 lands. Declared as a dependency rather than silently dropped.
+- **Category is one of the seven criteria the brief names, and it is missing from AC 1 on purpose.** Event categories are themselves `📋 Backlog` with no data source in Release 1 ([[release-1-scope]]), so the criterion cannot be built until EC1 lands. Declared as a dependency rather than silently dropped. [#100](https://github.com/SinYang13/IS212-2026/discussions/100) has since confirmed the deferral outright — categories are "not one of the mandatory Release 1 core features" — while also stating that a reasonable set of categories suffices. That makes EC1 a **cheaper** dependency, not a removed one.
 - Sorting and saved searches on the general event list are a UI/UX decision returned to the team ([#27](https://github.com/SinYang13/IS212-2026/discussions/27)).
 - Free-text versus faceted search, default result ordering, pagination and result limits are all unstated.
 - Whether Attendees may search events, as distinct from browsing open ones ([#10](https://github.com/SinYang13/IS212-2026/discussions/10)), is unstated. If yes, that is a second card with a different visible set.
+- **Status, as a search criterion, now ranges over one more value.** [#103](https://github.com/SinYang13/IS212-2026/discussions/103) adds a request-level `Withdrawn` that must remain distinguishable from draft, submitted, approved and rejected. [#20](https://github.com/SinYang13/IS212-2026/discussions/20)'s historical-record rule (AC 4) covers *completed and cancelled events* and says nothing about withdrawn requests, so whether they stay findable — and to whom — is unstated.
 
 ### CV4 — See an Overview for My Role
 
@@ -270,9 +300,12 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Given an account holds more than one role, then the overview covers the union of what those roles permit — the same reading U3/SPM-15 already applies to navigation ([#56](https://github.com/SinYang13/IS212-2026/discussions/56))
 - Out of scope on this card: the per-role content set. It is specified below as an open question, not assumed
 
+> [!info] One piece of this territory is a Release 1 obligation and is deliberately not on this card
+> [#118](https://github.com/SinYang13/IS212-2026/discussions/118) confirms the deferral in the customer's own words — "a role-based dashboard is not listed as a mandatory Release 1 core feature". But [#117](https://github.com/SinYang13/IS212-2026/discussions/117) requires that the Event Operations Manager be able to **identify newly submitted events that require Event Coordinator assignment**, while explicitly *not* requiring a notification per submission. That is a worklist, and it is load-bearing for core feature 5's assignment step ([[user-roles]], [[access-control]]). It belongs to that feature, not to this card. CV4 must not absorb it, or a Release 1 obligation disappears into a backlog epic.
+
 **Open questions:**
-- **The customer enumerated dashboard content for no role.** [[event-planning-venue-booking-system|brief §4]] gives four examples introduced by "such as" — events requiring attention, upcoming bookings, equipment requests, attendee registrations — and nothing per role. The per-role tables in [[reporting]], [[access-control]] and [[event-readiness]] are this wiki's reconstructions, labelled "Plausible" and "Indicative" on their own pages. **They are not AC input.** Until the customer confirms composition, this card establishes that the overview exists and is access-bounded, and no more.
-- The Event Operations Manager has no dashboard definition and no stated visibility scope ([[user-roles]]), and is absent from the brief's role table entirely — yet it holds the coordinator-assignment authority ([#93](https://github.com/SinYang13/IS212-2026/discussions/93)). Any overview for that role is undefined at the source.
+- **The customer enumerated dashboard content for no role.** [[event-planning-venue-booking-system|brief §4]] gives four examples introduced by "such as" — events requiring attention, upcoming bookings, equipment requests, attendee registrations — and nothing per role. The per-role tables in [[reporting]], [[access-control]] and [[event-readiness]] are this wiki's reconstructions, labelled "Plausible" and "Indicative" on their own pages. **They are not AC input.** Until the customer confirms composition, this card establishes that the overview exists and is access-bounded, and no more. [#118](https://github.com/SinYang13/IS212-2026/discussions/118) does not fill this in — it confirms that nothing has to be built yet, which removes the schedule pressure and none of the missing specification.
+- The Event Operations Manager is now a **separate system role the customer requires**, not the briefing gap this card was drafted against ([#101](https://github.com/SinYang13/IS212-2026/discussions/101), [[user-roles]]). What it still lacks is a dashboard definition and any stated visibility scope beyond the unassigned submissions [#117](https://github.com/SinYang13/IS212-2026/discussions/117) obliges it to find. Any broader overview for that role remains undefined at the source, and [#52](https://github.com/SinYang13/IS212-2026/discussions/52)'s "no admin role" bars reading "separate system role" as a licence to grant it one — while [#93](https://github.com/SinYang13/IS212-2026/discussions/93) still puts the *choice* of coordinator in an SOP outside the system.
 - Whether a multi-role user sees one merged overview or switches context is unstated; the union reading in AC 3 is the wiki's, carried here only because the ticketed U3 card already uses it.
 - Whether the overview is a distinct screen or the landing view, and its refresh behaviour, are unstated.
 
@@ -287,7 +320,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 `📋 Backlog` — **the browsing surface only.**
 
 > [!info] The write side is already in Release 1
-> The underlying requirement that actions and changes be recorded — actor, timestamp, what changed — is `🎯 Release 1` as a non-functional requirement ([#14](https://github.com/SinYang13/IS212-2026/discussions/14), [[non-functional-requirements|brief §8f]]), independent of which functional area produced the change. Only the user-facing surfaces below are deferred: Release 1 requires that the record **exist**, not that it be **browsable** ([[audit-record]]). Cards here must not be read as descoping the NFR.
+> The underlying requirement that actions and changes be recorded — actor, timestamp, what changed — is `🎯 Release 1` as a non-functional requirement ([#14](https://github.com/SinYang13/IS212-2026/discussions/14), [[non-functional-requirements|brief §8f]]), independent of which functional area produced the change. Only the user-facing surfaces below are deferred: Release 1 requires that the record **exist**, not that it be **browsable** ([[audit-record]]). That deferral is now the customer's own position rather than an inference from the core-20's silence — "Activity History and Change History are not standalone core features, so there is no requirement to implement a complete audit-history function" ([#96](https://github.com/SinYang13/IS212-2026/discussions/96)). Read the relaxation narrowly: it reaches the browsable surface, not the what/who/when auditability requirement, which [#96](https://github.com/SinYang13/IS212-2026/discussions/96) does not touch. Cards here must not be read as descoping the NFR.
 
 ### HB1 — Review How an Event's Information Changed
 
@@ -302,6 +335,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 **Open questions:**
 - Which roles hold "appropriate access" is unstated — no role is named anywhere.
 - Whether change history extends beyond *event* information to other object types is unstated; [[audit-record]] deliberately does not extend it without a source.
+- Which information is **important** enough to carry a change record is still undefined. [#96](https://github.com/SinYang13/IS212-2026/discussions/96) confirms Change History is not a core feature and names "important event information changes" among the significant actions, but leaves the boundary of "important" exactly where [[event-planning-venue-booking-system|brief §4]] left it.
 - The storage mechanism is explicitly the team's — "The technical mechanism used to achieve this is for you to propose" ([#14](https://github.com/SinYang13/IS212-2026/discussions/14)). That is a task inside this story, not an AC (T4).
 - AC 4 states what the *customer* said about documents. [[reporting]]'s stronger claim — that document change history is limited to add/delete events — is an inference [[audit-record]] itself downgrades, and is not carried here.
 
@@ -315,7 +349,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Activity history for completed and cancelled events remains available ([#20](https://github.com/SinYang13/IS212-2026/discussions/20))
 
 **Open questions:**
-- **Which actions count as "significant" is enumerated by no source** ([[audit-record]]). The team must propose the set and have it confirmed — it determines this card's entire size, and no estimate is meaningful before it.
+- **The customer has since supplied an illustrative list, and it is not a specification.** [#96](https://github.com/SinYang13/IS212-2026/discussions/96) names submission, approval/rejection, coordinator assignment/reassignment, important event information changes, venue booking decisions, equipment reservation changes, confirmation, rescheduling and cancellation as actions that "materially affect the event or its arrangements" — then adds that "the exact set and presentation can be proposed by the team", all of it prefaced "where the team chooses to support history". So it is a strong steer on a `🔶 Team decision`, not a `✅ Specified` enumeration ([[audit-record]]). Two consequences: the card is **estimable in a way it was not when drafted**, and the list's omission of registration events is not a denial — [[audit-record]] warns against citing [#96](https://github.com/SinYang13/IS212-2026/discussions/96) as authority for covering registration either way.
 - [[event-planning-venue-booking-system|brief §4]] states an access restriction only for Change History. **No sentence restricts who may view Activity History.** Any assumption that HB1's restriction applies here is an inference governed by the general access-control model, not a confirmed rule ([[audit-record]]) — which is why no access AC appears on this card and one does appear on HB1.
 - Whether each domain object carries its own trail or all entries roll up to the owning event is unstated ([[domain-model]]).
 - Whether attaching or removing a supporting document is itself logged is unstated.
@@ -335,12 +369,12 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - The set of categories is extensible beyond those seven examples ([[event-planning-venue-booking-system|brief §4]])
 - Category is available as a criterion when searching events ([[event-planning-venue-booking-system|brief §4]])
 
-> [!warning] This is the thinnest-sourced card in the document
-> **No discussion exists on event categories at all** — the topic was never asked about and never volunteered. Everything past the single [[event-planning-venue-booking-system|brief §4]] sentence is unstated, so every question below is a *customer* question, not a team decision. Do not let this card enter a sprint on the strength of its plausibility.
+> [!success] Resolved — [#100](https://github.com/SinYang13/IS212-2026/discussions/100) supplies the source this card was drafted without
+> Drafted as the thinnest-sourced card in this document, on the grounds that no discussion on event categories existed at all. One now does. [#100](https://github.com/SinYang13/IS212-2026/discussions/100) confirms the brief's seven examples, states the list "is not intended to be exhaustive", and rules that "categories is not one of the mandatory Release 1 core features, so there is no need to implement a comprehensive category — the team may use a reasonable set of categories based on the briefing". That converts most of the questions below from *customer* questions into team decisions with a stated tolerance, and it **caps the card's size**: a reasonable fixed list satisfies the customer, so no vocabulary-management feature is owed.
 
 **Open questions:**
-- Whether category is mandatory, single- or multi-valued, free text or a controlled list is unstated.
-- Who maintains the vocabulary is unstated. [[event-planning-venue-booking-system|brief §4]] says "defined by ConnectSphere" without naming a role, and there is no admin role — system configuration and user administration are not defined as a business role ([#52](https://github.com/SinYang13/IS212-2026/discussions/52)).
+- Whether category is mandatory, single- or multi-valued, free text or a controlled list is unstated — though [#100](https://github.com/SinYang13/IS212-2026/discussions/100)'s "a reasonable set of categories" points at a controlled list rather than free text.
+- Who maintains the vocabulary is unstated. [[event-planning-venue-booking-system|brief §4]] says "defined by ConnectSphere" without naming a role, and there is no admin role — system configuration and user administration are not defined as a business role ([#52](https://github.com/SinYang13/IS212-2026/discussions/52)). [#100](https://github.com/SinYang13/IS212-2026/discussions/100) makes this far less pressing: if a reasonable fixed set suffices, nobody has to maintain it at runtime, and the missing admin role stops blocking this card the way it still blocks RM3.
 - Whether category drives any behaviour — venue suitability, defaults, routing — or is purely descriptive, is unstated.
 - **The actor and the beneficiary differ.** Whoever creates the event assigns the category; the value accrues to whoever searches and reports later. §4.2 warns that this usually means the card is two stories or has the wrong role. Resolve in the conversation before splitting blindly.
 - **Wiki inconsistency to settle first:** [[event-request-workflow]] states that requests are categorised, but [[event-request]]'s attribute table has no category field, and [[event-planning-venue-booking-system|brief §4]] says "**Events** can be classified", not requests. Decide whether category is set at request time or on the event, and fix whichever page is wrong.
@@ -384,10 +418,13 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Each session can have its own venue, which may differ from that of other sessions in the same event ([#74](https://github.com/SinYang13/IS212-2026/discussions/74))
 - Session venue bookings are placed against the venue's fixed AM, PM and Night slots ([#50](https://github.com/SinYang13/IS212-2026/discussions/50))
 - Given two sessions of the same event request overlapping periods in the same venue, then the second is blocked by the double-booking rule ([#35](https://github.com/SinYang13/IS212-2026/discussions/35), [#41](https://github.com/SinYang13/IS212-2026/discussions/41))
+- A session occupies **whole slots**: one slot is the smallest unit of setup and turnaround, sub-slot durations are not required for Release 1 ([#108](https://github.com/SinYang13/IS212-2026/discussions/108)), and a session running across two slots consumes both in full ([#107](https://github.com/SinYang13/IS212-2026/discussions/107))
 
 **Open questions:**
-- How a session's timing maps onto the three fixed slots when it does not align with a slot boundary is unstated.
+- *Closed since drafting.* How a session's timing maps onto the three fixed slots when it does not align with a slot boundary was this card's open question until [#108](https://github.com/SinYang13/IS212-2026/discussions/108) and [#107](https://github.com/SinYang13/IS212-2026/discussions/107); it is now AC 4, and it simplifies AC 3 — occupancy is a set of whole slots, so overlap is set intersection rather than interval arithmetic over timestamps ([[venue-booking]]).
 - Whether a session's venue booking follows the same request-and-approval flow as an event-level booking is unstated — assumed by convenience elsewhere, stated nowhere.
+- **Which room layout the session's booking assumes is unrecorded, and capacity now depends on it.** Venue capacity varies by room layout, and the per-layout figure is supplied as a venue attribute ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)). A booking that names no layout can be filtered against a venue's capacities but cannot be validated against one — the defect [[discussions-sept-8-critical-diffs]] files as **S3** against the Release 1 `booking` model, inherited unchanged by any per-session booking built on it ([[booking]]).
+- [#109](https://github.com/SinYang13/IS212-2026/discussions/109) bounds this card usefully: "only one final venue booking should normally be confirmed for the same event/session, unless the event requires multiple venues". One venue *per session* is the norm — which is what this card builds — not one venue per event.
 
 **Dependency:** EC3.
 
@@ -404,6 +441,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Whether registration is per-session or per-event is unstated, which leaves the relationship between a session's attendance limit and the event's registration capacity undefined. This is the question that decides whether EC5 is small or large.
 - Whether event readiness aggregates across sessions is asserted by [[event-readiness]] but derived, not stated — [#80](https://github.com/SinYang13/IS212-2026/discussions/80) speaks about events and [#74](https://github.com/SinYang13/IS212-2026/discussions/74) about sessions, and neither joins them.
 - Whether the four properties [#74](https://github.com/SinYang13/IS212-2026/discussions/74) confirms — timing, venue, equipment, attendance limit — are exhaustive is unstated.
+- **Do not conflate AC 2's per-session attendance limit with expected attendance.** [#119](https://github.com/SinYang13/IS212-2026/discussions/119) fixes *expected attendance* as a single **event-level** requirement, explicitly not duplicated into the venue-requirements structure, while still driving venue suitability, capacity and booking decisions ([[event]], [[venue-suitability]]). A per-session *limit* is a different field — a cap, not an estimate — and [#119](https://github.com/SinYang13/IS212-2026/discussions/119) attaches a standing constraint to whatever model the team proposes: the figure must stay "consistent and not maintained in conflicting places". Whether a per-session limit implies a per-session expected attendance is unstated, and answering it carelessly is precisely how the second copy gets created.
 
 **Dependency:** EC3.
 
@@ -418,6 +456,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 **Open questions:**
 - No document size or file-type limit is specified — "Please propose an appropriate approach if your solution requires such constraints" ([#18](https://github.com/SinYang13/IS212-2026/discussions/18)). [[open-questions]]' judgement that unbounded upload is not a safe default is the wiki's, not the customer's, and is not written as an AC.
+- **Can an Event Organiser attach a document to a request they have already submitted?** [#102](https://github.com/SinYang13/IS212-2026/discussions/102) bars the Organiser from directly editing a submitted request — "any required changes, including non-significant changes, should be communicated to or requested through the Event Coordinator". Whether attaching a document counts as editing the request is unstated, and this card's role is the Organiser. If it does, either the attach action is pre-submission only or the card's role becomes the Coordinator. Raise it before an AC is written on either reading ([[access-control]], [[change-impact-management]]).
 - **Whether documents may be deleted at all is unstated.** [#21](https://github.com/SinYang13/IS212-2026/discussions/21)'s question offered "added/deleted" and the answer addressed only versioning.
 - Whether Attendees may see documents is unstated. [[non-functional-requirements|brief §8b]] bars Attendees from "internal planning information" but does not classify documents as such.
 - Whether documents attach to an event request or a session as well as to an event is unstated — [[event-request]] does not model them at all.
@@ -428,7 +467,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 ## EP-F — Tentative Venue Holding
 
-`📋 Backlog`. Core features 12–14 describe request → approve/reject only; "tentative" and "hold" appear nowhere in the core 20. [#41](https://github.com/SinYang13/IS212-2026/discussions/41)'s exclusivity rule still binds through its *confirmed booking* half, which VN5/SPM-46 and V1/SPM-19 already carry — this epic is the deferred hold half.
+`📋 Backlog`. Core features 12–14 describe request → approve/reject only; "tentative" and "hold" appear nowhere in the core 20. [#41](https://github.com/SinYang13/IS212-2026/discussions/41)'s exclusivity rule still binds through its *confirmed booking* half, which VN5/SPM-46 and V1/SPM-19 already carry — this epic is the deferred hold half. The deferral is now stated rather than inferred: placing multiple venues on tentative hold at the same time is "not required for Release 1" ([#109](https://github.com/SinYang13/IS212-2026/discussions/109), [[release-1-scope]]).
 
 ### VH1 — Place a Tentative Hold on a Venue Slot
 
@@ -440,10 +479,11 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - The held slots display as "tentatively held" on the venue availability calendar ([[event-planning-venue-booking-system|brief §4]])
 
 **Open questions:**
-- **Who may place a hold is named in no source.** [[booking]]'s "coordinator places a hold" label is that page's inference and the page says so. The Event Coordinator is the natural candidate given they own venue booking and cancellation ([#68](https://github.com/SinYang13/IS212-2026/discussions/68)), but this needs confirming.
+- **Who may place a hold is named in no source.** [[booking]]'s "coordinator places a hold" label is that page's inference and the page says so. The Event Coordinator is the natural candidate given they own venue booking and cancellation ([#68](https://github.com/SinYang13/IS212-2026/discussions/68)), but this needs confirming. The 2026-09-08 batch did not name the actor either — though [#109](https://github.com/SinYang13/IS212-2026/discussions/109) answers a question framed as "Can an **Event Coordinator** hold more than one candidate venue for the same event?" without correcting the actor. That is weak corroboration of [[booking]]'s inference and no substitute for asking.
 - What [[event-planning-venue-booking-system|brief §4]]'s qualifier "where permitted by ConnectSphere's business process" gates on is unstated.
 - How the rules governing holds "may differ from confirmed bookings" beyond the exclusivity rule is unstated — the brief flags a difference and does not describe it.
-- How many holds one event may carry, whether a hold needs Venue Staff approval, and whether the Event Organiser can see it, are all unstated.
+- How many holds one event may carry is now answered **for Release 1 and no further**: a Coordinator may identify and consider multiple candidate venues, but placing several on tentative hold simultaneously is not required ([#109](https://github.com/SinYang13/IS212-2026/discussions/109)). Whether the eventual feature permits it is still unstated — the customer declined to require it, not to allow it.
+- Whether a hold needs Venue Staff approval, and whether the Event Organiser can see it, remain unstated.
 
 ### VH2 — Confirm or Release a Tentative Hold
 
@@ -470,13 +510,19 @@ Both items in this epic were actioned in Linear alongside this document; they ar
 
 Drafted in full in [[user-stories-proposed-rewrites]] and unchanged here. Three ACs — check-in by QR-code scan or manual entry, only Registered attendees may be checked in, attendance neither self-reported nor auto-marked ([#38](https://github.com/SinYang13/IS212-2026/discussions/38)) — with the role left unnamed because the source says only "manually by staff".
 
-**Still open:** which internal role performs check-in. No role description in [[user-roles|brief §3]]'s table and no discussion attaches check-in to a named role. Also unstated: what the QR code encodes and when it is issued, whether check-in is per-event or per-session, no-show handling, correcting or reversing a check-in, walk-ins, and the timing window relative to event start. None of these is drafted as a card, because each would be invented rather than sourced.
+**Closed since drafting — the blocking unknown, and one of this document's ten escalated customer questions.** Check-in "may be performed by an authorized internal staff member involved in the event operations. **No new registration-only role is required.** The team may assign this responsibility to an appropriate existing internal role as part of its design, subject to the access-control model" ([#38](https://github.com/SinYang13/IS212-2026/discussions/38) follow-up, [[user-roles]]). Note what that is and is not: it does not name the role, it *forbids inventing one* and hands the choice to the team. The card moves from blocked on the customer to blocked on a design decision, and Gate A3 still fails until the team picks a role.
+
+**Still open:** what the QR code encodes and when it is issued, whether check-in is per-event or per-session, no-show handling, correcting or reversing a check-in, walk-ins, and the timing window relative to event start. None of these is drafted as a card, because each would be invented rather than sourced.
 
 ### SPK-1 — Coordinator-side entry of non-self-registering attendees · ticketed as **SPM-77**
 
 A spike, not a story, and the only spike in this document — one in 31 items, comfortably inside the standard's ~1 in 10 tolerance (§1). [#33](https://github.com/SinYang13/IS212-2026/discussions/33) settles the routing ("the attendee list will have to be provided to the Event Coordinator for processing") and none of the mechanism, so the card is Estimable-blocked rather than merely large.
 
 Three questions to close it: the delivery and entry mechanism; whether these attendees consume registration capacity and can be waitlisted; and whether they can be checked in and appear in registration reports. Timebox left to the team — proposing one would be exactly the false precision §5.5 warns about.
+
+**Question 2 is now half answered.** "VIPs may be added manually even when normal registration is full, but the overall event/venue capacity must still not be exceeded" ([#99](https://github.com/SinYang13/IS212-2026/discussions/99)) — so a manually added attendee **bypasses the registration-full gate but not the capacity ceiling**, which is the harder half of that question. The waiting-list half remains open, and [#116](https://github.com/SinYang13/IS212-2026/discussions/116) leaves the waiting list's own cut-off rule to the team. Two cautions carried from [[discussions-sept-8-critical-diffs]]: [#99](https://github.com/SinYang13/IS212-2026/discussions/99) says nothing about *who* performs the act, so [#33](https://github.com/SinYang13/IS212-2026/discussions/33)'s routing of the VIP list to the Event Coordinator is undisturbed ([[registration]]); and this is the **registration** ceiling, a different rule on a different object from the venue-suitability "not normally" hedge.
+
+**And the spike's premise is now confirmed rather than assumed.** Attendees "should be able to access appropriate event information through the system", but the customer does not require them to use the application as the only source, and information may be communicated through other channels ([#97](https://github.com/SinYang13/IS212-2026/discussions/97)). A population of attendees who never touch the system is the customer's expectation, not an edge case this spike invented.
 
 **Note for question 3:** [[reporting]] asserts that manually-added attendees "must appear in registration reports alongside self-registered attendees". That is the wiki's inference, not a customer statement, and the spike should test it rather than inherit it.
 
@@ -498,6 +544,8 @@ Both areas `📋 Backlog`. The **confirmation gate** is `🧩 Adjacent` and alre
 
 **Open question:** **how essentiality is determined and recorded per event is unspecified, and it is the highest-value design decision on this card.** The customer was explicit that there is no single fixed list — "Essential arrangements are those required for that particular event to proceed… There is no single fixed list that applies to every event" ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)). [[event-readiness]] sets out candidate approaches — derive the required set from the request's declared requirements, let the Coordinator mark each arrangement, or a hybrid — but those are the wiki's candidates, not a customer answer. The confirmation gate already in Release 1 depends on this mechanism, so it cannot stay implicit, and this card cannot be sized before it is chosen.
 
+**Two 2026-09-08 answers move this without closing it.** The *decider* is now fixed for one arrangement type: whether an incomplete **equipment** requirement is essential is determined by the Event Coordinator **together with the relevant Technical Support Staff**, and if judged essential the event must not be confirmed until it is resolved ([#106](https://github.com/SinYang13/IS212-2026/discussions/106), [[event-readiness]]). That is a decider, not a mechanism — how the judgement is recorded remains unspecified, and [#106](https://github.com/SinYang13/IS212-2026/discussions/106) speaks about equipment only. Separately, [#98](https://github.com/SinYang13/IS212-2026/discussions/98) removes any remaining reason to treat the gate itself as deferrable: event confirmation "does not need to be implemented as a separate standalone feature, but the Release 1 workflow should support an Event Coordinator confirming an event once the required/essential arrangements for that event have been completed". The mechanism this card's open question describes is therefore a **Release 1 dependency in the customer's own words**, even though this card is not.
+
 ### RC2 — See Outstanding Actions Across My Events
 
 **Story:** As an Event Coordinator, I want a list of my upcoming events that still have incomplete arrangements, so that I can work through them in order of urgency instead of opening each event to find out.
@@ -510,7 +558,7 @@ Both areas `📋 Backlog`. The **confirmation gate** is `🧩 Adjacent` and alre
 **Open questions:**
 - Whether outstanding actions are discrete tracked items with owners and due dates, or a view derived from the state of the arrangements, is unstated by every source. The two are not the same card.
 - Who may create, assign, close or dismiss an outstanding action is unstated, as are escalation, ageing and priority.
-- Whether Venue Staff and Technical Support Staff get their own outstanding-action lists is unstated. [[event-request-workflow|brief §5]] Step 9 has them "update the relevant preparation information", and [[connectsphere-event-services|brief §2]] names the Technical Support Staff notice problem, but no source gives either role a list. [[event-readiness]]'s per-role table is that page's proposal.
+- Whether Venue Staff and Technical Support Staff get their own outstanding-action lists is unstated. [[event-request-workflow|brief §5]] Step 9 has them "update the relevant preparation information", and [[connectsphere-event-services|brief §2]] names the Technical Support Staff notice problem, but no source gives either role a list. [[event-readiness]]'s per-role table is that page's proposal. One such list is no longer unstated — and it is **not** in this epic: the Event Operations Manager must be able to identify newly submitted events awaiting Coordinator assignment, without a notification per submission ([#117](https://github.com/SinYang13/IS212-2026/discussions/117)). That is a Release 1 obligation attached to core feature 5's assignment step (see the boundary callout on CV4), so RC2 must not absorb it.
 - The only chase mechanism the customer confirmed is the batched reminder in [#47](https://github.com/SinYang13/IS212-2026/discussions/47) — whether chasing is notification-only or an in-app worklist is undecided, and RM3 is the other half of the answer.
 
 **Relation:** CV4. RC2 is plausibly a panel on the role-based overview rather than a screen; sequence them together.
@@ -527,7 +575,7 @@ Both areas `📋 Backlog`. The **confirmation gate** is `🧩 Adjacent` and alre
 
 **Open questions:**
 - **How far in advance and how often reminders fire, and the surface on which that is configured, are explicitly the team's** — "The timing and configurability are for you to propose" ([#40](https://github.com/SinYang13/IS212-2026/discussions/40)). No lead time appears in any AC above, because none exists to cite (§5.5).
-- Of the four reminder categories [[event-planning-venue-booking-system|brief §4]] lists, **only the incomplete-arrangements variant received a direct Q&A confirmation** ([#47](https://github.com/SinYang13/IS212-2026/discussions/47)). The upcoming-event category is stated in the brief's feature description and confirmed nowhere. Confirm the category is wanted before building it.
+- Of the four reminder categories [[event-planning-venue-booking-system|brief §4]] lists, **only the incomplete-arrangements variant received a direct Q&A confirmation** ([#47](https://github.com/SinYang13/IS212-2026/discussions/47)). The upcoming-event category is stated in the brief's feature description and confirmed nowhere. Confirm the category is wanted before building it. **The 2026-09-08 batch does not change this, and should not be read as if it did:** it confirmed two further notification triggers — the Event Organiser is informed when a confirmed event stops being confirmed ([#105](https://github.com/SinYang13/IS212-2026/discussions/105)), and attendees are informed of a new date on a reschedule ([#115](https://github.com/SinYang13/IS212-2026/discussions/115)) — but neither is a *reminder*. Both are event-driven notifications on the notification feature ([[notifications]]), not scheduled lead-time reminders, and both explicitly permit delivery "through another appropriate communication channel".
 
 ### RM2 — Be Reminded of a Registration Deadline
 
@@ -553,7 +601,7 @@ Both areas `📋 Backlog`. The **confirmation gate** is `🧩 Adjacent` and alre
 - The configured frequency governs the incomplete-arrangement reminders, which the customer confirmed are required, batched and configurable ([#47](https://github.com/SinYang13/IS212-2026/discussions/47))
 
 **Open questions:**
-- **Who configures this is unstated, and there is no role to give it to.** System configuration and user administration are not defined as a business role ([#52](https://github.com/SinYang13/IS212-2026/discussions/52)) — yet the customer requires configurability. This is a live contradiction between two customer answers and needs raising, not resolving in design.
+- **Who configures this is unstated, and there is no role to give it to.** System configuration and user administration are not defined as a business role ([#52](https://github.com/SinYang13/IS212-2026/discussions/52)) — yet the customer requires configurability. This is a live contradiction between two customer answers and needs raising, not resolving in design. [#101](https://github.com/SinYang13/IS212-2026/discussions/101) does **not** relieve it: it creates a sixth system role, the Event Operations Manager, but confines it to assigning and reassigning Event Coordinators, leaving [#52](https://github.com/SinYang13/IS212-2026/discussions/52)'s "no admin role" untouched. Reading "separate system role" as a home for system configuration is exactly the over-read [[discussions-sept-8-critical-diffs]] warns against ([[user-roles]]).
 - Whether configuration is global, per notification type, or per event is unstated.
 - [[event-planning-venue-booking-system|brief §4]]'s User Profile Management row mentions "communication preferences", which points at a per-user setting, while [#37](https://github.com/SinYang13/IS212-2026/discussions/37) puts configuration per notification type. Neither source reconciles the two ([[notification]]).
 
@@ -577,6 +625,7 @@ No register row of its own. Primary contact is not a brief functionality area �
 
 **Open questions:**
 - Whether a client-organisation **administrator** role exists was asked directly in [#81](https://github.com/SinYang13/IS212-2026/discussions/81) and not answered. [[client-organisation]] warns that "no client-organisation administrator" is that page's inference, not a stated fact — [#81](https://github.com/SinYang13/IS212-2026/discussions/81) supports only that same-organisation access is automatic rather than administrator-granted for that specific rule.
+- Release 1 has no client onboarding at all: no self-registration or account onboarding is required for Event Organisers, and "pre-loaded client accounts may be used" ([#49](https://github.com/SinYang13/IS212-2026/discussions/49) follow-up, [[access-control]], [[user-account]]). A primary-contact designation would therefore act on a seeded account set — which makes the card cheaper to build and *harder to justify*, since a seeded set can simply carry the designation as data.
 - Delegation between Event Organisers is unsupported, though change of Event Organiser is catered for ([#61](https://github.com/SinYang13/IS212-2026/discussions/61)) — which may already cover the unreachable-Organiser case this card's WHY appeals to. Check before building.
 
 ---
@@ -588,7 +637,7 @@ No register row of its own. Primary contact is not a brief functionality area �
 | TS1 | EP-A | Request Technical Support | Event Coordinator | Notice period ([#25](https://github.com/SinYang13/IS212-2026/discussions/25)) |
 | TS2 | EP-A | Review a Technical Support Requirement | Technical Support Staff | No lifecycle specified |
 | TS3 | EP-A | Raise a Clarification on a Support Requirement | Technical Support Staff | Direct-contact bar unconfirmed |
-| TS4 | EP-A | Allocate Technical Support Staff to an Event | **Not named** | Who allocates ([#88](https://github.com/SinYang13/IS212-2026/discussions/88)) |
+| TS4 | EP-A | Allocate Technical Support Staff to an Event | **Not named** | Who allocates ([#88](https://github.com/SinYang13/IS212-2026/discussions/88)) — sharpened by [#101](https://github.com/SinYang13/IS212-2026/discussions/101) |
 | TS5 | EP-A | See Technical Support Staff Availability | **Not named** | Availability model ([#89](https://github.com/SinYang13/IS212-2026/discussions/89)) |
 | RP1 | EP-B | Generate an Event Summary | **Not named** | Who are "appropriate users" |
 | RP2 | EP-B | Review Venue Usage Over a Period | Internal user (§4.2) | Measure set ([#29](https://github.com/SinYang13/IS212-2026/discussions/29)) |
@@ -597,20 +646,20 @@ No register row of its own. Primary contact is not a brief functionality area �
 | CV1 | EP-C | View My Events in a Calendar | Attendee | Granularity ([#6](https://github.com/SinYang13/IS212-2026/discussions/6)) |
 | CV2 | EP-C | View the Event Calendar | Internal user (§4.2) | Which statuses appear |
 | CV3 | EP-C | Search and Filter Events | Internal user (§4.2) | Depends on EC1 for category |
-| CV4 | EP-C | See an Overview for My Role | Internal user (§4.2) | Per-role content unenumerated |
+| CV4 | EP-C | See an Overview for My Role | Internal user (§4.2) | Per-role content unenumerated — [#118](https://github.com/SinYang13/IS212-2026/discussions/118) defers, does not define |
 | HB1 | EP-D | Review How an Event's Information Changed | **Not named** | Who has "appropriate access" |
-| HB2 | EP-D | Review an Event's Activity History | **Not named** | Which actions are "significant" |
-| EC1 | EP-E | Classify an Event by Category | Event Coordinator | No discussion exists at all |
+| HB2 | EP-D | Review an Event's Activity History | **Not named** | Exact significant-action set — [#96](https://github.com/SinYang13/IS212-2026/discussions/96) gives an illustrative list only |
+| EC1 | EP-E | Classify an Event by Category | Event Coordinator | Vocabulary ownership — [#100](https://github.com/SinYang13/IS212-2026/discussions/100) caps the scope |
 | EC2 | EP-E | Create an Event by Reusing a Previous One | Event Organiser | Copy set ([#75](https://github.com/SinYang13/IS212-2026/discussions/75)) |
 | EC3 | EP-E | Record an Event's Sessions | Event Coordinator | Identity scheme ([#74](https://github.com/SinYang13/IS212-2026/discussions/74)) |
-| EC4 | EP-E | Book a Venue per Session | Event Coordinator | Session-to-slot mapping |
-| EC5 | EP-E | Set Equipment and Attendance per Session | Event Coordinator | Registration per session or event |
-| EC6 | EP-E | Attach Supporting Documents to an Event | Event Organiser | Size/type limits ([#18](https://github.com/SinYang13/IS212-2026/discussions/18)) |
-| VH1 | EP-F | Place a Tentative Hold on a Venue Slot | **Not named** | Who may hold |
+| EC4 | EP-E | Book a Venue per Session | Event Coordinator | Which room layout a booking assumes ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)) |
+| EC5 | EP-E | Set Equipment and Attendance per Session | Event Coordinator | Registration per session or event; session limit vs event-level expected attendance ([#119](https://github.com/SinYang13/IS212-2026/discussions/119)) |
+| EC6 | EP-E | Attach Supporting Documents to an Event | Event Organiser | May an Organiser attach post-submission ([#102](https://github.com/SinYang13/IS212-2026/discussions/102)) |
+| VH1 | EP-F | Place a Tentative Hold on a Venue Slot | **Not named** | Who may hold — still unnamed after [#109](https://github.com/SinYang13/IS212-2026/discussions/109) |
 | VH2 | EP-F | Confirm or Release a Tentative Hold | **Not named** | Expiry ([#39](https://github.com/SinYang13/IS212-2026/discussions/39), [#41](https://github.com/SinYang13/IS212-2026/discussions/41)) |
-| Reg6 | EP-G | Check In a Registered Attendee · **SPM-76** | **Not named** | Which role checks in ([#38](https://github.com/SinYang13/IS212-2026/discussions/38)) |
+| Reg6 | EP-G | Check In a Registered Attendee · **SPM-76** | **Not named** | Which *existing* role the team assigns ([#38](https://github.com/SinYang13/IS212-2026/discussions/38) follow-up) |
 | SPK-1 | EP-G | Non-self-registering attendee intake · **SPM-77** | — (spike) | Mechanism ([#33](https://github.com/SinYang13/IS212-2026/discussions/33)) |
-| RC1 | EP-H | See What Is Blocking an Event's Confirmation | Event Coordinator | How essentiality is recorded ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)) |
+| RC1 | EP-H | See What Is Blocking an Event's Confirmation | Event Coordinator | How essentiality is recorded ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)); decider now named for equipment ([#106](https://github.com/SinYang13/IS212-2026/discussions/106)) |
 | RC2 | EP-H | See Outstanding Actions Across My Events | Event Coordinator | Tracked items or derived view |
 | RM1 | EP-H | Be Reminded of an Upcoming Event | Attendee | Lead time ([#40](https://github.com/SinYang13/IS212-2026/discussions/40)) |
 | RM2 | EP-H | Be Reminded of a Registration Deadline | Attendee | Who is a "relevant user" |
@@ -618,6 +667,8 @@ No register row of its own. Primary contact is not a brief functionality area �
 | CO1 | EP-I | Designate a Primary Contact | Event Coordinator | Whether it is wanted at all ([#65](https://github.com/SinYang13/IS212-2026/discussions/65)) |
 
 Every row has a blocking unknown. That is the honest state of this half of the backlog, not a defect in the drafting: these seventeen areas went uncarded because nobody had the conversation, and a card cannot manufacture one.
+
+It remains true after the 2026-09-08 batch. The batch closed one card's unknown as a *customer* question (Reg6), downgraded two more to team decisions with a stated tolerance (HB2, EC1), converted one into an acceptance criterion (EC4) and opened a new one (EC6). **It made no card Ready** — priority and estimate are still absent everywhere by design, and nine cards still name no role.
 
 ## Cards deliberately not written
 
@@ -628,25 +679,33 @@ Finding work to *not* do is the point of a split (§7.3). Six candidates were co
 | A standalone "export a report" card | No beneficiary and no standalone value — a criterion, not a story (§6.1). Export lives inside RP1–RP4. |
 | Auto-release of an expired tentative hold | No duration or auto-release rule exists to build against ([#39](https://github.com/SinYang13/IS212-2026/discussions/39)). Follows VH2 once the team sets an expiry. |
 | An Event Organiser event calendar | Would decide, by implication, whether same-organisation events appear on a calendar — an access question [#81](https://github.com/SinYang13/IS212-2026/discussions/81) does not reach. |
-| Per-role dashboard content cards | The customer enumerated content for no role. Writing five cards from the wiki's "Plausible" tables would launder inference into specification. |
+| Per-role dashboard content cards | The customer enumerated content for no role. Writing five cards from the wiki's "Plausible" tables would launder inference into specification. [#118](https://github.com/SinYang13/IS212-2026/discussions/118) has since confirmed the dashboard is not a Release 1 core feature — which removes the schedule pressure and none of the missing specification. |
 | Reversing or correcting a check-in; no-shows; walk-ins | Entirely unstated. Listed as questions on Reg6 instead. |
 | Recording attendance at event completion | Already inside SPM-51 "Mark an event as completed" ([[event-request-workflow\|brief §5]] Step 14). Gate D4 — no overlap with sibling cards. |
+| An Event Organiser venue-preference field (new, 2026-09-08) | [#111](https://github.com/SinYang13/IS212-2026/discussions/111) permits it — "if the team wishes to allow the Event Organiser to indicate a preferred venue in the system, this may be supported as a preference" — but it is optional at the team's discretion and would sit inside core feature 2's venue-requirements field set, which is 🎯 Release 1. Carding it here would move a Release 1 field into the backlog document. Raise it as a Release 1 refinement instead ([[venue-booking]]). |
 
 ## Questions this document raises for the customer
 
-Distinct from team decisions. These need the customer, and several block more than one card.
+Distinct from team decisions. These need the customer, and several block more than one card. **Nine are live.** The list was ten at drafting; the 2026-09-08 batch closed three and opened two.
 
 1. **PDPA and privacy on attendee export** ([#32](https://github.com/SinYang13/IS212-2026/discussions/32)) — asked once, answered only as a permission question. Blocks RP3 and RP4.
-2. **Which internal role performs check-in** ([#38](https://github.com/SinYang13/IS212-2026/discussions/38)) — "the staff" is not a role. Blocks Reg6 (SPM-76).
-3. **Who allocates Technical Support Staff** ([#88](https://github.com/SinYang13/IS212-2026/discussions/88) asked and was answered on a different axis) — blocks TS4 and TS5, and is the same shape of gap as the unmodelled Event Operations Manager.
-4. **Who may place a tentative venue hold** — named nowhere. Blocks EP-F entirely.
-5. **Dashboard content per role** — the brief's "such as" examples are not a specification. Blocks CV4 and shapes RC2.
-6. **Which actions count as "significant"** for activity history — blocks HB2 and determines its size.
-7. **Who configures reminder frequency**, given the customer requires configurability ([#47](https://github.com/SinYang13/IS212-2026/discussions/47)) and denies an admin role ([#52](https://github.com/SinYang13/IS212-2026/discussions/52)) — a direct tension between two answers.
-8. **Anything at all about event categories** — the only area in this document with no discussion behind it.
-9. **Is a primary contact wanted** ([#65](https://github.com/SinYang13/IS212-2026/discussions/65)) — a yes/no that either creates CO1 or deletes it.
-10. **Whether "recurring" means a repeating series** or only field copying ([#75](https://github.com/SinYang13/IS212-2026/discussions/75)) — the difference between a small card and a large one.
+2. **Who allocates Technical Support Staff** ([#88](https://github.com/SinYang13/IS212-2026/discussions/88) asked and was answered on a different axis) — blocks TS4 and TS5. Sharper than it was: [#101](https://github.com/SinYang13/IS212-2026/discussions/101) shows the customer will create a role when it wants one, so the silence over technical staffing is now conspicuous rather than merely unaddressed.
+3. **Who may place a tentative venue hold** — named nowhere. [#109](https://github.com/SinYang13/IS212-2026/discussions/109) answered a Coordinator-framed question without correcting the actor, which is not an answer. Blocks EP-F entirely.
+4. **Dashboard content per role** — the brief's "such as" examples are not a specification, and [#118](https://github.com/SinYang13/IS212-2026/discussions/118) defers the dashboard without defining it. Blocks CV4 and shapes RC2.
+5. **Who configures reminder frequency**, given the customer requires configurability ([#47](https://github.com/SinYang13/IS212-2026/discussions/47)) and denies an admin role ([#52](https://github.com/SinYang13/IS212-2026/discussions/52)) — a direct tension between two answers that [#101](https://github.com/SinYang13/IS212-2026/discussions/101)'s sixth role does not resolve.
+6. **Is a primary contact wanted** ([#65](https://github.com/SinYang13/IS212-2026/discussions/65)) — a yes/no that either creates CO1 or deletes it.
+7. **Whether "recurring" means a repeating series** or only field copying ([#75](https://github.com/SinYang13/IS212-2026/discussions/75)) — the difference between a small card and a large one.
+8. **Does the post-submission edit bar extend to attaching a document?** ([#102](https://github.com/SinYang13/IS212-2026/discussions/102)) — new. If it does, EC6's role is wrong, or the action is pre-submission only.
+9. **Is a session's attendance limit the same field as the event's expected attendance?** ([#74](https://github.com/SinYang13/IS212-2026/discussions/74) vs [#119](https://github.com/SinYang13/IS212-2026/discussions/119)) — new. [#119](https://github.com/SinYang13/IS212-2026/discussions/119) forbids maintaining the figure in conflicting places, and EC5 is where a second copy would be created.
+
+**Closed by the 2026-09-08 batch:**
+
+| Was | Now |
+|---|---|
+| Which internal role performs check-in ([#38](https://github.com/SinYang13/IS212-2026/discussions/38)) | **Answered.** No new registration-only role is permitted; the team assigns an existing internal role ([#38](https://github.com/SinYang13/IS212-2026/discussions/38) follow-up). A team decision, not a customer question |
+| Which actions count as "significant" for activity history | **Downgraded.** [#96](https://github.com/SinYang13/IS212-2026/discussions/96) supplies an illustrative list and hands the exact set to the team — a `🔶 Team decision` with a strong steer |
+| Anything at all about event categories | **Answered.** [#100](https://github.com/SinYang13/IS212-2026/discussions/100) confirms the examples, states the list is non-exhaustive, and rules that a reasonable set suffices |
 
 ## Related pages
 
-[[user-story-coverage-stocktake]] · [[release-1-candidate-user-stories]] · [[user-stories-proposed-rewrites]] · [[user-stories-assignment-scrutiny]] · [[release-1-scope]] · [[open-questions]] · [[event-planning-venue-booking-system]] · [[technical-support]] · [[support-request]] · [[reporting]] · [[access-control]] · [[audit-record]] · [[event-readiness]] · [[notifications]] · [[notification]] · [[session]] · [[venue-booking]] · [[booking]] · [[client-organisation]] · [[attendee-registration]] · [[event-request-workflow]]
+[[discussions-sept-8-critical-diffs]] · [[is212-discussions-2026-09-08]] · [[user-story-coverage-stocktake]] · [[release-1-candidate-user-stories]] · [[user-stories-proposed-rewrites]] · [[user-stories-assignment-scrutiny]] · [[release-1-scope]] · [[open-questions]] · [[event-planning-venue-booking-system]] · [[technical-support]] · [[support-request]] · [[reporting]] · [[access-control]] · [[audit-record]] · [[event-readiness]] · [[notifications]] · [[notification]] · [[session]] · [[venue-booking]] · [[booking]] · [[client-organisation]] · [[attendee-registration]] · [[event-request-workflow]] · [[user-roles]] · [[registration]] · [[event]] · [[venue-suitability]]

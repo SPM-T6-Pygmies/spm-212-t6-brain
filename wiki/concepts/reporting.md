@@ -5,6 +5,7 @@ sources:
   - Customer Brief no. 1.md
   - IS212 2026 Discussions Aug 31.md
   - IS212 2026 Discussions Aug 26.md
+  - IS212 2026 Discussions Sept 8.md
 tags:
   - reporting
   - exports
@@ -17,9 +18,9 @@ tags:
 
 **Objects:** [[audit-record]] · [[registration]] · [[event]] · [[venue]]
 
-The read-and-extract surface of the [[event-planning-venue-booking-system]]: reports, exports, history views, and role-based dashboards. The brief specifies four report types plus export, and two history mechanisms (Source: customer-brief-no-1, s4). The Q&A rounds settled the generation model and the access model, but left almost all report **content** to the team.
+The read-and-extract surface of the [[event-planning-venue-booking-system]]: reports, exports, history views, and role-based dashboards. The brief specifies four report types plus export, and two history mechanisms ([[event-planning-venue-booking-system|brief §4]]). The Q&A rounds settled the generation model and the access model, but left almost all report **content** to the team.
 
-**Release 1 scope** ([[release-1-scope]]): every report type, export mechanism, history-browsing surface and dashboard on this page is `📋 Backlog` — none of Event Reports, Venue Usage Reports, Registration Reports, Report Generation and Exporting, Activity History, Change History, or Role-Based Dashboards is named in the core 20. This does not touch the underlying auditability requirement itself — recording what changed, who, and when is 🎯 Release 1 as a non-functional requirement; only the browsable history surface described here is deferred. See [[non-functional-requirements]] and [[audit-record]].
+**Release 1 scope** ([[release-1-scope]]): every report type, export mechanism, history-browsing surface and dashboard on this page is `📋 Backlog` — none of Event Reports, Venue Usage Reports, Registration Reports, Report Generation and Exporting, Activity History, Change History, or Role-Based Dashboards is named in the core 20. **Two of those are now stated outright rather than inferred from silence:** "A role-based dashboard is not listed as a mandatory Release 1 core feature" ([#118](https://github.com/SinYang13/IS212-2026/discussions/118)), and Activity History and Change History "are not standalone core features, so there is no requirement to implement a complete audit-history function" ([#96](https://github.com/SinYang13/IS212-2026/discussions/96)). This does not touch the underlying auditability requirement itself — recording what changed, who, and when is 🎯 Release 1 as a non-functional requirement; only the browsable history surface described here is deferred. See [[non-functional-requirements]] and [[audit-record]].
 
 ## Report Types
 
@@ -30,7 +31,7 @@ The read-and-extract surface of the [[event-planning-venue-booking-system]]: rep
 | Registration Reports | Event Organisers and Event Coordinators | View or export attendee information where appropriate and subject to access restrictions |
 | Report Generation and Exporting | All report consumers | Export suitable reports or event information into common formats for meetings, operational use, or record-keeping |
 
-(Source: customer-brief-no-1, s4)
+([[event-planning-venue-booking-system|brief §4]])
 
 ## Generation Model
 
@@ -82,14 +83,14 @@ Practical implication: the team must decide unaided how to handle personal data 
 
 ## Event Reports
 
-- Contents per the brief: event details, schedule, venue, operational requirements, registration information, and other relevant information (Source: customer-brief-no-1, s4).
+- Contents per the brief: event details, schedule, venue, operational requirements, registration information, and other relevant information ([[event-planning-venue-booking-system|brief §4]]).
 - Must reflect the authoritative record — for event information it manages, the system is the authoritative source (Source: is212-discussions-2026-08-31, [#79](https://github.com/SinYang13/IS212-2026/discussions/79)). Reports are not reconciled against any external tool.
 - Multi-session events may have different timings, venues, equipment requirements and attendance limits per session ([#74](https://github.com/SinYang13/IS212-2026/discussions/74)), so an event report must be able to represent per-session detail rather than a single flat block.
 - Readiness state is reportable and directly serves the brief's pain point "it is difficult to identify which upcoming events still have incomplete arrangements" — see [[event-readiness]].
 
 ## Export
 
-- The brief asks only for export into "common formats" for meetings, operational use, and record-keeping (Source: customer-brief-no-1, s4). No format was named and none was clarified in Q&A.
+- The brief asks only for export into "common formats" for meetings, operational use, and record-keeping ([[event-planning-venue-booking-system|brief §4]]). No format was named and none was clarified in Q&A.
 - Practical reading: a tabular format for registration and venue usage data, and a document format for event summaries. The choice is unconstrained.
 - Export is not an integration mechanism. Integration with external tools is out of scope ([#79](https://github.com/SinYang13/IS212-2026/discussions/79)), so export is a file handed to the user, not a feed.
 
@@ -98,16 +99,18 @@ Practical implication: the team must decide unaided how to handle personal data 
 
 ## Activity History and Change History
 
-Two distinct mechanisms, defined structurally on [[audit-record]] (Source: customer-brief-no-1, s4).
+Two distinct mechanisms, defined structurally on [[audit-record]] ([[event-planning-venue-booking-system|brief §4]]).
 
-- Both serve the auditability requirement: determine what was changed, who changed it, and when (Source: customer-brief-no-1, s8f). The customer left the **technical mechanism** to the team — append-only log or ordinary table both acceptable ([#14](https://github.com/SinYang13/IS212-2026/discussions/14)). See [[non-functional-requirements]].
+- Both serve the auditability requirement: determine what was changed, who changed it, and when ([[non-functional-requirements|brief §8f]]). The customer left the **technical mechanism** to the team — append-only log or ordinary table both acceptable ([#14](https://github.com/SinYang13/IS212-2026/discussions/14)). See [[non-functional-requirements]].
 - Retention is unbounded: no retention policy exists, and completed and cancelled events may remain available as historical records; archival and housekeeping are outside current scope ([#20](https://github.com/SinYang13/IS212-2026/discussions/20)). History therefore accumulates indefinitely by default.
 - Supporting documents are **not versioned** — "as they are not legal documents, we do not need to keep any versions" ([#21](https://github.com/SinYang13/IS212-2026/discussions/21)) — so document change history is limited to add/delete events, not content diffs.
 - Clarification exchanges are retained with the event record, including Technical Support Staff questions and comments ([#87](https://github.com/SinYang13/IS212-2026/discussions/87)), and comments generally ([#15](https://github.com/SinYang13/IS212-2026/discussions/15)). These form part of the event's history even though comment threading itself is a UI decision.
 
 ## Role-Based Dashboards
 
-The brief specifies a per-role overview relevant to each role's responsibilities — "events requiring attention, upcoming bookings, equipment requests, or attendee registrations" (Source: customer-brief-no-1, s4). Dashboards are the standing view; reports are the extract.
+The brief specifies a per-role overview relevant to each role's responsibilities — "events requiring attention, upcoming bookings, equipment requests, or attendee registrations" ([[event-planning-venue-booking-system|brief §4]]). Dashboards are the standing view; reports are the extract.
+
+**Not in Release 1, on the customer's own word** ([#118](https://github.com/SinYang13/IS212-2026/discussions/118)). One caveat before treating the whole surface as deferred: [#117](https://github.com/SinYang13/IS212-2026/discussions/117) requires the Event Operations Manager to be able to *identify newly submitted events awaiting coordinator assignment*. That is a worklist over unassigned submissions, and it is 🎯 by virtue of core feature 5 — it must exist even though the dashboard it would naturally live on does not. Build it as a filter or queue, not as the first slice of a dashboard. See [[notifications]], [[user-roles]].
 
 | Role | Plausible dashboard content, from confirmed requirements |
 |---|---|
@@ -117,7 +120,7 @@ The brief specifies a per-role overview relevant to each role's responsibilities
 | Event Organiser | Own events and their status, events of their client organisation (view-only, [#81](https://github.com/SinYang13/IS212-2026/discussions/81)), clarification requests, confirmed arrangements |
 | Attendee | Registered events and registration status, plus events open for registration ([#10](https://github.com/SinYang13/IS212-2026/discussions/10)) |
 
-Dashboard content is constrained by [[access-control]]: visibility depends on role **and** relationship to the event, and Attendees must not see internal planning information (Source: customer-brief-no-1, s8b).
+Dashboard content is constrained by [[access-control]]: visibility depends on role **and** relationship to the event, and Attendees must not see internal planning information ([[non-functional-requirements|brief §8b]]).
 
 ## Open Items
 

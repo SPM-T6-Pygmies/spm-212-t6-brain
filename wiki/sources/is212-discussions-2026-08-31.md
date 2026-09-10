@@ -3,12 +3,12 @@ title: "Source: IS212 Discussions — 2026-08-31 snapshot"
 type: source-summary
 sources:
   - "IS212 2026 Discussions Aug 31.md"
-tags: [source, clarifications, q-and-a, github-discussions, is212, authoritative]
+tags: [source, clarifications, q-and-a, github-discussions, is212]
 ---
 
 # Source: IS212 Discussions — 2026-08-31 snapshot
 
-Current authoritative extract of the [[is212-g9-section]] GitHub Discussions board — the only sanctioned channel for clarifying [[customer-brief-no-1]].
+The second of three snapshots of the [[is212-g9-section]] GitHub Discussions board — the only sanctioned channel for clarifying [[customer-brief-no-1]].
 
 ## Metadata
 
@@ -19,6 +19,10 @@ Current authoritative extract of the [[is212-g9-section]] GitHub Discussions boa
 | Volume | 87 discussions, 11 categories |
 | Answer state | 84 answered · 2 unanswered · 26 labelled `important` |
 | Relationship | Strict superset of [[is212-discussions-2026-08-26]] |
+| Superseded by | [[is212-discussions-2026-09-08]] |
+
+> [!warning] Superseded
+> [[is212-discussions-2026-09-08]] is a strict superset of this snapshot and is now authoritative. It adds 26 discussions ([#96](https://github.com/SinYang13/IS212-2026/discussions/96)–[#121](https://github.com/SinYang13/IS212-2026/discussions/121)) and follow-up answers on [#38](https://github.com/SinYang13/IS212-2026/discussions/38) and [#49](https://github.com/SinYang13/IS212-2026/discussions/49). Four of its answers overturn positions this page's ingestion left standing — see [[discussions-sept-8-critical-diffs]]. Nothing on this page was retracted; use it to reconstruct what the team knew at the Week 3–4 boundary.
 
 **Delta since the Aug 26 snapshot:** +12 discussions, +15 answers, +8 `important` labels. Four of the five previously open questions were resolved, and one was re-opened by a follow-up and then answered.
 
@@ -66,7 +70,7 @@ No maximum reservation period. See [[equipment-management]].
 
 ## Still open
 
-Both remaining "unanswered" items are artefacts of the board's status flag: each was **re-opened by a follow-up**, and each received a resolving reply from `SinYang13` on 2026-08-31 that the flag has not caught up with. Neither should be treated as an actual gap.
+Both remaining "unanswered" items are artefacts of the board's status flag: each was **re-opened by a follow-up**, and each received a resolving reply from `SinYang13` on 2026-08-31 that the flag has not caught up with. Neither should be treated as an actual gap — and [[is212-discussions-2026-09-08]] confirms it, showing both as answered with unchanged text.
 
 | Ref | Category | Question | State |
 |---|---|---|---|

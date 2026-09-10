@@ -4,6 +4,7 @@ type: domain-object
 sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 31.md"
+  - "IS212 2026 Discussions Sept 8.md"
 tags: [domain, venue]
 ---
 
@@ -18,23 +19,26 @@ A physical event space owned and operated by [[connectsphere-event-services]], c
 | Field | Meaning | Status | Scope | Ref |
 |---|---|---|---|---|
 | Location | Facility/site; every venue is in Singapore | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]]; [#36](https://github.com/SinYang13/IS212-2026/discussions/36) |
-| Capacity | Maximum attendance the venue can hold | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
+| Capacity (per room layout) | Maximum attendance the venue can hold **in a given layout** — supplied per supported layout as venue master data, not estimated or calculated by the system. Held on the venue↔layout pairing in the deployed model (`venue_supported_layout.capacity`, migration D2 — see [[schema]]) | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]]; [#112](https://github.com/SinYang13/IS212-2026/discussions/112) |
 | Facilities | e.g. video-conferencing, AV fit-out | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
 | Accessibility | Accessibility features of the space | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
-| Supported room layouts | Which of classroom, theatre, boardroom, banquet, exhibition or another arrangement the venue supports, recorded by Venue Staff | ✅ Specified | 🧩 Adjacent (features 8, 10) | [[event-planning-venue-booking-system\|brief §4]] |
+| Supported room layouts | Which of classroom, theatre, boardroom, banquet, exhibition or another arrangement the venue supports, recorded by Venue Staff — each supported layout carries its own capacity | ✅ Specified | 🧩 Adjacent (features 8, 10) | [[event-planning-venue-booking-system\|brief §4]]; [#112](https://github.com/SinYang13/IS212-2026/discussions/112) |
 | Operating hours | Maintained by Venue Staff; no day-of-week variation | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]]; [#46](https://github.com/SinYang13/IS212-2026/discussions/46) |
-| Setup time | Preparation time needed before the published start time | ✅ Specified | 🧩 Adjacent (feature 14) | [[event-planning-venue-booking-system\|brief §4]] |
-| Turnaround / reset time | Reset time needed after an event, before the venue is available again; recorded **per venue** | ✅ Specified | 🧩 Adjacent (feature 14) | [[event-planning-venue-booking-system\|brief §4]]; [#43](https://github.com/SinYang13/IS212-2026/discussions/43) |
+| Setup time | Preparation time needed before the published start time; the smallest unit is one booking slot | ✅ Specified | 🧩 Adjacent (feature 14) | [[event-planning-venue-booking-system\|brief §4]]; [#108](https://github.com/SinYang13/IS212-2026/discussions/108) |
+| Turnaround / reset time | Reset time needed after an event, before the venue is available again; recorded **per venue**, and expressed in whole booking slots for Release 1 | ✅ Specified | 🧩 Adjacent (feature 14) | [[event-planning-venue-booking-system\|brief §4]]; [#43](https://github.com/SinYang13/IS212-2026/discussions/43); [#108](https://github.com/SinYang13/IS212-2026/discussions/108) |
 | Availability (per slot) | Available / tentatively held / confirmed / blocked / otherwise unavailable — see States | ✅ Specified | 🎯 Release 1 | [[event-planning-venue-booking-system\|brief §4]] |
-| Room Layout as a modelled object | Whether "layout" is a first-class object (its own attributes, possibly capacity-per-layout) or just an enum value on Venue — never elaborated beyond its use as a filter term | 🔶 Team decision | 🧩 Adjacent (features 8, 10) | [#83](https://github.com/SinYang13/IS212-2026/discussions/83) |
+| Venue-level capacity scalar | The deployed model **retains** `venue.capacity` alongside the new per-layout figure, so capacity now sits in two places with no stated precedence. Suitability reads the layout figure ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)); whether the scalar becomes derived (max across supported layouts) or is dropped is unresolved — see [[schema]] and the question below | 🔶 Team decision | 🧩 Adjacent (features 8, 10) | [#112](https://github.com/SinYang13/IS212-2026/discussions/112) |
 | Booking horizon | How far in advance a venue may be booked | 🔶 Team decision | 📋 Backlog | [#57](https://github.com/SinYang13/IS212-2026/discussions/57) |
 
+> [!success] Resolved — [#112](https://github.com/SinYang13/IS212-2026/discussions/112)
+> Capacity is no longer one number per venue. It **varies by room layout**, and the figure for each supported layout is provided as part of the venue attributes, so the system is not required to estimate or calculate it; the layout-specific figure is the one suitability evaluates against. This is a change to the object model, not a presentation detail: every rule that compares expected attendance to "capacity" must first resolve *which layout* the event requests. The representation is settled too: the venue↔layout pairing carries its own `capacity` column (migration D2, 2026-09-09 — see [[schema]]). What is still open is narrower — the retained venue-level scalar's fate, below.
+
 > [!warning] Capacity threshold never tightened
-> The brief's own worked rule is hedged: "a venue should **not normally** be treated as suitable when expected attendance exceeds its capacity" ([[event-planning-venue-booking-system|brief §4]]). The word "normally" was never tightened in either discussion snapshot, so whether over-capacity is a hard block or an overridable warning is unresolved — contrast the Booking rule below, where double-booking *was* explicitly confirmed as a hard block. Full discussion at [[venue-suitability]].
+> The brief's own worked rule is hedged: "a venue should **not normally** be treated as suitable when expected attendance exceeds its capacity" ([[event-planning-venue-booking-system|brief §4]]). The word "normally" was never tightened in either discussion snapshot, so whether over-capacity is a hard block or an overridable warning is unresolved. [#112](https://github.com/SinYang13/IS212-2026/discussions/112) fixed *which* capacity figure the comparison uses, not what happens when it is exceeded. Contrast the Booking rule below, where double-booking *was* explicitly confirmed as a hard block. Full discussion at [[venue-suitability]].
 
 ### Booking slots
 
-Venues are booked in three discrete daily slots; a full-day booking uses all three ([#50](https://github.com/SinYang13/IS212-2026/discussions/50)).
+Venues are booked in three discrete daily slots; a full-day booking uses all three ([#50](https://github.com/SinYang13/IS212-2026/discussions/50)). A slot is consumed whole: an event that runs across two slots consumes **both slots in full** ([#107](https://github.com/SinYang13/IS212-2026/discussions/107)), and one slot is also the smallest unit of setup and turnaround time ([#108](https://github.com/SinYang13/IS212-2026/discussions/108)).
 
 | Slot (as named in the answer) | Hours (as listed) |
 |---|---|
@@ -64,13 +68,15 @@ Release 1 scope differs by state: Available and Confirmed sit under the `🎯 Re
 | Related object | Cardinality | Rule | Ref |
 |---|---|---|---|
 | [[booking]] | 1 : many | A venue accumulates many bookings/holds over time, but at most one active hold or confirmed booking may occupy the same venue for an overlapping period | [#41](https://github.com/SinYang13/IS212-2026/discussions/41) |
-| [[event]] | many : many (via booking) | A venue hosts many events over time; a multi-session event may use several venues, one per session | [[event-planning-venue-booking-system\|brief §4]]; [#74](https://github.com/SinYang13/IS212-2026/discussions/74) |
+| [[event]] | many : many (via booking) | A venue hosts many events over time; a multi-session event may use several venues, one per session. Normally only one venue booking is confirmed for the same event/session, unless the event genuinely requires multiple venues | [[event-planning-venue-booking-system\|brief §4]]; [#74](https://github.com/SinYang13/IS212-2026/discussions/74); [#109](https://github.com/SinYang13/IS212-2026/discussions/109) |
 | [[session]] | 1 : many (via booking) | Each session of a multi-session event may book its own venue, independent of sibling sessions | [#74](https://github.com/SinYang13/IS212-2026/discussions/74) |
 | [[user-account]] (Venue Staff) | many : many | Venue Staff maintain venue master data; access to venue information is organisation-wide, not scoped to specific venues | [#66](https://github.com/SinYang13/IS212-2026/discussions/66) |
 
 ## Binding rules
 
-- Setup, teardown and turnaround requirements are recorded **per venue** — not a global constant and not (currently) variable by event type or size ([#43](https://github.com/SinYang13/IS212-2026/discussions/43)).
+- Venue capacity is held **per supported room layout** and is supplied as venue master data; the system neither estimates nor calculates it, and suitability compares expected attendance against the layout the event requests ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)). The deployed model stores that figure on the venue↔layout pairing; the separately retained `venue.capacity` scalar is **not** the figure suitability reads — see [[schema]].
+- Setup, teardown and turnaround requirements are recorded **per venue** — not a global constant and not (currently) variable by event type or size ([#43](https://github.com/SinYang13/IS212-2026/discussions/43)) — and are quantised to whole booking slots: one slot is the smallest supported unit, and Release 1 need not support sub-slot durations ([#108](https://github.com/SinYang13/IS212-2026/discussions/108)).
+- Updating a venue attribute does **not** automatically revert dependent bookings to Requested. Where the change affects an existing booking's suitability or availability, that booking is identified for review and the Event Coordinator notified; the resulting status transition is the team's to propose ([#120](https://github.com/SinYang13/IS212-2026/discussions/120)) — see [[booking]].
 - Operating hours are maintained by Venue Staff and have no day-of-week variation; there is no weekend/holiday distinction and no holiday calendar — "all days are equal for now" ([#46](https://github.com/SinYang13/IS212-2026/discussions/46)).
 - All venues are located in Singapore, and the system uses Singapore time throughout ([#36](https://github.com/SinYang13/IS212-2026/discussions/36)).
 - Venue Staff access to venue information is **not** scoped by venue or location — it is organisation-wide, driven by role rather than assignment ([#66](https://github.com/SinYang13/IS212-2026/discussions/66)).
@@ -86,7 +92,7 @@ Release 1 scope differs by state: Available and Confirmed sit under the `🎯 Re
 > [!question]- Team decision required — suitability-check presentation
 > Whether the suitability result is shown as an inline indicator on the venue list, checked explicitly after selection, or both, is left to the team; the customer confirmed only that both are acceptable presentations ([#83](https://github.com/SinYang13/IS212-2026/discussions/83)). Full discussion at [[venue-suitability]].
 
-> [!question]- Team decision required — Room Layout as a modelled object
-> Room Layout appears only as a filter/suitability criterion (classroom, theatre, boardroom, banquet, exhibition, other) and as something Venue Staff "record... supported by each venue." Whether it should be modelled as its own object (e.g. to support capacity that varies by layout) or remains a plain enum attribute on Venue is never addressed ([#83](https://github.com/SinYang13/IS212-2026/discussions/83)).
+> [!question]- Team decision required — fate of the retained venue-level capacity scalar
+> How layout-specific capacity is *represented* is no longer open: Room Layout is a first-class object and the venue↔layout pairing carries its own `capacity` (migration D2 — see [[schema]]). What that migration did **not** do is remove `venue.capacity`, so the model now holds capacity twice with no precedence rule written down. [#112](https://github.com/SinYang13/IS212-2026/discussions/112) fixes only that suitability reads the **layout-specific** figure; whether the scalar becomes a derived value (max across supported layouts), is dropped, or survives as an independent number — and which figure wins while both are writable and can disagree — is the team's to propose ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)). Either way the layout set stays Venue Staff-maintained (classroom, theatre, boardroom, banquet, exhibition, other) and serves as both a filter and a suitability criterion ([#83](https://github.com/SinYang13/IS212-2026/discussions/83)) — see [[venue-suitability]].
 
 See [[domain-model]] for the full object catalogue.

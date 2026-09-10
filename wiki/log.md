@@ -442,3 +442,164 @@ The attendee registration slice for [SPM-24](https://linear.app/pygmies/issue/SP
 **Integrity checks run:** the seven files this merge touched carry no bare `#N` or `brief §N` citations outside code fences; the tables edited in [[access-control]], [[registration]], [[open-questions]] and [[index]] keep their original column counts; every `[[wikilink]]` added resolves to an existing page.
 
 **Updated:** [[spm-24-implementation-decisions]] (new), [[access-control]], [[registration]], [[open-questions]], [[release-1-scope]], [[index]].
+
+## 2026-09-08 (3)
+
+### Incremental ingestion — `IS212 2026 Discussions Sept 8.md`
+
+The board was re-exported as a strict superset of the Aug 31 snapshot. Rather than re-ingest 113 discussions, both files were split per-discussion on the `#### [#N]` heading and compared block-by-block, which isolates the real work from the section-count churn a whole-file diff produces.
+
+**The delta, verified.** 26 new discussions ([#96](https://github.com/SinYang13/IS212-2026/discussions/96)–[#121](https://github.com/SinYang13/IS212-2026/discussions/121), all answered 2026-09-07); 2 existing discussions with a new follow-up answer ([#38](https://github.com/SinYang13/IS212-2026/discussions/38), [#49](https://github.com/SinYang13/IS212-2026/discussions/49)); 2 status-flag flips with byte-identical text ([#2](https://github.com/SinYang13/IS212-2026/discussions/2), [#55](https://github.com/SinYang13/IS212-2026/discussions/55)); **0 removed, 0 edited**. Ingestion surface: 28 items, not 113. The board now reports 0 unanswered — [[open-questions]]'s *Still Open in the Snapshot* section had predicted exactly this, since both flagged items were already resolved in substance on 2026-08-31.
+
+**Filed [[discussions-sept-8-critical-diffs]]** in `outputs/`, the headline artefact: of the 28 changes, which change what had already been decided. Seven do. Graded 🔴×3 / 🟠×3 / 🟡×2, plus two pre-existing schema defects the batch made undeniable. Linked from [[index]] under Reviews.
+
+**No answer in this batch reverses a customer position.** Every conflict is between a new answer and an inference the team made in the customer's silence — the expected failure mode, but four had already reached the schema or the scope register.
+
+| Critical diff | What it broke |
+|---|---|
+| [#101](https://github.com/SinYang13/IS212-2026/discussions/101) — the Event Operations Manager **must** be a separate system role | [[user-roles]]'s entire `## Gap: The Event Operations Manager` section and [[user-account]]'s matching warning. Also closes [[open-questions]]'s *"Feature 5 is unbuildable without an answer"* — the batch's most consequential closure |
+| [#112](https://github.com/SinYang13/IS212-2026/discussions/112) — venue capacity **varies by layout**, supplied not computed | [[venue]] modelled capacity as one scalar and carried a `[!question]-` asking this exact question. A cardinality change, not a field edit |
+| [#103](https://github.com/SinYang13/IS212-2026/discussions/103) — a request-level `Withdrawn` state is required | [[event-request]] and [[schema]] had both *deleted* it as "grounded in no source"; [[current-schema-scrutiny]] had listed it as a 🔴 defect. Now grounded |
+| [#108](https://github.com/SinYang13/IS212-2026/discussions/108) — one slot is the atomic unit of setup/turnaround | [[venue-booking]] had flagged this as an unresolved team tension in as many words |
+| [#49](https://github.com/SinYang13/IS212-2026/discussions/49) follow-up — no onboarding in R1; **pre-loaded** staff and client accounts | Closed [[user-account]]'s onboarding team-decision and [[access-control]]'s open row — for staff and Organisers only |
+| [#102](https://github.com/SinYang13/IS212-2026/discussions/102) — the Organiser may **not** edit after submission | A hard access rule no page had stated. Significance now governs revalidation only, never edit rights |
+| [#99](https://github.com/SinYang13/IS212-2026/discussions/99) — capacity is a hard cap, even for a VIP | Gave [[registration]]'s inference a citation, and retired [[release-1-scope]]'s *"Registration has no stated ceiling"* warning |
+
+**Two claims were checked and one of them was mine.** The critical-diffs draft asserted that [[schema]] needed a sixth role adding for the Event Operations Manager. It does not — the DDL already seeds `'Event Operations Manager'` in its `role` table, so the schema had quietly been *right* about [#101](https://github.com/SinYang13/IS212-2026/discussions/101) while the concept pages called it a gap. The wiki was internally inconsistent before this batch. Corrected before publishing rather than shipped as a confident wrong statement.
+
+**Four schema divergences recorded, none applied.** [[schema]] documents the *deployed* model, so its DDL was deliberately not edited — rewriting it would falsely claim a migration ran. A new *Divergences* section lists each with its minimum migration:
+
+| | Divergence | Ref |
+|---|---|---|
+| D1 | `equipment_reservation` has **no date columns at all**. The committed Return Day + 1 rule computes from a date the schema does not hold, so core feature 16 cannot answer correctly | [#113](https://github.com/SinYang13/IS212-2026/discussions/113) |
+| D2 | `venue.capacity` is scalar and `venue_supported_layout` is a bare junction — per-layout capacity has nowhere to live | [#112](https://github.com/SinYang13/IS212-2026/discussions/112) |
+| D3 | `event_request_status_chk` enumerates six values; the page now models seven | [#103](https://github.com/SinYang13/IS212-2026/discussions/103) |
+| D4 | `change_request` is flat — one `coordinator_decision text` cannot express a partial approval, and a declined field's reason has nowhere to go | [#104](https://github.com/SinYang13/IS212-2026/discussions/104) |
+
+D1 is the worst and predates this batch: [#113](https://github.com/SinYang13/IS212-2026/discussions/113) merely removed the last escape hatch by confirming there is no default return day the schema could have assumed. D4 blocks core feature 19, which is 🎯 Release 1.
+
+**What was deliberately *not* closed.** The [#49](https://github.com/SinYang13/IS212-2026/discussions/49) follow-up offers pre-loaded accounts to staff and clients only, while re-confirming all four of feature 18's attendee verbs as Release 1 obligations. It therefore *removes* seeded attendee accounts as an escape route from the guest-credential problem rather than solving it. [[release-1-scope]]'s narrowed registration callout was tightened, not withdrawn. Similarly, [#99](https://github.com/SinYang13/IS212-2026/discussions/99) hardens the **registration** ceiling but leaves [[venue]]'s *"not normally"* suitability hedge untouched — a different rule on a different object — and [#33](https://github.com/SinYang13/IS212-2026/discussions/33)'s VIP routing through the Coordinator survives, since [#99](https://github.com/SinYang13/IS212-2026/discussions/99) addressed capacity and never spoke to who performs the act.
+
+**Method.** Four cluster agents worked disjoint page sets in parallel (Venues / Events+Requests / People+Registration / Equipment); the shared registers — [[release-1-scope]], [[open-questions]], [[schema]], [[domain-model]], [[audit-record]], [[reporting]], [[index]] — were held back and integrated centrally so the parallel work could not collide on them. Agent claims touching the schema were re-verified against the DDL before being recorded; that is how D4 was confirmed and how the role-table error above was caught.
+
+**Updated:** [[is212-discussions-2026-09-08]] (new), [[discussions-sept-8-critical-diffs]] (new), [[is212-discussions-2026-08-31]] (superseded), [[is212-discussions-2026-08-26]] (third-snapshot wording), [[venue]], [[booking]], [[venue-booking]], [[venue-suitability]], [[event]], [[event-request]], [[change-request]], [[event-lifecycle]], [[event-readiness]], [[event-request-workflow]], [[change-impact-management]], [[user-roles]], [[user-account]], [[access-control]], [[registration]], [[attendee-registration]], [[notification]], [[notifications]], [[equipment-management]], [[equipment-item]], [[equipment-reservation]], [[technical-support]], [[release-1-scope]], [[open-questions]], [[schema]], [[domain-model]], [[audit-record]], [[reporting]], [[index]] (48 → 50 pages).
+
+## 2026-09-09
+
+### Schema fix — `assigned_coordinator_user_account_id` added to `event_request`
+
+Raised in conversation: [[event-request-workflow]] Step 3 has the Event Operations Manager assign a coordinator right after submission ([#73](https://github.com/SinYang13/IS212-2026/discussions/73)) — before Review (Step 4) and Approval (Step 5), both performed by that coordinator. But [[schema]]'s DDL only ever carried `assigned_coordinator_user_account_id` on `event`, and [[event]] itself states the `event` row is created *at* approval. Between `Submitted` and `Approved` there was no column recording who was assigned. Not a sourced team decision or an intentional simplification — an oversight, since nothing in the wiki cited a reason for the gap.
+
+Resolved by adding the column to **both** tables, matching the existing request/event duplication pattern (`preferred_date`, `expected_attendance`, `venue_requirements`, etc.): `event_request`'s copy is set at Step 3 and frozen once `Approved` (that state is terminal for the record); `event`'s copy is populated from it at approval and is the one [#94](https://github.com/SinYang13/IS212-2026/discussions/94) reassignment writes to afterward.
+
+**Updated:** [[schema]] (DDL + new `event_request_coordinator_idx` + new "Coordinator assignment spans both tables" section), [[event-request]] (new attribute + relationship row), [[event]] (cross-reference note on the existing row).
+
+### Migrated D1–D4
+
+The four divergences [[discussions-sept-8-critical-diffs]] and [[schema]]'s *Divergences* section had flagged as needing a migration were applied: nullable `return_date` on `equipment_reservation` (D1, [#113](https://github.com/SinYang13/IS212-2026/discussions/113)); `capacity` on `venue_supported_layout` (D2, [#112](https://github.com/SinYang13/IS212-2026/discussions/112)); `'Withdrawn'` added to `event_request_status_chk` (D3, [#103](https://github.com/SinYang13/IS212-2026/discussions/103)); and a new `change_request_item` child table for per-field decisions (D4, [#104](https://github.com/SinYang13/IS212-2026/discussions/104)). D2's open question (whether `venue.capacity` becomes derived or is dropped) and D1's open question (how `return_date` gets populated) remain unresolved team decisions — only the structural gap was closed.
+
+**Updated:** [[schema]] (DDL updated in place — table count 25 → 26, status enumerations table, "Divergences" section renamed "Migrations applied 2026-09-09 (D1–D4)").
+
+## 2026-09-09
+
+### Citation normalisation — 73 variant spellings across 12 files
+
+`CLAUDE.md`'s Citation linking rule says other spellings (`brief s4`, `(Source: customer-brief-no-1, s4)`) "are not equivalent to `brief §N` — normalize to `brief §N` and link it rather than leaving the variant spelling bare." 73 lines were still on the old spelling; they predate the Sept 8 ingestion and were a standing lint failure.
+
+Converted with a scripted pass, unit-tested on eleven edge cases before applying: multi-section forms (`s4, s5`, `s2 and s4`, `s4 and s8f`), the trailing-discussion form (`s4; is212-discussions-…`), the bare-`brief sN`-followed-by-a-discussion-link form, and table rows, which need the wikilink pipe escaped as `\|`. Non-`§N` variants were deliberately left alone — `(Source: customer-brief-no-1)` with no section, named sections like `*Event Capacity Management*`, and `step 14` are all legitimate and none of them is a `brief §N` citation.
+
+`wiki/log.md` was excluded: it is the append-only historical record, and rewriting past entries to a newer convention would falsify what was written at the time. Its four occurrences are the only ones left in the vault.
+
+**One mis-mapping fixed in passing.** `outputs/spm-24-implementation-decisions.md` cited `[[event-planning-venue-booking-system|brief §6]]`. Per `CLAUDE.md`'s section map §6 belongs to [[notifications]], not the system page — §4 does. Retargeted, with a light reword because the sentence already opened with the same wikilink.
+
+### Schema migrated — D1–D4 applied, plus coordinator assignment
+
+The four divergences [[discussions-sept-8-critical-diffs]] recorded were applied to [[schema]], together with a fifth change that was not one of them. Filed [[schema-migration-02]] in `outputs/` recording the SQL, its grounding, what was verified, and what it deliberately does not decide. Linked from [[index]] (Reviews; 10 → 11, pages 50 → 51).
+
+| # | Change | Ref |
+|---|---|---|
+| D1 | `equipment_reservation.return_date`, nullable | [#113](https://github.com/SinYang13/IS212-2026/discussions/113) |
+| D2 | `venue_supported_layout.capacity`, nullable | [#112](https://github.com/SinYang13/IS212-2026/discussions/112) |
+| D3 | `'Withdrawn'` added to `event_request_status_chk` | [#103](https://github.com/SinYang13/IS212-2026/discussions/103) |
+| D4 | `change_request_item` child table, decline reason enforced by check constraint | [#104](https://github.com/SinYang13/IS212-2026/discussions/104) |
+| 5 | `event_request.assigned_coordinator_user_account_id` | [#73](https://github.com/SinYang13/IS212-2026/discussions/73), [#94](https://github.com/SinYang13/IS212-2026/discussions/94) |
+
+Change 5 closes a gap older than the Sept 8 batch: [[event-request-workflow]] Step 3 assigns a coordinator *before* Review and Approval, but no `event` row exists that early, so nothing recorded who was reviewing a request between `Submitted` and `Approved`. The request's copy is frozen at approval; reassignment writes only to `event`.
+
+**D3 reverses [[schema-migration-01]] deliberately.** That migration dropped `Withdrawn` on the reasoning that it "appears in the brief only for **registration** withdrawal", and [[current-schema-scrutiny]] flagged the invented value as critical finding C3. Both were right on the evidence then available; [#103](https://github.com/SinYang13/IS212-2026/discussions/103) supplied the grounding that was missing. Recorded in [[schema-migration-02]] so a reader diffing the two migrations does not conclude one is wrong.
+
+**Verified rather than assumed.** The migration's housekeeping was checked against the DDL, not taken on trust: 26 `create table` against a 26-entry RLS loop, `change_request_item` present in the `updated_at` trigger loop, FK indexes for both new foreign keys, and every new status default satisfying its own `CHECK`. The header's "25 tables" was already corrected to 26.
+
+**Three things the migration did not fix, now tracked rather than buried:**
+
+- **`venue.capacity` was retained** beside the new per-layout figure, so capacity lives in two places with no stated precedence. [#112](https://github.com/SinYang13/IS212-2026/discussions/112) says suitability reads the layout-specific value; the scalar's fate is undecided, so it should be treated as untrusted.
+- **`booking` records no room layout at all.** Confirmed against the DDL — neither `booking` nor `booking_slot` has such a column. The system therefore knows every venue's per-layout capacities but not which layout a given booking assumes, so D2 can filter a venue search but cannot validate a booking. Filed as finding **S3** in [[discussions-sept-8-critical-diffs]] and as a new 🎯 row in [[open-questions]].
+- **`change_request`'s flat columns survive** beside `change_request_item` and nothing enforces which wins — a dual representation an implementer can write to one half of and read from the other.
+
+**Propagated.** [[event-request]]'s contradiction callout became `[!success] Resolved`, keeping the history legible rather than deleting it, since [[current-schema-scrutiny]] had called the same value a critical defect. [[change-request]] records the chosen structure and the dual-representation trap. [[domain-model]]'s physical ER diagram was **re-drawn** rather than merely annotated — `CHANGE_REQUEST_ITEM` added with its relationship, plus `return_date`, per-layout `capacity` and the request's coordinator column — so the conceptual and physical models are back in sync at 26 tables.
+
+**Updated:** [[schema-migration-02]] (new), [[schema]], [[domain-model]], [[event-request]], [[event]], [[change-request]], [[event-lifecycle]], [[event-request-workflow]], [[venue]], [[venue-suitability]], [[venue-booking]], [[booking]], [[equipment-reservation]], [[equipment-item]], [[equipment-management]], [[open-questions]], [[release-1-scope]], [[index]], [[discussions-sept-8-critical-diffs]], plus the 12 files normalised above.
+
+### Schema and ER diagram scrutinised — consistency audit filed
+
+Reviewed [[schema]]'s 26-table DDL and [[domain-model]]'s two ER diagrams against the fourteen domain-object pages, the sixteen concept pages, the migration artefacts and the raw sources. Filed [[schema-er-consistency-audit]] in `outputs/`. Linked from [[index]] (Reviews; 11 → 12, pages 51 → 52).
+
+**The DDL itself is clean** — verified mechanically, not assumed: 26 `create table` against a 26-entry RLS loop, every index resolving to a real table and column, every `default` satisfying its own `CHECK`, and the `updated_at` trigger list matching exactly the tables carrying that column. No finding in this audit is a broken script.
+
+**Every defect sits at the boundary between the physical model and the wiki that governs it.** One pattern explains most of them: the Sept 8 batch was absorbed by the concept and domain layers but only partially by the physical layer. 44 discussion answers cited by domain-object pages reach *neither* [[schema]] nor [[domain-model]], including [#99](https://github.com/SinYang13/IS212-2026/discussions/99), [#109](https://github.com/SinYang13/IS212-2026/discussions/109) and [#121](https://github.com/SinYang13/IS212-2026/discussions/121).
+
+Six findings graded critical: `equipment_item.operational_status` and `registration.status` enumerate values no source supports (and two of each re-conflate distinctions their pages state explicitly); the [#99](https://github.com/SinYang13/IS212-2026/discussions/99) capacity cap is neither enforced nor computable, since no booking records a layout and `event` has no venue path; `equipment_reservation` holds the Return Day + 1 end of the availability window but has no anchor for the D-1 end; the guest-registration uniqueness index rests on a "Release 1 has no waiting list and no check-in" premise the same file falsifies three times; and `equipment_reservation.status` omits `Under review`, so the re-check edge [#114](https://github.com/SinYang13/IS212-2026/discussions/114) requires cannot be stored.
+
+**Two claims of provenance do not hold.** `raw/current schema.md` and `raw/original script.md` — the documents [[current-schema-scrutiny]] reviews and [[schema-migration-01]] restores constraints "verbatim" from — do not exist in `raw/`. Separately, migrations 01 and 02 applied in order do **not** reproduce the current DDL: migration 01 ships `Awaiting Arrangements` under a titled section arguing against `Blocked`, which [[schema]] ships; migration 01's entire double-booking implementation is absent from [[schema]]; and [[schema]]'s attendee-identity block comes from a third migration no page documents.
+
+**One agent finding was checked and dismissed rather than reported.** `booking_slot_value_chk`'s `('AM','PM','Night')` was flagged as violating [[venue]]'s "do not hard-code the missing labels". It does not — the customer named the three slots in [#50](https://github.com/SinYang13/IS212-2026/discussions/50)'s opening sentence; only the hour-range mapping is inferred, and the DDL stores no hours. Recorded in the audit's "Checked and dismissed" section so the next reader does not re-raise it.
+
+**No `wiki/` page was corrected in this pass.** The audit is diagnostic only; the corrections it implies — including `index.md`'s stale "25-table" description of [[schema]] and the three [[schema-migration-02]] open items silently dropped from both model pages — are held pending review.
+
+**Updated:** [[schema-er-consistency-audit]] (new), [[index]].
+
+## 2026-09-09 (3)
+
+### Backlog candidate cards revised against the Sept 8 batch
+
+[[backlog-candidate-user-stories]] was drafted against the 2026-08-31 snapshot and was the last `outputs/` artefact still reasoning from it — the concept and domain layers had absorbed `raw/IS212 2026 Discussions Sept 8.md` days earlier. Revised it against [[discussions-sept-8-critical-diffs]], adding a **Revised for the 2026-09-08 batch** section at the top that maps each load-bearing answer to the cards it reaches.
+
+**Twenty of the thirty-one items moved; no card was added, deleted or promoted into Release 1.** The batch changed the ground under the cards rather than the cards themselves, which is the useful finding: a backlog of drafts is exactly where new answers land without anyone noticing.
+
+**Four unknowns genuinely closed or downgraded.** Reg6's blocking question — which internal role performs check-in — is answered: no new registration-only role is permitted and the team assigns an existing one ([#38](https://github.com/SinYang13/IS212-2026/discussions/38) follow-up), moving the card from *blocked on the customer* to *blocked on a design decision*. HB2's "which actions are significant" now has an illustrative customer list ([#96](https://github.com/SinYang13/IS212-2026/discussions/96)) — a `🔶 Team decision` with a strong steer, not a specification, mirroring [[audit-record]]'s reading rather than over-claiming it. EC1 stopped being "the thinnest-sourced card in the document": [#100](https://github.com/SinYang13/IS212-2026/discussions/100) both sources it and caps it, since a reasonable fixed category set suffices. And EC4's session-to-slot open question became an acceptance criterion — sessions occupy whole slots ([#108](https://github.com/SinYang13/IS212-2026/discussions/108), [#107](https://github.com/SinYang13/IS212-2026/discussions/107)), which turns its overlap check into set intersection.
+
+**One scope boundary had to be drawn, and it is the reason this pass mattered.** [#118](https://github.com/SinYang13/IS212-2026/discussions/118) defers the role-based dashboard in the customer's own words — but [#117](https://github.com/SinYang13/IS212-2026/discussions/117) requires the Event Operations Manager to be able to identify newly submitted events awaiting Coordinator assignment. That worklist sits squarely inside CV4's territory and is load-bearing for core feature 5. Added an `[!info]` boundary callout to CV4 and a matching note on RC2 so the obligation cannot quietly disappear into a backlog epic.
+
+**Two new customer questions opened.** [#102](https://github.com/SinYang13/IS212-2026/discussions/102) bars the Event Organiser from editing a submitted request — so EC6, whose role is the Organiser, now has to ask whether attaching a document counts as editing. And [#119](https://github.com/SinYang13/IS212-2026/discussions/119) fixes expected attendance as a single event-level figure, which must not be conflated with [#74](https://github.com/SinYang13/IS212-2026/discussions/74)'s per-session attendance *limit* — EC5 is exactly where a second, conflicting copy would be created. The escalated-questions list went from ten to nine: three closed, two opened, renumbered, with the closed three kept in a table rather than deleted.
+
+**One new candidate declined rather than carded.** [#111](https://github.com/SinYang13/IS212-2026/discussions/111) permits an Event Organiser venue-preference field "if the team wishes". It went into **Cards deliberately not written** with the reason: it would sit inside core feature 2's venue-requirements field set, which is 🎯 Release 1, so carding it here would move a Release 1 field into the backlog document.
+
+**Two answers were checked and deliberately not used as they first appeared.** [#105](https://github.com/SinYang13/IS212-2026/discussions/105) and [#115](https://github.com/SinYang13/IS212-2026/discussions/115) confirm further notification triggers, but neither is a *reminder* — RM1's and RM2's categories remain unconfirmed, and the card now says so explicitly to stop a later reader citing them. Likewise [#101](https://github.com/SinYang13/IS212-2026/discussions/101)'s sixth system role does **not** resolve RM3's configurability-versus-no-admin-role tension, and does not weaken TS4's question about who allocates Technical Support Staff — it sharpens it, since the customer has now shown it will create a role when it wants one.
+
+**One pre-existing error corrected while in the file.** The "How to read these cards" section claimed *three* cards name no role; its own summary table showed nine (eight carrying the inline placeholder, plus Reg6 whose actor is left unnamed in prose). Corrected to nine, with the correction noted in place rather than silently overwritten.
+
+**Updated:** [[backlog-candidate-user-stories]], [[index]].
+
+## 2026-09-09 (4)
+
+### Linear board audited against the Sept 8 batch
+
+The concept, domain and schema layers absorbed `raw/IS212 2026 Discussions Sept 8.md` days ago; the backlog did not. Audited all ~60 `SPM - IS212` tickets against [[discussions-sept-8-critical-diffs]] and filed [[linear-ticket-audit-sept-8-batch]].
+
+**Nine acceptance criteria said the opposite of what the customer had said, and one was being built.** SPM-31 (Submit an event request) is assigned and in progress with no criterion for the post-submission edit lock — a draft-then-submit form leaves the Organiser's edit affordance in place by default, which is precisely what [#102](https://github.com/SinYang13/IS212-2026/discussions/102) forbids. Two ACs added before the code lands rather than after. SPM-39, also in progress, carried the softer version of the same error ("cannot edit unless assigned as responsible Organiser" implies the responsible one may).
+
+**Two tickets described work the customer has declined.** SPM-37 (Register an account) is closed: onboarding and self-registration are not required for Release 1 and pre-loaded accounts are sanctioned ([#49](https://github.com/SinYang13/IS212-2026/discussions/49)) — its own open question had asked whether self-service was wanted at all, and the answer is no. SPM-56 (Notify the Ops Manager of a new request) is closed: [#117](https://github.com/SinYang13/IS212-2026/discussions/117) requires discoverability, not notification, so the mechanism was wrong rather than incomplete. Both closures name their compensating control — SPM-98 and SPM-95 — so no capability was dropped along with the card.
+
+**SPM-41 was the subtlest, and worth recording as a pattern.** Its criterion routed a Coordinator's post-reservation equipment change "through the change-request process". [#114](https://github.com/SinYang13/IS212-2026/discussions/114) mandates no such gate — but the deeper fault is that [#102](https://github.com/SinYang13/IS212-2026/discussions/102) makes the Coordinator the person change requests are routed *to*, so the card required the Coordinator to raise a change request with themselves. Two individually reasonable answers combining into an impossible workflow, with neither discussion mentioning the other.
+
+**A required Release 1 verb had no ticket anywhere on the board.** Core feature 18 names four attendee verbs; *view registration status* was carded by none of them — SPM-24/82 show status once at registration, SPM-28/84 withdraw, and nothing let an attendee return and look. Now SPM-102. It compounds an existing exposure: SPM-28 is `Done` and correct but reachable only via a `registration_reference` shown once on a confirmation panel, so two Release 1 verbs rest on an undocumented bearer-token design whose one delivery channel (SPM-87) is unbuilt. Raised SPM-103 to ratify the mechanism rather than leave it an implementation detail.
+
+**No completed ticket needs reopening — and that is a real finding, not an absence of one.** All eight `Done` tickets are consistent with the batch, several vindicated by it: account-less registration is now mandated, the hard capacity refusal now cited ([#99](https://github.com/SinYang13/IS212-2026/discussions/99)), the missing waiting list reconfirmed ([#116](https://github.com/SinYang13/IS212-2026/discussions/116)). The exposure is coverage, not defect.
+
+**One wiki page was corrected at source rather than left to the artefact.** [#102](https://github.com/SinYang13/IS212-2026/discussions/102) had reached [[change-impact-management]] during ingestion but never propagated to [[access-control]], whose Client Organisation Visibility matrix still granted the responsible Event Organiser an unqualified `Edit ✅`. That table is what a developer reads to build the permission check, so the wiki was still specifying the forbidden behaviour. The cell is now scoped to `Draft`, with a fourth consequence recording that the significant/non-significant distinction no longer governs *who* may edit.
+
+**Four sprint cards were carrying work with no acceptance criteria at all** — SPM-78, 95, 96 and 97, where SPM-96's title ("available" coordinators) was the entire specification and implied a system-computed eligibility that [#93](https://github.com/SinYang13/IS212-2026/discussions/93) rules out. All four written. This is the mechanism behind SPM-31's missing lock: an unwritten criterion cannot be contradicted by a new answer, so no amount of diffing catches it.
+
+**Fourteen tickets created (SPM-98 – SPM-111), thirteen edited, two closed. About 35 Tier 2 edits are catalogued but deliberately not applied** — stale rather than contradictory — and listed in the artefact so the next pass has a worklist rather than a re-audit.
+
+**Updated:** [[linear-ticket-audit-sept-8-batch]] (new), [[access-control]], [[index]].

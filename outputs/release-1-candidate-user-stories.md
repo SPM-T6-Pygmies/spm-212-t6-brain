@@ -98,7 +98,7 @@ EV1 (+ Reassign companion), EV3a, EV3b and EV3c in [[user-stories-proposed-rewri
 - Can see the event's current status at any time (see [[event]] States for the status set)
 - Can see the date of the most recent status change
 - Given the event's status changes, when the Organiser next views the event, then the displayed status reflects the change without requiring a page refresh workaround
-- Status labels and their meaning are understandable without knowledge of ConnectSphere's internal process (Source: customer-brief-no-1, s7)
+- Status labels and their meaning are understandable without knowledge of ConnectSphere's internal process ([[non-functional-requirements|brief §7]])
 
 *Distinct from the Role-Based Dashboard feature (`📋 Backlog`, [[access-control]]): this card is the single event's own status, not a cross-event "events requiring attention" overview.*
 
@@ -109,7 +109,7 @@ EV1 (+ Reassign companion), EV3a, EV3b and EV3c in [[user-stories-proposed-rewri
 **AC:**
 - Can edit event fields that do not affect existing arrangements — e.g. name, description, purpose, internal notes ([#4](https://github.com/SinYang13/IS212-2026/discussions/4), see [[change-impact-management]] "Significant vs Ordinary Edits")
 - Given an edit touches date/time, expected attendance, venue requirements, or equipment requirements, then the edit is routed through the change-request process (**CH1**) instead of a direct update ([#4](https://github.com/SinYang13/IS212-2026/discussions/4))
-- Edits are attributed and timestamped, consistent with the auditability requirement (Source: customer-brief-no-1, s8f)
+- Edits are attributed and timestamped, consistent with the auditability requirement ([[non-functional-requirements|brief §8f]])
 
 **Open question:** the exact classification rule for which fields count as "significant" is explicitly left to the team ([#4](https://github.com/SinYang13/IS212-2026/discussions/4)) — this card's AC2 boundary should be confirmed against the team's eventual rule before Ready.
 
@@ -121,7 +121,7 @@ EV1 (+ Reassign companion), EV3a, EV3b and EV3c in [[user-stories-proposed-rewri
 - Given one or more arrangements identified as essential for this event are still incomplete, when the Coordinator attempts to confirm, then confirmation is blocked and the incomplete arrangement(s) are named ([#80](https://github.com/SinYang13/IS212-2026/discussions/80), see [[event-readiness]] "The Core Rule")
 - Given every essential arrangement is complete, when the Coordinator confirms, then the event's status becomes Confirmed even if non-essential follow-up actions remain outstanding ([#80](https://github.com/SinYang13/IS212-2026/discussions/80), answer 4)
 - Once confirmed, the Event Organiser can view the confirmed arrangements ([#80](https://github.com/SinYang13/IS212-2026/discussions/80), see [[event-lifecycle]] "Approved vs Confirmed")
-- The Event Organiser is notified that the event is confirmed (Source: customer-brief-no-1, s6)
+- The Event Organiser is notified that the event is confirmed ([[notifications|brief §6]])
 
 **Open question:** how "essential" is determined and recorded per event is explicitly left to the team ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)) — the mechanism AC1 depends on cannot be left implicit; see [[event-readiness]] "Team decision required — how essentiality is determined and recorded."
 
@@ -299,7 +299,7 @@ See **RA3** above — [[release-1-scope]] is explicit that only the confirmation
 - Only the Event Coordinator assigned to the event may cancel it, and may do so at any stage of its lifecycle ([#68](https://github.com/SinYang13/IS212-2026/discussions/68) — one of the project's committed hard rules, see [[index]])
 - Given the event is cancelled, then its venue booking is released, per V2's Confirmed → Released transition ([[user-stories-proposed-rewrites]] V2; [[booking]] States)
 - Given the event has an equipment reservation, when it is cancelled, then the reservation no longer holds equipment committed to it (Source: customer-brief-no-1, [[event-lifecycle]] "Cancellation")
-- Affected parties, including registered Attendees, are notified of the cancellation (Source: customer-brief-no-1, s6)
+- Affected parties, including registered Attendees, are notified of the cancellation ([[notifications|brief §6]])
 
 ---
 

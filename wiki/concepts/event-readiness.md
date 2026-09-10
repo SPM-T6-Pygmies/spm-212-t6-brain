@@ -5,6 +5,7 @@ sources:
   - Customer Brief no. 1.md
   - IS212 2026 Discussions Aug 31.md
   - IS212 2026 Discussions Aug 26.md
+  - IS212 2026 Discussions Sept 8.md
 tags:
   - readiness
   - confirmation-gate
@@ -24,6 +25,8 @@ Whether an event's arrangements are sufficiently complete for the Event Coordina
 ## The Core Rule
 
 Confirmation is permitted when **every arrangement identified as essential for that particular event** is complete. It is blocked otherwise (Source: is212-discussions-2026-08-31, [#80](https://github.com/SinYang13/IS212-2026/discussions/80)).
+
+The gate is not optional for Release 1. Event Confirmation needs no standalone feature, but the Release 1 workflow **must** let an Event Coordinator confirm an event once its required/essential arrangements are complete, must take the event to a `Confirmed` status, and must reflect that confirmed state to relevant users; only the UI or mechanism is left open (Source: is212-discussions-2026-09-08, [#98](https://github.com/SinYang13/IS212-2026/discussions/98)). Status progression without a confirming act does not satisfy this.
 
 | # | Question asked ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)) | Customer answer |
 |---|---|---|
@@ -47,6 +50,18 @@ There is no global checklist. Essentiality is **per-event and derived from the e
 
 (Source: is212-discussions-2026-08-31, [#80](https://github.com/SinYang13/IS212-2026/discussions/80); customer-brief-no-1)
 
+### Who decides essentiality
+
+[#80](https://github.com/SinYang13/IS212-2026/discussions/80) established *that* essentiality is per-event; it did not say who judges it. For equipment the customer has now named the decider, and it is a **joint** judgement rather than the coordinator's alone (Source: is212-discussions-2026-09-08, [#106](https://github.com/SinYang13/IS212-2026/discussions/106)):
+
+| Question | Answer | Ref |
+|---|---|---|
+| Who decides whether an incomplete equipment requirement is essential? | The **Event Coordinator, together with the relevant Technical Support Staff** | [#106](https://github.com/SinYang13/IS212-2026/discussions/106) |
+| What follows if it is judged essential? | The event **must not be confirmed** until the requirement is resolved | [#106](https://github.com/SinYang13/IS212-2026/discussions/106) |
+| Who performs the confirmation itself? | Unchanged — whichever role the system already authorises to confirm, i.e. the assigned Event Coordinator | [#106](https://github.com/SinYang13/IS212-2026/discussions/106), [#80](https://github.com/SinYang13/IS212-2026/discussions/80) |
+
+Two things follow. The essentiality judgement and the confirmation act are **separate decisions with different participants**: Technical Support Staff have a say in the first and none in the second. And [#90](https://github.com/SinYang13/IS212-2026/discussions/90)'s division of labour — which read as the coordinator judging a shortfall alone — is narrowed accordingly for equipment. The customer says nothing about who is consulted on venue, programme or registration essentiality, so no equivalent joint rule may be assumed there.
+
 > [!question]- Team decision required — how essentiality is determined and recorded
 > Because there is no fixed list, the team must design **how essentiality is determined and recorded**. Candidate approaches: derive required arrangements automatically from the request's declared requirements (equipment requested → equipment arrangement becomes essential); let the Event Coordinator mark each arrangement as essential or optional during planning; or a hybrid where the system proposes a derived set the coordinator can adjust. This is the mechanism the confirmation block in [#80](https://github.com/SinYang13/IS212-2026/discussions/80) answer 5 depends on, so it cannot be left implicit.
 
@@ -57,7 +72,7 @@ The customer explicitly asked for a **hard gate**, not a warning: an event with 
 Design implications:
 
 - Readiness must be **computable at confirmation time** from the state of the constituent arrangements.
-- The Event Coordinator must be able to see *which* arrangement is blocking, not just that confirmation is unavailable — the brief requires outstanding actions to be easy for the appropriate user to understand (Source: customer-brief-no-1, s7).
+- The Event Coordinator must be able to see *which* arrangement is blocking, not just that confirmation is unavailable — the brief requires outstanding actions to be easy for the appropriate user to understand ([[non-functional-requirements|brief §7]]).
 - For multi-session events, readiness aggregates across sessions, since sessions may have different venues, equipment, and attendance limits (Source: is212-discussions-2026-08-31, [#74](https://github.com/SinYang13/IS212-2026/discussions/74)). See [[event-request-workflow]].
 
 ## Partial Fulfilment Feeding Readiness
@@ -71,11 +86,11 @@ This establishes a three-part division of labour:
 
 | Actor | Responsibility |
 |---|---|
-| Technical Support Staff | Reserve what is available; highlight what is not; suggest alternatives |
+| Technical Support Staff | Reserve what is available; highlight what is not; suggest alternatives; **take part in the essentiality judgement** with the coordinator ([#106](https://github.com/SinYang13/IS212-2026/discussions/106)) |
 | System | Represent partial fulfilment as a first-class state, not a binary reserved/unreserved flag |
-| Event Coordinator | **Judge** whether the shortfall blocks readiness for that event |
+| Event Coordinator | **Judge**, together with the relevant Technical Support Staff, whether the shortfall blocks readiness for that event; confirm the event ([#106](https://github.com/SinYang13/IS212-2026/discussions/106)) |
 
-The readiness judgement is therefore **not fully automatable**. The system computes and presents; the coordinator decides. An equipment requirement partially met may be acceptable for one event and blocking for another. See [[equipment-management]] and [[technical-support]].
+The readiness judgement is therefore **not fully automatable**. The system computes and presents; the coordinator decides, in consultation with Technical Support Staff where equipment is at stake. An equipment requirement partially met may be acceptable for one event and blocking for another. See [[equipment-management]] and [[technical-support]].
 
 ## Outstanding Action Tracking
 
@@ -89,7 +104,7 @@ Sources of outstanding actions:
 - Pending venue booking decisions and pending clarifications from the Event Organiser.
 - Arrangements invalidated by a change and awaiting revalidation — see [[change-impact-management]].
 
-Outstanding arrangements are also a **reminder trigger**: the customer confirmed reminders for incomplete arrangements, delivered in batch at a configurable frequency (Source: is212-discussions-2026-08-31, [#47](https://github.com/SinYang13/IS212-2026/discussions/47)). "An upcoming event still has incomplete arrangements" is a listed notification scenario (Source: customer-brief-no-1, s6). See [[notifications]].
+Outstanding arrangements are also a **reminder trigger**: the customer confirmed reminders for incomplete arrangements, delivered in batch at a configurable frequency (Source: is212-discussions-2026-08-31, [#47](https://github.com/SinYang13/IS212-2026/discussions/47)). "An upcoming event still has incomplete arrangements" is a listed notification scenario ([[notifications|brief §6]]). See [[notifications]].
 
 ## Role-Based Dashboards
 
@@ -103,7 +118,7 @@ Each role gets an overview relevant to its responsibilities — events requiring
 | Event Organiser | Status of own events; confirmed arrangements; information requested from them |
 | Attendee | Registrations and registration status only — no internal planning information |
 
-Dashboard content is constrained by [[access-control]]: an Attendee must not see internal planning information, and an Event Organiser must not see unrelated clients' events (Source: customer-brief-no-1, s8b). Protected information includes internal planning information, venue and equipment arrangements, attendee information, and client-related information (Source: is212-discussions-2026-08-31, [#91](https://github.com/SinYang13/IS212-2026/discussions/91)). See [[user-roles]].
+Dashboard content is constrained by [[access-control]]: an Attendee must not see internal planning information, and an Event Organiser must not see unrelated clients' events ([[non-functional-requirements|brief §8b]]). Protected information includes internal planning information, venue and equipment arrangements, attendee information, and client-related information (Source: is212-discussions-2026-08-31, [#91](https://github.com/SinYang13/IS212-2026/discussions/91)). See [[user-roles]].
 
 The specific dashboard layout and presentation are UI/UX decisions the customer has repeatedly delegated to the team (Source: is212-discussions-2026-08-31, [#6](https://github.com/SinYang13/IS212-2026/discussions/6), [#10](https://github.com/SinYang13/IS212-2026/discussions/10), [#27](https://github.com/SinYang13/IS212-2026/discussions/27)).
 
@@ -114,14 +129,17 @@ Readiness is not a one-time check. A confirmed event can lose readiness:
 - A booked venue may become unavailable due to an operational issue (Source: is212-discussions-2026-08-31, [#54](https://github.com/SinYang13/IS212-2026/discussions/54)).
 - Reserved equipment may become damaged or go into maintenance (Source: customer-brief-no-1).
 - A significant change may invalidate arrangements already made (Source: is212-discussions-2026-08-31, [#4](https://github.com/SinYang13/IS212-2026/discussions/4)).
+- Equipment requirements may be changed after reservation, in which case the affected arrangements are reviewed and updated and Technical Support Staff re-check suitability and availability (Source: is212-discussions-2026-09-08, [#114](https://github.com/SinYang13/IS212-2026/discussions/114)).
 
-In these cases the event may need to move back to planning — see [[change-impact-management]] and [[event-lifecycle]].
+In these cases the event may need to move back to planning — see [[change-impact-management]] and [[event-lifecycle]]. Whichever route is taken, losing confirmation is not a silent internal state change: the Event Organiser **must be informed** that the confirmed event is no longer confirmed, by the system or another appropriate channel, with the mechanism left to the team (Source: is212-discussions-2026-09-08, [#105](https://github.com/SinYang13/IS212-2026/discussions/105)). See [[notifications]].
 
 ## Open Items
 
 | Item | Status | Ref |
 |---|---|---|
-| How essential vs non-essential is determined and recorded per event | **Unspecified — team to propose** (highest-value design decision on this page) | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) |
+| How essential vs non-essential is determined and recorded per event | **Unspecified — team to propose** (highest-value design decision on this page). The *decider* is now fixed for equipment: coordinator plus relevant Technical Support Staff | [#80](https://github.com/SinYang13/IS212-2026/discussions/80), [#106](https://github.com/SinYang13/IS212-2026/discussions/106) |
+| UI or mechanism for performing event confirmation | Team to propose; the confirming act and the resulting `Confirmed` status are required in Release 1 | [#98](https://github.com/SinYang13/IS212-2026/discussions/98) |
+| Channel for informing the Organiser that a confirmed event is no longer confirmed | Team to propose; informing them is required | [#105](https://github.com/SinYang13/IS212-2026/discussions/105) |
 | How partial equipment fulfilment is represented in readiness state | Team to propose | [#90](https://github.com/SinYang13/IS212-2026/discussions/90) |
 | Reminder timing and configurability for incomplete arrangements | **Unspecified — team to propose** | [#40](https://github.com/SinYang13/IS212-2026/discussions/40), [#47](https://github.com/SinYang13/IS212-2026/discussions/47) |
 | Dashboard content and layout per role | UI/UX — team to propose | [#27](https://github.com/SinYang13/IS212-2026/discussions/27) |

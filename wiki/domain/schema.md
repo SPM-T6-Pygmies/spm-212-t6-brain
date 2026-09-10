@@ -4,12 +4,13 @@ type: domain-object
 sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 31.md"
+  - "IS212 2026 Discussions Sept 8.md"
 tags: [schema, sql, postgres, supabase, ddl, data-model]
 ---
 
 # Schema
 
-The applied physical data model: 25 tables with primary and foreign keys, check constraints, FK indexes, `updated_at` triggers and RLS enabled. This page is the **source of truth for the physical model** — [[domain-model]]'s "Proposed relational schema" section is the conceptual layer above it, and each domain page remains the authority for attribute meaning, status and citations.
+The applied physical data model: 26 tables with primary and foreign keys, check constraints, FK indexes, `updated_at` triggers and RLS enabled. This page is the **source of truth for the physical model** — [[domain-model]]'s "Proposed relational schema" section is the conceptual layer above it, and each domain page remains the authority for attribute meaning, status and citations.
 
 > [!warning] A physical model, not a customer deliverable
 > Nothing here is stated by either source. Table and column names are illustrative and freely renameable. Several structures still encode an open `🔶 Team decision` — pooled equipment counter ([#13](https://github.com/SinYang13/IS212-2026/discussions/13)), polymorphic audit reference ([#14](https://github.com/SinYang13/IS212-2026/discussions/14)), comment threading ([#15](https://github.com/SinYang13/IS212-2026/discussions/15)), event reuse ([#75](https://github.com/SinYang13/IS212-2026/discussions/75)), credentials ([#62](https://github.com/SinYang13/IS212-2026/discussions/62)) — the DDL picks a minimal structure rather than resolving them.
@@ -20,12 +21,35 @@ The ten statuses [[event-planning-venue-booking-system|brief §4]] names "for ex
 
 | Table | Values | Default |
 |---|---|---|
-| `event_request` | Draft, Submitted, Under Review, Approved, Rejected, Returned | `Draft` |
+| `event_request` | Draft, Submitted, Under Review, Approved, Rejected, Returned, Withdrawn | `Draft` |
 | `event` | Planning, Blocked, Confirmed, Completed, Cancelled | `Planning` |
 
-`Returned` is [[event-request-workflow|brief §5]]'s return-for-amendment outcome. `Blocked` is the team's chosen name for the brief's *awaiting arrangements* — see [[event]]. `In Progress` and a request-level `Withdrawn` appeared in earlier drafts, are grounded in no source, and are gone.
+`Returned` is [[event-request-workflow|brief §5]]'s return-for-amendment outcome. `Blocked` is the team's chosen name for the brief's *awaiting arrangements* — see [[event]]. `In Progress` appeared in an earlier draft, is grounded in no source, and is gone.
+
+**A request-level `Withdrawn` is no longer ungrounded.** This page previously grouped it with `In Progress` as an invented value. [#103](https://github.com/SinYang13/IS212-2026/discussions/103) has since required a withdrawal to be recorded in the system and to stay "distinguishable from draft, submitted, approved, rejected, or other request states", so the value is legitimate and [[event-request]] now models seven states. **The DDL below now enumerates all seven** — migrated 2026-09-09, see Migrations applied below.
 
 Status values are **scoped per entity**, so the same word may legitimately appear in more than one enum above — `Confirmed` and `Cancelled` are shared by `event` and `booking`, `Returned` by `event_request` and `equipment_reservation`, `Withdrawn` by `registration` and `waiting_list_entry`, and so on for nine values in total. Each is a different column on a different table; there is no shared value domain to collide in. Only a UI that renders a status without naming its entity can make one ambiguous.
+
+## Migrations applied 2026-09-09 (D1–D4)
+
+Ingesting [[is212-discussions-2026-09-08]] opened four gaps between the deployed schema and the sourced model, argued in [[discussions-sept-8-critical-diffs]]. All four have now been migrated; the DDL below reflects the deployed result.
+
+| # | Divergence | Ref | What was applied |
+|---|---|---|---|
+| D1 | `equipment_reservation` had **no date columns at all** — no return, collection or period. The committed Return Day + 1 availability rule computes from a date the schema did not hold, so core feature 16 could not answer correctly | [#5](https://github.com/SinYang13/IS212-2026/discussions/5), [#113](https://github.com/SinYang13/IS212-2026/discussions/113) | Added a nullable `return_date` to `equipment_reservation`. The population mechanism remains an open team decision — [#113](https://github.com/SinYang13/IS212-2026/discussions/113) states there is no fixed default |
+| D2 | `venue.capacity` was one scalar integer and `venue_supported_layout` a bare `(venue_id, room_layout_id)` junction, so a per-layout capacity had nowhere to live | [#112](https://github.com/SinYang13/IS212-2026/discussions/112) | Added `capacity` to `venue_supported_layout`. `venue.capacity` is untouched; whether it becomes derived (max across layouts) or is dropped remains an open modelling decision — see [[venue]] |
+| D3 | `event_request_status_chk` enumerated six values; [[event-request]] models seven | [#103](https://github.com/SinYang13/IS212-2026/discussions/103) | Added `'Withdrawn'` to the check constraint and to the Status enumerations table above |
+| D4 | `change_request` was flat — one `significance_flag`, one `fields_affected text`, one `coordinator_decision text`. A request that spans several fields and is **partially** approved could not be represented, and a declined field's reason had nowhere to live | [#104](https://github.com/SinYang13/IS212-2026/discussions/104) | Added a `change_request_item` child table (field, requested value, significance, decision, reason with a not-null reason required on a rejected item). `change_request`'s flat columns are retained but are no longer authoritative once a request has item rows — see [[change-request]] |
+
+D3 was a one-value edit. D1 and D4 were not: both were structural inabilities rather than wrong values, so no amount of renaming would have fixed them. D1 was the most serious of the four — it predates the 2026-09-08 batch, and [#113](https://github.com/SinYang13/IS212-2026/discussions/113) is what made it undeniable, by removing the possibility that the customer would supply a default the schema could have assumed. D2 sat between the two: a column addition, but with a modelling choice attached that is still open.
+
+## Coordinator assignment spans both tables
+
+`assigned_coordinator_user_account_id` now exists on **both** `event_request` and `event`, added 2026-09-09. This is not accidental duplication — it follows the same request/event split already used for `preferred_date`, `expected_attendance`, `venue_requirements`, `equipment_requirements` and `accessibility_needs`/`accessibility_requirements`: `event_request`'s copy is frozen once the request leaves review, `event`'s copy is the live one.
+
+- **Why `event_request` needs it at all:** [[event-request-workflow]] Step 3 has the Event Operations Manager assign a coordinator immediately after submission ([#73](https://github.com/SinYang13/IS212-2026/discussions/73)) — before Review (Step 4) and Approval (Step 5), both performed by that same coordinator. At that point no `event` row exists yet, so there was previously no column recording who was reviewing a request between `Submitted` and `Approved`.
+- **Why `event` still needs its own copy:** [[event-request]]'s `Approved` state is terminal for that record, but the assignment itself is not — [#94](https://github.com/SinYang13/IS212-2026/discussions/94) allows the Event Operations Manager to reassign the coordinator, and only the *assigned* coordinator may cancel the event at any stage ([#68](https://github.com/SinYang13/IS212-2026/discussions/68)). That ongoing relationship has to live on the record that is still live post-approval, which is `event`.
+- **Handoff:** `event.assigned_coordinator_user_account_id` is populated from `event_request.assigned_coordinator_user_account_id` at the moment the request is approved (the same moment that creates the `event` row — see [[event]]). After that, the two columns are independent; reassignment writes only to `event`.
 
 ## Constraints that are not declarative
 
@@ -123,11 +147,19 @@ create table event_request (
   status                    text not null default 'Draft',
   decision_record           text,
   requesting_user_account_id bigint not null references user_account (user_account_id) on delete restrict,
+  assigned_coordinator_user_account_id bigint references user_account (user_account_id) on delete restrict,
+    -- nullable: unset in Draft/Submitted, set by the Event Operations Manager
+    -- at Step 3 (#73), before Under Review/Approved. Copied onto the
+    -- resulting event.assigned_coordinator_user_account_id at approval —
+    -- this column is then frozen, since 'Approved' is terminal for the
+    -- request; reassignment (#94) after that point writes to `event` instead.
   client_organisation_id    bigint not null references client_organisation (client_organisation_id) on delete restrict,
   created_at                timestamptz not null default now(),
   updated_at                timestamptz not null default now(),
   constraint event_request_status_chk
-    check (status in ('Draft', 'Submitted', 'Under Review', 'Approved', 'Rejected', 'Returned'))
+    check (status in ('Draft', 'Submitted', 'Under Review', 'Approved', 'Rejected', 'Returned', 'Withdrawn'))
+    -- 'Withdrawn' added 2026-09-09 (D3, #103): grounded, Coordinator-actioned,
+    -- must stay distinguishable from every other request state.
 );
 
 -- ---------------------------------------------------------------------------
@@ -267,6 +299,10 @@ create table room_layout (
 create table venue_supported_layout (
   venue_id       bigint not null references venue (venue_id) on delete cascade,
   room_layout_id bigint not null references room_layout (room_layout_id) on delete restrict,
+  capacity       integer check (capacity is null or capacity >= 0),
+    -- added 2026-09-09 (D2, #112): capacity is supplied per layout, not
+    -- estimated. venue.capacity above is untouched; whether it becomes
+    -- derived (max across layouts) or is dropped is still an open decision.
   primary key (venue_id, room_layout_id)
 );
 
@@ -350,6 +386,10 @@ create table equipment_reservation (
   session_id                bigint references session (session_id) on delete cascade,
   reviewed_by_user_account_id bigint references user_account (user_account_id) on delete restrict,
   status                    text not null default 'Requested',
+  return_date               date,
+    -- added 2026-09-09 (D1, #113): nullable, feeds the committed
+    -- Return Day + 1 availability rule. Population mechanism is an open
+    -- team decision — #113 states there is no fixed default.
   created_at                timestamptz not null default now(),
   updated_at                timestamptz not null default now(),
   constraint equipment_reservation_status_chk
@@ -479,6 +519,26 @@ create table change_request (
   updated_at                 timestamptz not null default now()
 );
 
+-- significance_flag, fields_affected and coordinator_decision above are
+-- retained but stop being authoritative once a request has change_request_item
+-- rows (added 2026-09-09, D4, #104): a request may span several fields, each
+-- independently accepted or rejected, with a reason on a rejected field.
+create table change_request_item (
+  change_request_item_id bigint generated always as identity primary key,
+  change_request_id      bigint not null references change_request (change_request_id) on delete cascade,
+  field_name              text not null,
+  requested_value         text,
+  significance_flag       boolean not null default false,
+  decision                text not null default 'Pending',
+  decision_reason         text,
+  created_at              timestamptz not null default now(),
+  updated_at              timestamptz not null default now(),
+  constraint change_request_item_decision_chk
+    check (decision in ('Pending', 'Accepted', 'Rejected')),
+  constraint change_request_item_reason_chk
+    check (decision <> 'Rejected' or decision_reason is not null)
+);
+
 -- ---------------------------------------------------------------------------
 -- 16. Notification  (wiki: notification, brief §6)
 --     One nullable FK per related-object type, so the DB can enforce integrity
@@ -530,6 +590,7 @@ create table audit_record (
 create index user_account_client_org_idx        on user_account (client_organisation_id);
 create index user_account_role_role_idx         on user_account_role (role_id);
 create index event_request_user_idx             on event_request (requesting_user_account_id);
+create index event_request_coordinator_idx      on event_request (assigned_coordinator_user_account_id);
 create index event_request_client_org_idx       on event_request (client_organisation_id);
 create index event_client_org_idx               on event (client_organisation_id);
 create index event_coordinator_idx              on event (assigned_coordinator_user_account_id);
@@ -564,6 +625,7 @@ create index registration_session_idx           on registration (session_id);
 create index registration_attendee_idx          on registration (attendee_user_account_id);
 create index change_request_event_idx           on change_request (event_id);
 create index change_request_requester_idx       on change_request (requesting_user_account_id);
+create index change_request_item_change_request_idx on change_request_item (change_request_id);
 create index notification_recipient_idx         on notification (recipient_user_account_id);
 create index notification_status_idx            on notification (status) where status = 'Pending';
 create index audit_record_entity_idx            on audit_record (entity_type, entity_id);
@@ -578,7 +640,7 @@ begin
   foreach t in array array[
     'client_organisation', 'user_account', 'event_request', 'event', 'session',
     'venue', 'booking', 'equipment_item', 'equipment_reservation',
-    'support_request', 'registration', 'change_request'
+    'support_request', 'registration', 'change_request', 'change_request_item'
   ]
   loop
     execute format(
@@ -604,7 +666,7 @@ begin
     'venue_supported_layout', 'booking', 'booking_slot', 'equipment_item',
     'equipment_reservation', 'equipment_reservation_line', 'support_request',
     'support_request_assignment', 'registration', 'waiting_list_entry',
-    'change_request', 'notification', 'audit_record'
+    'change_request', 'change_request_item', 'notification', 'audit_record'
   ]
   loop
     execute format('alter table %I enable row level security', t);

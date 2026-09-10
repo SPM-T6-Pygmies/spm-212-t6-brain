@@ -4,6 +4,7 @@ type: domain-object
 sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 31.md"
+  - "IS212 2026 Discussions Sept 8.md"
 tags: [domain, hub, er-diagram, data-model, glossary]
 ---
 
@@ -130,6 +131,7 @@ erDiagram
 
     EVENT_REQUEST {
         int event_request_id PK
+        int assigned_coordinator_user_account_id FK "nullable - set at Step 3 (#73), frozen at approval"
         string event_name
         string description
         string purpose
@@ -240,6 +242,7 @@ erDiagram
     VENUE_SUPPORTED_LAYOUT {
         int venue_id PK, FK
         int room_layout_id PK, FK
+        int capacity "nullable - supplied per layout, not computed (#112)"
     }
 
     BOOKING {
@@ -279,6 +282,7 @@ erDiagram
         int session_id FK "nullable — per-session reservation"
         int reviewed_by_user_account_id FK
         string status
+        date return_date "nullable - no default (#113); feeds Return Day + 1"
         datetime created_at
     }
 
@@ -329,6 +333,17 @@ erDiagram
         string status
         datetime offered_at "nullable"
         datetime expires_at "nullable"
+    }
+
+    CHANGE_REQUEST_ITEM {
+        int change_request_item_id PK
+        int change_request_id FK
+        string field_name
+        string requested_value "nullable"
+        boolean significance_flag
+        string decision "Pending | Accepted | Rejected"
+        string decision_reason "required when decision = Rejected (#104)"
+        datetime created_at
     }
 
     CHANGE_REQUEST {
@@ -409,6 +424,7 @@ erDiagram
     USER_ACCOUNT |o--o{ REGISTRATION : holds
     REGISTRATION |o--o| WAITING_LIST_ENTRY : "queues, while waitlisted"
     EVENT ||--o{ CHANGE_REQUEST : receives
+    CHANGE_REQUEST ||--o{ CHANGE_REQUEST_ITEM : "itemises, one per field"
     USER_ACCOUNT ||--o{ CHANGE_REQUEST : requests
     USER_ACCOUNT ||--o{ NOTIFICATION : receives
     EVENT |o--o{ NOTIFICATION : triggers
@@ -438,19 +454,31 @@ Every row is a structural choice this diagram had to make where the sources leav
 | `BOOKING_SLOT` as its own table (`booking_id`, `slot_date`, `slot`) rather than three boolean columns on `BOOKING`                                                                                 | A booking may cover one, two, or all three daily slots (full day = AM + PM + Night); a child table avoids denormalising that into fixed columns                                                   | [#50](https://github.com/SinYang13/IS212-2026/discussions/50); [[venue]]                 |
 | `EVENT_ESSENTIAL_ARRANGEMENT` as a per-event join/config table, not a fixed column set on `EVENT`                                                                                                  | The essential-arrangement set is determined per event — there is no single fixed list that applies to every event                                                                                 | [#80](https://github.com/SinYang13/IS212-2026/discussions/80); [[event]]                 |
 | `USER_ACCOUNT.credentials_hash` as a single opaque column                                                                                                                                          | Authentication method (password, SSO, MFA) is an open team decision; a hash column is method-agnostic until one is chosen                                                                         | 🔶 [#62](https://github.com/SinYang13/IS212-2026/discussions/62); [[user-account]]       |
-| The brief's ten example statuses allocated **one per table** — Draft/Submitted/Under Review/Approved/Rejected/Returned on `EVENT_REQUEST`, Planning/Blocked/Confirmed/Completed/Cancelled on `EVENT` | §4 offers a single example list spanning two records it elsewhere treats as separate; the split assigns each value exactly one owner, so no status is duplicated or ambiguous. `Returned` is named for the request by §5 | [[event-planning-venue-booking-system\|brief §4]]; [[event-request-workflow\|brief §5]]; [[event]]; [[event-request]] |
+| The brief's ten example statuses allocated **one per table** — Draft/Submitted/Under Review/Approved/Rejected/Returned on `EVENT_REQUEST`, Planning/Blocked/Confirmed/Completed/Cancelled on `EVENT`. `Withdrawn` was added to `EVENT_REQUEST` on 2026-09-09 as a seventh, sourced state | §4 offers a single example list spanning two records it elsewhere treats as separate; the split assigns each value exactly one owner, so no status is duplicated or ambiguous. `Returned` is named for the request by §5; `Withdrawn` is grounded separately by [#103](https://github.com/SinYang13/IS212-2026/discussions/103) | [[event-planning-venue-booking-system\|brief §4]]; [[event-request-workflow\|brief §5]]; [[event]]; [[event-request]] |
 | `EVENT.status` uses `Blocked` where §4's example list says *awaiting arrangements*                                                                                                                 | A team rename within what §4 left proposable ("for example"), recorded for traceability back to the brief's vocabulary. Status values are scoped per entity, so reusing a word §4's venue calendar also uses is no more a conflict than `Confirmed`/`Cancelled` already being shared between `EVENT` and `BOOKING` | 🔶 [[event-planning-venue-booking-system\|brief §4]]; [[event]]                          |
 | `REGISTRATION` identifies its holder by **either** `attendee_user_account_id` **or** an `attendee_name` + `attendee_email` pair, enforced by a check constraint                                     | Attendees are external users whose onboarding is out of scope, so Release 1 must accept registrations with no account to point at; a nullable FK plus an XOR check keeps every other writer unaffected | 🔶 [#53](https://github.com/SinYang13/IS212-2026/discussions/53); [[registration]]       |
 | `REGISTRATION.registration_reference` as a UUID alongside the surrogate PK                                                                                                                          | The application mints identity before the row exists, and a `generated always as identity` bigint cannot carry a caller-chosen value; it doubles as the reference a guest attendee can quote                | 🔶 [#53](https://github.com/SinYang13/IS212-2026/discussions/53); [[registration]]       |
 
-Not modelled as separate tables, and why: **Room Layout** is a lookup table (`ROOM_LAYOUT`) here rather than a richer object, following the plain-enum reading of 🔶 [#83](https://github.com/SinYang13/IS212-2026/discussions/83) (the alternative — capacity-per-layout — would need its own table if the team decides Room Layout should be first-class); **Client Organisation**'s primary-contact/administrator question (🔶 [#65](https://github.com/SinYang13/IS212-2026/discussions/65), [#81](https://github.com/SinYang13/IS212-2026/discussions/81)) adds no column here since neither role is confirmed to exist; **Support Request**'s staff-availability representation (🔶 [#89](https://github.com/SinYang13/IS212-2026/discussions/89)) is left off `USER_ACCOUNT` entirely, since no source specifies what an availability record would even contain.
+Not modelled as separate tables, and why: **Room Layout** remains a lookup table (`ROOM_LAYOUT`), but the plain-enum reading of [#83](https://github.com/SinYang13/IS212-2026/discussions/83) that once justified it has been **superseded**: [#112](https://github.com/SinYang13/IS212-2026/discussions/112) made capacity vary by layout, and the `VENUE_SUPPORTED_LAYOUT` pairing now carries the figure, so the venue-layout relationship is a first-class object in all but name. What is still missing is the other end — no booking records *which* layout it assumes, so nothing joins a booking to the capacity it should be checked against; **Client Organisation**'s primary-contact/administrator question (🔶 [#65](https://github.com/SinYang13/IS212-2026/discussions/65), [#81](https://github.com/SinYang13/IS212-2026/discussions/81)) adds no column here since neither role is confirmed to exist; **Support Request**'s staff-availability representation (🔶 [#89](https://github.com/SinYang13/IS212-2026/discussions/89)) is left off `USER_ACCOUNT` entirely, since no source specifies what an availability record would even contain.
 
 ## Modelling-decision register
 
-Decisions the customer **settled**, verified against `raw/IS212 2026 Discussions Aug 31.md`. Each is already recorded, with full context, on the domain page that owns it — this table is the index.
+Decisions the customer **settled**, verified against `raw/IS212 2026 Discussions Aug 31.md` and `raw/IS212 2026 Discussions Sept 8.md`. Each is already recorded, with full context, on the domain page that owns it — this table is the index.
+
+> [!info] Five structures were added on 2026-09-09, and one trap came with them
+> [[schema]] was migrated (**D1–D4**, plus a coordinator-assignment change) and the diagram above has been re-drawn to match, so the two are in sync at **26** tables. What landed: a nullable `return_date` on `equipment_reservation` ([#113](https://github.com/SinYang13/IS212-2026/discussions/113)); a per-layout `capacity` on `venue_supported_layout` ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)); a seventh `event_request` state, `Withdrawn` ([#103](https://github.com/SinYang13/IS212-2026/discussions/103)); a `change_request_item` child table carrying per-field outcomes, with a decline reason enforced by check constraint ([#104](https://github.com/SinYang13/IS212-2026/discussions/104)); and `assigned_coordinator_user_account_id` on `event_request`, closing the gap where nothing recorded who was reviewing a request between `Submitted` and `Approved` ([#73](https://github.com/SinYang13/IS212-2026/discussions/73), [#94](https://github.com/SinYang13/IS212-2026/discussions/94)).
+>
+> **The trap:** `venue.capacity` was **retained** alongside the new per-layout figure, so capacity now lives in two places with no stated precedence. [#112](https://github.com/SinYang13/IS212-2026/discussions/112) says suitability must read the layout-specific value; the scalar's fate — derived, or dropped — is undecided. Treat `venue.capacity` as untrusted until that is settled.
 
 | Decision | Ref | Owning page |
 |---|---|---|
+| The **Event Operations Manager is a separate system role** — mandatory, holding coordinator assignment and reassignment only | [#101](https://github.com/SinYang13/IS212-2026/discussions/101) | [[user-roles]], [[user-account]] |
+| Venue capacity **varies by room layout**, and each layout's capacity is supplied as venue master data rather than computed | [#112](https://github.com/SinYang13/IS212-2026/discussions/112) | [[venue]] |
+| A request-level **`Withdrawn`** state is required and must stay distinguishable from the other request states; the coordinator records it, the Organiser does not self-withdraw | [#103](https://github.com/SinYang13/IS212-2026/discussions/103) | [[event-request]] |
+| One change request may span several fields and be **partially approved**, with a reason on each declined field | [#104](https://github.com/SinYang13/IS212-2026/discussions/104) | [[change-request]] |
+| One slot is the **smallest unit** of setup and turnaround; an event across two slots consumes both in full | [#108](https://github.com/SinYang13/IS212-2026/discussions/108), [#107](https://github.com/SinYang13/IS212-2026/discussions/107) | [[venue]], [[booking]] |
+| Expected attendance is a single **event-level** field, not duplicated into venue requirements | [#119](https://github.com/SinYang13/IS212-2026/discussions/119) | [[event]] |
+| Account onboarding is **not required for Release 1**; pre-loaded staff and client accounts are sanctioned | [#49](https://github.com/SinYang13/IS212-2026/discussions/49) | [[user-account]] |
 | Equipment pooled vs serialised is deferred, but the system must always know available quantity | [#13](https://github.com/SinYang13/IS212-2026/discussions/13) | [[equipment-item]] |
 | Tentative Hold is its own record, with confirm/release transitions | [#41](https://github.com/SinYang13/IS212-2026/discussions/41) | [[booking]] |
 | Booking is separate from Event — bookings release, the event record survives | [#69](https://github.com/SinYang13/IS212-2026/discussions/69) | [[booking]] |
@@ -516,8 +544,8 @@ Every "Team decision required" callout across the fourteen domain-object pages, 
 | Support Request | Whether staff assignment is system-assigned, manual, or hybrid | [#88](https://github.com/SinYang13/IS212-2026/discussions/88) | [[support-request]] |
 | User Account | Authentication method | [#62](https://github.com/SinYang13/IS212-2026/discussions/62) | [[user-account]] |
 | User Account | Account recovery and lockout handling | [#64](https://github.com/SinYang13/IS212-2026/discussions/64) | [[user-account]] |
-| User Account | Onboarding / self-registration process for external users | [#49](https://github.com/SinYang13/IS212-2026/discussions/49), [#53](https://github.com/SinYang13/IS212-2026/discussions/53) | [[user-account]] |
-| User Account | Whether an admin role above the five briefed stakeholders exists | [#52](https://github.com/SinYang13/IS212-2026/discussions/52) | [[user-account]] |
+| User Account | Onboarding / self-registration process for external users — still not modelled, but the reason has changed: not merely absent from the feature list, but **explicitly not required for Release 1**, with pre-loaded staff and client accounts as the sanctioned substitute | [#49](https://github.com/SinYang13/IS212-2026/discussions/49), [#53](https://github.com/SinYang13/IS212-2026/discussions/53) | [[user-account]] |
+| User Account | Whether an admin role above the briefed stakeholders exists. Note the role model now has **six** roles, not five — the Event Operations Manager is a mandatory system role ([#101](https://github.com/SinYang13/IS212-2026/discussions/101)) — and it is not the admin role, holding assignment authority only | [#52](https://github.com/SinYang13/IS212-2026/discussions/52), [#101](https://github.com/SinYang13/IS212-2026/discussions/101) | [[user-account]] |
 | User Account | Field-level access-control design (categories given, no matrix) | [#91](https://github.com/SinYang13/IS212-2026/discussions/91) | [[user-account]] |
 | Venue | Booking horizon — how far in advance a venue may be booked | [#57](https://github.com/SinYang13/IS212-2026/discussions/57) | [[venue]] |
 | Venue | Suitability-check presentation (inline indicator, post-selection check, or both) | [#83](https://github.com/SinYang13/IS212-2026/discussions/83) | [[venue]] |

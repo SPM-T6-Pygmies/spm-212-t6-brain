@@ -35,7 +35,7 @@ Section 8 of the brief states seven quality attributes for the [[event-planning-
 
 ## a. Performance
 
-- Common operations must "complete within a reasonable time": viewing an event, searching available venues, opening a venue calendar, checking equipment availability, submitting a registration (Source: customer-brief-no-1, s8a).
+- Common operations must "complete within a reasonable time": viewing an event, searching available venues, opening a venue calendar, checking equipment availability, submitting a registration ([[non-functional-requirements|brief §8a]]).
 - No response-time figure, throughput target, or percentile was given. The named operations are read-heavy and calendar/availability-oriented — the performance profile is dominated by [[venue-booking]] availability queries and [[equipment-management]] availability checks.
 - Related: notifications carry **no** delivery-time requirement. Batch delivery at configurable intervals is acceptable, and "there is no hard requirement for notifications to be received within a specific time limit" (Source: is212-discussions-2026-08-31, [#55](https://github.com/SinYang13/IS212-2026/discussions/55)). See [[notifications]].
 
@@ -44,7 +44,7 @@ Section 8 of the brief states seven quality attributes for the [[event-planning-
 
 ## b. Security
 
-- Only authorised users may access protected information. Access depends on the user's **role and relationship to an event** — not role alone (Source: customer-brief-no-1, s8b).
+- Only authorised users may access protected information. Access depends on the user's **role and relationship to an event** — not role alone ([[non-functional-requirements|brief §8b]]).
 - Stated examples: an Event Organiser should not normally view events of unrelated clients; an Attendee should not view internal planning information.
 - Protected information was defined on 2026-08-31 as internal planning information, venue and equipment arrangements, attendee information, client-related information, and other non-public event details. **The exact access-control design and field-level permissions are for the team to propose** (Source: is212-discussions-2026-08-31, [#91](https://github.com/SinYang13/IS212-2026/discussions/91)).
 - Secure authentication is required, but **the authentication method is not specified** — email/password, SSO, or MFA are all open (Source: is212-discussions-2026-08-31, [#62](https://github.com/SinYang13/IS212-2026/discussions/62)).
@@ -54,9 +54,9 @@ Full role and permission detail is in [[access-control]] and [[user-roles]].
 
 ## c. Usability
 
-- All user groups must complete their common activities "without extensive training or guidance" (Source: customer-brief-no-1, s8c).
-- Information must not assume the user understands ConnectSphere's internal processes; current status, confirmed arrangements, and outstanding actions must be easy to understand (Source: customer-brief-no-1, s7).
-- The system must be both **desktop- and mobile-friendly**: external users on personal computers or mobile devices, internal staff while physically preparing event spaces or equipment (Source: customer-brief-no-1, s7).
+- All user groups must complete their common activities "without extensive training or guidance" ([[non-functional-requirements|brief §8c]]).
+- Information must not assume the user understands ConnectSphere's internal processes; current status, confirmed arrangements, and outstanding actions must be easy to understand ([[non-functional-requirements|brief §7]]).
+- The system must be both **desktop- and mobile-friendly**: external users on personal computers or mobile devices, internal staff while physically preparing event spaces or equipment ([[non-functional-requirements|brief §7]]).
 
 Two constraints that shrink the usability scope:
 
@@ -72,7 +72,7 @@ Two constraints that shrink the usability scope:
 
 ## d. Reliability and Consistency
 
-- The system must maintain consistent information when related arrangements change. Users must not see contradictory information about event dates, venue bookings, equipment availability, or registration status (Source: customer-brief-no-1, s8d).
+- The system must maintain consistent information when related arrangements change. Users must not see contradictory information about event dates, venue bookings, equipment availability, or registration status ([[non-functional-requirements|brief §8d]]).
 - This is the quality attribute behind most of the functional pain in the brief's background section: duplicate spreadsheets, stale venue requirements, double-booked venues and equipment, attendees receiving outdated dates.
 - Concrete consistency rules already fixed by the customer:
 
@@ -91,7 +91,7 @@ Significant changes must trigger re-validation of affected arrangements; ordinar
 
 ## e. Scalability
 
-- The solution must support ConnectSphere's anticipated growth over the **next three years**, across events, users, client organisations, venues, equipment, and registrations (Source: customer-brief-no-1, s8e).
+- The solution must support ConnectSphere's anticipated growth over the **next three years**, across events, users, client organisations, venues, equipment, and registrations ([[non-functional-requirements|brief §8e]]).
 - Asked directly how many concurrent users to support and whether microservices are needed, the customer declined to give a number: the system should support three years of expected growth, and **"the architecture, including whether microservices are appropriate, is for you to propose. Do also consider the nature of business and staff strength."** (Source: is212-discussions-2026-08-31, [#7](https://github.com/SinYang13/IS212-2026/discussions/7)).
 - The sizing anchors the customer did provide:
 
@@ -110,15 +110,15 @@ Significant changes must trigger re-validation of affected arrangements; ordinar
 
 ## f. Auditability
 
-- Important actions must be recorded. Where appropriate, ConnectSphere must be able to determine **what was changed, who changed it, and when** (Source: customer-brief-no-1, s8f).
+- Important actions must be recorded. Where appropriate, ConnectSphere must be able to determine **what was changed, who changed it, and when** ([[non-functional-requirements|brief §8f]]).
 - This maps to two functional areas in the brief: **Activity History** (significant actions, actor, timestamp) and **Change History** (how important event information changed over time, visible to users with appropriate access). See [[reporting]].
 - Asked whether the audit log must be tamper-proof (append-only, no edits or deletes) or whether a regular database table suffices, the customer refused to constrain the implementation: the requirement is the what/who/when record, and **"the technical mechanism used to achieve this is for you to propose"** (Source: is212-discussions-2026-08-31, [#14](https://github.com/SinYang13/IS212-2026/discussions/14)).
-- A driving pain point from the brief: "It is difficult to determine who changed important event information and when the change occurred" (Source: customer-brief-no-1, s2).
+- A driving pain point from the brief: "It is difficult to determine who changed important event information and when the change occurred" ([[connectsphere-event-services|brief §2]]).
 - Retention interacts with audit: there is **no retention policy**, so audit records are not bounded by one either (see below).
 
 ## g. Maintainability
 
-- ConnectSphere expects its processes to evolve. The system must be designed so future functionality and business rules can be added **without requiring the entire system to be rebuilt** (Source: customer-brief-no-1, s8g).
+- ConnectSphere expects its processes to evolve. The system must be designed so future functionality and business rules can be added **without requiring the entire system to be rebuilt** ([[non-functional-requirements|brief §8g]]).
 - The brief reinforces this in its closing note: the customer will continue discussing the system with stakeholders and "there may be special cases and business rules that have not been described in this initial briefing".
 - The volume of unresolved business rules in [[open-questions]] is itself the maintainability argument: lead times, hold durations, notice periods, reminder timings, registration limits and booking horizons are all unset, so they should be **configurable rather than hard-coded**.
 - Already-confirmed configurability requirements:
@@ -168,7 +168,7 @@ Practical consequence: no calendar sync, no spreadsheet import, no document-stor
 
 | Item | Status | Reference |
 |---|---|---|
-| Performance targets (numbers) | Not given — team to propose | brief s8a |
+| Performance targets (numbers) | Not given — team to propose | [[non-functional-requirements\|brief §8a]] |
 | Authentication method | **Unspecified — team to propose** | [#62](https://github.com/SinYang13/IS212-2026/discussions/62) |
 | Account recovery / locked accounts | **Not specified** | [#64](https://github.com/SinYang13/IS212-2026/discussions/64) |
 | Audit mechanism (append-only vs table) | Team to propose; requirement is what/who/when | [#14](https://github.com/SinYang13/IS212-2026/discussions/14) |

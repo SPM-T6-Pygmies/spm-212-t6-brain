@@ -5,6 +5,7 @@ sources:
   - Customer Brief no. 1.md
   - IS212 2026 Discussions Aug 26.md
   - IS212 2026 Discussions Aug 31.md
+  - IS212 2026 Discussions Sept 8.md
 tags: [equipment, inventory, availability, reservation, maintenance, business-rules]
 ---
 
@@ -31,6 +32,14 @@ Two separate rules constrain when a piece of equipment can be committed to an ev
 |---|---|---|
 | Transfer and preparation time from the equipment's current location to the event venue must be considered | **Pre-event** availability | [#2](https://github.com/SinYang13/IS212-2026/discussions/2) |
 | Equipment may be collected from **D-1**; after return and inspection it is available again only from **Return Day + 1** | **Post-event** availability | [#5](https://github.com/SinYang13/IS212-2026/discussions/5), restated in [#2](https://github.com/SinYang13/IS212-2026/discussions/2) follow-up |
+
+### The Return Day Has No Default
+
+The post-event rule above is committed and non-negotiable, but the date it pivots on is not. The customer confirmed on 2026-09-07 that **there is currently no fixed default return day**, and that the team may propose how the return date is captured or determined — whether automatically populated or entered manually (Source: is212-discussions-2026-09-08, [#113](https://github.com/SinYang13/IS212-2026/discussions/113)).
+
+This is a `🔶 Team decision` sitting directly underneath a `✅ Specified` rule, and it is load-bearing rather than incidental: every availability answer the system gives for feature 16 depends on knowing when each commitment window closes, and no window closes without a return date. The mechanism the team picks — derive it from the event or session end date, have the Event Coordinator enter it with the requirement, or have Technical Support Staff set it at collection — effectively *becomes* the business rule and should be documented as one.
+
+The **field** is no longer the problem. Migration D1 (2026-09-09) added a nullable `return_date` to the reservation, so the rule is representable and feature 16 has something to compute from ([[schema]]; [[equipment-reservation]] for where the field sits). The gap has moved from "the date cannot be stored" to "the date may not be there": nullable with no default means a reservation can exist with no known window end, and the availability answer for the equipment on it is undefined until one is supplied. Fixing the mechanism is what would let the column become `not null` or acquire a default — until then neither is safe to add.
 
 ### Lifecycle Chain
 
@@ -60,6 +69,8 @@ This follows directly from the D-1 / Return Day +1 rule: the effective commitmen
 | Minimum notice period for equipment requests | **Not specified** — team to propose ([#25](https://github.com/SinYang13/IS212-2026/discussions/25)); see [[technical-support]] |
 | Partial reservation when only some items are available | **Allowed** ([#90](https://github.com/SinYang13/IS212-2026/discussions/90)) |
 | Effect of a reschedule on existing reservations | Arrangement must be reviewed again; workflow for the team to propose ([#16](https://github.com/SinYang13/IS212-2026/discussions/16)) — see [[change-impact-management]] |
+| Changing equipment requirements **after** reservation | **Allowed**; affected arrangements reviewed and updated, TSS re-check suitability and availability; release/replace/add workflow for the team to propose ([#114](https://github.com/SinYang13/IS212-2026/discussions/114)) |
+| Default return day | **None** — no fixed default; capture mechanism for the team to propose ([#113](https://github.com/SinYang13/IS212-2026/discussions/113)) |
 
 **Snapshot note:** [#82](https://github.com/SinYang13/IS212-2026/discussions/82) was **unanswered** in the Aug 26 snapshot and answered on 2026-08-31 with "No maximum reservation period." Any backlog item written before that date against [#82](https://github.com/SinYang13/IS212-2026/discussions/82) should be revisited.
 
@@ -67,7 +78,15 @@ This follows directly from the D-1 / Return Day +1 rule: the effective commitmen
 
 Technical Support Staff may reserve the equipment that is available and suitable even when other requested items are unavailable. They should identify which requirements can be fulfilled and highlight unavailable items or suggest alternatives. **The Event Coordinator then determines whether the outstanding requirement affects overall event readiness** (Source: is212-discussions-2026-08-31, [#90](https://github.com/SinYang13/IS212-2026/discussions/90)).
 
-Implication: an equipment requirement is not atomic. Its fulfilment state is per-line-item, and the roll-up to "ready / not ready" is a coordinator judgement, not a system computation — see [[event-readiness]].
+[#106](https://github.com/SinYang13/IS212-2026/discussions/106) refines who makes that call. Deciding whether an incomplete equipment requirement is **essential** to the event is a joint determination: "the Event Coordinator should determine together with the relevant Technical Support Staff whether an incomplete equipment requirement is essential to the event." If it is essential, the event must not be confirmed until it is resolved (Source: is212-discussions-2026-09-08, [#106](https://github.com/SinYang13/IS212-2026/discussions/106)). The final act of confirming still follows the existing rule on which role is authorised to confirm an event — [#106](https://github.com/SinYang13/IS212-2026/discussions/106) gives Technical Support Staff a voice in the essentialness judgement, not a confirmation veto. See [[technical-support]] and [[event-readiness]].
+
+Implication: an equipment requirement is not atomic. Its fulfilment state is per-line-item, and the roll-up to "ready / not ready" is a human judgement, not a system computation — and on the essentialness question specifically, a two-role judgement — see [[event-readiness]].
+
+### Changing Requirements After Reservation
+
+Equipment requirements are not frozen once equipment has been reserved. The customer confirmed that they **may be changed after reservation**; where a change affects an existing reservation, the affected equipment arrangements should be reviewed and updated, and Technical Support Staff should re-check suitability and availability where necessary. The exact workflow for **releasing, replacing, or adding** equipment is for the team to propose (Source: is212-discussions-2026-09-08, [#114](https://github.com/SinYang13/IS212-2026/discussions/114)).
+
+This generalises [#16](https://github.com/SinYang13/IS212-2026/discussions/16) (a reschedule forces re-review) from the event's date/time to the requirement itself, and it explains what [#90](https://github.com/SinYang13/IS212-2026/discussions/90)'s partial reservation does next: an unfulfilled line is not a dead end, because the requirement behind it can be revised. Both paths converge on the same TSS re-check, so design them as one mechanism rather than two. The states already documented on [[equipment-reservation]] absorb all three operations without new vocabulary — *release* reuses `Released`, *replace* is a release plus a new line at `Recorded`, *add* is a new line at `Recorded` — so what is genuinely open is sequencing and record identity, not the status set.
 
 ## Pooled vs Serialised Modelling
 
@@ -110,5 +129,8 @@ The [#85](https://github.com/SinYang13/IS212-2026/discussions/85) answer draws a
 | 85 | Post-event health checklist | Outside the system |
 | 86 | Defect logging on return | Supported; status updated accordingly |
 | 90 | Partial reservation | Allowed; coordinator judges readiness impact |
+| 106 | Who decides an incomplete requirement is not blocking | Event Coordinator **together with** the relevant Technical Support Staff; if essential, no confirmation until resolved |
+| 113 | Default return day | **None** — capture mechanism **team to propose**, though Return Day + 1 depends on it |
+| 114 | Changing requirements after reservation | Allowed; re-review and TSS re-check; release/replace/add workflow **team to propose** |
 
 See also [[technical-support]], [[event-readiness]], [[change-impact-management]], [[open-questions]].

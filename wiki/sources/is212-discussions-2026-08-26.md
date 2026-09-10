@@ -19,10 +19,10 @@ First extract of the [[is212-g9-section]] GitHub Discussions board, the sole cha
 | Volume | 75 discussions, 11 categories |
 | Answer state | 69 answered · 5 unanswered · 18 labelled `important` |
 | Clarifies | [[customer-brief-no-1]] |
-| Superseded by | [[is212-discussions-2026-08-31]] |
+| Superseded by | [[is212-discussions-2026-08-31]], then [[is212-discussions-2026-09-08]] |
 
 > [!warning] Superseded
-> This is the earlier of two snapshots of the same board. Every discussion here also appears in [[is212-discussions-2026-08-31]], which resolves four of the five open items. Treat the Aug 31 snapshot as authoritative and use this page only to reconstruct what the team knew as of the Week 2–3 boundary.
+> This is the earliest of three snapshots of the same board. Every discussion here also appears in [[is212-discussions-2026-08-31]], which resolves four of the five open items, and in [[is212-discussions-2026-09-08]], which is now authoritative. Use this page only to reconstruct what the team knew as of the Week 2–3 boundary.
 
 ## Board conventions
 

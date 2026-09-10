@@ -5,6 +5,7 @@ sources:
   - Customer Brief no. 1.md
   - IS212 2026 Discussions Aug 26.md
   - IS212 2026 Discussions Aug 31.md
+  - IS212 2026 Discussions Sept 8.md
 tags: [technical-support, staffing, rostering, equipment, roles, business-rules]
 ---
 
@@ -27,6 +28,8 @@ Technical Support Staff are internal users responsible for equipment, technical 
 | Maintain equipment operational status (damaged, under maintenance, unavailable) | [#9](https://github.com/SinYang13/IS212-2026/discussions/9), [#23](https://github.com/SinYang13/IS212-2026/discussions/23) |
 | Determine whether sufficient suitable equipment can be reserved for a date and time | customer-brief-no-1 |
 | Reserve available and suitable equipment against an event | [#19](https://github.com/SinYang13/IS212-2026/discussions/19), [#90](https://github.com/SinYang13/IS212-2026/discussions/90) |
+| Re-check suitability and availability when equipment requirements change after reservation | [#114](https://github.com/SinYang13/IS212-2026/discussions/114) |
+| Determine, **together with the Event Coordinator**, whether an incomplete equipment requirement is essential to the event | [#106](https://github.com/SinYang13/IS212-2026/discussions/106) |
 | Record questions, comments, or clarification needs against an event | [#87](https://github.com/SinYang13/IS212-2026/discussions/87) |
 | Log defects, damage, or missing items on equipment return | [#86](https://github.com/SinYang13/IS212-2026/discussions/86) |
 | Be assigned to support an event on-site | customer-brief-no-1, [#88](https://github.com/SinYang13/IS212-2026/discussions/88), [#89](https://github.com/SinYang13/IS212-2026/discussions/89) |
@@ -49,6 +52,26 @@ Practical consequence: there is no "approved"/"rejected" decision object for equ
 
 Reservation may be **partial** — suitable available items are reserved even while others are unavailable, with the unavailable items highlighted or alternatives suggested; the Event Coordinator then judges the impact on overall readiness ([#90](https://github.com/SinYang13/IS212-2026/discussions/90)). See [[event-readiness]].
 
+### Joint Determination of Essentialness
+
+Where a requirement is left incomplete, deciding whether that gap blocks confirmation is **not the Event Coordinator's call alone**. The customer clarified that "the Event Coordinator should determine together with the relevant Technical Support Staff whether an incomplete equipment requirement is essential to the event. If it is considered essential, the event should not be confirmed until it is resolved" (Source: is212-discussions-2026-09-08, [#106](https://github.com/SinYang13/IS212-2026/discussions/106)).
+
+Read precisely, this changes the [#90](https://github.com/SinYang13/IS212-2026/discussions/90) picture in one respect and leaves two untouched:
+
+| Aspect | Position | Source |
+|---|---|---|
+| Flagging unavailable items and suggesting alternatives | Technical Support Staff — unchanged | [#90](https://github.com/SinYang13/IS212-2026/discussions/90) |
+| Judging whether an incomplete requirement is **essential** | Event Coordinator **together with** the relevant Technical Support Staff — refined from coordinator-alone | [#90](https://github.com/SinYang13/IS212-2026/discussions/90), [#106](https://github.com/SinYang13/IS212-2026/discussions/106) |
+| Performing the confirmation action itself | Whichever role is already authorised to confirm events in the system — unchanged; TSS gain no confirmation right | [#106](https://github.com/SinYang13/IS212-2026/discussions/106) |
+
+The refinement is participation in a judgement, not a veto: Technical Support Staff are a required party to the essentialness determination, but the confirmation gate itself remains the [#80](https://github.com/SinYang13/IS212-2026/discussions/80) rule ("essential and incomplete → not confirmable") enforced by the authorised confirming role. See [[event-readiness]].
+
+### Changes After Reservation
+
+Equipment requirements may be changed after equipment has been reserved. Where the change affects an existing reservation, the affected equipment arrangements are reviewed and updated, and **Technical Support Staff re-check suitability and availability where necessary**; the exact workflow for releasing, replacing, or adding equipment is for the team to propose (Source: is212-discussions-2026-09-08, [#114](https://github.com/SinYang13/IS212-2026/discussions/114)).
+
+Operationally this is the same re-check Technical Support Staff already perform after a reschedule ([#16](https://github.com/SinYang13/IS212-2026/discussions/16)) — only the trigger differs. It confirms that TSS involvement in an event is recurring rather than one-shot: a single review at Step 8 is not sufficient, and any workload or notification design should assume re-checks. See [[equipment-reservation]] and [[change-impact-management]].
+
 ## Clarification of Insufficient Information
 
 When an event's technical requirements are incomplete or unclear (the brief's example: a hybrid event requested without specifying video-conferencing needs), the flow is (Source: is212-discussions-2026-08-31, [#87](https://github.com/SinYang13/IS212-2026/discussions/87)):
@@ -64,7 +87,7 @@ Comments are retained with the event record; whether they are threaded or flat i
 ## Technical Support Requests
 
 - Event Coordinators can indicate when an event requires technical support **before or during** the event and describe the support required (Source: customer-brief-no-1).
-- Technical support is one of the arrangements that may be **essential** for a given event — and if essential and incomplete, the event must not be confirmable (Source: is212-discussions-2026-08-31, [#80](https://github.com/SinYang13/IS212-2026/discussions/80)). There is no fixed list of essential arrangements; it depends on the event (see [[event-readiness]]).
+- Technical support is one of the arrangements that may be **essential** for a given event — and if essential and incomplete, the event must not be confirmable (Source: is212-discussions-2026-08-31, [#80](https://github.com/SinYang13/IS212-2026/discussions/80)). There is no fixed list of essential arrangements; it depends on the event (see [[event-readiness]]). For an incomplete *equipment* requirement, that essentialness call is made by the Event Coordinator together with the relevant Technical Support Staff ([#106](https://github.com/SinYang13/IS212-2026/discussions/106)) — see Joint Determination of Essentialness above.
 - Insufficient notice to Technical Support Staff about upcoming equipment or support requirements is a named pain point in the current manual process (Source: customer-brief-no-1) — yet no minimum notice period was set (see below).
 
 ## Staff Assignment and Rostering
@@ -101,5 +124,7 @@ A person may hold multiple roles ([#56](https://github.com/SinYang13/IS212-2026/
 | 25 | Minimum notice period | None specified — **team to propose** |
 | 90 | Partial fulfilment | TSS reserve what's available, flag the rest; coordinator judges readiness |
 | 66 | Scope of staff access | Organisation-wide, not scoped by venue/equipment type/location |
+| 106 | Who decides an incomplete equipment requirement is not blocking | Event Coordinator **together with** the relevant TSS; confirmation action still belongs to the authorised confirming role |
+| 114 | Changing equipment requirements after reservation | Allowed; TSS re-check suitability and availability; release/replace/add workflow **team to propose** |
 
 See also [[equipment-management]], [[event-readiness]], [[user-roles]], [[event-lifecycle]].
