@@ -603,3 +603,21 @@ The concept, domain and schema layers absorbed `raw/IS212 2026 Discussions Sept 
 **Fourteen tickets created (SPM-98 – SPM-111), thirteen edited, two closed. About 35 Tier 2 edits are catalogued but deliberately not applied** — stale rather than contradictory — and listed in the artefact so the next pass has a worklist rather than a re-audit.
 
 **Updated:** [[linear-ticket-audit-sept-8-batch]] (new), [[access-control]], [[index]].
+
+## 2026-09-11
+
+### Tier 2 backlog worklist applied — 22 tickets
+
+Worked the seven largest Tier 2 groups catalogued in [[linear-ticket-audit-sept-8-batch]]'s "Not yet applied" section: SPM-42, 44, 45, 46 (capacity as a scalar), SPM-47, 69, 70, 73 (attendee reachability), SPM-18, 52, 65, 67 (partial outcomes), SPM-17, 18 (equipment return date), SPM-50, 54, 68, 69, 71, 72, 76 (answered open questions), SPM-13, 15 (dashboard wording), and SPM-87 (promotion) — 22 distinct tickets in total.
+
+**Convention used throughout: strike stale wording from the ticket body, explain the removal in a Linear comment, not inline.** Every edited card carries a "Tier 2 correction applied" comment naming exactly what was removed and why, so the body stays as short as the corrected story requires rather than accumulating a visible diff history.
+
+**Two citation errors surfaced while applying the audit's own abbreviated list.** SPM-54's turnaround open question is actually closed by [#108](https://github.com/SinYang13/IS212-2026/discussions/108)/[#107](https://github.com/SinYang13/IS212-2026/discussions/107) (the M1 finding), not by any discussion in the audit's summary row — that row was indicative, not an exhaustive per-ticket map. SPM-71's open question is only partly closed by [#120](https://github.com/SinYang13/IS212-2026/discussions/120): it answers the venue-attribute-change half of the trigger and leaves the equipment-status-change half and the resulting booking status transition (S2) still open. Both corrections are recorded in the audit's "Not yet applied" section, not just in the tickets.
+
+**Two open questions were deliberately kept rather than resolved**, per the audit's own instructions: SPM-45's block-vs-warn question (now cross-linked to SPM-107, which formally tracks it) and SPM-70's "which Attendees receive an opening notification" question (still has no addressable recipient set).
+
+**One systemic fix landed once rather than three times.** SPM-47 (the notification epic) now carries a single "Attendee reachability" note explaining why "open the event from the notification" and "mark the notification as read" don't work for an account-less Attendee ([#49](https://github.com/SinYang13/IS212-2026/discussions/49) follow-up, [#97](https://github.com/SinYang13/IS212-2026/discussions/97)); SPM-69, 70 and 73 strike the affected ACs and link back to it instead of repeating the rationale.
+
+**Roughly 13 smaller Tier 2 edits remain unapplied** — the audit's "largest groups" table was never claimed to be exhaustive. Flagged in [[linear-ticket-audit-sept-8-batch]] as a follow-up worklist item rather than assumed closed.
+
+**Updated:** [[linear-ticket-audit-sept-8-batch]], and 22 Linear tickets (SPM-13, 15, 17, 18, 42, 44, 45, 46, 47, 50, 52, 54, 65, 67, 68, 69, 70, 71, 72, 73, 76, 87).

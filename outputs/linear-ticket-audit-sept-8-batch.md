@@ -26,6 +26,7 @@ Mostly not. Around 48 of the ~60 audited tickets needed an edit, and **nine acce
 | Empty descriptions written (active sprint) | 4 | SPM-78, 95, 96, 97 |
 | New tickets created | 14 | SPM-98 – SPM-111 |
 | Wiki pages corrected | 1 | [[access-control]] |
+| Tier 2 edits applied (2026-09-10 follow-up) | 22 | SPM-13, 15, 17, 18, 42, 44, 45, 46, 47, 50, 52, 54, 65, 67, 68, 69, 70, 71, 72, 73, 76, 87 |
 
 Tier 2 edits — the stale-but-not-contradictory cards — are **catalogued below but not applied**. See [Not yet applied](#not-yet-applied).
 
@@ -114,9 +115,12 @@ Corrected: the matrix cell is now scoped to `Draft`, and a fourth consequence re
 
 ## Not yet applied
 
-Roughly 35 Tier 2 edits are identified but unapplied — stale rather than contradictory. The largest groups:
+> [!success] Resolved — the seven largest Tier 2 groups (22 tickets) were applied 2026-09-10
+> All seven groups below are now applied directly to the tickets. Per-ticket rationale is recorded as a Linear comment on each card (not inlined into the body, to avoid bloat) rather than repeated here. The corrected wording lives in the ticket bodies themselves; the table below is kept as a historical record of what the audit found and now links to what changed it.
 
-| Group | Tickets | What they need |
+Roughly 35 Tier 2 edits were originally identified as unapplied — stale rather than contradictory. The largest groups (22 tickets):
+
+| Group | Tickets | What they needed |
 |---|---|---|
 | Capacity as a scalar | SPM-42, 44, 45, 46 | Per-layout capacity wording; SPM-45 keeps its over-capacity open question |
 | Attendee reachability | SPM-47, 69, 70, 73 | Strike session-dependent ACs; SPM-70's "opens" half has no addressable recipient set |
@@ -125,6 +129,10 @@ Roughly 35 Tier 2 edits are identified but unapplied — stale rather than contr
 | Answered open questions | SPM-50, 54, 68, 69, 71, 72, 76 | Delete questions closed by [#106](https://github.com/SinYang13/IS212-2026/discussions/106), [#115](https://github.com/SinYang13/IS212-2026/discussions/115), [#121](https://github.com/SinYang13/IS212-2026/discussions/121), [#120](https://github.com/SinYang13/IS212-2026/discussions/120), [#99](https://github.com/SinYang13/IS212-2026/discussions/99), [#38](https://github.com/SinYang13/IS212-2026/discussions/38) |
 | Dashboard wording | SPM-13, 15 | [#118](https://github.com/SinYang13/IS212-2026/discussions/118) removes the dashboard, not role-filtered navigation |
 | Promotion | SPM-87 | Now a Release 1 blocker for SPM-102 and SPM-28, currently Backlog/no priority |
+
+Applying these also surfaced two corrections to the citations above, worth recording since the table is kept as a record: SPM-54's open question was actually closed by [#108](https://github.com/SinYang13/IS212-2026/discussions/108)/[#107](https://github.com/SinYang13/IS212-2026/discussions/107) (the M1 finding), not by any discussion in this row's abbreviated list — the list was indicative, not an exhaustive per-ticket mapping. SPM-71's open question is only *partly* closed by [#120](https://github.com/SinYang13/IS212-2026/discussions/120): that answer covers the venue-attribute-change half of the trigger, not the equipment-status-change half, and leaves the resulting booking status transition undefined (see S2 above).
+
+**Still genuinely outstanding:** roughly 13 smaller Tier 2 edits beyond these seven groups were never itemised in this audit and remain unapplied. A follow-up pass should re-run the ticket-by-ticket comparison against [[discussions-sept-8-critical-diffs]] to find them, rather than assuming this table was exhaustive.
 
 ## Two process findings
 
