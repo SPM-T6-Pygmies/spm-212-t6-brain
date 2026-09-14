@@ -621,3 +621,17 @@ Worked the seven largest Tier 2 groups catalogued in [[linear-ticket-audit-sept-
 **Roughly 13 smaller Tier 2 edits remain unapplied** — the audit's "largest groups" table was never claimed to be exhaustive. Flagged in [[linear-ticket-audit-sept-8-batch]] as a follow-up worklist item rather than assumed closed.
 
 **Updated:** [[linear-ticket-audit-sept-8-batch]], and 22 Linear tickets (SPM-13, 15, 17, 18, 42, 44, 45, 46, 47, 50, 52, 54, 65, 67, 68, 69, 70, 71, 72, 73, 76, 87).
+
+## 2026-09-15
+
+### EV3c — a decided request stays visible to its Coordinator
+
+Testing SPM-34 in `connectsphere` found that a decision made a request disappear from the Coordinator's view: a rejected request was listed nowhere, and an approved request's event could not be opened from the Coordinator's list of events. EV3c only said the Coordinator *can* approve or reject, so no criterion was contradicted — the same unwritten-criterion gap [[linear-ticket-audit-sept-8-batch]] found behind SPM-31.
+
+**Two acceptance criteria added to EV3c** in [[user-stories-proposed-rewrites]], both grounded in [[week-4-customer-briefing]]'s *Event Review and Approval* row: "The outcome of the review should be visible to the relevant users." A rejected request leaves the review queue and is listed in the Coordinator's archive with its decision record; an approved request leaves it, and its event is listed among the events the Coordinator is running, from which the approved request can be opened. Mirrored on SPM-34 in Linear.
+
+**Deliberately scoped to the Coordinator.** The briefing's "relevant users" also covers the Event Organiser, but that half is already carded (SPM-60, notifying the Organiser of the decision), so repeating it here would create a second owner. Withdrawn requests are not named either: recording a withdrawal is SPM-101, and nothing in the app records one yet.
+
+**Not changed.** [[release-1-candidate-user-stories]] still says EV3c covers review and approval "unchanged", which stays true — the card gained criteria, not a new shape. The criteria require only that an approved request's event is *reachable*; what a Coordinator's own view of their events contains is SPM-137, whose scope question is still open.
+
+**Updated:** [[user-stories-proposed-rewrites]] (EV3c), and Linear SPM-34.
