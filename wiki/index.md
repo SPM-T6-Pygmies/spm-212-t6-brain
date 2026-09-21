@@ -9,7 +9,7 @@ tags: [meta, index]
 
 Content catalog of every wiki page. Update whenever a page is created, renamed, or removed.
 
-**52 pages** — 5 sources, 16 concepts, 16 domain objects, 3 entities, 12 reviews. All raw documents ingested as of 2026-09-08; [[schema]] migrated 2026-09-09.
+**54 pages** — 6 sources, 16 concepts, 16 domain objects, 3 entities, 13 reviews. All raw documents ingested as of 2026-09-16; [[schema]] migrated 2026-09-09 (three further gaps from the 2026-09-16 batch are logged there, not yet migrated).
 
 > [!important] Hard rules the customer actually committed to
 > Most of this brief is deliberately open, so the few fixed constraints matter. Do not design around these — they are stated, not proposable.
@@ -23,6 +23,8 @@ Content catalog of every wiki page. Update whenever a page is created, renamed, 
 > - Events auto-complete **7 days** after the end date if not closed manually ([[event-lifecycle]], [#71](https://github.com/SinYang13/IS212-2026/discussions/71))
 > - **Singapore time only**; English only ([[non-functional-requirements]], [#36](https://github.com/SinYang13/IS212-2026/discussions/36), [#28](https://github.com/SinYang13/IS212-2026/discussions/28))
 > - One **slot** is the smallest unit of setup and turnaround; an event across two slots consumes both in full ([[venue-booking]], [#108](https://github.com/SinYang13/IS212-2026/discussions/108), [#107](https://github.com/SinYang13/IS212-2026/discussions/107))
+> - Setup and turnaround each need **at most one full slot, the immediately adjacent one, across days where needed** — no multi-slot buffers ([[venue-booking]], [#123](https://github.com/SinYang13/IS212-2026/discussions/123))
+> - Retiring a venue **does not cancel or auto-reschedule** its future bookings; they are flagged for review and Coordinators notified ([[venue-booking]], [#122](https://github.com/SinYang13/IS212-2026/discussions/122))
 > - Venue capacity **varies by room layout**, supplied as master data, not computed ([[venue]], [#112](https://github.com/SinYang13/IS212-2026/discussions/112))
 > - The **Event Operations Manager** must be implemented as a separate system role ([[user-roles]], [#101](https://github.com/SinYang13/IS212-2026/discussions/101))
 > - Registration must not exceed event/venue capacity — **even for a manually added VIP** ([[registration]], [#99](https://github.com/SinYang13/IS212-2026/discussions/99))
@@ -35,7 +37,7 @@ Content catalog of every wiki page. Update whenever a page is created, renamed, 
 | Understand the object model | [[domain-model]] |
 | Understand who it is for | [[connectsphere-event-services]], [[user-roles]] |
 | See what the customer has *not* decided | [[open-questions]] |
-| See the latest customer answers | [[is212-discussions-2026-09-08]] |
+| See the latest customer answers | [[is212-discussions-2026-09-16]] |
 | See what the newest batch changed our mind about | [[discussions-sept-8-critical-diffs]] |
 | Understand the course process and deadlines | [[is212-g9-section]] |
 | See what's actually in the Week 12 release | [[release-1-scope]] |
@@ -49,7 +51,8 @@ One summary page per ingested document in `raw/`.
 | [[customer-brief-no-1]] | `Customer Brief no. 1.md` | Baseline requirements |
 | [[is212-discussions-2026-08-26]] | `IS212 2026 Discussions Aug 26.md` | ⚠️ Superseded snapshot |
 | [[is212-discussions-2026-08-31]] | `IS212 2026 Discussions Aug 31.md` | ⚠️ Superseded snapshot |
-| [[is212-discussions-2026-09-08]] | `IS212 2026 Discussions Sept 8.md` | ✅ Authoritative |
+| [[is212-discussions-2026-09-08]] | `IS212 2026 Discussions Sept 8.md` | ⚠️ Superseded snapshot |
+| [[is212-discussions-2026-09-16]] | `IS212 2026 Discussions Sept 16.md` | ✅ Authoritative |
 | [[week-4-customer-briefing]] | `Week 4 - Customer Briefing.md` | ✅ Authoritative on Release 1 scope |
 
 ## Concepts
@@ -67,7 +70,7 @@ One summary page per ingested document in `raw/`.
 
 | Page | Covers |
 |---|---|
-| [[venue-booking]] | Slot model, booking approval, tentative holds, conflict blocking, turnaround |
+| [[venue-booking]] | Slot model, booking approval, tentative holds, conflict blocking, adjacent-slot setup/turnaround, venue retirement |
 | [[venue-suitability]] | Search and filtering vs suitability checking; capacity, layout, accessibility |
 | [[equipment-management]] | Catalogue, the two availability rules, reservation, maintenance, defects |
 | [[technical-support]] | Equipment review flow, clarification routing, staff assignment and rostering |
@@ -112,7 +115,7 @@ The object model — what each thing *is*, as opposed to what happens to it. Sta
 
 | Page | Covers |
 |---|---|
-| [[venue]] | AM/PM/Night slots, per-layout capacity, layouts, slot-quantised turnaround, unavailability |
+| [[venue]] | AM/PM/Night slots, per-layout capacity, layouts, adjacent-slot setup/turnaround, unavailability, retired status |
 | [[booking]] | The booking record, tentative holds, slot exclusivity, conflict blocking |
 | [[equipment-item]] | Catalogue, statuses, the two availability rules, pooled-vs-serialised |
 | [[equipment-reservation]] | Requirement lines, partial fulfilment, defect logging |
@@ -149,6 +152,7 @@ One-off scrutiny artefacts — not domain knowledge, kept here so they aren't or
 | Page | Covers |
 |---|---|
 | [[discussions-sept-8-critical-diffs]] | ⭐ The incremental-ingestion report for `raw/IS212 2026 Discussions Sept 8.md` — establishes the 28-item delta against Aug 31, then grades the seven answers that contradict or close a standing wiki position (three critical, three high, two medium) and the two pre-existing schema defects the batch made undeniable. Start here to see what the newest customer answers changed our mind about |
+| [[linear-ticket-audit-sept-16-batch]] | The `SPM - IS212` Linear board checked against the two Venues answers in [[is212-discussions-2026-09-16]] — eleven comments posted (three on in-cycle cards), one card whose premise is superseded (SPM-23), one open question answered (SPM-20), and the venue-throughput consequence of adjacent-slot buffers. Comments only; nothing edited or created |
 | [[linear-ticket-audit-sept-8-batch]] | ⭐ The `SPM - IS212` Linear board checked against [[discussions-sept-8-critical-diffs]] — nine acceptance criteria that contradicted a customer answer (one of them in active development), three systemic defects that cut across many cards, and a required feature 18 verb (*view registration status*) that had no ticket at all. Records the 27 tickets changed, the 14 created, and the ~35 Tier 2 edits identified but not applied |
 | [[user-stories-assignment-scrutiny]] | `raw/User Stories Assignment.md` checked against `raw/IS212 User Story Standard — v1.0.md` and against this wiki's sourced requirements; proposed fixes for every story plus three recommended additions to Registration |
 | [[user-stories-proposed-rewrites]] | Every proposed rewrite and recommended new card from [[user-stories-assignment-scrutiny]], consolidated into one build-ordered, ready-to-paste replacement backlog |
@@ -171,4 +175,5 @@ One-off scrutiny artefacts — not domain knowledge, kept here so they aren't or
 | `raw/IS212 2026 Discussions Aug 31.md` | ✅ Ingested 2026-09-02 |
 | `raw/Week 4 - Customer Briefing.md` | ✅ Ingested 2026-09-05 |
 | `raw/IS212 2026 Discussions Sept 8.md` | ✅ Ingested 2026-09-08 — incremental; only the 28-item delta against Aug 31 |
+| `raw/IS212 2026 Discussions Sept 16.md` | ✅ Ingested 2026-09-21 — incremental; only the 2-item delta against Sept 8 ([#122](https://github.com/SinYang13/IS212-2026/discussions/122), [#123](https://github.com/SinYang13/IS212-2026/discussions/123)) |
 | `raw/llm-wiki.md` | ⏸️ Not ingested — methodology, not domain content; see log |

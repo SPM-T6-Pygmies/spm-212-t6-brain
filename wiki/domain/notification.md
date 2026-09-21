@@ -4,6 +4,7 @@ type: domain-object
 sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Sept 8.md"
+  - "IS212 2026 Discussions Sept 16.md"
   - "IS212 2026 Discussions Aug 31.md"
 tags: [domain, notification, reminder]
 ---
@@ -46,7 +47,7 @@ The brief's full list of situations that "may generate a notification" ([[notifi
 | 11 | Registration reaches capacity or a waiting-list status changes | Attendees, incl. waitlisted; Event Coordinator | [[notifications\|brief §6]] |
 | 12 | A registered Attendee withdraws where that affects availability | Event Coordinator; next waitlisted Attendee | [[notifications\|brief §6]] |
 | 13 | An upcoming event still has incomplete arrangements | Assigned Event Coordinator | [[notifications\|brief §6]]; [#47](https://github.com/SinYang13/IS212-2026/discussions/47) |
-| 14 | A venue or equipment availability change affects an upcoming event | Assigned Event Coordinator | [[notifications\|brief §6]]; [#54](https://github.com/SinYang13/IS212-2026/discussions/54) |
+| 14 | A venue or equipment availability change affects an upcoming event — including a **venue retirement** with future bookings | Assigned Event Coordinator | [[notifications\|brief §6]]; [#54](https://github.com/SinYang13/IS212-2026/discussions/54); [#122](https://github.com/SinYang13/IS212-2026/discussions/122) |
 
 > [!info] Audience column is this wiki's inference, not customer text
 > Brief §6 names the trigger only, in every one of the fourteen rows. No recipient matrix is given. The "Likely audience" values above are inferred from the role responsibilities described in [[connectsphere-event-services|brief §2]], §3 and §5 (e.g. the Event Coordinator is "the main internal point of contact," Venue Staff review booking requests) — they are a structural proposal, not a specified data model. See Open modelling questions.

@@ -6,6 +6,7 @@ sources:
   - IS212 2026 Discussions Aug 31.md
   - IS212 2026 Discussions Aug 26.md
   - IS212 2026 Discussions Sept 8.md
+  - IS212 2026 Discussions Sept 16.md
 tags:
   - change-management
   - revalidation
@@ -70,7 +71,7 @@ When a significant change occurs, the affected arrangements must be **reviewed a
 
 | Arrangement | Revalidated by | Check |
 |---|---|---|
-| Venue booking | Venue Staff | Availability at new date/time, capacity vs new attendance, supported layout, accessibility, facilities, setup and turnaround windows — see [[venue-suitability]]. A booking is **flagged for review, not auto-reverted** ([#120](https://github.com/SinYang13/IS212-2026/discussions/120)) |
+| Venue booking | Venue Staff | Availability at new date/time, capacity vs new attendance, supported layout, accessibility, facilities, and the setup and turnaround slots adjacent to the new slot(s) ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)) — see [[venue-suitability]]. A booking is **flagged for review, not auto-reverted** ([#120](https://github.com/SinYang13/IS212-2026/discussions/120)) |
 | Equipment reservation | Technical Support Staff | Availability at the new dates, including transfer time from the equipment's current location and the D-1 / Return Day +1 commitment window — see [[equipment-management]]. Requirements **may** be changed after reservation; affected arrangements are reviewed and updated and suitability/availability re-checked ([#114](https://github.com/SinYang13/IS212-2026/discussions/114)) |
 | Technical support assignment | Technical Support Staff | Staff availability at the new date/time — see [[technical-support]] |
 | Registration | Event Coordinator | Capacity limit vs new attendance; registration period vs new event date; notifying registered attendees — see [[attendee-registration]]. Existing registrations **may be retained** across a reschedule ([#115](https://github.com/SinYang13/IS212-2026/discussions/115)) |
@@ -136,7 +137,7 @@ An externally-driven change rather than an Organiser-requested one — for examp
 
 (Source: is212-discussions-2026-08-31, [#54](https://github.com/SinYang13/IS212-2026/discussions/54); customer-brief-no-1, s6)
 
-A related and easily-overreached case is an ordinary **venue attribute update** by Venue Staff. Such an update must **not** automatically revert existing bookings to `Requested`. If the change affects an existing booking's suitability or availability, that booking is identified for review and the Event Coordinator notified; the booking may then need to be reconsidered or changed, but the exact status transition is for the team (Source: is212-discussions-2026-09-08, [#120](https://github.com/SinYang13/IS212-2026/discussions/120)). This is the same shape as [#54](https://github.com/SinYang13/IS212-2026/discussions/54): detect, flag, notify the coordinator — never silently unwind an arrangement.
+A related and easily-overreached case is an ordinary **venue attribute update** by Venue Staff. Such an update must **not** automatically revert existing bookings to `Requested`. If the change affects an existing booking's suitability or availability, that booking is identified for review and the Event Coordinator notified; the booking may then need to be reconsidered or changed, but the exact status transition is for the team (Source: is212-discussions-2026-09-08, [#120](https://github.com/SinYang13/IS212-2026/discussions/120)). This is the same shape as [#54](https://github.com/SinYang13/IS212-2026/discussions/54): detect, flag, notify the coordinator — never silently unwind an arrangement. **Venue retirement follows the same pattern** and the customer says so by its shape: future bookings are not cancelled or auto-rescheduled, they are identified for review, the Coordinators notified, and the Coordinator — with Venue Staff, possibly outside the system — arranges and records an alternative (Source: is212-discussions-2026-09-16, [#122](https://github.com/SinYang13/IS212-2026/discussions/122)). See [[venue-booking]].
 
 The equipment analogue behaves the same way: reserved equipment may become unavailable through damage or maintenance, Technical Support Staff maintain equipment status (Source: is212-discussions-2026-08-31, [#9](https://github.com/SinYang13/IS212-2026/discussions/9)), and defects found on return update the operational status of the affected item (Source: is212-discussions-2026-08-31, [#86](https://github.com/SinYang13/IS212-2026/discussions/86)).
 
@@ -172,6 +173,7 @@ Three further triggers come from the September answers (Source: is212-discussion
 - A confirmed event is changed such that it is **no longer confirmed** — the Event Organiser must be informed ([#105](https://github.com/SinYang13/IS212-2026/discussions/105)).
 - An event is rescheduled and registrations are retained — affected attendees must be informed of the new date/time and allowed to withdraw ([#115](https://github.com/SinYang13/IS212-2026/discussions/115)).
 - A venue attribute update affects an existing booking's suitability or availability — the booking is flagged for review and the **Event Coordinator** notified ([#120](https://github.com/SinYang13/IS212-2026/discussions/120)).
+- A **venue is retired** while it still has future bookings — the bookings are identified for review and the relevant Event Coordinators notified; they are not cancelled or auto-rescheduled ([#122](https://github.com/SinYang13/IS212-2026/discussions/122)).
 
 Each of these may be delivered by the system or by another appropriate channel; the mechanism is the team's to propose in all three cases.
 
@@ -189,7 +191,7 @@ Delivery is batch at a configurable frequency, with no hard latency requirement;
 | Which actions a history surface records, and how it is presented | Team to propose from the customer's illustrative list; no complete audit-history function required for Release 1 | [#96](https://github.com/SinYang13/IS212-2026/discussions/96) |
 | Workflow and presentation for partially-accepted change requests | **Unspecified — team to propose**; partial acceptance itself is confirmed | [#104](https://github.com/SinYang13/IS212-2026/discussions/104) |
 | Channel for telling the Organiser a confirmed event is no longer confirmed | Team to propose; informing them is required | [#105](https://github.com/SinYang13/IS212-2026/discussions/105) |
-| Status transition when a venue attribute change affects a live booking | Team to propose; auto-reverting to `Requested` is ruled out | [#120](https://github.com/SinYang13/IS212-2026/discussions/120) |
+| Status transition when a venue attribute change **or a venue retirement** affects a live booking | Team to propose; auto-reverting to `Requested` is ruled out; retirement additionally rules out auto-cancel and auto-reschedule | [#120](https://github.com/SinYang13/IS212-2026/discussions/120), [#122](https://github.com/SinYang13/IS212-2026/discussions/122) |
 | Workflow for releasing, replacing or adding equipment after a requirement change | Team to propose | [#114](https://github.com/SinYang13/IS212-2026/discussions/114) |
 | Whether to propose voluntary change lead-time guardrails | Team's discretion; no customer requirement | [#8](https://github.com/SinYang13/IS212-2026/discussions/8) |
 
