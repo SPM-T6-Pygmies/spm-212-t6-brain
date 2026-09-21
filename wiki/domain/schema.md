@@ -5,6 +5,7 @@ sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 31.md"
   - "IS212 2026 Discussions Sept 8.md"
+  - "IS212 2026 Discussions Sept 16.md"
 tags: [schema, sql, postgres, supabase, ddl, data-model]
 ---
 
@@ -43,6 +44,16 @@ Ingesting [[is212-discussions-2026-09-08]] opened four gaps between the deployed
 
 D3 was a one-value edit. D1 and D4 were not: both were structural inabilities rather than wrong values, so no amount of renaming would have fixed them. D1 was the most serious of the four — it predates the 2026-09-08 batch, and [#113](https://github.com/SinYang13/IS212-2026/discussions/113) is what made it undeniable, by removing the possibility that the customer would supply a default the schema could have assumed. D2 sat between the two: a column addition, but with a modelling choice attached that is still open.
 
+## Gaps opened by the 2026-09-16 batch (not yet migrated)
+
+Ingesting [[is212-discussions-2026-09-16]] opens three divergences between the deployed DDL below and the sourced model. **None has been applied**; the DDL is unchanged. Each depends on a team decision recorded on [[venue]] or [[booking]], so none is a mechanical fix.
+
+| # | Divergence | Ref | Depends on |
+|---|---|---|---|
+| E1 | `venue.setup_time_minutes` and `venue.turnaround_time_minutes` hold a duration in minutes. The customer has fixed setup and turnaround at **at most one adjacent slot each**, so no duration is read by anything — the columns are either dead or should become per-venue booleans | [#123](https://github.com/SinYang13/IS212-2026/discussions/123), [#43](https://github.com/SinYang13/IS212-2026/discussions/43) | Whether the requirement varies by venue, by event, or not at all — [[venue]] |
+| E2 | **No venue-level status.** `venue` has no `status` / `retired_at`, so a retired venue cannot be represented; nothing can mark future bookings as needing review, and search cannot exclude a retired venue | [#122](https://github.com/SinYang13/IS212-2026/discussions/122) | The retirement workflow and status vocabulary — [[venue-booking]] |
+| E3 | The double-booking rule (below) is written over the booking's own `booking_slot` rows. The buffer slot either side of a booking is **not** a `booking_slot` row, so a naive unique index would let a neighbouring event claim the slot a turnaround needs | [#123](https://github.com/SinYang13/IS212-2026/discussions/123), [#35](https://github.com/SinYang13/IS212-2026/discussions/35) | Whether buffers are derived or materialised, and whether neighbouring events may share one — [[booking]] |
+
 ## Coordinator assignment spans both tables
 
 `assigned_coordinator_user_account_id` now exists on **both** `event_request` and `event`, added 2026-09-09. This is not accidental duplication — it follows the same request/event split already used for `preferred_date`, `expected_attendance`, `venue_requirements`, `equipment_requirements` and `accessibility_needs`/`accessibility_requirements`: `event_request`'s copy is frozen once the request leaves review, `event`'s copy is the live one.
@@ -53,11 +64,12 @@ D3 was a one-value edit. D1 and D4 were not: both were structural inabilities ra
 
 ## Constraints that are not declarative
 
-Two rules the sources fix but this DDL cannot express as a plain constraint:
+Three rules the sources fix but this DDL cannot express as a plain constraint:
 
 | Rule | Ref | Where it must live |
 |---|---|---|
 | Double-booking is a hard block — one venue + date + slot carries at most one live booking | [#35](https://github.com/SinYang13/IS212-2026/discussions/35) | Denormalise `venue_id`/`status` onto `booking_slot` plus a partial unique index (preferred), or a trigger — see the comment in section 10 |
+| Setup and turnaround buffers count against neighbouring slots — an event's occupancy is its own slot(s) plus up to one adjacent slot either side, crossing midnight | [#123](https://github.com/SinYang13/IS212-2026/discussions/123) | Either materialise buffer rows in `booking_slot` (typed, so reports can tell them apart) or derive them in the conflict check; see E3 above |
 | Confirmation is blocked while an essential arrangement is incomplete | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) | Application or trigger logic; the check spans `event_essential_arrangement` rows |
 
 ## DDL

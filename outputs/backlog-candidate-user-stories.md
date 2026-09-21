@@ -6,6 +6,7 @@ sources:
   - "IS212 2026 Discussions Aug 26.md"
   - "IS212 2026 Discussions Aug 31.md"
   - "IS212 2026 Discussions Sept 8.md"
+  - "IS212 2026 Discussions Sept 16.md"
   - "Week 4 - Customer Briefing.md"
   - "IS212 User Story Standard — v1.0.md"
   - "outputs/user-story-coverage-stocktake.md"
@@ -45,6 +46,17 @@ This document was drafted before `raw/IS212 2026 Discussions Sept 8.md` was inge
 | [#111](https://github.com/SinYang13/IS212-2026/discussions/111) | Cards not written | Creates a new optional feature the team may decline; declined here, with reasons, rather than carded |
 
 **What did not change.** Every card still fails Gate A7 by design; every row of the summary table still carries a blocking unknown; and nothing in the batch supplied a priority, an estimate, or a role for the nine cards that name none. Two areas the batch touched heavily — the schema and the Release 1 register — are outside this document entirely.
+
+## Revised for the 2026-09-16 batch
+
+`raw/IS212 2026 Discussions Sept 16.md` adds two answers, both Venues ([#122](https://github.com/SinYang13/IS212-2026/discussions/122), [#123](https://github.com/SinYang13/IS212-2026/discussions/123)); see [[is212-discussions-2026-09-16]]. As before, they change the ground under the cards rather than the cards' existence: **no card was added, deleted, or moved into Release 1.** Twenty-nine of the thirty-one items in the summary table remain **unticketed in Linear** — checked against the full `SPM - IS212` board on 2026-09-21, only Reg6 (SPM-76) and SPK-1 (SPM-77) exist there — so these edits have no ticket to comment on and are made here, where the eventual ingestion will pick them up.
+
+| Answer | Reaches | Effect on this document |
+|---|---|---|
+| [#123](https://github.com/SinYang13/IS212-2026/discussions/123) | RP2, EC4, VH1 | **Two acceptance criteria were quietly wrong.** RP2 and EC4 said turnaround "quantises to whole slots" — true, but incomplete: setup and turnaround are now each **one adjacent slot, crossing midnight** (AM setup → previous Night; Night turnaround → next AM), so a session's occupancy is its own slots *plus* a buffer either side. EC4's "occupancy is a set of whole slots" still holds; the set is just larger than the session. VH1 gains an unasked question — whether a tentative hold reserves its buffers too |
+| [#122](https://github.com/SinYang13/IS212-2026/discussions/122) | *Cards deliberately not written* | **A candidate card considered and declined.** Retiring a venue is presumed by the customer but never asked for; the behaviour it specifies (flag for review, notify the Coordinator) is already carded on the Linear board as SPM-105 and SPM-71 |
+
+**What did not change.** Every card still fails Gate A7 by design and every row of the summary table still carries a blocking unknown. Neither answer supplied a priority, an estimate, or a role for a card that names none.
 
 ## Count correction
 
@@ -195,12 +207,13 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 **AC:**
 - Can select a reporting period and see venue bookings and usage across it ([[event-planning-venue-booking-system|brief §4]], [#29](https://github.com/SinYang13/IS212-2026/discussions/29))
 - Usage is expressed in the venue's booking slots — AM, PM and Night, a full day being all three ([#50](https://github.com/SinYang13/IS212-2026/discussions/50))
-- Given a venue has setup or turnaround time recorded, then the occupancy shown for its bookings includes that padding rather than the published event times alone ([#43](https://github.com/SinYang13/IS212-2026/discussions/43), [[booking]]) — expressed in **whole slots**, since one slot is the smallest unit of setup and turnaround and Release 1 need not support sub-slot durations ([#108](https://github.com/SinYang13/IS212-2026/discussions/108))
+- Given a booking has a setup or turnaround buffer, then the occupancy shown for it includes that padding rather than the published event times alone ([[booking]]) — expressed in **whole slots**: at most **one adjacent slot each side**, crossing midnight where needed (AM setup → previous Night; Night turnaround → next AM), since one slot is the smallest unit of setup and turnaround ([#108](https://github.com/SinYang13/IS212-2026/discussions/108), [#123](https://github.com/SinYang13/IS212-2026/discussions/123))
 - No revenue or other financial measure appears — the customer excluded revenue explicitly and the system holds no pricing data ([#29](https://github.com/SinYang13/IS212-2026/discussions/29))
 
 **Open questions:**
 - The measure set is explicitly the team's: "The exact measures and presentation are not specified yet; please propose appropriate information that supports venue usage and operational planning" ([#29](https://github.com/SinYang13/IS212-2026/discussions/29)). [[reporting]]'s slots-booked-over-slots-available suggestion is that page's proposal, not a customer statement, and is not written as an AC here. The card cannot be sized until the measures are chosen.
 - Whether the report covers one venue or all venues is unstated.
+- Whether a **buffer slot counts as a utilised slot**, as its own category, or not at all is unstated ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)). It changes the headline number: with both buffers always applied, a single-slot event uses three slots, so "slots booked over slots available" will overstate real event use unless buffers are separable. The customer left the measures to the team ([#29](https://github.com/SinYang13/IS212-2026/discussions/29)), so this is the team's to propose.
 
 ### RP3 — View and Export My Event's Attendees
 
@@ -419,9 +432,11 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Session venue bookings are placed against the venue's fixed AM, PM and Night slots ([#50](https://github.com/SinYang13/IS212-2026/discussions/50))
 - Given two sessions of the same event request overlapping periods in the same venue, then the second is blocked by the double-booking rule ([#35](https://github.com/SinYang13/IS212-2026/discussions/35), [#41](https://github.com/SinYang13/IS212-2026/discussions/41))
 - A session occupies **whole slots**: one slot is the smallest unit of setup and turnaround, sub-slot durations are not required for Release 1 ([#108](https://github.com/SinYang13/IS212-2026/discussions/108)), and a session running across two slots consumes both in full ([#107](https://github.com/SinYang13/IS212-2026/discussions/107))
+- Each session's setup and turnaround occupy **at most one full slot each, the immediately adjacent one, crossing midnight** ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)) — so a session's conflict check runs over its slots plus one buffer slot either side
 
 **Open questions:**
 - *Closed since drafting.* How a session's timing maps onto the three fixed slots when it does not align with a slot boundary was this card's open question until [#108](https://github.com/SinYang13/IS212-2026/discussions/108) and [#107](https://github.com/SinYang13/IS212-2026/discussions/107); it is now AC 4, and it simplifies AC 3 — occupancy is a set of whole slots, so overlap is set intersection rather than interval arithmetic over timestamps ([[venue-booking]]).
+- **Whether consecutive sessions of the same event at the same venue need a buffer between them at all**, or may run back to back, is unstated ([#123](https://github.com/SinYang13/IS212-2026/discussions/123) speaks of buffers between *events*). With buffers always applied, two adjacent-slot sessions in one room would block each other — a plausible multi-session pattern the customer's rule does not obviously intend.
 - Whether a session's venue booking follows the same request-and-approval flow as an event-level booking is unstated — assumed by convenience elsewhere, stated nowhere.
 - **Which room layout the session's booking assumes is unrecorded, and capacity now depends on it.** Venue capacity varies by room layout, and the per-layout figure is supplied as a venue attribute ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)). A booking that names no layout can be filtered against a venue's capacities but cannot be validated against one — the defect [[discussions-sept-8-critical-diffs]] files as **S3** against the Release 1 `booking` model, inherited unchanged by any per-session booking built on it ([[booking]]).
 - [#109](https://github.com/SinYang13/IS212-2026/discussions/109) bounds this card usefully: "only one final venue booking should normally be confirmed for the same event/session, unless the event requires multiple venues". One venue *per session* is the norm — which is what this card builds — not one venue per event.
@@ -484,6 +499,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - How the rules governing holds "may differ from confirmed bookings" beyond the exclusivity rule is unstated — the brief flags a difference and does not describe it.
 - How many holds one event may carry is now answered **for Release 1 and no further**: a Coordinator may identify and consider multiple candidate venues, but placing several on tentative hold simultaneously is not required ([#109](https://github.com/SinYang13/IS212-2026/discussions/109)). Whether the eventual feature permits it is still unstated — the customer declined to require it, not to allow it.
 - Whether a hold needs Venue Staff approval, and whether the Event Organiser can see it, remain unstated.
+- Whether a hold reserves its **setup and turnaround buffer slots** as well as the held slots is unstated ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)). If it does not, a competing confirmed booking could take a buffer slot and silently invalidate the hold when it is later confirmed.
 
 ### VH2 — Confirm or Release a Tentative Hold
 
@@ -672,7 +688,7 @@ It remains true after the 2026-09-08 batch. The batch closed one card's unknown 
 
 ## Cards deliberately not written
 
-Finding work to *not* do is the point of a split (§7.3). Six candidates were considered and dropped:
+Finding work to *not* do is the point of a split (§7.3). Eight candidates were considered and dropped:
 
 | Not written | Why |
 |---|---|
@@ -683,6 +699,7 @@ Finding work to *not* do is the point of a split (§7.3). Six candidates were co
 | Reversing or correcting a check-in; no-shows; walk-ins | Entirely unstated. Listed as questions on Reg6 instead. |
 | Recording attendance at event completion | Already inside SPM-51 "Mark an event as completed" ([[event-request-workflow\|brief §5]] Step 14). Gate D4 — no overlap with sibling cards. |
 | An Event Organiser venue-preference field (new, 2026-09-08) | [#111](https://github.com/SinYang13/IS212-2026/discussions/111) permits it — "if the team wishes to allow the Event Organiser to indicate a preferred venue in the system, this may be supported as a preference" — but it is optional at the team's discretion and would sit inside core feature 2's venue-requirements field set, which is 🎯 Release 1. Carding it here would move a Release 1 field into the backlog document. Raise it as a Release 1 refinement instead ([[venue-booking]]). |
+| A "Retire a venue" card (new, 2026-09-16) | [#122](https://github.com/SinYang13/IS212-2026/discussions/122) presumes a venue can be retired but nobody asked for a retire feature, and it names no actor, effective date or status vocabulary. The *consequence* it specifies — affected future bookings flagged for review and Coordinators notified, nothing auto-cancelled — is already carded on the board as SPM-105 and SPM-71. Writing a retire card would decide, by implication, that Release 1 has one. Recorded on [[venue]] as a team decision instead. |
 
 ## Questions this document raises for the customer
 

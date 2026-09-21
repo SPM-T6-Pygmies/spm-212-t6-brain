@@ -8,7 +8,7 @@ tags: [source, clarifications, q-and-a, github-discussions, is212, authoritative
 
 # Source: IS212 Discussions — 2026-09-08 snapshot
 
-Current authoritative extract of the [[is212-g9-section]] GitHub Discussions board — the only sanctioned channel for clarifying [[customer-brief-no-1]]. Supersedes [[is212-discussions-2026-08-31]].
+Extract of the [[is212-g9-section]] GitHub Discussions board — the only sanctioned channel for clarifying [[customer-brief-no-1]]. Supersedes [[is212-discussions-2026-08-31]]; **itself superseded by [[is212-discussions-2026-09-16]]**, a strict superset that adds two Venues answers ([#122](https://github.com/SinYang13/IS212-2026/discussions/122), [#123](https://github.com/SinYang13/IS212-2026/discussions/123)). Retained as the point-in-time record of the 2026-09-08 batch.
 
 ## Metadata
 

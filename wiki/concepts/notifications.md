@@ -4,6 +4,7 @@ type: concept
 sources:
   - Customer Brief no. 1.md
   - IS212 2026 Discussions Sept 8.md
+  - IS212 2026 Discussions Sept 16.md
   - IS212 2026 Discussions Aug 31.md
   - IS212 2026 Discussions Aug 26.md
 tags:
@@ -143,6 +144,8 @@ The customer's answer to what happens when a confirmed venue becomes unavailable
 4. "Please propose an appropriate automation mechanisms if required."
 
 Responsibility is therefore split: Venue Staff record the fact, the system surfaces it, the Event Coordinator resolves it. The system is not stated to auto-cancel or auto-rebook. The same pattern applies to equipment becoming damaged or unavailable — Technical Support Staff maintain equipment status (Source: is212-discussions-2026-08-31, [#9](https://github.com/SinYang13/IS212-2026/discussions/9)) and the resulting impact is reviewed by the coordinator. See [[change-impact-management]], [[venue-booking]], and [[equipment-management]].
+
+**Venue retirement is a further trigger of the same shape.** When a venue is retired, the Event Coordinators of its future bookings are notified and the bookings are identified for review; nothing is cancelled or rescheduled automatically (Source: is212-discussions-2026-09-16, [#122](https://github.com/SinYang13/IS212-2026/discussions/122)). It fits row 14 of the trigger table — a venue availability change affecting an upcoming event — rather than being a fifteenth scenario, and reuses SPM-71's recipient (the assigned Event Coordinator). What the notification carries and how the affected set is computed are the team's to propose.
 
 > [!question]- Team decision required — availability-change automation
 > The automation mechanism linking an availability change to the affected events — how affected upcoming events are detected, and whether anything beyond notification happens automatically ([#54](https://github.com/SinYang13/IS212-2026/discussions/54)).

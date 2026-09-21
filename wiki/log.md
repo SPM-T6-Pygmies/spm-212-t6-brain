@@ -621,3 +621,31 @@ Worked the seven largest Tier 2 groups catalogued in [[linear-ticket-audit-sept-
 **Roughly 13 smaller Tier 2 edits remain unapplied** — the audit's "largest groups" table was never claimed to be exhaustive. Flagged in [[linear-ticket-audit-sept-8-batch]] as a follow-up worklist item rather than assumed closed.
 
 **Updated:** [[linear-ticket-audit-sept-8-batch]], and 22 Linear tickets (SPM-13, 15, 17, 18, 42, 44, 45, 46, 47, 50, 52, 54, 65, 67, 68, 69, 70, 71, 72, 73, 76, 87).
+
+## 2026-09-21
+
+### Ingested `IS212 2026 Discussions Sept 16.md` — a two-discussion delta
+
+The Sept 16 export is a strict superset of Sept 8 (115 discussions, was 113). Both snapshots were split per-discussion and compared block-by-block: **two new discussions, no edited text, none removed.** The only other difference is a section header ([#49](https://github.com/SinYang13/IS212-2026/discussions/49)'s block trails the Venues "Answered" count, so a naive diff flags it). Both new answers are in Venues, from `josephsungls`. Recorded in [[is212-discussions-2026-09-16]]; [[is212-discussions-2026-09-08]] is now a superseded snapshot.
+
+**[#123](https://github.com/SinYang13/IS212-2026/discussions/123) turned the setup/turnaround duration into an adjacency rule.** Setup and turnaround each need **at most one full slot, the immediately adjacent one, crossing midnight** — AM setup takes the previous day's Night; Night turnaround takes the next day's AM. No multi-slot buffers; the user does not choose the slot. This answers most of the question [[open-questions]] carried ("does a minutes-valued per-venue turnaround still mean anything once slots are atomic?"): no — there is no duration. It also makes the buffer a **conflict-checking obligation on neighbouring slots**, which [[booking]]'s effective-occupancy window and [[venue-booking]]'s conflict section now state. A side-effect worth noting: it corroborates the *order* of the garbled [#50](https://github.com/SinYang13/IS212-2026/discussions/50) slot labels (AM → PM → Night) without supplying any label or hour.
+
+**Left open, deliberately:** whether every booking consumes both buffers, whether neighbouring events may share one, what a buffer does against a Blocked slot, and whether buffers show on the calendar and in utilisation. With both buffers always applied and never shared, adjacent-slot events at one venue become impossible — an **inference** from "occupy" and the hard block ([#35](https://github.com/SinYang13/IS212-2026/discussions/35)), recorded as a team decision, not a rule.
+
+**[#122](https://github.com/SinYang13/IS212-2026/discussions/122) introduced venue retirement — a concept nothing in the brief or the Week 4 briefing mentions.** Future bookings on a retired venue are **not** cancelled or auto-rescheduled; they are flagged for review and Coordinators notified, and the Coordinator and Venue Staff agree an alternative (possibly outside the system). It is the third instance of the [#120](https://github.com/SinYang13/IS212-2026/discussions/120) / [#54](https://github.com/SinYang13/IS212-2026/discussions/54) pattern — one unresolved destination state on [[booking]], now with three triggers. **Scope judgment call:** [[release-1-scope]] carries "Venue retirement" as `🧩 Adjacent` (features 10 and 12: search and booking must not offer a retired venue), flagged as the thinnest `🧩` on the page. [[venue]] gains a `Venue status` attribute as a `🔶 Team decision`.
+
+**Deployed schema not migrated; three gaps recorded on [[schema]].** E1 — the now-dead `setup_time_minutes` / `turnaround_time_minutes` columns; E2 — no venue status, so a retired venue cannot be represented; E3 — the double-booking rule is written over a booking's own `booking_slot` rows and does not see buffer slots. Each depends on a team decision, so the DDL is untouched.
+
+**Updated:** [[is212-discussions-2026-09-16]] (new), [[is212-discussions-2026-09-08]], [[venue-booking]], [[venue]], [[booking]], [[open-questions]], [[release-1-scope]], [[change-impact-management]], [[notifications]], [[notification]], [[venue-suitability]], [[reporting]], [[domain-model]], [[schema]], [[index]].
+
+### Linear board audited against the Sept 16 batch
+
+Read every venue-booking ticket on the `SPM - IS212` board and posted **eleven comments** — SPM-19, 20, 21, 23, 42, 43, 44, 46, 54, 71, 105. Filed [[linear-ticket-audit-sept-16-batch]]. **Comments only:** no ticket body edited, no status changed, no ticket created. Two comments (SPM-20 and SPM-44) were re-posted after a mistyped repository URL in a discussion link.
+
+**Nothing was contradicted outright; the exposure is stale wording and a missing buffer.** SPM-23 ("Configure Venue Turnaround and Setup Buffer") is the one card whose premise is superseded — the customer removed the duration it configures. The cards that matter are its *consumers*: SPM-19, 46, 54 and 20 all say "overlap", each is correct only if overlap is defined over the padded slot set, and that definition lived on no ticket. SPM-42, 43, 44 and 46 are in the current cycle; SPM-42's create/update subtasks may be about to expose columns the customer no longer needs. SPM-20's own open question — does Venue Staff need a cancel trigger for a permanently unusable venue? — is answered: no.
+
+### Backlog candidates: revised, not ticketed
+
+[[backlog-candidate-user-stories]] was checked against the whole board: only Reg6 (SPM-76) and SPK-1 (SPM-77) exist as tickets; the other 29 of its 31 items do not. **They were not created** — each fails the readiness gate by design, and bulk-creating 29 unready cards on a shared board was not something the request clearly authorised. The document was updated for the two new answers instead (RP2, EC4 and VH1 revised; a "Retire a venue" card considered and declined, with reasons) and a revision section added.
+
+**Updated:** [[backlog-candidate-user-stories]], [[linear-ticket-audit-sept-16-batch]] (new).
