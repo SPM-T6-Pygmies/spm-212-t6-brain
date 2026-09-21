@@ -6,6 +6,7 @@ sources:
   - IS212 2026 Discussions Aug 31.md
   - IS212 2026 Discussions Aug 26.md
   - IS212 2026 Discussions Sept 8.md
+  - IS212 2026 Discussions Sept 16.md
 tags:
   - reporting
   - exports
@@ -58,11 +59,11 @@ Fixed inputs the team can build measures from:
 | Booking slots — AM / PM / Night, as defined on [[venue]]; full day = all three | [#50](https://github.com/SinYang13/IS212-2026/discussions/50) |
 | Booking state — available, tentatively held, confirmed, blocked, unavailable | brief, s4 |
 | Blocked reasons — maintenance, renovation, safety, internal activity | brief, s4 |
-| Setup, teardown and turnaround time, recorded **per venue** | [#43](https://github.com/SinYang13/IS212-2026/discussions/43) |
+| Setup and turnaround — each at most one adjacent slot ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)); whether the requirement is recorded per venue ([#43](https://github.com/SinYang13/IS212-2026/discussions/43)) is open | [#43](https://github.com/SinYang13/IS212-2026/discussions/43), [#123](https://github.com/SinYang13/IS212-2026/discussions/123) |
 | Venue attributes — capacity, layouts, facilities, accessibility, operating hours | brief, s4 |
 | Event category — conference, workshop, training, exhibition, meeting, seminar, networking, etc. | brief, s4 |
 
-The three-slot booking model ([#50](https://github.com/SinYang13/IS212-2026/discussions/50)) is the natural unit of utilisation: slots booked over slots available in the period, sliceable by venue, day, state, and event category. Turnaround time is a genuine occupancy cost and can be reported as consumed capacity distinct from event time. See [[venue-booking]].
+The three-slot booking model ([#50](https://github.com/SinYang13/IS212-2026/discussions/50)) is the natural unit of utilisation: slots booked over slots available in the period, sliceable by venue, day, state, and event category. Setup and turnaround slots ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)) are a genuine occupancy cost and can be reported as consumed capacity distinct from event time; whether a buffer slot counts as a utilised slot or as its own category is not stated and is the team's to propose. See [[venue-booking]].
 
 > [!question]- Team decision required — venue usage report measures
 > Define the measure set and presentation for the venue usage report. Exclude revenue and any financial measure.

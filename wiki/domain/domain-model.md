@@ -5,6 +5,7 @@ sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 31.md"
   - "IS212 2026 Discussions Sept 8.md"
+  - "IS212 2026 Discussions Sept 16.md"
 tags: [domain, hub, er-diagram, data-model, glossary]
 ---
 
@@ -477,6 +478,8 @@ Decisions the customer **settled**, verified against `raw/IS212 2026 Discussions
 | A request-level **`Withdrawn`** state is required and must stay distinguishable from the other request states; the coordinator records it, the Organiser does not self-withdraw | [#103](https://github.com/SinYang13/IS212-2026/discussions/103) | [[event-request]] |
 | One change request may span several fields and be **partially approved**, with a reason on each declined field | [#104](https://github.com/SinYang13/IS212-2026/discussions/104) | [[change-request]] |
 | One slot is the **smallest unit** of setup and turnaround; an event across two slots consumes both in full | [#108](https://github.com/SinYang13/IS212-2026/discussions/108), [#107](https://github.com/SinYang13/IS212-2026/discussions/107) | [[venue]], [[booking]] |
+| Setup and turnaround each need **at most one full slot, the immediately adjacent one, crossing midnight**; multi-slot buffers are not required. The buffer is a conflict-checking rule over neighbouring slots, not a stored duration | [#123](https://github.com/SinYang13/IS212-2026/discussions/123) | [[venue]], [[booking]] |
+| Retiring a venue **does not cancel or auto-reschedule** its future bookings — they are flagged for review and Coordinators notified; the Coordinator arranges the alternative and updates the booking. Venue gains a retired status | [#122](https://github.com/SinYang13/IS212-2026/discussions/122) | [[venue]], [[booking]] |
 | Expected attendance is a single **event-level** field, not duplicated into venue requirements | [#119](https://github.com/SinYang13/IS212-2026/discussions/119) | [[event]] |
 | Account onboarding is **not required for Release 1**; pre-loaded staff and client accounts are sanctioned | [#49](https://github.com/SinYang13/IS212-2026/discussions/49) | [[user-account]] |
 | Equipment pooled vs serialised is deferred, but the system must always know available quantity | [#13](https://github.com/SinYang13/IS212-2026/discussions/13) | [[equipment-item]] |

@@ -6,6 +6,7 @@ sources:
   - IS212 2026 Discussions Aug 26.md
   - IS212 2026 Discussions Aug 31.md
   - IS212 2026 Discussions Sept 8.md
+  - IS212 2026 Discussions Sept 16.md
 tags: [venue, suitability, search, filtering, capacity, room-layout, business-rules]
 ---
 
@@ -49,8 +50,8 @@ Drawn from the brief's list of factors on which venue suitability may depend (So
 | Available facilities | Venue | e.g. video-conferencing for hybrid events |
 | Existing bookings | Venue calendar | Overlapping bookings/holds are a hard block ([#35](https://github.com/SinYang13/IS212-2026/discussions/35)) |
 | Operating hours | Venue | Maintained by Venue Staff; all days equal for now ([#46](https://github.com/SinYang13/IS212-2026/discussions/46)) |
-| Setup requirements | Event + venue | Preparation before the published start time; one slot is the smallest supported unit ([#108](https://github.com/SinYang13/IS212-2026/discussions/108)) |
-| Turnaround time | Venue | Reset time after the event; recorded per venue ([#43](https://github.com/SinYang13/IS212-2026/discussions/43)), in whole booking slots ([#108](https://github.com/SinYang13/IS212-2026/discussions/108)) |
+| Setup requirements | Event + venue | Preparation before the published start time; occupies at most one full slot, the immediately adjacent one before the event, crossing midnight where needed ([#108](https://github.com/SinYang13/IS212-2026/discussions/108), [#123](https://github.com/SinYang13/IS212-2026/discussions/123)) |
+| Turnaround time | Venue | Reset after the event; occupies at most one full slot, the immediately adjacent one after the event, crossing midnight where needed ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)). Whether the requirement is recorded per venue ([#43](https://github.com/SinYang13/IS212-2026/discussions/43)) is open — see [[venue-booking]] |
 | Venue unavailability | Venue | Maintenance, renovation, safety restrictions, internal activity |
 
 ## Capacity vs Expected Attendance
