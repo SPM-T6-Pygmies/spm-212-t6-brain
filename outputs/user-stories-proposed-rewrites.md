@@ -341,6 +341,8 @@ As the assigned Event Coordinator, I want to approve, reject, or return an event
 - Can approve a request, which allows planning to begin but commits ConnectSphere to nothing yet ([#80](https://github.com/SinYang13/IS212-2026/discussions/80), see [[event]] States)
 - Can reject a request, retaining a decision record (see [[event-request]] States)
 - Can return a request to the Organiser for amendment
+- Given a request is rejected, it leaves the Coordinator's review queue and is listed in their archive of decided requests, where its decision record can be read ([[week-4-customer-briefing]]: "The outcome of the review should be visible to the relevant users")
+- Given a request is approved, it leaves the Coordinator's review queue and its event is listed among the events they are running, from which the approved request can be opened ([[week-4-customer-briefing]])
 - The Event Organiser is notified of the decision ([[notifications]])
 
 **Open question:** whether a rejected request can be resubmitted, or rejection is terminal, is left to the team — "propose an appropriate approach if needed" ([#67](https://github.com/SinYang13/IS212-2026/discussions/67)).
