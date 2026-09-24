@@ -131,25 +131,43 @@ _Read me first!_
 
 **Follow-ups since the answer:**
 
-- **Isaidchia** (2026-08-28): Hi, it seems like this requirement contradicts with https://github.com/SinYang13/IS212-2026/discussions/5
-
+- **Isaidchia** (2026-08-28): Hi, it seems like this requirement contradicts with https://github.com/SinYang13/IS212-2026/discussions/5
+
+
+
 where the equipment is returned to ConnectSphere for assessment and then collected from ConnectSphere on Return day + 1 onwards, do assist in clarifying which workflow stands
-- **SinYang13** (2026-08-31): Both rules apply, but at different points in the equipment lifecycle.
-
-Equipment has a physical location, and if it must be moved from its current location to the event venue, the required transfer and preparation time should be considered when determining whether it is available for that event.
-
-After the event, the current operating assumption is that equipment is returned to ConnectSphere for inspection and preparation before it becomes available again. Under the clarified rule, equipment may be collected from D-1 and is only treated as available again from Return Day +1.
-
-Therefore, transfer time affects pre-event availability, while the Return Day +1 rule governs post-event availability. They are not alternatives to each other.
-
-How the system represents transfer time, preparation time and the equipment's current location is for the solution team to propose.
-
-Current equipment location
-→ transfer/preparation to event venue
-→ D-1 collection / event commitment period
-→ event use
-→ return to ConnectSphere
-→ inspection/preparation
+- **SinYang13** (2026-08-31): Both rules apply, but at different points in the equipment lifecycle.
+
+
+
+Equipment has a physical location, and if it must be moved from its current location to the event venue, the required transfer and preparation time should be considered when determining whether it is available for that event.
+
+
+
+After the event, the current operating assumption is that equipment is returned to ConnectSphere for inspection and preparation before it becomes available again. Under the clarified rule, equipment may be collected from D-1 and is only treated as available again from Return Day +1.
+
+
+
+Therefore, transfer time affects pre-event availability, while the Return Day +1 rule governs post-event availability. They are not alternatives to each other.
+
+
+
+How the system represents transfer time, preparation time and the equipment's current location is for the solution team to propose.
+
+
+
+Current equipment location
+
+→ transfer/preparation to event venue
+
+→ D-1 collection / event commitment period
+
+→ event use
+
+→ return to ConnectSphere
+
+→ inspection/preparation
+
 → available again from Return Day +1
 
 #### [#114](https://github.com/SinYang13/IS212-2026/discussions/114) Can the Event Coordinator change equipment requirements after they have been reserved?
@@ -785,8 +803,10 @@ _Questions that don't fit in the existing categories (or suggestions)_
 
 **Follow-ups since the answer:**
 
-- **Isaidchia** (2026-09-02): Who is the staff? is it one of the existing roles? (Event Organiser, Event Coordinator, Event Operations Manager, Venue Staff, Technical Support Staff)
-
+- **Isaidchia** (2026-09-02): Who is the staff? is it one of the existing roles? (Event Organiser, Event Coordinator, Event Operations Manager, Venue Staff, Technical Support Staff)
+
+
+
 or is it a new role which is purely for registration? where they are admins who can check attendees in
 - **josephsungls** (2026-09-07): Attendance check-in may be performed by an authorized internal staff member involved in the event operations. No new registration-only role is required. The team may assign this responsibility to an appropriate existing internal role as part of its design, subject to the access-control model.
 
@@ -1041,16 +1061,25 @@ _Roles, Permissions, Authentication_
 
 **Follow-ups since the answer:**
 
-- **JameszLau** (2026-09-05): In this case is registration feature even necessary for this system be it for:
-1) Employees of connectsphere
-2) Event organisers (clients)
+- **JameszLau** (2026-09-05): In this case is registration feature even necessary for this system be it for:
+
+1) Employees of connectsphere
+
+2) Event organisers (clients)
+
 3) Event attendees
-- **josephsungls** (2026-09-07): Which registration function are you referring to? System account registration/onboarding is not specified as a required feature for release 1. Authentication is required, and Attendee Registration refers to event registration, not account creation. 
-
-ConnectSphere employees: No separate self-registration/onboarding feature is required for Release 1. The team may use pre-loaded staff accounts with the appropriate roles and access controls.
-
-Event Organisers: Likewise, account onboarding or self-registration is not required for Release 1. Pre-loaded client accounts may be used for testing.
-
+- **josephsungls** (2026-09-07): Which registration function are you referring to? System account registration/onboarding is not specified as a required feature for release 1. Authentication is required, and Attendee Registration refers to event registration, not account creation. 
+
+
+
+ConnectSphere employees: No separate self-registration/onboarding feature is required for Release 1. The team may use pre-loaded staff accounts with the appropriate roles and access controls.
+
+
+
+Event Organisers: Likewise, account onboarding or self-registration is not required for Release 1. Pre-loaded client accounts may be used for testing.
+
+
+
 Event Attendees: Attendee Registration is still a required Release 1 feature, but this refers to registering for an event, not creating a system account. Where registration is enabled, attendees should be able to view appropriate event information, register, view their registration status, and withdraw.
 
 ---
