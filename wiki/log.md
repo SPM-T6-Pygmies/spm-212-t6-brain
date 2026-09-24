@@ -676,3 +676,13 @@ The attribute row stays `🔶 Team decision` with its citation; the decision is 
 
 **Updated:** [[event-request]] (Withdrawal record row; States).
 
+## 2026-09-24
+
+### SPM-101 — withdrawal widened to any point before a decision
+
+The team revised yesterday's reading of [#103](https://github.com/SinYang13/IS212-2026/discussions/103). Withdrawal is no longer `Under review` only: an Organiser may ask for it **at any point before the request is approved or rejected**, meaning from `Submitted`, `Under review` or `Returned`. `Returned` matters once SPM-33's clarification exchange ships, because a request waiting on a question is still undecided. After approval, pulling out is an [[event]] cancellation, a separate flow. Storage is unchanged.
+
+A related SPM-33 decision was made the same day: a request's clarification thread closes once the request is decided (approved, rejected or withdrawn). It stays readable, but it takes no new message, reply or resolve.
+
+**Updated:** [[event-request]] (state diagram, withdrawal paragraph, Submitted / Returned / Withdrawn rows).
+
