@@ -662,3 +662,17 @@ Testing SPM-34 in `connectsphere` found that a decision made a request disappear
 **Not changed.** [[release-1-candidate-user-stories]] still says EV3c covers review and approval "unchanged", which stays true — the card gained criteria, not a new shape. The criteria require only that an approved request's event is *reachable*; what a Coordinator's own view of their events contains is SPM-137, whose scope question is still open.
 
 **Updated:** [[user-stories-proposed-rewrites]] (EV3c), and Linear SPM-34.
+
+## 2026-09-23
+
+### SPM-101 — withdrawal's two open items settled by the team
+
+[#103](https://github.com/SinYang13/IS212-2026/discussions/103) left two things to the team, and both were decided while SPM-101 was planned and built in `connectsphere`:
+
+- **Which state can be withdrawn.** Only `Under review`. The customer's answer names no other state, so the unsourced `Submitted → Withdrawn` edge stays undrawn — now as a decision, not only as caution.
+- **Where the withdrawal is stored.** No new column: status becomes `Withdrawn`, the coordinator's optional note is the decision record, and an [[audit-record]] entry (`action = withdraw`) records who withdrew it and when, in one transaction.
+
+The attribute row stays `🔶 Team decision` with its citation; the decision is written into it. There is still no Organiser-facing withdraw action.
+
+**Updated:** [[event-request]] (Withdrawal record row; States).
+
