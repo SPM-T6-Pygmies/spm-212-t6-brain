@@ -6,12 +6,13 @@ sources:
   - "IS212 2026 Discussions Aug 31.md"
   - "IS212 2026 Discussions Sept 8.md"
   - "IS212 2026 Discussions Sept 16.md"
+  - "Week 7 Customer Changes.md"
 tags: [domain, hub, er-diagram, data-model, glossary]
 ---
 
 # Domain Model
 
-The hub for the fourteen domain-object pages in `wiki/domain/`. Neither source document contains an ER diagram, a class diagram, a data dictionary, or a glossary — this page is the first place the object model is assembled anywhere in the project. It exists to answer three questions in one place: what are the objects and how do they relate (ER diagram, below), which structural decisions has the customer actually settled (modelling-decision register), and which structural decisions remain open for the team (deferred-modelling register).
+The hub for the sixteen domain-object pages in `wiki/domain/`. Neither source document contains an ER diagram, a class diagram, a data dictionary, or a glossary — this page is the first place the object model is assembled anywhere in the project. It exists to answer three questions in one place: what are the objects and how do they relate (ER diagram, below), which structural decisions has the customer actually settled (modelling-decision register), and which structural decisions remain open for the team (deferred-modelling register).
 
 Each object's own page remains the authority for its attributes, states, relationships and binding rules, with full citations. This page indexes and cross-references; it does not restate their detail.
 
@@ -35,6 +36,8 @@ Each object's own page remains the authority for its attributes, states, relatio
 | Change Request | A record of a change an Event Organiser requests against an event | [[change-request]] |
 | Notification | A message sent to a user when something relevant to them changes | [[notification]] |
 | Audit Record | Activity History and Change History captured for auditability | [[audit-record]] |
+| Venue Unavailability | A period during which Venue Staff mark a venue temporarily unavailable, for one of five stated reasons — **proposed, not in the deployed schema, not yet in the ER diagrams** ([[week-7-customer-changes\|Week 7 C2]]) | [[venue-unavailability]] |
+| Safety Check | One Safety Officer review round on an event, with an outcome of approve, reject or request changes — **proposed, not in the deployed schema, not yet in the ER diagrams** ([[week-7-customer-changes\|Week 7 C6]]) | [[safety-check]] |
 
 ## ER diagram
 
@@ -473,19 +476,19 @@ Decisions the customer **settled**, verified against `raw/IS212 2026 Discussions
 
 | Decision | Ref | Owning page |
 |---|---|---|
-| The **Event Operations Manager is a separate system role** — mandatory, holding coordinator assignment and reassignment only | [#101](https://github.com/SinYang13/IS212-2026/discussions/101) | [[user-roles]], [[user-account]] |
+| The **Event Operations Manager is a separate system role** — mandatory, holding coordinator assignment and reassignment. [#128](https://github.com/SinYang13/IS212-2026/discussions/128): it is now titled the **Event Coordinator Lead**, at least on the display end, and also views basic event information and all coordinators' assignments and active events | [#101](https://github.com/SinYang13/IS212-2026/discussions/101), [[week-7-customer-changes\|Week 7 C5]], [#128](https://github.com/SinYang13/IS212-2026/discussions/128) | [[user-roles]], [[user-account]] |
 | Venue capacity **varies by room layout**, and each layout's capacity is supplied as venue master data rather than computed | [#112](https://github.com/SinYang13/IS212-2026/discussions/112) | [[venue]] |
 | A request-level **`Withdrawn`** state is required and must stay distinguishable from the other request states; the coordinator records it, the Organiser does not self-withdraw | [#103](https://github.com/SinYang13/IS212-2026/discussions/103) | [[event-request]] |
 | One change request may span several fields and be **partially approved**, with a reason on each declined field | [#104](https://github.com/SinYang13/IS212-2026/discussions/104) | [[change-request]] |
-| One slot is the **smallest unit** of setup and turnaround; an event across two slots consumes both in full | [#108](https://github.com/SinYang13/IS212-2026/discussions/108), [#107](https://github.com/SinYang13/IS212-2026/discussions/107) | [[venue]], [[booking]] |
-| Setup and turnaround each need **at most one full slot, the immediately adjacent one, crossing midnight**; multi-slot buffers are not required. The buffer is a conflict-checking rule over neighbouring slots, not a stored duration | [#123](https://github.com/SinYang13/IS212-2026/discussions/123) | [[venue]], [[booking]] |
+| ~~An event across two slots consumes both in full; one slot is the smallest unit of setup and turnaround~~ — **superseded** by [[week-7-customer-changes\|Week 7 C1]] and [#128](https://github.com/SinYang13/IS212-2026/discussions/128) | ~~[#107](https://github.com/SinYang13/IS212-2026/discussions/107)~~, ~~[#108](https://github.com/SinYang13/IS212-2026/discussions/108)~~, [[week-7-customer-changes\|Week 7 C1]], [#128](https://github.com/SinYang13/IS212-2026/discussions/128) | [[venue]], [[booking]] |
+| ~~Setup and turnaround each need at most one full slot, the immediately adjacent one~~ — **superseded.** Each venue has a configurable setup and turnaround time; a booking occupies `[start − setup, end + turnaround)` on a **15-minute** grid | ~~[#123](https://github.com/SinYang13/IS212-2026/discussions/123)~~, [[week-7-customer-changes\|Week 7 C1]], [#128](https://github.com/SinYang13/IS212-2026/discussions/128) | [[venue]], [[booking]] |
 | Retiring a venue **does not cancel or auto-reschedule** its future bookings — they are flagged for review and Coordinators notified; the Coordinator arranges the alternative and updates the booking. Venue gains a retired status | [#122](https://github.com/SinYang13/IS212-2026/discussions/122) | [[venue]], [[booking]] |
 | Expected attendance is a single **event-level** field, not duplicated into venue requirements | [#119](https://github.com/SinYang13/IS212-2026/discussions/119) | [[event]] |
 | Account onboarding is **not required for Release 1**; pre-loaded staff and client accounts are sanctioned | [#49](https://github.com/SinYang13/IS212-2026/discussions/49) | [[user-account]] |
 | Equipment pooled vs serialised is deferred, but the system must always know available quantity | [#13](https://github.com/SinYang13/IS212-2026/discussions/13) | [[equipment-item]] |
-| Tentative Hold is its own record, with confirm/release transitions | [#41](https://github.com/SinYang13/IS212-2026/discussions/41) | [[booking]] |
+| Tentative Hold is its own record, with confirm/release transitions. **Every hold carries an expiry**; an expired hold is never a confirmed booking | [#41](https://github.com/SinYang13/IS212-2026/discussions/41), [[week-7-customer-changes\|Week 7 C4]] | [[booking]] |
 | Booking is separate from Event — bookings release, the event record survives | [#69](https://github.com/SinYang13/IS212-2026/discussions/69) | [[booking]] |
-| Venue availability is slotted AM/PM/Night, not continuous | [#50](https://github.com/SinYang13/IS212-2026/discussions/50) | [[venue]] |
+| ~~Venue availability is slotted AM/PM/Night, not continuous~~ — **superseded**: the smallest unit of booking is 15 minutes | ~~[#50](https://github.com/SinYang13/IS212-2026/discussions/50)~~, [#128](https://github.com/SinYang13/IS212-2026/discussions/128) | [[venue]] |
 | Approval ≠ Confirmation; confirmation is blocked while an essential arrangement is incomplete | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) | [[event]] |
 | Equipment has two coexisting availability rules — transfer time governs pre-event availability, Return Day + 1 governs post-event availability | [#2](https://github.com/SinYang13/IS212-2026/discussions/2), [#5](https://github.com/SinYang13/IS212-2026/discussions/5) | [[equipment-item]] |
 | Equipment reservation allows partial fulfilment, line by line | [#90](https://github.com/SinYang13/IS212-2026/discussions/90) | [[equipment-reservation]] |
@@ -493,10 +496,14 @@ Decisions the customer **settled**, verified against `raw/IS212 2026 Discussions
 | Session is a first-class child of Event, with its own venue, equipment, timing and attendance limit | [#74](https://github.com/SinYang13/IS212-2026/discussions/74) | [[session]] |
 | Venue suitability checking is distinct from search/filtering | [#83](https://github.com/SinYang13/IS212-2026/discussions/83) | [[venue]] |
 | Completion has a dual trigger — manual, or automatic at end date + 7 days if still open | [#71](https://github.com/SinYang13/IS212-2026/discussions/71) | [[event]] |
-| Coordinator assignment (and reassignment) is push-only by the Event Operations Manager; no accept/decline step | [#93](https://github.com/SinYang13/IS212-2026/discussions/93), [#94](https://github.com/SinYang13/IS212-2026/discussions/94), [#95](https://github.com/SinYang13/IS212-2026/discussions/95) | [[user-account]] |
+| Coordinator assignment (and reassignment) is push-only; no accept/decline step. The actor is the Event Operations Manager ([#93](https://github.com/SinYang13/IS212-2026/discussions/93), [#94](https://github.com/SinYang13/IS212-2026/discussions/94)) or, under [[week-7-customer-changes\|Week 7 C5]], the Event Coordinator Lead | [#93](https://github.com/SinYang13/IS212-2026/discussions/93), [#94](https://github.com/SinYang13/IS212-2026/discussions/94), [#95](https://github.com/SinYang13/IS212-2026/discussions/95), [[week-7-customer-changes\|Week 7 C5]] | [[user-account]] |
 | Venue Staff's alternative suggestion on rejection is not a formal counter-offer object | [#45](https://github.com/SinYang13/IS212-2026/discussions/45) | [[booking]] |
 | Double-booking is a hard block, not an overridable warning | [#35](https://github.com/SinYang13/IS212-2026/discussions/35) | [[booking]] |
 | No Postponed status — postponement is either a reschedule or a booking release with the event record retained | [#69](https://github.com/SinYang13/IS212-2026/discussions/69) | [[event]] |
+| A booking's venue unavailability is recorded, and affected bookings are **identified, not removed**; the event is never cancelled by it | [[week-7-customer-changes\|Week 7 C2]] | [[venue-unavailability]], [[booking]] |
+| One event may hold **several simultaneous venue bookings**, each checked independently | [[week-7-customer-changes\|Week 7 C3]] | [[booking]], [[event]] |
+| New requests enter an **unassigned queue** worked by the Event Coordinator Lead; Coordinators manage only their own events | [[week-7-customer-changes\|Week 7 C5]] | [[user-roles]], [[event-request]] |
+| An event **cannot proceed to preparation** until a Safety Officer has approved it; the Officer always responds | [[week-7-customer-changes\|Week 7 C6]] | [[safety-check]], [[event]] |
 
 All fifteen rows were checked against the customer's **Answer** text in `raw/IS212 2026 Discussions Aug 31.md` (not merely the question that prompted it) before inclusion; see the task report for the verification detail on each. Two rows share `[#69](https://github.com/SinYang13/IS212-2026/discussions/69)` because that single answer settles two independent structural facts — that a booking and its event are separate records, and that there is no separate Postponed status — each owned by a different part of the model.
 
@@ -548,7 +555,7 @@ Every "Team decision required" callout across the fourteen domain-object pages, 
 | User Account | Authentication method | [#62](https://github.com/SinYang13/IS212-2026/discussions/62) | [[user-account]] |
 | User Account | Account recovery and lockout handling | [#64](https://github.com/SinYang13/IS212-2026/discussions/64) | [[user-account]] |
 | User Account | Onboarding / self-registration process for external users — still not modelled, but the reason has changed: not merely absent from the feature list, but **explicitly not required for Release 1**, with pre-loaded staff and client accounts as the sanctioned substitute | [#49](https://github.com/SinYang13/IS212-2026/discussions/49), [#53](https://github.com/SinYang13/IS212-2026/discussions/53) | [[user-account]] |
-| User Account | Whether an admin role above the briefed stakeholders exists. Note the role model now has **six** roles, not five — the Event Operations Manager is a mandatory system role ([#101](https://github.com/SinYang13/IS212-2026/discussions/101)) — and it is not the admin role, holding assignment authority only | [#52](https://github.com/SinYang13/IS212-2026/discussions/52), [#101](https://github.com/SinYang13/IS212-2026/discussions/101) | [[user-account]] |
+| User Account | Whether an admin role above the briefed stakeholders exists. Note the role model now has **seven** roles, not five — the Event Operations Manager is a mandatory system role, and [[week-7-customer-changes\|Week 7 C5–C6]] add the Event Coordinator Lead and the Safety Officer (the Lead *is* the Manager, renamed — [#128](https://github.com/SinYang13/IS212-2026/discussions/128) — so seven) ([#101](https://github.com/SinYang13/IS212-2026/discussions/101)) — and it is not the admin role, holding assignment authority only | [#52](https://github.com/SinYang13/IS212-2026/discussions/52), [#101](https://github.com/SinYang13/IS212-2026/discussions/101) | [[user-account]] |
 | User Account | Field-level access-control design (categories given, no matrix) | [#91](https://github.com/SinYang13/IS212-2026/discussions/91) | [[user-account]] |
 | Venue | Booking horizon — how far in advance a venue may be booked | [#57](https://github.com/SinYang13/IS212-2026/discussions/57) | [[venue]] |
 | Venue | Suitability-check presentation (inline indicator, post-selection check, or both) | [#83](https://github.com/SinYang13/IS212-2026/discussions/83) | [[venue]] |

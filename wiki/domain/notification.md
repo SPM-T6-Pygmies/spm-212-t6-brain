@@ -6,20 +6,21 @@ sources:
   - "IS212 2026 Discussions Sept 8.md"
   - "IS212 2026 Discussions Sept 16.md"
   - "IS212 2026 Discussions Aug 31.md"
+  - "Week 7 Customer Changes.md"
 tags: [domain, notification, reminder]
 ---
 
 # Notification
 
-A message sent to a user when something relevant to them changes: either **event-driven** (fired by one of fourteen named trigger scenarios, [[notifications|brief §6]]) or **time-driven** (a Reminder, [[event-planning-venue-booking-system|brief §4]] — see below). Delivered in-app and/or by email, with channel and delivery timing configurable per notification type. Process detail and the evolution of the channel/timing answers live in [[notifications]] (the concept-level narrative — not to be confused with this page, the structural reference for the object itself).
+A message sent to a user when something relevant to them changes: either **event-driven** (fired by one of fourteen named trigger scenarios, [[notifications|brief §6]], plus the one trigger [[week-7-customer-changes|Week 7 C4]] adds — fifteen customer-stated in all, and two 🔶 team proposals for the safety check) or **time-driven** (a Reminder, [[event-planning-venue-booking-system|brief §4]] — see below). Delivered in-app and/or by email, with channel and delivery timing configurable per notification type. Process detail and the evolution of the channel/timing answers live in [[notifications]] (the concept-level narrative — not to be confused with this page, the structural reference for the object itself).
 
-**Release 1 scope** ([[release-1-scope]]): the event-driven Notification object described here — trigger scenarios, channels, delivery timing — is 🎯 Release 1, core feature 20. The Reminders (time-driven) section below is `📋 Backlog` — not named in the core 20; the confirmed incomplete-arrangements reminder ([#47](https://github.com/SinYang13/IS212-2026/discussions/47)) remains a documented requirement, not a built one, in Release 1.
+**Release 1 scope** ([[release-1-scope]]): the event-driven Notification object described here — trigger scenarios, channels, delivery timing — is 🎯 Release 1, core feature 20. The Reminders (time-driven) section below is `📋 Backlog` — not named in the core 20; the confirmed incomplete-arrangements reminder ([#47](https://github.com/SinYang13/IS212-2026/discussions/47)) remains a documented requirement, not a built one, in Release 1. One narrow exception: the **tentative-hold expiry warning** is 🎯 Release 1 ([[week-7-customer-changes|Week 7 C4]]; "now included in the 26 core", [#128](https://github.com/SinYang13/IS212-2026/discussions/128)). It is time-triggered but is not the Reminder feature, which stays `📋 Backlog`.
 
 ## Attributes
 
 | Field            | Meaning                                                                                                                                                     | Status      | Ref                         |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | --------------------------- |
-| Trigger scenario | Which of the fourteen §6 scenarios (or which reminder condition) generated the notification                                                                 | ✅ Specified | [[notifications\|brief §6]] |
+| Trigger scenario | Which of the fourteen §6 scenarios, the Week 7 hold-expiry trigger, a proposed safety-check trigger, or which reminder condition generated the notification                                                                 | ✅ Specified | [[notifications\|brief §6]] |
 | Recipient        | The [[user-account]] the notification is addressed to                                                                                                       | ⚠️ Partial  | [[notifications\|brief §6]] |
 | Channel          | In-app, email, or both                                                                                                                                      | ✅ Specified | [#37](https://github.com/SinYang13/IS212-2026/discussions/37)                         |
 | Related object   | The [[event]] (or the [[event-request]], [[booking]], [[equipment-reservation]], [[registration]], [[change-request]] beneath it) the notification concerns | ✅ Specified | [[notifications\|brief §6]] |
@@ -34,8 +35,8 @@ The brief's full list of situations that "may generate a notification" ([[notifi
 
 | # | Trigger ([[notifications\|brief §6]]) | Likely audience | Ref |
 |---|---|---|---|
-| 1 | A new event request is submitted | Event Operations Manager — but **not per submission**; a worklist of unassigned submissions satisfies the requirement | [[notifications\|brief §6]]; [#117](https://github.com/SinYang13/IS212-2026/discussions/117) |
-| 2 | An Event Coordinator is assigned | Assigned Event Coordinator; Event Organiser | [[notifications\|brief §6]] |
+| 1 | A new event request is submitted | The Event Coordinator Lead (formerly the Event Operations Manager) — but **not per submission**; a worklist of unassigned submissions satisfies the requirement | [[notifications\|brief §6]]; [#117](https://github.com/SinYang13/IS212-2026/discussions/117) |
+| 2 | An Event Coordinator is assigned — and, per [[week-7-customer-changes\|Week 7 C5]], **reassigned** | Assigned Event Coordinator; Event Organiser. The **outgoing** coordinator is open (Q3) | [[notifications\|brief §6]]; [[week-7-customer-changes\|Week 7 C5]] |
 | 3 | Additional information or amendment is requested | Event Organiser | [[notifications\|brief §6]] |
 | 4 | An event request is approved, rejected, or returned | Event Organiser | [[notifications\|brief §6]] |
 | 5 | A venue booking is requested, approved, rejected, or changed | Venue Staff; Event Coordinator | [[notifications\|brief §6]] |
@@ -47,7 +48,19 @@ The brief's full list of situations that "may generate a notification" ([[notifi
 | 11 | Registration reaches capacity or a waiting-list status changes | Attendees, incl. waitlisted; Event Coordinator | [[notifications\|brief §6]] |
 | 12 | A registered Attendee withdraws where that affects availability | Event Coordinator; next waitlisted Attendee | [[notifications\|brief §6]] |
 | 13 | An upcoming event still has incomplete arrangements | Assigned Event Coordinator | [[notifications\|brief §6]]; [#47](https://github.com/SinYang13/IS212-2026/discussions/47) |
-| 14 | A venue or equipment availability change affects an upcoming event — including a **venue retirement** with future bookings | Assigned Event Coordinator | [[notifications\|brief §6]]; [#54](https://github.com/SinYang13/IS212-2026/discussions/54); [#122](https://github.com/SinYang13/IS212-2026/discussions/122) |
+| 14 | A venue or equipment availability change affects an upcoming event — including a **venue retirement** with future bookings, and a venue marked **temporarily unavailable** over booked dates | Assigned Event Coordinator | [[notifications\|brief §6]]; [#54](https://github.com/SinYang13/IS212-2026/discussions/54); [#122](https://github.com/SinYang13/IS212-2026/discussions/122); [[week-7-customer-changes\|Week 7 C2]] |
+
+### Added after the brief
+
+Rows 15–17 are not in the brief's §6 list. **How they are counted:** the brief gives fourteen; the customer's Week 7 notice adds one more (row 15), so **fifteen** are customer-stated. Rows 16 and 17 are team proposals, so **seventeen** counting them. Venue unavailability and reassignment widen rows 14 and 2 and add no row.
+
+| # | Trigger | Likely audience | Status | Ref |
+|---|---|---|---|---|
+| 15 | A tentative venue hold is about to expire, or has expired. The first **time-triggered** notification on the board, and so needs a scheduled job; a narrow Release 1 exception, not the Reminder system | Assigned Event Coordinator — "informed before or when the hold expires". The lead time before expiry is 🔶 | ✅ Specified (trigger and recipient); 🔶 Team decision (lead time) | [[week-7-customer-changes\|Week 7 C4]]; [#39](https://github.com/SinYang13/IS212-2026/discussions/39); [#40](https://github.com/SinYang13/IS212-2026/discussions/40) |
+| 16 | An event is ready for its Operational Safety Check. The notice says the Safety Officer "will always give a response" but not how the Officer finds out | Safety Officer. A pull list of events awaiting a check could replace a push, as with [#117](https://github.com/SinYang13/IS212-2026/discussions/117) | 🔶 Team decision | [[week-7-customer-changes\|Week 7 C6]]; [#117](https://github.com/SinYang13/IS212-2026/discussions/117) |
+| 17 | A safety check outcome is recorded (approved, rejected or changes requested) | Assigned Event Coordinator | 🔶 Team decision | [[week-7-customer-changes\|Week 7 C6]]; [#98](https://github.com/SinYang13/IS212-2026/discussions/98) |
+
+A withdrawn safety approval would be a further cause of the Organiser-facing de-confirmation notice ([#105](https://github.com/SinYang13/IS212-2026/discussions/105)). That is 🔶 proposed only and depends on whether a significant change after approval needs a fresh check (Q7); the customer has not said so. See [[operational-safety-check]].
 
 > [!info] Audience column is this wiki's inference, not customer text
 > Brief §6 names the trigger only, in every one of the fourteen rows. No recipient matrix is given. The "Likely audience" values above are inferred from the role responsibilities described in [[connectsphere-event-services|brief §2]], §3 and §5 (e.g. the Event Coordinator is "the main internal point of contact," Venue Staff review booking requests) — they are a structural proposal, not a specified data model. See Open modelling questions.
@@ -60,7 +73,7 @@ The decision §6 never made, now proposed. Each row is one backlog card: one tri
 
 | § | Trigger | Recipient | Card | Scope |
 |---|---|---|---|---|
-| 1 | New event request submitted — as a **worklist**, not a push per submission | Event Operations Manager | SPM-56 | 🎯 Release 1 |
+| 1 | New event request submitted — as a **worklist**, not a push per submission | Event Coordinator Lead (formerly the Event Operations Manager) | SPM-56 | 🎯 Release 1 |
 | 2 | Coordinator assigned | Assigned Event Coordinator | SPM-57 | 🎯 Release 1 |
 | 2 | Coordinator assigned | Event Organiser | SPM-58 | 🎯 Release 1 |
 | 3 | Clarification or amendment requested | Event Organiser | SPM-59 | 🎯 Release 1 |
@@ -75,14 +88,18 @@ The decision §6 never made, now proposed. Each row is one backlog card: one tri
 | 9 | Event rescheduled, postponed, or cancelled | Event Organiser | SPM-68 | 🎯 Release 1 |
 | 9 | Event rescheduled, postponed, or cancelled | Registered Attendees | SPM-69 | 🎯 Release 1 |
 | 10 | Registration opens or closes | Attendees | SPM-70 | 🎯 Release 1 |
-| 14 | Venue or equipment availability change affects an upcoming event | Assigned Event Coordinator | SPM-71 | 🧩 Adjacent — core feature 9 |
+| 14 | Venue or equipment availability change affects an upcoming event — now including a venue marked temporarily unavailable over booked dates | Assigned Event Coordinator | SPM-71 | 🎯 Release 1 — [[week-7-customer-changes\|Week 7 C2]] (previously 🧩 Adjacent, core feature 9) |
+| 2 | Coordinator **reassigned** (extends the rows above) | Newly assigned coordinator and Event Organiser, covered by SPM-57 and SPM-58 (AC3 already covers reassignment). The outgoing coordinator is open (Q3) | SPM-57 / SPM-58; W7-10 and W7-11 reserved, not raised | 🎯 Release 1 — [[week-7-customer-changes\|Week 7 C5]] |
+| 15 | Tentative hold about to expire or expired | Assigned Event Coordinator | W7-05 (proposed card, not raised) | 🎯 Release 1 — [[week-7-customer-changes\|Week 7 C4]] |
+| 16 | 🔶 Event ready for safety check (proposed) | Safety Officer | W7-16 (proposed card, not raised) | 🧩 Adjacent — [[week-7-customer-changes\|Week 7 C6]], core feature 20 |
+| 17 | 🔶 Safety check outcome recorded (proposed) | Assigned Event Coordinator | W7-17 (proposed card, not raised) | 🧩 Adjacent — [[week-7-customer-changes\|Week 7 C6]], core feature 20 |
 | 11 | Registration reaches capacity | Assigned Event Coordinator | SPM-72 | 🧩 Adjacent — core feature 18 |
 | 11 | Waiting-list status changes | Waitlisted Attendee | SPM-73 | 📋 Backlog |
 | 12 | Registered Attendee withdraws, affecting availability | Assigned Event Coordinator | SPM-74 | 📋 Backlog |
 | 13 | Upcoming event still has incomplete arrangements | Assigned Event Coordinator | SPM-75 | 📋 Backlog |
 
 > [!info] Trigger 1 is a worklist, not a per-submission notification
-> "The Event Operations Manager **does not need to be notified of every new submission**, but they **should be able to identify newly submitted events that require Event Coordinator assignment**. The team may propose an appropriate mechanism." (Source: is212-discussions-2026-09-08, [#117](https://github.com/SinYang13/IS212-2026/discussions/117)). SPM-56 is therefore satisfied by a **pull surface** — a queue of unassigned submissions on the manager's overview (see [[access-control]], Role-Based Dashboards) — rather than by one message per submitted request. The card stays 🎯 Release 1 because the *capability* is required; only the push mechanism is optional. The mechanism itself is 🔶 team decision ([#117](https://github.com/SinYang13/IS212-2026/discussions/117)).
+> "The Event Operations Manager [now the Event Coordinator Lead, [#128](https://github.com/SinYang13/IS212-2026/discussions/128)] **does not need to be notified of every new submission**, but they **should be able to identify newly submitted events that require Event Coordinator assignment**. The team may propose an appropriate mechanism." (Source: is212-discussions-2026-09-08, [#117](https://github.com/SinYang13/IS212-2026/discussions/117)). SPM-56 is therefore satisfied by a **pull surface** — a queue of unassigned submissions on the manager's overview (see [[access-control]], Role-Based Dashboards) — rather than by one message per submitted request. The card stays 🎯 Release 1 because the *capability* is required; only the push mechanism is optional. The mechanism itself is 🔶 team decision ([#117](https://github.com/SinYang13/IS212-2026/discussions/117)).
 
 Four structural decisions the split forced, each a team proposal rather than a customer statement:
 
@@ -105,6 +122,8 @@ Distinct from the event-driven notifications above: the brief's Reminder System 
 
 Of the four reminder categories [[event-planning-venue-booking-system|brief §4]] lists, only the incomplete-arrangements variant received a direct Q&A confirmation ([#47](https://github.com/SinYang13/IS212-2026/discussions/47), "Yes... The frequency would be by batch and should also be configurable"); the other three are stated in the brief's feature description without a corresponding Q&A answer confirming scope or behaviour.
 
+**Hold expiry is not a Reminder.** The Reminder categories above are all `📋 Backlog`. The hold-expiry warning (row 15) is a different, customer-stated trigger: "the Event Coordinator should be informed before or when the hold expires" ([[week-7-customer-changes|Week 7 C4]]). It happens to fire on the clock, so it needs a scheduled job, but it does not bring the Reminder feature into Release 1. The lead time before expiry is 🔶 Team decision, citing [#39](https://github.com/SinYang13/IS212-2026/discussions/39) (hold duration left to the team) and [#40](https://github.com/SinYang13/IS212-2026/discussions/40) (reminder timing left to the team).
+
 ## States
 
 Neither source specifies a notification/reminder status field. Given delivery timing is itself either real-time or batched ([#55](https://github.com/SinYang13/IS212-2026/discussions/55)), a minimal lifecycle is structurally implied by that requirement rather than customer-specified — this diagram is this wiki's structural proposal, not a confirmed state machine:
@@ -120,7 +139,7 @@ stateDiagram-v2
 
 | State | Meaning | Entry / exit rule | Ref |
 |---|---|---|---|
-| Generated | A trigger scenario (event-driven) or reminder condition (time-driven) has fired | Entry: one of the fourteen §6 scenarios, or a reminder condition above | [[notifications\|brief §6]] |
+| Generated | A trigger scenario (event-driven) or reminder condition (time-driven) has fired | Entry: one of the fifteen customer-stated scenarios (fourteen §6 plus hold expiry), a proposed safety-check trigger, or a reminder condition above | [[notifications\|brief §6]] |
 | Queued | Held pending the next configurable batch interval | Entry: batched delivery is configured for this notification type. Exit: interval elapses | [#55](https://github.com/SinYang13/IS212-2026/discussions/55) |
 | Sent | Delivered to the recipient via in-app and/or email | Entry: immediate (real-time path), or batch interval elapsed | [#55](https://github.com/SinYang13/IS212-2026/discussions/55); [#37](https://github.com/SinYang13/IS212-2026/discussions/37) |
 
@@ -133,10 +152,11 @@ Whether a sent notification is further tracked as read/unread, acknowledged, or 
 | [[user-account]] | many : 1 | Every notification is addressed to a recipient account | [[notifications\|brief §6]] |
 | [[event]] | many : 0..1 | Most triggers concern a specific event, directly or via a related record beneath it | [[notifications\|brief §6]] |
 | [[event-request]] | many : 0..1 | Submission, assignment, amendment-request, and approve/reject/return triggers | [[notifications\|brief §6]] |
-| [[booking]] | many : 0..1 | Venue booking requested/approved/rejected/changed trigger | [[notifications\|brief §6]] |
+| [[booking]] | many : 0..1 | Venue booking requested/approved/rejected/changed trigger; the hold-expiry warning concerns a tentative-hold booking | [[notifications\|brief §6]]; [[week-7-customer-changes\|Week 7 C4]] |
 | [[equipment-reservation]] | many : 0..1 | Equipment confirmed/unavailable trigger | [[notifications\|brief §6]] |
 | [[registration]] | many : 0..1 | Registration opens/closes, capacity/waiting-list, and withdrawal triggers | [[notifications\|brief §6]] |
 | [[change-request]] | many : 0..1 | Significant-change-requested trigger | [[notifications\|brief §6]] |
+| [[safety-check]] | many : 0..1 | The two proposed safety-check triggers (ready for check; outcome recorded) concern a check round (🔶, not a customer statement) | [[week-7-customer-changes\|Week 7 C6]] |
 
 ## Binding rules
 
@@ -146,15 +166,25 @@ Whether a sent notification is further tracked as read/unread, acknowledged, or 
 - A venue or equipment availability change affecting an upcoming event is itself a notification scenario, not merely an internal record update ([#54](https://github.com/SinYang13/IS212-2026/discussions/54); [[notifications|brief §6]]).
 - **The system need not be the sole channel.** Three 2026-09-07 answers permit an obligation to inform to be discharged "through the system or another appropriate communication channel": de-confirmation of a confirmed event ([#105](https://github.com/SinYang13/IS212-2026/discussions/105)), a reschedule reaching registered attendees ([#115](https://github.com/SinYang13/IS212-2026/discussions/115)), and attendee event information generally ([#97](https://github.com/SinYang13/IS212-2026/discussions/97)). This bounds what the notification feature is *obliged* to deliver; it does not license omitting the in-system path where §6 lists the trigger. Notification content remains subject to [[access-control]] on whichever channel is used ([#91](https://github.com/SinYang13/IS212-2026/discussions/91)).
 - If a confirmed event is changed such that it is **no longer considered confirmed**, the Event Organiser **must be informed**; the exact notification mechanism is 🔶 team decision ([#105](https://github.com/SinYang13/IS212-2026/discussions/105)). This fixes the recipient for that case rather than leaving it to the inferred audience column. See [[event-lifecycle]].
-- The Event Operations Manager **does not require a notification per new submission**, but must be able to identify newly submitted events awaiting Event Coordinator assignment; the mechanism is 🔶 team decision ([#117](https://github.com/SinYang13/IS212-2026/discussions/117)).
+- The Lead (formerly the Event Operations Manager, [#128](https://github.com/SinYang13/IS212-2026/discussions/128)) **does not require a notification per new submission**, but must be able to identify newly submitted events awaiting Event Coordinator assignment; the mechanism is 🔶 team decision ([#117](https://github.com/SinYang13/IS212-2026/discussions/117)).
 - Attendees affected by a reschedule should be informed of the new date/time and allowed to withdraw, by system or other channel ([#115](https://github.com/SinYang13/IS212-2026/discussions/115)) — see [[attendee-registration]].
 - Email is a **notification-channel requirement**, not a general system-integration requirement: "No integration with existing external applications or services is required for the current scope. However, the notification requirements may include sending email notifications. This should be treated as a notification-channel requirement rather than a general integration requirement." ([#79](https://github.com/SinYang13/IS212-2026/discussions/79), point 3).
+- The Event Coordinator must be informed **before or when a tentative hold expires**, and an expired hold is never treated as a confirmed booking ([[week-7-customer-changes|Week 7 C4]]). The lead time before expiry is 🔶 ([#39](https://github.com/SinYang13/IS212-2026/discussions/39), [#40](https://github.com/SinYang13/IS212-2026/discussions/40)).
+- When Venue Staff mark a venue temporarily unavailable, the relevant Event Coordinators are informed that alternative arrangements are required; the event is not cancelled ([[week-7-customer-changes|Week 7 C2]]).
+- Relevant users are notified when an event or request is assigned or reassigned ([[week-7-customer-changes|Week 7 C5]]). Whether the outgoing coordinator counts as relevant is open (Q3).
+- 🔶 The Safety Officer is notified that an event is ready for a check, and the Coordinator of the outcome. The customer states neither ([[week-7-customer-changes|Week 7 C6]], [#98](https://github.com/SinYang13/IS212-2026/discussions/98)).
 - 🔶 Reminder lead time and its configurability model are left to the team to propose ([#40](https://github.com/SinYang13/IS212-2026/discussions/40)).
 
 ## Open modelling questions
 
+> [!question]- Team decision required — hold-expiry warning lead time
+> How long before a tentative hold expires the Event Coordinator is warned, whether it fires once or repeatedly, and who sets the expiry are all unstated. The notice requires only that the Coordinator is informed "before or when" the hold expires ([[week-7-customer-changes|Week 7 C4]]). Any default is a team decision ([#39](https://github.com/SinYang13/IS212-2026/discussions/39), [#40](https://github.com/SinYang13/IS212-2026/discussions/40)); do not invent a number silently.
+
+> [!question]- Team decision required — safety-check notifications
+> How the Safety Officer finds out an event is ready for a check, and how the Coordinator learns the outcome. The notice assumes the Officer "will always give a response" and says nothing on either ([[week-7-customer-changes|Week 7 C6]], [#98](https://github.com/SinYang13/IS212-2026/discussions/98), [#117](https://github.com/SinYang13/IS212-2026/discussions/117)). See [[operational-safety-check]].
+
 > [!question]- Team decision required — recipient matrix per trigger scenario
-> Which role(s) receive each of the fourteen §6 trigger scenarios, and whether recipients are derived automatically from relationship to the event or configured separately. §6 lists triggers only; no recipient matrix is given. **A proposal now exists** — see Recipient matrix, above, and the twenty cards behind it. It remains open until the customer confirms it: the open part is no longer "what should the matrix be" but "is this matrix right", which is a shorter conversation and a specific one to have at the next Q&A.
+> Which role(s) receive each of the fourteen §6 trigger scenarios (and the Week 7 additions, rows 15–17), and whether recipients are derived automatically from relationship to the event or configured separately. §6 lists triggers only; no recipient matrix is given. **A proposal now exists** — see Recipient matrix, above, and the twenty cards behind it. It remains open until the customer confirms it: the open part is no longer "what should the matrix be" but "is this matrix right", which is a shorter conversation and a specific one to have at the next Q&A.
 
 > [!question]- Team decision required — per-user vs per-type channel preference
 > [#37](https://github.com/SinYang13/IS212-2026/discussions/37) fixes channel configurability at the notification-**type** level. The brief separately lists "communication preferences" as user-profile data ([[event-planning-venue-booking-system|brief §4]]). Whether and how a per-user preference interacts with, or overrides, the per-type configuration is not reconciled by either source.
@@ -163,7 +193,7 @@ Whether a sent notification is further tracked as read/unread, acknowledged, or 
 > How far in advance and how often reminders fire, and the configuration surface for that timing, are left to the team: "The timing and configurability are for you to propose." ([#40](https://github.com/SinYang13/IS212-2026/discussions/40)).
 
 > [!question]- Team decision required — unassigned-submission worklist mechanism
-> How the Event Operations Manager identifies newly submitted events requiring Event Coordinator assignment, given that a notification per submission is explicitly not required ([#117](https://github.com/SinYang13/IS212-2026/discussions/117)). Candidates: a filtered queue on the manager's dashboard, a digest batched under [#55](https://github.com/SinYang13/IS212-2026/discussions/55)'s configurable interval, or a status filter on the event-request list. This is a **dashboard/worklist** decision as much as a notification one — see [[access-control]], Role-Based Dashboards, and [[event-request-workflow]].
+> How the Lead (formerly the Event Operations Manager) identifies newly submitted events requiring Event Coordinator assignment, given that a notification per submission is explicitly not required ([#117](https://github.com/SinYang13/IS212-2026/discussions/117)). Candidates: a filtered queue on the manager's dashboard, a digest batched under [#55](https://github.com/SinYang13/IS212-2026/discussions/55)'s configurable interval, or a status filter on the event-request list. This is a **dashboard/worklist** decision as much as a notification one — see [[access-control]], Role-Based Dashboards, and [[event-request-workflow]].
 
 > [!question]- Team decision required — availability-change automation mechanism
 > The mechanism linking a venue or equipment availability change to the affected upcoming event(s) — how affected events are detected, and whether anything beyond raising the notification happens automatically — is left to the team to propose "if required" ([#54](https://github.com/SinYang13/IS212-2026/discussions/54)).

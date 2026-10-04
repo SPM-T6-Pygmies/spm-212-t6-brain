@@ -6,6 +6,8 @@ sources:
   - IS212 2026 Discussions Aug 31.md
   - IS212 2026 Discussions Aug 26.md
   - IS212 2026 Discussions Sept 8.md
+  - Week 7 Customer Changes.md
+  - IS212 2026 Discussions Oct 1.md
 tags:
   - process
   - workflow
@@ -20,7 +22,7 @@ tags:
 
 The end-to-end process by which an event moves from an Event Organiser's initial idea to a delivered and closed event at [[connectsphere-event-services]]. The statuses attached to each step are described in [[event-lifecycle]].
 
-**Release 1 scope:** Per [[release-1-scope]], event request creation, draft requests, coordinator assignment, and review/approval (Steps 1–5 above) are 🎯 Release 1 (core features 2–5); comments and discussion are 🧩 Adjacent, pulled in by feature 4's requirement that coordinators can request clarification with the outcome visible; event categories, reuse of previous events, multi-session events, and supporting documents are 📋 Backlog — the customer has since confirmed categories directly ("not one of the mandatory Release 1 core features", [#100](https://github.com/SinYang13/IS212-2026/discussions/100)).
+**Release 1 scope:** Per [[release-1-scope]], event request creation, draft requests, coordinator assignment, and review/approval (Steps 1–5 above) are 🎯 Release 1 (core features 2–5); comments and discussion are 🧩 Adjacent, pulled in by feature 4's requirement that coordinators can request clarification with the outcome visible; event categories, reuse of previous events, multi-session events, and supporting documents are 📋 Backlog — the customer has since confirmed categories directly ("not one of the mandatory Release 1 core features", [#100](https://github.com/SinYang13/IS212-2026/discussions/100)). Two Week 7 changes touch this process and are both 🎯 Release 1: the Event Coordinator Lead's unassigned queue at Step 3 ([[week-7-customer-changes|Week 7 C5]]) and the Operational Safety Check gate between Steps 8 and 9 ([[week-7-customer-changes|Week 7 C6]]).
 
 ## The 14-Step Typical Process
 
@@ -28,12 +30,13 @@ The end-to-end process by which an event moves from an Event Organiser's initial
 |---|---|---|---|
 | 1 | Draft Event Request | Event Organiser | Creates a draft with initial requirements; may save and continue editing before submission |
 | 2 | Submission | Event Organiser | Submits the request to ConnectSphere |
-| 3 | Coordinator Assignment | Event Operations Manager | Assigns an Event Coordinator as the main internal point of contact |
+| 3 | Coordinator Assignment | Event Coordinator Lead, formerly the Event Operations Manager ([[week-7-customer-changes\|Week 7 C5]]; [#128](https://github.com/SinYang13/IS212-2026/discussions/128)) — see [[user-roles]] | Assigns an Event Coordinator as the main internal point of contact. Since Week 7, new requests first enter an unassigned queue |
 | 4 | Review and Clarification | Event Coordinator | Reviews information; requests clarification or amendment where incomplete or unclear |
 | 5 | Initial Approval | Event Coordinator | Determines whether planning should proceed; rejected or returned requests retain a decision record |
 | 6 | Venue Identification | Event Coordinator | Searches venues satisfying date, time, capacity, layout, accessibility, facilities, setup requirements |
 | 7 | Venue Request | Event Coordinator → Venue Staff | Submits booking request; Venue Staff approve, reject, or suggest an alternative |
 | 8 | Technical Requirements | Technical Support Staff | Review requested equipment and support; determine what can be provided and reserved |
+| 8½ | Operational Safety Check (inserted gate, not a brief step) | Safety Officer ([[week-7-customer-changes\|Week 7 C6]]) | Reviews the event's operational safety once venue and technical arrangements are confirmed; approves, rejects, or requests changes. Preparation cannot start until approved — see [[operational-safety-check]] |
 | 9 | Event Preparation | Coordinator, Venue Staff, Technical Support Staff | Coordinator monitors outstanding arrangements; staff update preparation progress |
 | 10 | Event Confirmation | Event Coordinator | Confirms once essential arrangements are complete; Organiser can view confirmed arrangements |
 | 11 | Attendee Registration | Attendee | Registers during the permitted period, subject to capacity |
@@ -42,6 +45,8 @@ The end-to-end process by which an event moves from an Event Organiser's initial
 | 14 | Completion | Event Coordinator | Event marked completed; attendance, operational notes, issues recorded and event closed |
 
 ([[event-request-workflow|brief §5]])
+
+**Row 8½ is not the customer's.** Steps 1–14 keep the brief's numbering, which the customer assigned. The Operational Safety Check comes from [[week-7-customer-changes|Week 7 C6]] and sits **after Step 8 and before Step 9**, so it also precedes Step 10 (confirmation). It is shown as 8½ so nothing is renumbered. The Step 3 actor change is likewise Week 7's ([[week-7-customer-changes|Week 7 C5]]).
 
 **Scope caveat:** The 14 steps are a typical end-to-end flow, not an exhaustive specification. The customer stated there may be other branching or exception flows not yet identified, and that features and flows for Release 1 would be prioritised after further internal stakeholder discussion (Source: is212-discussions-2026-08-31, [#11](https://github.com/SinYang13/IS212-2026/discussions/11)). A subset is acceptable.
 
@@ -83,9 +88,11 @@ Design implications:
 
 Assignment is performed by an **Event Operations Manager** — a role that appears only in the Q&A, not in the brief's five-role table (Source: is212-discussions-2026-08-31, [#73](https://github.com/SinYang13/IS212-2026/discussions/73)). See [[user-roles]].
 
+**Week 7 change.** [[week-7-customer-changes|Week 7 C5]] introduces the **Event Coordinator Lead** title for this step. The customer says the role was already included as part of the requirement ([#128](https://github.com/SinYang13/IS212-2026/discussions/128)), so the Lead **is** the Event Operations Manager, retitled; [#129](https://github.com/SinYang13/IS212-2026/discussions/129) asks this formally and is unanswered on the board, but [#128](https://github.com/SinYang13/IS212-2026/discussions/128) already says so. Framing: the role was already a requirement; what is new is the title and three capabilities — reassign, view basic event information, and view the current assignments of all coordinators and active events. New requests no longer go directly to a coordinator: they first enter an **unassigned queue** the Lead can view. Event Coordinators manage only events assigned to them, and relevant users are notified on assignment and reassignment. The table below keeps the earlier answers, which now read as the Lead's; its duties carry over unchanged. C5's notification of relevant users on assignment and reassignment does not conflict with the no-per-submission-notification answer ([#117](https://github.com/SinYang13/IS212-2026/discussions/117)): they are different events. The queue is a request with status `Submitted` and no assigned coordinator, so it needs no new data ([[event-request]]). Whether the stored role name changes, or only the displayed title, is open — see [[user-roles]].
+
 | Question | Answer | Ref |
 |---|---|---|
-| Who assigns the coordinator? | The Event Operations Manager, after the request is submitted | [#73](https://github.com/SinYang13/IS212-2026/discussions/73) |
+| Who assigns the coordinator? | The Event Operations Manager (now the Event Coordinator Lead), after the request is submitted | [#73](https://github.com/SinYang13/IS212-2026/discussions/73) |
 | Auto-assignment or manual? | Manual, by the manager | [#73](https://github.com/SinYang13/IS212-2026/discussions/73) |
 | Is there assignment criteria in the system? | No — it is up to the Event Operations Manager, who follows an SOP maintained **outside** the system | [#93](https://github.com/SinYang13/IS212-2026/discussions/93) |
 | Can a coordinator be on two events concurrently? | **Yes** | [#92](https://github.com/SinYang13/IS212-2026/discussions/92) |
@@ -95,7 +102,7 @@ Assignment is performed by an **Event Operations Manager** — a role that appea
 
 (Source: is212-discussions-2026-08-31)
 
-Design implication: coordinator assignment is a **simple write, not a workflow**. No approval chain, no acceptance state, no capacity/load-balancing logic is required — only a record of who is assigned, an audit trail of assignment changes, and a notification to the assignee.
+Design implication: coordinator assignment is a **simple write, not a workflow**. No approval chain, no acceptance state, no capacity/load-balancing logic is required — only a record of who is assigned, an audit trail of assignment changes, and a notification to the assignee. [[week-7-customer-changes|Week 7 C5]] widens the last point to "relevant users" without naming them; whether the outgoing coordinator on a reassignment is one is unanswered and is carried on [[notifications]].
 
 That write lands on the **request itself**. Step 3 runs after submission but before Review (Step 4) and Approval (Step 5), both performed by the assigned coordinator, and at that point no [[event]] record exists yet — so [[schema]] gives `event_request` its own `assigned_coordinator_user_account_id`, null through `Draft` and `Submitted` and set here. Without it nothing would record who was reviewing a request between `Submitted` and `Approved`. See [[event-request]].
 
@@ -105,9 +112,24 @@ That write lands on the **request itself**. Step 3 runs after submission but bef
 - Typical ambiguities cited by the customer: an Organiser requesting a "large room" without stating expected attendance, or a hybrid event without stating video-conferencing needs (Source: customer-brief-no-1).
 - Technical Support Staff can record questions or clarification needs against the event, but the **Event Coordinator remains the main liaison** and coordinates the response to the Organiser. The clarification and response are retained with the event record (Source: is212-discussions-2026-08-31, [#87](https://github.com/SinYang13/IS212-2026/discussions/87)).
 - Approval means only that information is sufficient for planning to proceed — it commits nothing. See [[event-lifecycle]] for the approved-vs-confirmed distinction.
-- Approval also **hands the coordinator assignment over**: the value set at Step 3 is copied from the request onto the [[event]] that approval creates, and the request's copy is then frozen, since `Approved` is terminal for that record. From that point the event holds the live assignment — any reassignment by the Event Operations Manager ([#94](https://github.com/SinYang13/IS212-2026/discussions/94)) writes only there, and the cancel-only-by-the-assigned-coordinator rule ([#68](https://github.com/SinYang13/IS212-2026/discussions/68)) reads only there. See [[schema]].
+- Approval also **hands the coordinator assignment over**: the value set at Step 3 is copied from the request onto the [[event]] that approval creates, and the request's copy is then frozen, since `Approved` is terminal for that record. From that point the event holds the live assignment — any reassignment by the Event Coordinator Lead (formerly the Event Operations Manager, [#94](https://github.com/SinYang13/IS212-2026/discussions/94)) writes only there, and the cancel-only-by-the-assigned-coordinator rule ([#68](https://github.com/SinYang13/IS212-2026/discussions/68)) reads only there. See [[schema]].
 - Rejected or returned requests retain a record of the decision. Whether they may be resubmitted is unspecified ([#67](https://github.com/SinYang13/IS212-2026/discussions/67)) — see [[event-lifecycle]].
 - Review has a fourth exit besides approve, reject and return: the coordinator may **withdraw** the request on the Organiser's behalf, on a request made outside the system while the request is under review ([#103](https://github.com/SinYang13/IS212-2026/discussions/103)). See [[event-lifecycle]].
+
+## Step 8½ — Operational Safety Check (inserted gate)
+
+A mandatory gate added by [[week-7-customer-changes|Week 7 C6]], a new role and requirement "due to regulation" ([#128](https://github.com/SinYang13/IS212-2026/discussions/128)): once venue and technical arrangements are confirmed, a **Safety Officer** reviews the event's operational safety before it proceeds to preparation. Detail lives on [[operational-safety-check]]; the record is [[safety-check]].
+
+| Aspect | Position | Ref |
+|---|---|---|
+| Where it sits | After Step 8 (Technical Requirements), before Step 9 (Event Preparation), and so before Step 10 (Event Confirmation) | [[week-7-customer-changes\|Week 7 C6]] |
+| What "venue and technical arrangements confirmed" means | Read here as the event's venue bookings being `Confirmed` and its equipment reserved. It is **not** the event's own `Confirmed` status, which is Step 10 and comes after the gate. Team reading, not a customer definition | [[week-7-customer-changes\|Week 7 C6]] |
+| Outcomes | Approve, reject the safety arrangement, or request changes. The Officer "will always give a response" | [[week-7-customer-changes\|Week 7 C6]] |
+| If changes are requested | The event returns to "the relevant earlier planning stage" and arrangements may need re-review. **Which stage is open** — see [[operational-safety-check]] | [[week-7-customer-changes\|Week 7 C6]] |
+| Blocking effect | The event **cannot proceed to preparation** until the check is approved | [[week-7-customer-changes\|Week 7 C6]] |
+| Who sees the outcome | Users with a legitimate relationship to the event who need it for their role, not every non-Attendee role by default. Whether the Organiser sees the safety status is unanswered | [#125](https://github.com/SinYang13/IS212-2026/discussions/125) |
+
+Two Week 7 notes also touch the venue steps (6–7), which this page otherwise defers to [[venue-booking]]: one event may hold more than one venue booking, each checked independently ([[week-7-customer-changes|Week 7 C3]]), and a tentative hold carries an expiry after which the venue is available again ([[week-7-customer-changes|Week 7 C4]]).
 
 ## Comments, Discussion, and Supporting Documents
 
@@ -137,6 +159,7 @@ Consequences:
 |---|---|
 | Venue identification, request, approval (6–7) | [[venue-booking]], [[venue-suitability]] |
 | Technical requirements (8) | [[equipment-management]], [[technical-support]] |
+| Operational Safety Check (between 8 and 9) | [[operational-safety-check]], [[safety-check]] |
 | Preparation and confirmation (9–10) | [[event-readiness]] |
 | Registration (11) | [[attendee-registration]] |
 | Changes before the event (12) | [[change-impact-management]] |
@@ -146,6 +169,8 @@ Consequences:
 
 | Item | Status | Ref |
 |---|---|---|
+| Whether the Event Coordinator Lead replaces or coexists with the Event Operations Manager at Step 3 | **Closed — the same role, retitled.** [#129](https://github.com/SinYang13/IS212-2026/discussions/129) asks formally and is unanswered on the board | [#128](https://github.com/SinYang13/IS212-2026/discussions/128), [#129](https://github.com/SinYang13/IS212-2026/discussions/129) |
+| Which earlier planning stage an event returns to when the Safety Officer requests changes | **Unanswered** — carried on [[operational-safety-check]] | [[week-7-customer-changes\|Week 7 C6]] |
 | Minimum mandatory fields for submission | **Unspecified — team to propose** | [#72](https://github.com/SinYang13/IS212-2026/discussions/72) |
 | Minimum lead time before event date | **Unspecified — team to propose** | [#78](https://github.com/SinYang13/IS212-2026/discussions/78) |
 | Which fields are copied when reusing a previous event | **Unspecified — team to propose** | [#75](https://github.com/SinYang13/IS212-2026/discussions/75) |

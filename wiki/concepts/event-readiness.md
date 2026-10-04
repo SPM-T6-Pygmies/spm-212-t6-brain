@@ -6,6 +6,7 @@ sources:
   - IS212 2026 Discussions Aug 31.md
   - IS212 2026 Discussions Aug 26.md
   - IS212 2026 Discussions Sept 8.md
+  - Week 7 Customer Changes.md
 tags:
   - readiness
   - confirmation-gate
@@ -20,7 +21,7 @@ tags:
 
 Whether an event's arrangements are sufficiently complete for the Event Coordinator to confirm it, and how the system surfaces what is still outstanding. Readiness is the gate between *planning* and *confirmed* in the [[event-lifecycle]].
 
-**Release 1 scope:** Per [[release-1-scope]], event readiness tracking — the confirmation gate this page describes — is 🧩 Adjacent, inherited from the [#80](https://github.com/SinYang13/IS212-2026/discussions/80) blocking rule and feature 6's requirement that status changes stay "consistent with the actions performed"; only the gate itself is required, not a readiness dashboard. Outstanding action tracking, the list-and-chase surface below, is 📋 Backlog.
+**Release 1 scope:** Per [[release-1-scope]], event readiness tracking — the confirmation gate this page describes — is 🧩 Adjacent, inherited from the [#80](https://github.com/SinYang13/IS212-2026/discussions/80) blocking rule and feature 6's requirement that status changes stay "consistent with the actions performed"; only the gate itself is required, not a readiness dashboard. Outstanding action tracking, the list-and-chase surface below, is 📋 Backlog. The **safety gate** described under "Two gates" is separate and 🎯 Release 1, made mandatory by [[week-7-customer-changes|Week 7 C6]] — see [[operational-safety-check]].
 
 ## The Core Rule
 
@@ -35,13 +36,27 @@ The gate is not optional for Release 1. Event Confirmation needs no standalone f
 | 4 | Can an event be confirmed with non-essential actions outstanding? | **Yes**, provided all arrangements considered essential for that event are complete. Non-essential follow-up actions may remain outstanding. |
 | 5 | Should the system prevent confirmation when a required arrangement is incomplete? | **Yes.** If an arrangement has been identified as required/essential for that event and is still incomplete, the event should not be confirmable. |
 
+## Two Gates, Not One
+
+The essential-arrangement gate above ([#80](https://github.com/SinYang13/IS212-2026/discussions/80), [#106](https://github.com/SinYang13/IS212-2026/discussions/106)) is **separate from, and in addition to**, the Operational Safety Check. After the venue and technical arrangements are confirmed, the Safety Officer must approve the event before it proceeds to preparation, and so before confirmation ([[week-7-customer-changes|Week 7 C6]]).
+
+| | Essential-arrangement gate | Safety gate |
+|---|---|---|
+| Source | [#80](https://github.com/SinYang13/IS212-2026/discussions/80), [#98](https://github.com/SinYang13/IS212-2026/discussions/98), [#106](https://github.com/SinYang13/IS212-2026/discussions/106) | [[week-7-customer-changes\|Week 7 C6]] |
+| Applies to | The arrangements essential to **that** event; per-event | **Every** event (🔶 team reading; the check is "due to regulation" per [#128](https://github.com/SinYang13/IS212-2026/discussions/128), which strengthens but does not state it) |
+| Decided by | Event Coordinator (with Technical Support Staff for equipment) | Safety Officer |
+| Can the Coordinator waive it? | Yes — by judging an arrangement non-essential | No. The check is **not an arrangement type** the Coordinator may mark non-essential (🔶, [[week-7-customer-changes\|Week 7 C6]], [#80](https://github.com/SinYang13/IS212-2026/discussions/80)) |
+| Blocks | Confirmation | Preparation (Step 9), and therefore confirmation (Step 10) |
+
+Confirmation requires both. The Coordinator must be able to see which gate is blocking: an incomplete essential arrangement, or a safety check that is `Pending`, `Rejected` or `Changes Requested` ([[non-functional-requirements|brief §7]]). The mechanism is the team's ([#98](https://github.com/SinYang13/IS212-2026/discussions/98)).
+
 ## Essential vs Non-Essential
 
 There is no global checklist. Essentiality is **per-event and derived from the event's actual needs**.
 
 | Arrangement | Essential when… | Not applicable when… |
 |---|---|---|
-| Venue | Always, in practice — an event needs a place | — |
+| Venue | Always, in practice — an event needs a place. Where an event has **several** venue bookings ([[week-7-customer-changes\|Week 7 C3]]), venue readiness is 🔶 *derived across all live bookings*: complete only when every live booking is `Confirmed` and none is flagged for review ([[week-7-customer-changes\|Week 7 C3]], [#80](https://github.com/SinYang13/IS212-2026/discussions/80)) | — |
 | Equipment | The Organiser requested equipment | No equipment requested |
 | Technical support | The event requires support before or during delivery | No technical requirements |
 | Programme / agenda | The event's operations depend on the schedule | Simple single-session events may not need a detailed programme |
@@ -73,6 +88,7 @@ Design implications:
 
 - Readiness must be **computable at confirmation time** from the state of the constituent arrangements.
 - The Event Coordinator must be able to see *which* arrangement is blocking, not just that confirmation is unavailable — the brief requires outstanding actions to be easy for the appropriate user to understand ([[non-functional-requirements|brief §7]]).
+- The Coordinator must also see whether the **safety check** is blocking — see Two gates, above.
 - For multi-session events, readiness aggregates across sessions, since sessions may have different venues, equipment, and attendance limits (Source: is212-discussions-2026-08-31, [#74](https://github.com/SinYang13/IS212-2026/discussions/74)). See [[event-request-workflow]].
 
 ## Partial Fulfilment Feeding Readiness
@@ -129,6 +145,7 @@ Readiness is not a one-time check. A confirmed event can lose readiness:
 - A booked venue may become unavailable due to an operational issue (Source: is212-discussions-2026-08-31, [#54](https://github.com/SinYang13/IS212-2026/discussions/54)).
 - Reserved equipment may become damaged or go into maintenance (Source: customer-brief-no-1).
 - A significant change may invalidate arrangements already made (Source: is212-discussions-2026-08-31, [#4](https://github.com/SinYang13/IS212-2026/discussions/4)).
+- A safety approval may be withdrawn by a significant change to attendance, venue or equipment (equipment placement is a safety factor). Not stated by the customer; 🔶 proposed, depends on Q7 ([[week-7-customer-changes|Week 7 C6]], [#4](https://github.com/SinYang13/IS212-2026/discussions/4)). See [[operational-safety-check]].
 - Equipment requirements may be changed after reservation, in which case the affected arrangements are reviewed and updated and Technical Support Staff re-check suitability and availability (Source: is212-discussions-2026-09-08, [#114](https://github.com/SinYang13/IS212-2026/discussions/114)).
 
 In these cases the event may need to move back to planning — see [[change-impact-management]] and [[event-lifecycle]]. Whichever route is taken, losing confirmation is not a silent internal state change: the Event Organiser **must be informed** that the confirmed event is no longer confirmed, by the system or another appropriate channel, with the mechanism left to the team (Source: is212-discussions-2026-09-08, [#105](https://github.com/SinYang13/IS212-2026/discussions/105)). See [[notifications]].
@@ -140,6 +157,8 @@ In these cases the event may need to move back to planning — see [[change-impa
 | How essential vs non-essential is determined and recorded per event | **Unspecified — team to propose** (highest-value design decision on this page). The *decider* is now fixed for equipment: coordinator plus relevant Technical Support Staff | [#80](https://github.com/SinYang13/IS212-2026/discussions/80), [#106](https://github.com/SinYang13/IS212-2026/discussions/106) |
 | UI or mechanism for performing event confirmation | Team to propose; the confirming act and the resulting `Confirmed` status are required in Release 1 | [#98](https://github.com/SinYang13/IS212-2026/discussions/98) |
 | Channel for informing the Organiser that a confirmed event is no longer confirmed | Team to propose; informing them is required | [#105](https://github.com/SinYang13/IS212-2026/discussions/105) |
+| Whether the safety gate is carried by new event statuses (`Safety Review`, `Preparation`) or derived from [[safety-check]] rows | 🔶 Team decision — the gate itself is the customer's rule | [[week-7-customer-changes\|Week 7 C6]], [#98](https://github.com/SinYang13/IS212-2026/discussions/98) |
+| What "technical arrangements confirmed" means for an event with no equipment lines | 🔶 Team decision — propose, do not assume | [[week-7-customer-changes\|Week 7 C6]], [#80](https://github.com/SinYang13/IS212-2026/discussions/80) |
 | How partial equipment fulfilment is represented in readiness state | Team to propose | [#90](https://github.com/SinYang13/IS212-2026/discussions/90) |
 | Reminder timing and configurability for incomplete arrangements | **Unspecified — team to propose** | [#40](https://github.com/SinYang13/IS212-2026/discussions/40), [#47](https://github.com/SinYang13/IS212-2026/discussions/47) |
 | Dashboard content and layout per role | UI/UX — team to propose | [#27](https://github.com/SinYang13/IS212-2026/discussions/27) |

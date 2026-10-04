@@ -31,6 +31,7 @@ This file defines the conventions and workflows for maintaining the PM Intern Le
 |---|---|---|
 | `#N` (GitHub Discussion) | `[#N](https://github.com/SinYang13/IS212-2026/discussions/N)` | Substitute the real number for `N` in both places. |
 | `brief §N` | `[[<page>\|brief §N]]` | `<page>` is whatever `[[customer-brief-no-1]]`'s Content map assigns to that section — keep "brief §N" as the visible text. |
+| `Week 7 CN` (customer change notice, N = 1–6) | `[[week-7-customer-changes\|Week 7 CN]]` | Substitute the real change number for `N` in the visible text. All six changes live on the one source page. |
 
 Brief section → page map (mirrors `[[customer-brief-no-1]]`'s Content map — that page is the source of truth; update it first if a source cites a section not yet listed, then mirror the change here):
 
@@ -48,7 +49,7 @@ Rules:
 
 - **Tables**: escape the wikilink's pipe as `\|` so it doesn't split table columns (e.g. `[[event-planning-venue-booking-system\|brief §4]]`). Verify the cell count is unchanged after adding it.
 - **Code fences are the only exemption**: text inside ` ```mermaid ` / ` ```stateDiagram ` (or any diagram) fence is syntax, not prose — leave `#N` and `brief §N` unlinked there.
-- **Self-reference exemption**: the discussion source-summary pages (`wiki/sources/is212-discussions-*.md`) don't link their own `#N` heading mentions — a self-link serves no purpose.
+- **Self-reference exemption**: the discussion source-summary pages (`wiki/sources/is212-discussions-*.md`) don't link their own `#N` heading mentions — a self-link serves no purpose. Likewise `wiki/sources/week-7-customer-changes.md` doesn't link its own `Week 7 CN` headings.
 - Other citation spellings (`brief s4`, `(Source: customer-brief-no-1, s4)`) are not equivalent to `brief §N` — normalize to `brief §N` and link it rather than leaving the variant spelling bare.
 
 ## Attribute status
@@ -65,11 +66,11 @@ A `🔶` row with no citation is a lint failure.
 
 ## Release scope
 
-The Week 4 customer briefing fixed the Release 1 feature set. Pages that describe functionality carry exactly one of these markers, and no others.
+The Week 4 customer briefing fixed the Release 1 feature set, and the Week 7 customer change notice (`[[week-7-customer-changes]]`) added six mandatory changes to it. Pages that describe functionality carry exactly one of these markers, and no others.
 
 | Marker | Meaning |
 |---|---|
-| `🎯 Release 1` | Named in the Week 4 briefing's core-20 table. Must work by Week 12. |
+| `🎯 Release 1` | Named in the Week 4 briefing's core-20 table, **or** in a later customer change notice that makes it mandatory for Release 1 (currently only Week 7 C1–C6). Must work by Week 12. A row justified by a change notice must cite the change, e.g. `Week 7 C4`. |
 | `🧩 Adjacent` | Not named in the core-20, but load-bearing for one that is — pulled in by the briefing's requirement that the release "support coherent end-to-end event workflows". Must cite which core feature depends on it. |
 | `📋 Backlog` | In the Week 1 brief's consideration set, deferred past Release 1. Kept for the product backlog and C4 models, not deleted. |
 

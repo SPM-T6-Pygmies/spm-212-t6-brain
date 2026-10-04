@@ -5,6 +5,8 @@ sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 26.md"
   - "IS212 2026 Discussions Aug 31.md"
+  - "Week 7 Customer Changes.md"
+  - "Managing Changes – A Guide.md"
 tags: [entity, course, process, is212, g9]
 ---
 
@@ -59,6 +61,23 @@ Announcements · Calendar · Equipment & Technical Support · Events · General 
 | Weeks 2–4 | Understand customer needs; build product backlog of epics and user stories |
 | Week 3, Friday 6pm | Project instructions and grading rubrics released |
 | Week 4 | Customer identifies core Release 1 functionality; sprinting may begin |
+| Week 7 | Customer change notice: six mandatory changes to Release 1, no further changes expected ([[week-7-customer-changes]]) |
 | Week 12 | First release submitted |
 
-Snapshots of the board are archived as [[is212-discussions-2026-08-26]] and [[is212-discussions-2026-08-31]].
+Snapshots of the board are archived as [[is212-discussions-2026-08-26]], [[is212-discussions-2026-08-31]], [[is212-discussions-2026-09-08]], [[is212-discussions-2026-09-16]] and [[is212-discussions-2026-10-01]].
+
+## Change management
+
+The course guide `Managing Changes – A Guide.md` defines how a Scrum team handles a customer change. It is process, not domain content, so it is summarised here rather than ingested as a source page.
+
+A **change** is any new, revised or corrected requirement that affects the Product Backlog or planned work. Handle it in six steps: describe the change (what, why, and whether it is new, a clarification or a correction); update the backlog; update acceptance criteria; re-estimate; update the design documentation (C4, class and sequence diagrams, data model, API specs); and update the test cases (unit, functional, integration, end-to-end, regression).
+
+Its three worked scenarios decide what happens to a story already marked Done:
+
+| Scenario | Situation | Action |
+|---|---|---|
+| 1 | An original acceptance criterion was missed | Reopen the story; estimate only the **remaining work**. Not a new requirement |
+| 2 | A genuinely new requirement | Keep the story Done; add a **new story** and estimate it |
+| 3 | A new requirement **and** an original criterion that was incorrect | Do both: a new story for the new requirement, and reopen the old story for the correction |
+
+Re-estimate an existing item only when new information materially changes its size, complexity, effort or uncertainty. The guide was applied to [[week-7-customer-changes]] in [[week-7-change-impact-review]].

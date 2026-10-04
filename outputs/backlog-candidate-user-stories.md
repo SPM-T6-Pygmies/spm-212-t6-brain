@@ -78,25 +78,25 @@ Every story belongs to exactly one epic (§1). Epics are not estimated and are n
 
 | Epic | Covers (stocktake §2 rows) | Scope | Cards |
 |---|---|---|---|
-| **EP-A** — Technical Support Coordination | Technical support requests; technical staff assignment and rostering | `📋 Backlog` | TS1–TS5 |
-| **EP-B** — Reporting and Export | Event / venue usage / registration reports; report generation and exporting | `📋 Backlog` | RP1–RP4 |
-| **EP-C** — Cross-Event Visibility | Event calendar; event search and filtering; role-based dashboard | `📋 Backlog` | CV1–CV4 |
-| **EP-D** — History Browsing | Activity history; change history (browsable surface only) | `📋 Backlog` | HB1–HB2 |
-| **EP-E** — Event Content Enrichment | Event categories; recurring/reuse; multi-session events; supporting documents | `📋 Backlog` | EC1–EC6 |
-| **EP-F** — Tentative Venue Holding | Tentative venue holds | `📋 Backlog` | VH1–VH2 |
-| **EP-G** — Attendance and Non-Self-Registering Attendees | Check-in / attendance recording; VIP / non-self-registering attendees | `📋 Backlog` (check-in) · no register row (VIP path) | Reg6 · SPK-1 |
-| **EP-H** — Readiness Chasing and Reminders | Outstanding action tracking; general reminder system | `📋 Backlog` | RC1–RC2 · RM1–RM3 |
-| **EP-I** — Client Organisation Contacts | Primary contact per client organisation | No register row — see CO1 | CO1 |
+| **EP-A** — Technical Support Coordination · **SPM-193** | Technical support requests; technical staff assignment and rostering | `📋 Backlog` | TS1–TS5 |
+| **EP-B** — Reporting and Export · **SPM-194** | Event / venue usage / registration reports; report generation and exporting | `📋 Backlog` | RP1–RP4 |
+| **EP-C** — Cross-Event Visibility · **SPM-195** | Event calendar; event search and filtering; role-based dashboard | `📋 Backlog` | CV1–CV4 |
+| **EP-D** — History Browsing · **SPM-196** | Activity history; change history (browsable surface only) | `📋 Backlog` | HB1–HB2 |
+| **EP-E** — Event Content Enrichment · **SPM-197** | Event categories; recurring/reuse; multi-session events; supporting documents | `📋 Backlog` | EC1–EC6 |
+| **EP-F** — Tentative Venue Holding · **SPM-198** | Tentative venue holds | `📋 Backlog` | VH1–VH2 |
+| **EP-G** — Attendance and Non-Self-Registering Attendees · **SPM-199** | Check-in / attendance recording; VIP / non-self-registering attendees | `📋 Backlog` (check-in) · no register row (VIP path) | Reg6 · SPK-1 |
+| **EP-H** — Readiness Chasing and Reminders · **SPM-200** | Outstanding action tracking; general reminder system | `📋 Backlog` | RC1–RC2 · RM1–RM3 |
+| **EP-I** — Client Organisation Contacts · **SPM-201** | Primary contact per client organisation | No register row — see CO1 | CO1 |
 
 ---
 
-## EP-A — Technical Support Coordination
+## EP-A — Technical Support Coordination · **SPM-193**
 
 `📋 Backlog`. Neither technical support requests nor technical staff assignment is named in the Week 4 core 20 ([[release-1-scope]]). The Technical Support Staff *role* stays in scope via core features 1, 15 and 16 — this epic is the work that role does **beyond** equipment reservation, which is where the gap sits.
 
 Along with EP-B, the largest completely uncarded area: [[technical-support]] is a full concept page and [[support-request]] a full domain object, with zero cards between them until now. [[support-request]]'s own framing is the warning label for this whole epic — the object is "largely left to the team", the sources fix a handful of binding rules and specify no lifecycle, no assignment mechanism and no availability model.
 
-### TS1 — Request Technical Support
+### TS1 — Request Technical Support · ticketed as **SPM-203**
 
 **Story:** As an Event Coordinator, I want to record that an event requires technical support and describe what is needed, so that Technical Support Staff learn about the requirement in time to act on it rather than at short notice.
 
@@ -112,7 +112,7 @@ Along with EP-B, the largest completely uncarded area: [[technical-support]] is 
 
 *The WHY traces to the brief's own pain point — "Technical Support Staff may receive insufficient notice about upcoming equipment or support requirements" ([[connectsphere-event-services|brief §2]]) — not to an invented efficiency claim.*
 
-### TS2 — Review a Technical Support Requirement
+### TS2 — Review a Technical Support Requirement · ticketed as **SPM-204**
 
 **Story:** As a Technical Support Staff member, I want to review an event's technical support requirement and record whether it can be provided, so that the Event Coordinator knows whether that arrangement is settled or still blocking.
 
@@ -129,7 +129,7 @@ Along with EP-B, the largest completely uncarded area: [[technical-support]] is 
 
 **Dependency:** TS1 (no requirement to review without one). Declared per INVEST-I tolerance rather than pretended away.
 
-### TS3 — Raise a Clarification on a Support Requirement
+### TS3 — Raise a Clarification on a Support Requirement · ticketed as **SPM-205**
 
 **Story:** As a Technical Support Staff member, I want to record a question against an event when the support requirement is unclear, so that the Event Coordinator can get an answer from the Event Organiser instead of the ambiguity surviving to the event day.
 
@@ -143,7 +143,7 @@ Along with EP-B, the largest completely uncarded area: [[technical-support]] is 
 - No notification trigger for a technical-support clarification exists in [[notifications|brief §6]]'s list. Whether raising one notifies the Coordinator is unstated, so no notification AC appears here.
 - Threaded vs flat comments is a UI/UX decision ([#15](https://github.com/SinYang13/IS212-2026/discussions/15)).
 
-### TS4 — Allocate Technical Support Staff to an Event
+### TS4 — Allocate Technical Support Staff to an Event · ticketed as **SPM-206**
 
 **Story:** As *[role not named by the customer — see open question]*, I want to allocate Technical Support Staff to an event, so that a named person is accountable for on-site support on the day rather than it being assumed.
 
@@ -162,7 +162,7 @@ Along with EP-B, the largest completely uncarded area: [[technical-support]] is 
 - How many staff may be allocated per event is unstated — [[event-planning-venue-booking-system|brief §4]] says "suitable Technical Support Staff" in the plural and names no bound.
 - No notification trigger exists for a staff member learning of their own allocation; [[notifications|brief §6]] lists coordinator assignment only.
 
-### TS5 — See Technical Support Staff Availability
+### TS5 — See Technical Support Staff Availability · ticketed as **SPM-207**
 
 **Story:** As *[the role that performs technical staffing — not named, see TS4]*, I want to see which Technical Support Staff are available for an event's date and time, so that I allocate someone who is genuinely free rather than discovering the clash on the day.
 
@@ -177,7 +177,7 @@ Along with EP-B, the largest completely uncarded area: [[technical-support]] is 
 
 ---
 
-## EP-B — Reporting and Export
+## EP-B — Reporting and Export · **SPM-194**
 
 `📋 Backlog`. None of Event Reports, Venue Usage Reports, Registration Reports or Report Generation and Exporting is named in the core 20 ([[release-1-scope]]). Core feature 18's "view appropriate registration information" is a roster **view**, not a report.
 
@@ -185,7 +185,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 **On the missing "export" card.** Export is deliberately carried *inside* each report card rather than split out as its own story. A standalone "export a report" card has no beneficiary and no standalone value — it is a criterion, not a story (§6.1, Small: too small). Splitting instead by report type applies the **Variations in data** pattern (§7.2), which is the split that produces independently valuable slices.
 
-### RP1 — Generate an Event Summary
+### RP1 — Generate an Event Summary · ticketed as **SPM-208**
 
 **Story:** As *[role not named — the brief says only "appropriate users", see open question]*, I want to generate a summary of a single event covering its details, schedule, venue, operational requirements and registration information, so that I can take a complete picture into an operational meeting without assembling it by hand from several screens.
 
@@ -200,7 +200,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - No export file format is named anywhere in the brief or the Q&A. [[reporting]]'s tabular-vs-document reading is that page's practical suggestion, not a sourced constraint.
 - Whether the summary must represent per-session detail for a multi-session event is unstated. [[reporting]] asserts it must; that is the wiki's derivation from [#74](https://github.com/SinYang13/IS212-2026/discussions/74), which speaks about sessions and not about reports. If confirmed, this card gains a dependency on EC3.
 
-### RP2 — Review Venue Usage Over a Period
+### RP2 — Review Venue Usage Over a Period · ticketed as **SPM-209**
 
 **Story:** As an internal user — invoking the §4.2 universal-capability exception, since [[event-planning-venue-booking-system|brief §4]] scopes this to "internal users" as one population and the behaviour does not differ between Event Coordinator, Venue Staff and Technical Support Staff — I want to review venue bookings and usage across a period I choose, so that I can plan operations against how the venues are actually being used.
 
@@ -215,7 +215,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Whether the report covers one venue or all venues is unstated.
 - Whether a **buffer slot counts as a utilised slot**, as its own category, or not at all is unstated ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)). It changes the headline number: with both buffers always applied, a single-slot event uses three slots, so "slots booked over slots available" will overstate real event use unless buffers are separable. The customer left the measures to the team ([#29](https://github.com/SinYang13/IS212-2026/discussions/29)), so this is the team's to propose.
 
-### RP3 — View and Export My Event's Attendees
+### RP3 — View and Export My Event's Attendees · ticketed as **SPM-210**
 
 **Story:** As an Event Organiser, I want to view and export the attendee information for an event my organisation is responsible for, so that I can run the door and follow up with participants without asking ConnectSphere for a list each time.
 
@@ -231,7 +231,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - No export file format is named.
 - Whether an Organiser can export attendees for a **same-organisation** event they are not personally responsible for is unstated. [#81](https://github.com/SinYang13/IS212-2026/discussions/81) grants view without edit for those events but does not speak to export.
 
-### RP4 — Export a Registration List for an Assigned Event
+### RP4 — Export a Registration List for an Assigned Event · ticketed as **SPM-211**
 
 **Story:** As an Event Coordinator, I want to export the registration list for an event I am coordinating, so that staff working the door have a roster to check people against.
 
@@ -249,11 +249,11 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 ---
 
-## EP-C — Cross-Event Visibility
+## EP-C — Cross-Event Visibility · **SPM-195**
 
 `📋 Backlog` on all three areas. Each is the **event-level** twin of a venue-level feature already in Release 1, which is precisely why they were missed: core feature 9 is the *venue availability* calendar, core feature 10 is *venue* search, and neither RA1/SPM-48 (one event's own status) nor U3/SPM-15 (which functions a role can see) is a cross-event overview.
 
-### CV1 — View My Events in a Calendar
+### CV1 — View My Events in a Calendar · ticketed as **SPM-212**
 
 **Story:** As an Attendee, I want to see in calendar form both the events I have registered for and the events currently open for registration, so that I can plan around what I have committed to and find something I can still join.
 
@@ -271,7 +271,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 *The Attendee is the only role the customer addressed in a calendar context ([#10](https://github.com/SinYang13/IS212-2026/discussions/10)), which is why this card comes first in the epic.*
 
-### CV2 — View the Event Calendar
+### CV2 — View the Event Calendar · ticketed as **SPM-213**
 
 **Story:** As an internal user — §4.2 universal-capability exception: the calendar mechanism is identical for every internal role and only the visible set differs, which is expressed as an AC below rather than folded into the role — I want to see upcoming events in calendar form, so that I can see what is coming without opening each event record in turn.
 
@@ -286,7 +286,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Which event statuses appear — whether drafts, submitted or cancelled events are rendered — is unstated.
 - An **Event Organiser** calendar is a third card this epic needs and does not yet have: [#81](https://github.com/SinYang13/IS212-2026/discussions/81) gives Organisers a different visible set (own events editable, same-organisation events view-only, unrelated organisations barred). It is not drafted here because the customer has not said whether the event calendar surfaces same-organisation events at all, and guessing would decide an access question by implication.
 
-### CV3 — Search and Filter Events
+### CV3 — Search and Filter Events · ticketed as **SPM-214**
 
 **Story:** As an internal user — §4.2 exception, since [[event-planning-venue-booking-system|brief §4]] scopes event search to "Users" without differentiating — I want to search events by name, client organisation, date, venue, status or assigned coordinator, so that I can reach a specific event directly instead of browsing every record.
 
@@ -303,7 +303,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Whether Attendees may search events, as distinct from browsing open ones ([#10](https://github.com/SinYang13/IS212-2026/discussions/10)), is unstated. If yes, that is a second card with a different visible set.
 - **Status, as a search criterion, now ranges over one more value.** [#103](https://github.com/SinYang13/IS212-2026/discussions/103) adds a request-level `Withdrawn` that must remain distinguishable from draft, submitted, approved and rejected. [#20](https://github.com/SinYang13/IS212-2026/discussions/20)'s historical-record rule (AC 4) covers *completed and cancelled events* and says nothing about withdrawn requests, so whether they stay findable — and to whom — is unstated.
 
-### CV4 — See an Overview for My Role
+### CV4 — See an Overview for My Role · ticketed as **SPM-215**
 
 **Story:** As an internal user — §4.2 exception: [[event-planning-venue-booking-system|brief §4]] states the same capability for "each internal or external role", and the mechanism does not vary — I want an overview of the items needing my attention, so that I can start work from one place instead of hunting for the events that concern me.
 
@@ -328,14 +328,14 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 ---
 
-## EP-D — History Browsing
+## EP-D — History Browsing · **SPM-196**
 
 `📋 Backlog` — **the browsing surface only.**
 
 > [!info] The write side is already in Release 1
 > The underlying requirement that actions and changes be recorded — actor, timestamp, what changed — is `🎯 Release 1` as a non-functional requirement ([#14](https://github.com/SinYang13/IS212-2026/discussions/14), [[non-functional-requirements|brief §8f]]), independent of which functional area produced the change. Only the user-facing surfaces below are deferred: Release 1 requires that the record **exist**, not that it be **browsable** ([[audit-record]]). That deferral is now the customer's own position rather than an inference from the core-20's silence — "Activity History and Change History are not standalone core features, so there is no requirement to implement a complete audit-history function" ([#96](https://github.com/SinYang13/IS212-2026/discussions/96)). Read the relaxation narrowly: it reaches the browsable surface, not the what/who/when auditability requirement, which [#96](https://github.com/SinYang13/IS212-2026/discussions/96) does not touch. Cards here must not be read as descoping the NFR.
 
-### HB1 — Review How an Event's Information Changed
+### HB1 — Review How an Event's Information Changed · ticketed as **SPM-216**
 
 **Story:** As *[role not named — the brief says "users with appropriate access", see open question]*, I want to review how an event's important information has changed over time, so that when an arrangement no longer matches what was agreed I can see what was altered and by whom.
 
@@ -352,7 +352,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - The storage mechanism is explicitly the team's — "The technical mechanism used to achieve this is for you to propose" ([#14](https://github.com/SinYang13/IS212-2026/discussions/14)). That is a task inside this story, not an AC (T4).
 - AC 4 states what the *customer* said about documents. [[reporting]]'s stronger claim — that document change history is limited to add/delete events — is an inference [[audit-record]] itself downgrades, and is not carried here.
 
-### HB2 — Review an Event's Activity History
+### HB2 — Review an Event's Activity History · ticketed as **SPM-217**
 
 **Story:** As *[role not named — no audience is named for Activity History at all, see open question]*, I want to see the significant actions taken on an event with who performed each and when, so that I can settle a dispute about what happened without reconstructing it from memory.
 
@@ -369,11 +369,11 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 ---
 
-## EP-E — Event Content Enrichment
+## EP-E — Event Content Enrichment · **SPM-197**
 
 `📋 Backlog` on all four areas. None appears in core feature 2's information list, which carries event name, purpose, description, proposed date and time, expected attendance, venue requirements, accessibility needs, equipment requirements and registration needs — and not category, programme, sessions or documents ([[week-4-customer-briefing]]).
 
-### EC1 — Classify an Event by Category
+### EC1 — Classify an Event by Category · ticketed as **SPM-220**
 
 **Story:** As an Event Coordinator, I want events to carry a category such as conference, workshop or exhibition, so that I can find and group events of the same type when searching and reporting.
 
@@ -392,7 +392,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - **The actor and the beneficiary differ.** Whoever creates the event assigns the category; the value accrues to whoever searches and reports later. §4.2 warns that this usually means the card is two stories or has the wrong role. Resolve in the conversation before splitting blindly.
 - **Wiki inconsistency to settle first:** [[event-request-workflow]] states that requests are categorised, but [[event-request]]'s attribute table has no category field, and [[event-planning-venue-booking-system|brief §4]] says "**Events** can be classified", not requests. Decide whether category is set at request time or on the event, and fix whichever page is wrong.
 
-### EC2 — Create an Event by Reusing a Previous One
+### EC2 — Create an Event by Reusing a Previous One · ticketed as **SPM-221**
 
 **Story:** As an Event Organiser, I want to start a new event request from a previous event's information, so that I do not re-enter the same requirements for an event my organisation runs regularly.
 
@@ -407,7 +407,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Whether "recurring" implies a repeating series with generated instances, as distinct from one-off copying, is unstated. [[event-planning-venue-booking-system|brief §4]]'s row is titled "Recurring **or Similar** Events" but its text and [#75](https://github.com/SinYang13/IS212-2026/discussions/75)'s answer describe only reuse of information. If a true series is wanted, this is a different and much larger card.
 - Whether reuse is restricted to events of the same client organisation, whether the source event must be Completed, and whether the link back to the source is retained, are all unstated.
 
-### EC3 — Record an Event's Sessions
+### EC3 — Record an Event's Sessions · ticketed as **SPM-222**
 
 **Story:** As an Event Coordinator, I want to record an event's sessions with their own timings, so that an event running across a day or several days is planned as its parts rather than as one undifferentiated block.
 
@@ -423,7 +423,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 *This is the thin vertical slice through the workflow (§7.2, Workflow steps); EC4 and EC5 enhance it. Sessions are the one area where the customer stated a cardinality outright — [[client-organisation]] notes it as one of only three in the whole domain layer.*
 
-### EC4 — Book a Venue per Session
+### EC4 — Book a Venue per Session · ticketed as **SPM-224**
 
 **Story:** As an Event Coordinator, I want to book a different venue for each session of an event, so that a multi-day event can move between rooms without being split into separate events.
 
@@ -443,7 +443,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 **Dependency:** EC3.
 
-### EC5 — Set Equipment and Attendance per Session
+### EC5 — Set Equipment and Attendance per Session · ticketed as **SPM-225**
 
 **Story:** As an Event Coordinator, I want each session to carry its own equipment requirements and attendance limit, so that one session's needs are not applied to the whole event.
 
@@ -460,7 +460,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 **Dependency:** EC3.
 
-### EC6 — Attach Supporting Documents to an Event
+### EC6 — Attach Supporting Documents to an Event · ticketed as **SPM-223**
 
 **Story:** As an Event Organiser, I want to attach documents such as programmes and floor plans to my event, so that the Coordinator planning it has the materials without a separate email trail.
 
@@ -480,11 +480,11 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 ---
 
-## EP-F — Tentative Venue Holding
+## EP-F — Tentative Venue Holding · **SPM-198**
 
 `📋 Backlog`. Core features 12–14 describe request → approve/reject only; "tentative" and "hold" appear nowhere in the core 20. [#41](https://github.com/SinYang13/IS212-2026/discussions/41)'s exclusivity rule still binds through its *confirmed booking* half, which VN5/SPM-46 and V1/SPM-19 already carry — this epic is the deferred hold half. The deferral is now stated rather than inferred: placing multiple venues on tentative hold at the same time is "not required for Release 1" ([#109](https://github.com/SinYang13/IS212-2026/discussions/109), [[release-1-scope]]).
 
-### VH1 — Place a Tentative Hold on a Venue Slot
+### VH1 — Place a Tentative Hold on a Venue Slot · ticketed as **SPM-218**
 
 **Story:** As *[actor not named by the customer — see open question]*, I want to hold a venue slot while the event is still being finalised, so that the slot is not taken by another event during the days it takes to settle the details.
 
@@ -501,7 +501,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 - Whether a hold needs Venue Staff approval, and whether the Event Organiser can see it, remain unstated.
 - Whether a hold reserves its **setup and turnaround buffer slots** as well as the held slots is unstated ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)). If it does not, a competing confirmed booking could take a buffer slot and silently invalidate the hold when it is later confirmed.
 
-### VH2 — Confirm or Release a Tentative Hold
+### VH2 — Confirm or Release a Tentative Hold · ticketed as **SPM-219**
 
 **Story:** As *[actor not named — see VH1]*, I want to turn a tentative hold into a confirmed booking or give it up, so that the slot is either committed or freed for another event rather than sitting in limbo.
 
@@ -516,7 +516,7 @@ The other of the two largest uncarded areas: [[reporting]] is a full concept pag
 
 ---
 
-## EP-G — Attendance and Non-Self-Registering Attendees
+## EP-G — Attendance and Non-Self-Registering Attendees · **SPM-199**
 
 Check-in is `📋 Backlog` ([[release-1-scope]]). The VIP path has **no register row of its own** — it sits under the `🎯` Attendee-registration row while nothing in core feature 18 covers coordinator-side entry. That marker gap is itself a finding.
 
@@ -544,11 +544,11 @@ Three questions to close it: the delivery and entry mechanism; whether these att
 
 ---
 
-## EP-H — Readiness Chasing and Reminders
+## EP-H — Readiness Chasing and Reminders · **SPM-200**
 
 Both areas `📋 Backlog`. The **confirmation gate** is `🧩 Adjacent` and already carded as RA3/SPM-50 — "the minimum is the gate, not a readiness dashboard" ([[release-1-scope]]). This epic is the list-and-chase surface the gate does not include, plus the reminder categories beyond the one confirmed in [#47](https://github.com/SinYang13/IS212-2026/discussions/47).
 
-### RC1 — See What Is Blocking an Event's Confirmation
+### RC1 — See What Is Blocking an Event's Confirmation · **not ticketed** — duplicate of SPM-50 / SPM-109 / SPM-144
 
 **Story:** As an Event Coordinator, I want to see which of an event's arrangements are still incomplete, so that I chase the right person instead of discovering the blocker when confirmation fails.
 
@@ -562,7 +562,7 @@ Both areas `📋 Backlog`. The **confirmation gate** is `🧩 Adjacent` and alre
 
 **Two 2026-09-08 answers move this without closing it.** The *decider* is now fixed for one arrangement type: whether an incomplete **equipment** requirement is essential is determined by the Event Coordinator **together with the relevant Technical Support Staff**, and if judged essential the event must not be confirmed until it is resolved ([#106](https://github.com/SinYang13/IS212-2026/discussions/106), [[event-readiness]]). That is a decider, not a mechanism — how the judgement is recorded remains unspecified, and [#106](https://github.com/SinYang13/IS212-2026/discussions/106) speaks about equipment only. Separately, [#98](https://github.com/SinYang13/IS212-2026/discussions/98) removes any remaining reason to treat the gate itself as deferrable: event confirmation "does not need to be implemented as a separate standalone feature, but the Release 1 workflow should support an Event Coordinator confirming an event once the required/essential arrangements for that event have been completed". The mechanism this card's open question describes is therefore a **Release 1 dependency in the customer's own words**, even though this card is not.
 
-### RC2 — See Outstanding Actions Across My Events
+### RC2 — See Outstanding Actions Across My Events · ticketed as **SPM-226**
 
 **Story:** As an Event Coordinator, I want a list of my upcoming events that still have incomplete arrangements, so that I can work through them in order of urgency instead of opening each event to find out.
 
@@ -579,7 +579,7 @@ Both areas `📋 Backlog`. The **confirmation gate** is `🧩 Adjacent` and alre
 
 **Relation:** CV4. RC2 is plausibly a panel on the role-based overview rather than a screen; sequence them together.
 
-### RM1 — Be Reminded of an Upcoming Event
+### RM1 — Be Reminded of an Upcoming Event · ticketed as **SPM-227**
 
 **Story:** As an Attendee, I want a reminder before an event I am registered for takes place, so that I do not miss something I signed up for weeks earlier.
 
@@ -593,7 +593,7 @@ Both areas `📋 Backlog`. The **confirmation gate** is `🧩 Adjacent` and alre
 - **How far in advance and how often reminders fire, and the surface on which that is configured, are explicitly the team's** — "The timing and configurability are for you to propose" ([#40](https://github.com/SinYang13/IS212-2026/discussions/40)). No lead time appears in any AC above, because none exists to cite (§5.5).
 - Of the four reminder categories [[event-planning-venue-booking-system|brief §4]] lists, **only the incomplete-arrangements variant received a direct Q&A confirmation** ([#47](https://github.com/SinYang13/IS212-2026/discussions/47)). The upcoming-event category is stated in the brief's feature description and confirmed nowhere. Confirm the category is wanted before building it. **The 2026-09-08 batch does not change this, and should not be read as if it did:** it confirmed two further notification triggers — the Event Organiser is informed when a confirmed event stops being confirmed ([#105](https://github.com/SinYang13/IS212-2026/discussions/105)), and attendees are informed of a new date on a reschedule ([#115](https://github.com/SinYang13/IS212-2026/discussions/115)) — but neither is a *reminder*. Both are event-driven notifications on the notification feature ([[notifications]]), not scheduled lead-time reminders, and both explicitly permit delivery "through another appropriate communication channel".
 
-### RM2 — Be Reminded of a Registration Deadline
+### RM2 — Be Reminded of a Registration Deadline · ticketed as **SPM-228**
 
 **Story:** As an Attendee, I want a reminder before an event's registration closes, so that I do not miss the window for an event I intend to join.
 
@@ -607,7 +607,7 @@ Both areas `📋 Backlog`. The **confirmation gate** is `🧩 Adjacent` and alre
 - Lead time and configurability, as RM1 ([#40](https://github.com/SinYang13/IS212-2026/discussions/40)).
 - This category, like RM1's, has no direct Q&A confirmation.
 
-### RM3 — Configure Reminder Frequency
+### RM3 — Configure Reminder Frequency · ticketed as **SPM-229**
 
 **Story:** As *[role not named — see open question]*, I want to change how often batched reminders are sent, so that the volume matches how closely events are actually being chased rather than being fixed at build time.
 
@@ -623,11 +623,11 @@ Both areas `📋 Backlog`. The **confirmation gate** is `🧩 Adjacent` and alre
 
 ---
 
-## EP-I — Client Organisation Contacts
+## EP-I — Client Organisation Contacts · **SPM-201**
 
 No register row of its own. Primary contact is not a brief functionality area — it exists as a `🔶 Team decision` attribute under Client management (`🧩 Adjacent`) in [[client-organisation]], and as a `📋` row in [[open-questions]]. [[release-1-scope]] claims every functionality area appears exactly once in its register and wins over any disagreeing page; this item is outside that claim entirely. **Resolving the marker is a prerequisite to prioritising the card.**
 
-### CO1 — Designate a Primary Contact for a Client Organisation
+### CO1 — Designate a Primary Contact for a Client Organisation · ticketed as **SPM-230**
 
 **Story:** As an Event Coordinator, I want to know which Event Organiser is the primary contact for a client organisation, so that I have someone to approach when an event's own Organiser is unreachable.
 
@@ -650,37 +650,37 @@ No register row of its own. Primary contact is not a brief functionality area �
 
 | Card | Epic | Title | Role | Blocking unknown |
 |---|---|---|---|---|
-| TS1 | EP-A | Request Technical Support | Event Coordinator | Notice period ([#25](https://github.com/SinYang13/IS212-2026/discussions/25)) |
-| TS2 | EP-A | Review a Technical Support Requirement | Technical Support Staff | No lifecycle specified |
-| TS3 | EP-A | Raise a Clarification on a Support Requirement | Technical Support Staff | Direct-contact bar unconfirmed |
-| TS4 | EP-A | Allocate Technical Support Staff to an Event | **Not named** | Who allocates ([#88](https://github.com/SinYang13/IS212-2026/discussions/88)) — sharpened by [#101](https://github.com/SinYang13/IS212-2026/discussions/101) |
-| TS5 | EP-A | See Technical Support Staff Availability | **Not named** | Availability model ([#89](https://github.com/SinYang13/IS212-2026/discussions/89)) |
-| RP1 | EP-B | Generate an Event Summary | **Not named** | Who are "appropriate users" |
-| RP2 | EP-B | Review Venue Usage Over a Period | Internal user (§4.2) | Measure set ([#29](https://github.com/SinYang13/IS212-2026/discussions/29)) |
-| RP3 | EP-B | View and Export My Event's Attendees | Event Organiser | PDPA on export ([#32](https://github.com/SinYang13/IS212-2026/discussions/32)) |
-| RP4 | EP-B | Export a Registration List for an Assigned Event | Event Coordinator | Registration field set ([#22](https://github.com/SinYang13/IS212-2026/discussions/22)) |
-| CV1 | EP-C | View My Events in a Calendar | Attendee | Granularity ([#6](https://github.com/SinYang13/IS212-2026/discussions/6)) |
-| CV2 | EP-C | View the Event Calendar | Internal user (§4.2) | Which statuses appear |
-| CV3 | EP-C | Search and Filter Events | Internal user (§4.2) | Depends on EC1 for category |
-| CV4 | EP-C | See an Overview for My Role | Internal user (§4.2) | Per-role content unenumerated — [#118](https://github.com/SinYang13/IS212-2026/discussions/118) defers, does not define |
-| HB1 | EP-D | Review How an Event's Information Changed | **Not named** | Who has "appropriate access" |
-| HB2 | EP-D | Review an Event's Activity History | **Not named** | Exact significant-action set — [#96](https://github.com/SinYang13/IS212-2026/discussions/96) gives an illustrative list only |
-| EC1 | EP-E | Classify an Event by Category | Event Coordinator | Vocabulary ownership — [#100](https://github.com/SinYang13/IS212-2026/discussions/100) caps the scope |
-| EC2 | EP-E | Create an Event by Reusing a Previous One | Event Organiser | Copy set ([#75](https://github.com/SinYang13/IS212-2026/discussions/75)) |
-| EC3 | EP-E | Record an Event's Sessions | Event Coordinator | Identity scheme ([#74](https://github.com/SinYang13/IS212-2026/discussions/74)) |
-| EC4 | EP-E | Book a Venue per Session | Event Coordinator | Which room layout a booking assumes ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)) |
-| EC5 | EP-E | Set Equipment and Attendance per Session | Event Coordinator | Registration per session or event; session limit vs event-level expected attendance ([#119](https://github.com/SinYang13/IS212-2026/discussions/119)) |
-| EC6 | EP-E | Attach Supporting Documents to an Event | Event Organiser | May an Organiser attach post-submission ([#102](https://github.com/SinYang13/IS212-2026/discussions/102)) |
-| VH1 | EP-F | Place a Tentative Hold on a Venue Slot | **Not named** | Who may hold — still unnamed after [#109](https://github.com/SinYang13/IS212-2026/discussions/109) |
-| VH2 | EP-F | Confirm or Release a Tentative Hold | **Not named** | Expiry ([#39](https://github.com/SinYang13/IS212-2026/discussions/39), [#41](https://github.com/SinYang13/IS212-2026/discussions/41)) |
+| TS1 | EP-A | Request Technical Support · **SPM-203** | Event Coordinator | Notice period ([#25](https://github.com/SinYang13/IS212-2026/discussions/25)) |
+| TS2 | EP-A | Review a Technical Support Requirement · **SPM-204** | Technical Support Staff | No lifecycle specified |
+| TS3 | EP-A | Raise a Clarification on a Support Requirement · **SPM-205** | Technical Support Staff | Direct-contact bar unconfirmed |
+| TS4 | EP-A | Allocate Technical Support Staff to an Event · **SPM-206** | **Not named** | Who allocates ([#88](https://github.com/SinYang13/IS212-2026/discussions/88)) — sharpened by [#101](https://github.com/SinYang13/IS212-2026/discussions/101) |
+| TS5 | EP-A | See Technical Support Staff Availability · **SPM-207** | **Not named** | Availability model ([#89](https://github.com/SinYang13/IS212-2026/discussions/89)) |
+| RP1 | EP-B | Generate an Event Summary · **SPM-208** | **Not named** | Who are "appropriate users" |
+| RP2 | EP-B | Review Venue Usage Over a Period · **SPM-209** | Internal user (§4.2) | Measure set ([#29](https://github.com/SinYang13/IS212-2026/discussions/29)) |
+| RP3 | EP-B | View and Export My Event's Attendees · **SPM-210** | Event Organiser | PDPA on export ([#32](https://github.com/SinYang13/IS212-2026/discussions/32)) |
+| RP4 | EP-B | Export a Registration List for an Assigned Event · **SPM-211** | Event Coordinator | Registration field set ([#22](https://github.com/SinYang13/IS212-2026/discussions/22)) |
+| CV1 | EP-C | View My Events in a Calendar · **SPM-212** | Attendee | Granularity ([#6](https://github.com/SinYang13/IS212-2026/discussions/6)) |
+| CV2 | EP-C | View the Event Calendar · **SPM-213** | Internal user (§4.2) | Which statuses appear |
+| CV3 | EP-C | Search and Filter Events · **SPM-214** | Internal user (§4.2) | Depends on EC1 for category |
+| CV4 | EP-C | See an Overview for My Role · **SPM-215** | Internal user (§4.2) | Per-role content unenumerated — [#118](https://github.com/SinYang13/IS212-2026/discussions/118) defers, does not define |
+| HB1 | EP-D | Review How an Event's Information Changed · **SPM-216** | **Not named** | Who has "appropriate access" |
+| HB2 | EP-D | Review an Event's Activity History · **SPM-217** | **Not named** | Exact significant-action set — [#96](https://github.com/SinYang13/IS212-2026/discussions/96) gives an illustrative list only |
+| EC1 | EP-E | Classify an Event by Category · **SPM-220** | Event Coordinator | Vocabulary ownership — [#100](https://github.com/SinYang13/IS212-2026/discussions/100) caps the scope |
+| EC2 | EP-E | Create an Event by Reusing a Previous One · **SPM-221** | Event Organiser | Copy set ([#75](https://github.com/SinYang13/IS212-2026/discussions/75)) |
+| EC3 | EP-E | Record an Event's Sessions · **SPM-222** | Event Coordinator | Identity scheme ([#74](https://github.com/SinYang13/IS212-2026/discussions/74)) |
+| EC4 | EP-E | Book a Venue per Session · **SPM-224** | Event Coordinator | Which room layout a booking assumes ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)) |
+| EC5 | EP-E | Set Equipment and Attendance per Session · **SPM-225** | Event Coordinator | Registration per session or event; session limit vs event-level expected attendance ([#119](https://github.com/SinYang13/IS212-2026/discussions/119)) |
+| EC6 | EP-E | Attach Supporting Documents to an Event · **SPM-223** | Event Organiser | May an Organiser attach post-submission ([#102](https://github.com/SinYang13/IS212-2026/discussions/102)) |
+| VH1 | EP-F | Place a Tentative Hold on a Venue Slot · **SPM-218** | **Not named** | Who may hold — still unnamed after [#109](https://github.com/SinYang13/IS212-2026/discussions/109) |
+| VH2 | EP-F | Confirm or Release a Tentative Hold · **SPM-219** | **Not named** | Expiry ([#39](https://github.com/SinYang13/IS212-2026/discussions/39), [#41](https://github.com/SinYang13/IS212-2026/discussions/41)) |
 | Reg6 | EP-G | Check In a Registered Attendee · **SPM-76** | **Not named** | Which *existing* role the team assigns ([#38](https://github.com/SinYang13/IS212-2026/discussions/38) follow-up) |
 | SPK-1 | EP-G | Non-self-registering attendee intake · **SPM-77** | — (spike) | Mechanism ([#33](https://github.com/SinYang13/IS212-2026/discussions/33)) |
-| RC1 | EP-H | See What Is Blocking an Event's Confirmation | Event Coordinator | How essentiality is recorded ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)); decider now named for equipment ([#106](https://github.com/SinYang13/IS212-2026/discussions/106)) |
-| RC2 | EP-H | See Outstanding Actions Across My Events | Event Coordinator | Tracked items or derived view |
-| RM1 | EP-H | Be Reminded of an Upcoming Event | Attendee | Lead time ([#40](https://github.com/SinYang13/IS212-2026/discussions/40)) |
-| RM2 | EP-H | Be Reminded of a Registration Deadline | Attendee | Who is a "relevant user" |
-| RM3 | EP-H | Configure Reminder Frequency | **Not named** | No admin role exists ([#52](https://github.com/SinYang13/IS212-2026/discussions/52)) |
-| CO1 | EP-I | Designate a Primary Contact | Event Coordinator | Whether it is wanted at all ([#65](https://github.com/SinYang13/IS212-2026/discussions/65)) |
+| RC1 | EP-H | See What Is Blocking an Event's Confirmation · **not ticketed (dup)** | Event Coordinator | How essentiality is recorded ([#80](https://github.com/SinYang13/IS212-2026/discussions/80)); decider now named for equipment ([#106](https://github.com/SinYang13/IS212-2026/discussions/106)) |
+| RC2 | EP-H | See Outstanding Actions Across My Events · **SPM-226** | Event Coordinator | Tracked items or derived view |
+| RM1 | EP-H | Be Reminded of an Upcoming Event · **SPM-227** | Attendee | Lead time ([#40](https://github.com/SinYang13/IS212-2026/discussions/40)) |
+| RM2 | EP-H | Be Reminded of a Registration Deadline · **SPM-228** | Attendee | Who is a "relevant user" |
+| RM3 | EP-H | Configure Reminder Frequency · **SPM-229** | **Not named** | No admin role exists ([#52](https://github.com/SinYang13/IS212-2026/discussions/52)) |
+| CO1 | EP-I | Designate a Primary Contact · **SPM-230** | Event Coordinator | Whether it is wanted at all ([#65](https://github.com/SinYang13/IS212-2026/discussions/65)) |
 
 Every row has a blocking unknown. That is the honest state of this half of the backlog, not a defect in the drafting: these seventeen areas went uncarded because nobody had the conversation, and a card cannot manufacture one.
 

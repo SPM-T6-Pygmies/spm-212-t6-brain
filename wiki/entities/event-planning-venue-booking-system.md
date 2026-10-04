@@ -5,6 +5,7 @@ sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 31.md"
   - "Week 4 - Customer Briefing.md"
+  - "Week 7 Customer Changes.md"
 tags: [entity, product, system, scope, release-1]
 ---
 
@@ -14,7 +15,7 @@ The custom-built system to be delivered for [[connectsphere-event-services]] —
 
 ## Positioning
 
-- Serves **internal and external** users across five briefed roles. See [[user-roles]].
+- Serves **internal and external** users across five briefed roles, plus the Event Operations Manager ([#101](https://github.com/SinYang13/IS212-2026/discussions/101)) and the two roles [[week-7-customer-changes|Week 7 C5–C6]] adds, the Event Coordinator Lead and the Safety Officer. See [[user-roles]].
 - Must be both **desktop- and mobile-friendly**: external users access from personal devices, internal staff while preparing venues and equipment (Source: customer-brief-no-1).
 - Presentation must not assume users understand ConnectSphere's internal processes; status, confirmed arrangements and outstanding actions must be legible to the appropriate user.
 - Treated as the **authoritative source** for the event information it manages; no integration with existing external tools is in scope (Source: is212-discussions-2026-08-31, [#79](https://github.com/SinYang13/IS212-2026/discussions/79)).
@@ -42,6 +43,10 @@ Group-level markers are a summary only — several groups split. [[release-1-sco
 | Records             | Activity history · change history                                                                                                                                                                                                     | 📋           | [[non-functional-requirements]]                 |
 | Output              | Event reports · venue usage reports · registration reports · report generation and exporting                                                                                                                                          | 📋           | [[reporting]]                                   |
 
+### Added by Week 7
+
+[[week-7-customer-changes]] makes six further changes mandatory for Release 1: configurable venue setup and turnaround time (C1), venue unavailability after booking (C2), multiple venues per event (C3), expiring tentative holds (C4), the Event Coordinator Lead (C5) and the operational safety check (C6). They touch the Venue, Identity and access, Review and status, Readiness and Messaging groups above, and add three areas with no row in the Week 1 list. See [[release-1-scope]].
+
 ## Quality attributes
 
 Performance, security, usability, reliability and consistency, scalability, auditability and maintainability are all specified in section 8 of the brief. See [[non-functional-requirements]].
@@ -51,7 +56,7 @@ Performance, security, usability, reliability and consistency, scalability, audi
 > [!success] Resolved — [#79](https://github.com/SinYang13/IS212-2026/discussions/79)
 > Release 1 scope is **fixed**. [[week-4-customer-briefing]] names 20 core features as the required content of the Week 12 release, closing [#79](https://github.com/SinYang13/IS212-2026/discussions/79) and [#11](https://github.com/SinYang13/IS212-2026/discussions/11). The remaining ~40 functionality areas above are deferred to the product backlog and C4 models, not cancelled. Full register: [[release-1-scope]].
 
-The 20 are not a list of independent deliverables. The briefing requires the release to "support coherent end-to-end event workflows across the relevant features", which pulls in a set of unnamed but load-bearing areas — the equipment catalogue, the confirmation gate, venue unavailability records. Those are marked `🧩 Adjacent` in [[release-1-scope]] and are this wiki's reading of the clause, not customer statements.
+The 20 are not a list of independent deliverables. The briefing requires the release to "support coherent end-to-end event workflows across the relevant features", which pulls in a set of unnamed but load-bearing areas — the equipment catalogue, the confirmation gate. Those are marked `🧩 Adjacent` in [[release-1-scope]] and are this wiki's reading of the clause, not customer statements. Venue unavailability records started there too, but [[week-7-customer-changes|Week 7 C2]] has since made unavailability management a stated `🎯 Release 1` obligation.
 
 ## Explicitly out of scope
 

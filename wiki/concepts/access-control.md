@@ -3,6 +3,8 @@ title: Access Control
 type: concept
 sources:
   - Customer Brief no. 1.md
+  - Week 7 Customer Changes.md
+  - IS212 2026 Discussions Oct 1.md
   - IS212 2026 Discussions Sept 8.md
   - IS212 2026 Discussions Aug 31.md
   - IS212 2026 Discussions Aug 26.md
@@ -22,7 +24,7 @@ Authentication and authorisation rules for the [[event-planning-venue-booking-sy
 
 Access control is two-dimensional throughout: **role** (what kind of user) combined with **relationship** (which events this specific user is connected to). Neither alone is sufficient.
 
-**Release 1 scope** ([[release-1-scope]]): authentication and the access rules below are 🎯 Release 1 (core feature 1 — User authorisation and authentication), and the auditability rule cited in that section is likewise 🎯 as a binding non-functional requirement. Client Organisation Visibility is `🧩 Adjacent`, pulled in because feature 1 scopes access by "relationship to an event"; Role-Based Dashboards are `📋 Backlog` — not named in the core 20.
+**Release 1 scope** ([[release-1-scope]]): authentication and the access rules below are 🎯 Release 1 (core feature 1 — User authorisation and authentication), and the auditability rule cited in that section is likewise 🎯 as a binding non-functional requirement. Client Organisation Visibility is `🧩 Adjacent`, pulled in because feature 1 scopes access by "relationship to an event"; Role-Based Dashboards are `📋 Backlog` — not named in the core 20. The per-event relationship-and-need rule for decision outcomes ([#125](https://github.com/SinYang13/IS212-2026/discussions/125)) applies feature 1's "relationship to an event" scoping, so it is 🎯 Release 1. The two roles Week 7 adds ([[week-7-customer-changes|Week 7 C5]], [[week-7-customer-changes|Week 7 C6]]) are 🎯 Release 1 and fall under it.
 
 ## Authentication
 
@@ -46,6 +48,8 @@ This page previously recorded a provisioning **gap**: [#49](https://github.com/S
 
 > [!success] Resolved — [#49](https://github.com/SinYang13/IS212-2026/discussions/49)
 > Onboarding and self-registration are **not a Release 1 requirement**, and **pre-loaded accounts are the sanctioned substitute**. ConnectSphere employees: "No separate self-registration/onboarding feature is required for Release 1. The team may use pre-loaded staff accounts with the appropriate roles and access controls." Event Organisers: "account onboarding or self-registration is not required for Release 1. Pre-loaded client accounts may be used for testing." Attendees: "Attendee Registration is still a required Release 1 feature, but this refers to registering for an **event**, not creating a system account. Where registration is enabled, attendees should be able to view appropriate event information, register, view their registration status, and withdraw." (Source: is212-discussions-2026-09-08, [#49](https://github.com/SinYang13/IS212-2026/discussions/49)). Seeded data is therefore a compliant answer to provisioning, not a workaround — the seeded set must include the Event Operations Manager role, which [#101](https://github.com/SinYang13/IS212-2026/discussions/101) makes mandatory (see [[user-roles]]).
+
+Week 7 adds one new role to the seeded set, the Safety Officer ([[week-7-customer-changes|Week 7 C6]]). The Event Coordinator Lead is the Event Operations Manager retitled ([[week-7-customer-changes|Week 7 C5]], [#128](https://github.com/SinYang13/IS212-2026/discussions/128)), so it is the existing seeded role under a new title; whether the stored role name changes too is 🔶 team decision ([#101](https://github.com/SinYang13/IS212-2026/discussions/101), [#128](https://github.com/SinYang13/IS212-2026/discussions/128)). See [[user-roles]].
 
 One thing [#49](https://github.com/SinYang13/IS212-2026/discussions/49) does **not** close: pre-loaded accounts are offered for staff and clients only, and the answer explicitly separates event registration from account creation for Attendees.
 
@@ -92,6 +96,20 @@ Four consequences:
 
 This rule scopes [[reporting]] as well: Event Organisers can view or export attendee information **for events they organise**, subject to access restrictions (Source: is212-discussions-2026-08-31, [#32](https://github.com/SinYang13/IS212-2026/discussions/32)).
 
+## Outcome Visibility — Legitimate Relationship and Need
+
+Asked whether only the assigned Coordinator sees an event request's approve/reject outcome, or any non-Attendee role, the customer answered on 2026-09-28 (Source: is212-discussions-2026-10-01, [#125](https://github.com/SinYang13/IS212-2026/discussions/125)):
+
+| Who may see the outcome | Position |
+|---|---|
+| Users with a **legitimate relationship to the event** who **need it for their role** — "such as the responsible Event Organiser and relevant authorised internal users" | ✅ Visible |
+| Every non-Attendee role, **automatically, because of the role alone** | ❌ Not visible |
+
+- This is a relationship-and-need rule, not a role list. It matches the per-event resolution this page already requires: role **and** relationship, neither alone ([[non-functional-requirements|brief §8b]]). It names no roles, so which internal roles qualify for a given event stays a team design call within the field-level matrix above.
+- It applies to the decision record on [[event-request]].
+- It constrains the Week 7 roles. The Event Coordinator Lead's oversight of assignments and active events ([[week-7-customer-changes|Week 7 C5]]) and the Safety Officer's view of events under check ([[week-7-customer-changes|Week 7 C6]]) must each rest on a legitimate relationship to the event and a need for the role. [#128](https://github.com/SinYang13/IS212-2026/discussions/128) says the Lead views "all the coordinator assignments and active events", so the customer has stated the Lead's oversight scope as every coordinator. Which relationship qualifies the Safety Officer to see a given event is not stated.
+- Event Coordinators manage **only** events assigned to them ([[week-7-customer-changes|Week 7 C5]]).
+
 ## Attendee Restrictions
 
 - An Attendee **must not be able to view internal planning information** ([[non-functional-requirements|brief §8b]]) — that is, the internal-planning, venue/equipment arrangement, and client categories from [#91](https://github.com/SinYang13/IS212-2026/discussions/91).
@@ -107,7 +125,8 @@ Two 2026-09-07 answers add internal-scope constraints:
 
 | Constraint | Position | Source |
 |---|---|---|
-| Coordinator assignment authority | The Event Operations Manager is a **separate system role** and **only authorised users** may perform the assignment and reassignment functions. The detailed access-control implementation is 🔶 team decision; the visibility scope is unstated except that the role must be able to identify newly submitted events awaiting assignment | [#101](https://github.com/SinYang13/IS212-2026/discussions/101), [#117](https://github.com/SinYang13/IS212-2026/discussions/117) |
+| Coordinator assignment authority | The Event Operations Manager is a **separate system role** and **only authorised users** may perform the assignment and reassignment functions. The detailed access-control implementation is 🔶 team decision; the visibility scope is unstated except that the role must be able to identify newly submitted events awaiting assignment. Since Week 7 the role is titled **Event Coordinator Lead** (the same role, [#128](https://github.com/SinYang13/IS212-2026/discussions/128)) and can also reassign, view basic event information, and view the current assignments of all coordinators and active events; Event Coordinators manage only their own events — see [[user-roles]] | [#101](https://github.com/SinYang13/IS212-2026/discussions/101), [#117](https://github.com/SinYang13/IS212-2026/discussions/117), [[week-7-customer-changes\|Week 7 C5]], [#128](https://github.com/SinYang13/IS212-2026/discussions/128) |
+| Operational safety review authority | The Safety Officer records the Operational Safety Check outcome. Visibility is bounded by the legitimate-relationship-and-need rule above; the detailed permission design is unstated — see [[operational-safety-check]] | [[week-7-customer-changes\|Week 7 C6]], [#125](https://github.com/SinYang13/IS212-2026/discussions/125) |
 | Attendance check-in authority | Check-in "may be performed by an **authorized internal staff member involved in the event operations**"; **no new registration-only role is required**, and which existing internal role holds the capability is 🔶 team decision, "subject to the access-control model" | [#38](https://github.com/SinYang13/IS212-2026/discussions/38) |
 
 ## Role-Based Dashboards
@@ -122,6 +141,7 @@ Indicative dashboard content per role:
 | Role | Relevant overview |
 |---|---|
 | Event Organiser | Own events by status, own drafts, clarification requests awaiting response, confirmed arrangements, registration counts for own events |
+| Event Coordinator Lead (formerly Event Operations Manager) | Unassigned queue; the current assignments of all coordinators and active events ([[week-7-customer-changes\|Week 7 C5]]; [#128](https://github.com/SinYang13/IS212-2026/discussions/128)) |
 | Event Coordinator | Assigned events requiring attention, pending venue/equipment decisions, incomplete arrangements, upcoming events — see [[event-readiness]] |
 | Venue Staff | Incoming venue booking requests, upcoming bookings, blocked venues — see [[venue-booking]] |
 | Technical Support Staff | Equipment requests to review, upcoming reservations, on-site support assignments — see [[technical-support]] |
@@ -145,7 +165,8 @@ Access control is supported by, but distinct from, the audit requirement: import
 | How accounts are created for internal staff and Event Organisers | **Closed — not required for Release 1; pre-loaded staff and client accounts may be used** | [#49](https://github.com/SinYang13/IS212-2026/discussions/49) |
 | How an account-less Attendee is identified when viewing status or withdrawing | **Open — team to propose.** [#49](https://github.com/SinYang13/IS212-2026/discussions/49) confirms both actions are required but offers pre-loaded accounts to staff and clients only | [#49](https://github.com/SinYang13/IS212-2026/discussions/49), [#53](https://github.com/SinYang13/IS212-2026/discussions/53) |
 | Field-level permission matrix | **Team to propose** | [#91](https://github.com/SinYang13/IS212-2026/discussions/91) |
-| Access-control implementation and visibility scope for the Event Operations Manager | **Team to propose** — the role itself is settled and mandatory | [#101](https://github.com/SinYang13/IS212-2026/discussions/101), [#117](https://github.com/SinYang13/IS212-2026/discussions/117) |
+| Which relationship qualifies the Safety Officer to see an event | **Team to propose**, within [#125](https://github.com/SinYang13/IS212-2026/discussions/125)'s relationship-and-need rule | [[week-7-customer-changes\|Week 7 C6]], [#125](https://github.com/SinYang13/IS212-2026/discussions/125) |
+| Access-control implementation for the Event Operations Manager (now the Event Coordinator Lead) | **Team to propose** — the role itself is settled and mandatory; its visibility now includes basic event information and all coordinators' assignments and active events ([#128](https://github.com/SinYang13/IS212-2026/discussions/128)) | [#101](https://github.com/SinYang13/IS212-2026/discussions/101), [#117](https://github.com/SinYang13/IS212-2026/discussions/117) |
 | Which existing internal role may perform attendance check-in | **Team to propose** — no new registration-only role is permitted | [#38](https://github.com/SinYang13/IS212-2026/discussions/38) |
 | Whether a user-administration permission exists | **Team to propose** — narrower since [#49](https://github.com/SinYang13/IS212-2026/discussions/49): seeding covers the initial population, so only ongoing administration is at stake | [#52](https://github.com/SinYang13/IS212-2026/discussions/52) |
 | Dashboard content per role | Team to propose | [[event-planning-venue-booking-system\|brief §4]] |

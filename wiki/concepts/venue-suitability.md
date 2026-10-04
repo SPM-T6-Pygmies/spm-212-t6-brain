@@ -7,6 +7,8 @@ sources:
   - IS212 2026 Discussions Aug 31.md
   - IS212 2026 Discussions Sept 8.md
   - IS212 2026 Discussions Sept 16.md
+  - IS212 2026 Discussions Oct 1.md
+  - Week 7 Customer Changes.md
 tags: [venue, suitability, search, filtering, capacity, room-layout, business-rules]
 ---
 
@@ -16,7 +18,7 @@ tags: [venue, suitability, search, filtering, capacity, room-layout, business-ru
 
 Assessing whether a venue can satisfy an event's requirements. Distinct from the mechanics of holding and approving a booking, which are covered in [[venue-booking]].
 
-**Release 1 scope:** Venue suitability checking and venue search/filtering are both `🎯 Release 1` (core features 10–11) — see [[release-1-scope]] for why the customer treats them as genuinely separate functions. Room layout management (Supported Room Layouts, below) is `🧩 Adjacent`, pulled in by feature 8's catalogue attribute and feature 10's filter criterion, not a standalone layout-management feature. The ongoing, throughout-planning capacity tracking described under Event Capacity Management is `📋 Backlog` — only the point-in-time capacity check against expected attendance (feature 11) is required.
+**Release 1 scope:** Venue suitability checking and venue search/filtering are both `🎯 Release 1` (core features 10–11) — see [[release-1-scope]] for why the customer treats them as genuinely separate functions. Room layout management (Supported Room Layouts, below) is `🧩 Adjacent`, pulled in by feature 8's catalogue attribute and feature 10's filter criterion, not a standalone layout-management feature. The ongoing, throughout-planning capacity tracking described under Event Capacity Management is `📋 Backlog` — only the point-in-time capacity check against expected attendance (feature 11) is required. Under [[week-7-customer-changes|Week 7 C3]] (`🎯 Release 1`) an event may hold several venue bookings, and each is suitability-checked on its own — see [Multiple Venues for One Event](#multiple-venues-for-one-event).
 
 ## Search/Filtering vs Suitability Checking
 
@@ -43,16 +45,23 @@ Drawn from the brief's list of factors on which venue suitability may depend (So
 
 | Factor | Held on | Notes |
 |---|---|---|
-| Proposed date and time | Event | Evaluated against existing bookings, holds, blocks — see [[venue-booking]] |
+| Proposed date and time | Event | Evaluated against existing bookings, unexpired holds and unavailability periods, over the **padded window** that includes the venue's setup and turnaround time ([[week-7-customer-changes\|Week 7 C1]]) — see [[venue-booking]] |
 | Capacity for the requested layout | Venue | Capacity varies by layout; the figure for the layout the event requests is the one compared to expected attendance ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)) |
 | Supported room layouts | Venue | Must include the requested layout — which also selects the capacity figure used above ([#112](https://github.com/SinYang13/IS212-2026/discussions/112)) |
 | Accessibility | Venue | Must meet the event's stated accessibility requirements |
 | Available facilities | Venue | e.g. video-conferencing for hybrid events |
-| Existing bookings | Venue calendar | Overlapping bookings/holds are a hard block ([#35](https://github.com/SinYang13/IS212-2026/discussions/35)) |
+| Existing bookings | Venue calendar | Overlapping bookings and **unexpired** holds are a hard block ([#35](https://github.com/SinYang13/IS212-2026/discussions/35)); an expired hold does not block ([[week-7-customer-changes\|Week 7 C4]]) |
 | Operating hours | Venue | Maintained by Venue Staff; all days equal for now ([#46](https://github.com/SinYang13/IS212-2026/discussions/46)) |
-| Setup requirements | Event + venue | Preparation before the published start time; occupies at most one full slot, the immediately adjacent one before the event, crossing midnight where needed ([#108](https://github.com/SinYang13/IS212-2026/discussions/108), [#123](https://github.com/SinYang13/IS212-2026/discussions/123)) |
-| Turnaround time | Venue | Reset after the event; occupies at most one full slot, the immediately adjacent one after the event, crossing midnight where needed ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)). Whether the requirement is recorded per venue ([#43](https://github.com/SinYang13/IS212-2026/discussions/43)) is open — see [[venue-booking]] |
-| Venue unavailability | Venue | Maintenance, renovation, safety restrictions, internal activity |
+| Setup time | Venue | Per-venue configurable time before the event's start, counted in the availability check; e.g. 30 min before a 10:00 start ([[week-7-customer-changes\|Week 7 C1]]). ~~At most one full adjacent slot~~ — superseded ([#108](https://github.com/SinYang13/IS212-2026/discussions/108), [#123](https://github.com/SinYang13/IS212-2026/discussions/123)); bookings are now on a 15-minute grid ([#128](https://github.com/SinYang13/IS212-2026/discussions/128)). Whether the value must be a multiple of 15 is open |
+| Turnaround time | Venue | Per-venue configurable time after the event's end, counted in the availability check; e.g. 45 min after a 12:00 end ([[week-7-customer-changes\|Week 7 C1]]). Recorded per venue ([#43](https://github.com/SinYang13/IS212-2026/discussions/43)). ~~At most one full adjacent slot~~ — superseded ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)) |
+| Venue unavailability | Venue | Maintenance, equipment failure, renovation, safety concerns, other operational reasons — a period on [[venue-unavailability]] ([[week-7-customer-changes\|Week 7 C2]]) |
+
+## Multiple Venues for One Event
+
+An event may hold more than one venue booking at once — the notice's example is an auditorium plus three breakout rooms ([[week-7-customer-changes|Week 7 C3]]). **Each venue/booking is checked independently** for suitability, availability and conflicts while staying associated with the same event, so a layout, capacity, accessibility or facilities mismatch at one venue says nothing about the others. A suitability re-check triggered by a change to one venue or booking re-validates **only that booking**.
+
+> [!warning] Attendance across several venues — unanswered
+> The notice does not say whether each venue is judged against the event's **whole expected attendance** or only a **portion** of it. Judging each venue against the whole figure would make every room smaller than the whole event unsuitable; judging a portion needs a split somewhere in the data. Expected attendance is a single event-level figure ([#119](https://github.com/SinYang13/IS212-2026/discussions/119)), so a per-booking portion has no home today. Proposed as a question, not assumed; not yet put to the customer.
 
 ## Capacity vs Expected Attendance
 
@@ -92,7 +101,7 @@ Drawn from the brief's list of factors on which venue suitability may depend (So
 | On selecting/shortlisting a venue | [#83](https://github.com/SinYang13/IS212-2026/discussions/83) — suitability assesses a venue "after it has been identified or selected" |
 | On submitting a venue booking request | Brief: the request carries "the relevant event timing and venue requirements for Venue Staff to review" |
 | On a significant change to event requirements | [#4](https://github.com/SinYang13/IS212-2026/discussions/4) — changes to date/time, attendance, venue requirements are significant and "may invalidate confirmed arrangements"; [#8](https://github.com/SinYang13/IS212-2026/discussions/8) — changes may occur even after confirmation and require affected arrangements to be reviewed again |
-| On a change to the venue itself | [#54](https://github.com/SinYang13/IS212-2026/discussions/54) — Venue Staff update availability; the coordinator must react. [#120](https://github.com/SinYang13/IS212-2026/discussions/120) — an attribute update that affects a booking's suitability or availability flags that booking for review and notifies the coordinator, but does **not** revert its status |
+| On a change to the venue itself | [#54](https://github.com/SinYang13/IS212-2026/discussions/54) — Venue Staff update availability; the coordinator must react. [#120](https://github.com/SinYang13/IS212-2026/discussions/120) — an attribute update that affects a booking's suitability or availability flags that booking for review and notifies the coordinator, but does **not** revert its status. [[week-7-customer-changes\|Week 7 C1]] — a change to the venue's setup or turnaround time identifies bookings it makes problematic. [[week-7-customer-changes\|Week 7 C2]] — marking the venue unavailable over booked dates identifies the affected bookings |
 | On reschedule / postponement with a new date | [#16](https://github.com/SinYang13/IS212-2026/discussions/16), [#69](https://github.com/SinYang13/IS212-2026/discussions/69) — arrangements must be reviewed again |
 
 Significant changes requiring re-evaluation are handled under [[change-impact-management]]; outstanding arrangements roll up into [[event-readiness]].

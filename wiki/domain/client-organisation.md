@@ -4,6 +4,7 @@ type: domain-object
 sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 31.md"
+  - "IS212 2026 Discussions Oct 1.md"
 tags: [domain, client-organisation]
 ---
 
@@ -36,7 +37,7 @@ No lifecycle (e.g. active / inactive client) is specified for the Client Organis
 
 | Related object | Cardinality | Rule | Ref |
 |---|---|---|---|
-| [[user-account]] (Event Organiser) | 1 : many | Multiple Event Organisers may belong to the same client organisation | [[event-planning-venue-booking-system\|brief §4]]; [#65](https://github.com/SinYang13/IS212-2026/discussions/65) |
+| [[user-account]] (Event Organiser) | 1 : many | Multiple Event Organisers may belong to the same client organisation. That each Event Organiser belongs to *exactly one* is this wiki's reading — [#124](https://github.com/SinYang13/IS212-2026/discussions/124) asked and got a non-answer (see Binding rules) | [[event-planning-venue-booking-system\|brief §4]]; [#65](https://github.com/SinYang13/IS212-2026/discussions/65); [#124](https://github.com/SinYang13/IS212-2026/discussions/124) |
 | [[event]] | 1 : many | An organisation may have several past and upcoming events | [[event-planning-venue-booking-system\|brief §4]] |
 | [[event-request]] | 1 : many | Requests are authored by the organisation's Event Organiser accounts | [[event-planning-venue-booking-system\|brief §4]] |
 
@@ -44,6 +45,7 @@ No lifecycle (e.g. active / inactive client) is specified for the Client Organis
 
 - Event Organisers belonging to the same client organisation may view, but not edit or update, events they are not responsible for; Event Organisers must not access events belonging to an unrelated client organisation ([#81](https://github.com/SinYang13/IS212-2026/discussions/81)).
 - Access to a same-organisation event is automatic and organisation-wide ([#81](https://github.com/SinYang13/IS212-2026/discussions/81)). ⚠️ Partial: [#81](https://github.com/SinYang13/IS212-2026/discussions/81) describes the resulting access but is silent on the granting mechanism — it does not state that per-event granting by another Organiser is unavailable, only that no such step is described; see the "silence is not denial" warning below, which applies the same caveat to the administrator question.
+- ⚠️ Partial: whether every Event Organiser account must be tied to a client organisation was put to the customer, who replied only "Please refer to project brief" ([#124](https://github.com/SinYang13/IS212-2026/discussions/124), answered 2026-09-28). The brief says Event Organisers represent a client ([[connectsphere-event-services|brief §2]]) and lists a user's organisation as a generic profile field ([[event-planning-venue-booking-system|brief §4]]). **Nothing new follows:** the cardinality and rules on this page are unchanged. The answer is a non-answer, not a confirmation, so "exactly one organisation per Event Organiser" remains this wiki's reading rather than a customer statement.
 - No existing client database needs to be imported; there is no data-migration or system-integration requirement for client records ([#12](https://github.com/SinYang13/IS212-2026/discussions/12)).
 - No primary-contact role has been specified for a client organisation; the customer invites a proposal only if one is needed ([#65](https://github.com/SinYang13/IS212-2026/discussions/65)).
 

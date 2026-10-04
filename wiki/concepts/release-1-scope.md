@@ -7,6 +7,9 @@ sources:
   - "IS212 2026 Discussions Aug 31.md"
   - "IS212 2026 Discussions Sept 8.md"
   - "IS212 2026 Discussions Sept 16.md"
+  - "Week 7 Customer Changes.md"
+  - "IS212 2026 Discussions Oct 1.md"
+  - "GitHub Discussion 128 (live fetch 2026-10-04; see is212-discussions-2026-10-04-addendum)"
 tags: [scope, release-1, backlog, planning, connectsphere]
 ---
 
@@ -14,9 +17,9 @@ tags: [scope, release-1, backlog, planning, connectsphere]
 
 **Objects:** touches every domain object — see [[domain-model]].
 
-The authoritative in/adjacent/out register for the Week 12 release. Every functionality area in [[customer-brief-no-1]] appears exactly once below. Source of truth for the `🎯 / 🧩 / 📋` markers used across the wiki; if a page disagrees with this register, this register wins.
+The authoritative in/adjacent/out register for the Week 12 release. Every functionality area in [[customer-brief-no-1]] appears exactly once below, plus the three areas the Week 7 notice added. Source of truth for the `🎯 / 🧩 / 📋` markers used across the wiki; if a page disagrees with this register, this register wins.
 
-Set by [[week-4-customer-briefing]], which closed [#79](https://github.com/SinYang13/IS212-2026/discussions/79) and [#11](https://github.com/SinYang13/IS212-2026/discussions/11).
+Set by [[week-4-customer-briefing]], which closed [#79](https://github.com/SinYang13/IS212-2026/discussions/79) and [#11](https://github.com/SinYang13/IS212-2026/discussions/11), and **widened by [[week-7-customer-changes]]**: six further changes, all mandatory, with "no further changes" expected for Release 1. The customer now calls the result **"the 26 core"** ([#128](https://github.com/SinYang13/IS212-2026/discussions/128)). Three areas the Week 4 reading had left `🧩` or `📋` — setup and turnaround time, venue unavailability management and tentative holding — are now `🎯`, and three areas are new: multiple venues per event, the Event Coordinator Lead and the operational safety check.
 
 > [!info] Out of Release 1 ≠ out of the project
 > The briefing directs teams to "consider features beyond the scope of the first release in your product backlog and C4 models". `📋 Backlog` items keep their wiki pages, their requirements, and their open questions. Nothing here licenses deleting analysis.
@@ -25,7 +28,7 @@ Set by [[week-4-customer-briefing]], which closed [#79](https://github.com/SinYa
 
 | Marker | Meaning | Obligation |
 |---|---|---|
-| `🎯 Release 1` | Named in the briefing's core-20 table | Working code by Week 12 |
+| `🎯 Release 1` | Named in the Week 4 briefing's core-20 table, **or** made mandatory by a later customer change notice (so far only [[week-7-customer-changes\|Week 7 C1–C6]]). A row justified by a notice cites the change | Working code by Week 12 |
 | `🧩 Adjacent` | Not named, but a core feature cannot work end-to-end without it | Build the minimum the named feature needs — no more. Every row states which feature pulls it in |
 | `📋 Backlog` | Deferred past Release 1 | Model it in the backlog and C4; do not build it |
 
@@ -56,7 +59,7 @@ The `🧩` marker exists because the briefing forbids treating the 20 as isolate
 |---|---|---|
 | Event review and approval | 🎯 Release 1 | Core feature 4 |
 | Request withdrawal | 🧩 Adjacent | Not named, but [#103](https://github.com/SinYang13/IS212-2026/discussions/103) requires a withdrawal to be recorded in the system and the withdrawn request to stay distinguishable from the other request states — a fourth exit from feature 4's review, alongside approve, reject and return. The Organiser asks **outside** the system; only the Coordinator performs it, so there is no Organiser-facing action to build. See [[event-request]] |
-| Coordinator assignment | 🎯 Release 1 | Core feature 5, including reassignment |
+| Coordinator assignment | 🎯 Release 1 | Core feature 5, including reassignment. [[week-7-customer-changes\|Week 7 C5]] renames the actor: the **Event Coordinator Lead** is the Event Operations Manager ([#101](https://github.com/SinYang13/IS212-2026/discussions/101)) under a new title, "at least on the display end" ([#128](https://github.com/SinYang13/IS212-2026/discussions/128)), and gains three capabilities — reassigning, viewing basic event information, and viewing all coordinators' assignments and active events. The unassigned queue and the oversight view are the new work. See [[user-roles]] |
 | Event status management | 🎯 Release 1 | Core feature 6 |
 | Event information management | 🎯 Release 1 | Core feature 7 |
 | Comments and discussion | 🧩 Adjacent | Feature 4 requires coordinators to "request clarification or amendments from the Event Organiser" and the outcome to be visible — a clarification exchange retained against the event is the minimum. A general threaded comment system is not |
@@ -80,13 +83,23 @@ The `🧩` marker exists because the briefing forbids treating the 20 as isolate
 | Venue booking request | 🎯 Release 1 | Core feature 12 |
 | Venue booking approval | 🎯 Release 1 | Core feature 13 |
 | Booking conflict detection | 🎯 Release 1 | Core feature 14 |
-| Venue unavailability management | 🧩 Adjacent | Feature 9 states outright that "other recorded periods of unavailability should be reflected" — the records must exist and be readable. Whether Venue Staff maintain them in-system is the thin part left to the team |
+| Venue unavailability management | 🎯 Release 1 | [[week-7-customer-changes\|Week 7 C2]]: Venue Staff must be able to mark a venue temporarily unavailable (maintenance, equipment failure, renovation, safety, other), **even over booked dates**; affected bookings are flagged, not cancelled, Coordinators are told, and the Coordinator can search for and request a replacement venue. This settles the thin part the Week 4 reading left to the team — maintenance is in-system. Previously `🧩 Adjacent` on feature 9's "other recorded periods of unavailability". See [[venue-unavailability]] |
 | Room layout management | 🧩 Adjacent | Layouts are a feature 8 catalogue attribute and a feature 10 filter criterion. Managing the layout vocabulary itself is not required. Note [#112](https://github.com/SinYang13/IS212-2026/discussions/112) makes each supported layout carry its own capacity, so the layout link is what feature 11's capacity check reads — see [[venue]] |
 | Organiser-indicated venue preference | 📋 Backlog | Not named. [#111](https://github.com/SinYang13/IS212-2026/discussions/111) permits it ("may be supported as a preference") but does not require it, and is explicit that it must not be treated as a booking or override suitability and approval. Building it is a choice, not an obligation |
-| Setup and turnaround time | 🧩 Adjacent | Feature 14 detects "incompatible or overlapping" bookings; [[booking]]'s effective occupancy window is event time plus setup and turnaround. Needed as a venue attribute feeding conflict detection, not as a configuration feature. The customer has since drawn the boundary explicitly: the system "does not need to support setup or turnaround durations smaller than a slot for Release 1" ([#108](https://github.com/SinYang13/IS212-2026/discussions/108)). [#123](https://github.com/SinYang13/IS212-2026/discussions/123) then fixed the rule: setup and turnaround each need **at most one adjacent slot**, crossing midnight, with no multi-slot buffers — so the feature is a conflict-checking rule over neighbouring slots, not a stored duration |
+| Setup and turnaround time | 🎯 Release 1 | [[week-7-customer-changes\|Week 7 C1]]: each venue has a **configurable** setup time and turnaround time, counted in availability and conflict detection (feature 14); an event 10:00–12:00 with 30 min setup and 45 min turnaround occupies 9:30–12:45. Existing bookings the rule makes problematic are identified, not removed. [#128](https://github.com/SinYang13/IS212-2026/discussions/128): the smallest unit of booking is now **15 minutes**, replacing the three slots. **Supersedes** the earlier reading — `🧩 Adjacent`, the AM / PM / Night slots ([#50](https://github.com/SinYang13/IS212-2026/discussions/50)), "at most one adjacent slot" ([#123](https://github.com/SinYang13/IS212-2026/discussions/123)) and "nothing smaller than a slot" ([#108](https://github.com/SinYang13/IS212-2026/discussions/108)). See [[venue-booking]], [[booking]] |
 | Venue retirement | 🧩 Adjacent | Not named in the core 20 or the Week 1 brief. [#122](https://github.com/SinYang13/IS212-2026/discussions/122) presumes a venue can be retired and specifies what happens to its future bookings (flagged for review, Coordinators notified, not cancelled or auto-rescheduled) without mandating a retire feature. Load-bearing for feature 10 (search must not offer a retired venue) and feature 12 (a booking request must not target one); the review-and-notify behaviour is the same pattern as feature 14's [#120](https://github.com/SinYang13/IS212-2026/discussions/120) case. **The thinnest `🧩` on this page** — the minimal implementation is a venue status, not a workflow; whether Release 1 builds any retire action is the team's call |
-| Tentative holding | 📋 Backlog | Not named. Features 12–14 describe request → approve/reject only. The [#41](https://github.com/SinYang13/IS212-2026/discussions/41) exclusivity rule still binds via the *confirmed booking* half; the hold half is deferred, and [#39](https://github.com/SinYang13/IS212-2026/discussions/39)'s expiry question goes with it. Reinforced by [#109](https://github.com/SinYang13/IS212-2026/discussions/109): placing multiple venues on hold simultaneously is "not required for Release 1" |
+| Tentative holding | 🎯 Release 1 | [[week-7-customer-changes\|Week 7 C4]]: Venue Staff hold a venue while a Coordinator finalises; every hold **must carry an expiry date/time**, the venue is released at expiry, the Coordinator is told before or at expiry, and an expired hold is never a confirmed booking. Previously `📋 Backlog`; the [#41](https://github.com/SinYang13/IS212-2026/discussions/41) exclusivity rule now binds in full, and [#39](https://github.com/SinYang13/IS212-2026/discussions/39)'s duration is still the team's. [#109](https://github.com/SinYang13/IS212-2026/discussions/109) stands: holding several *candidate* venues at once while shortlisting is not required |
 | Event capacity management | 📋 Backlog | Not named — see Registration below |
+
+### Added by the Week 7 change notice
+
+Areas with no row in the Week 1 brief's functionality list or the core 20. Each is `🎯` on the notice's own authority.
+
+| Area | Scope | Rationale |
+|---|---|---|
+| Multiple venues for one event | 🎯 Release 1 | [[week-7-customer-changes\|Week 7 C3]]: one event may hold several venue bookings at once (a main hall plus breakout rooms); each is checked independently for suitability, availability and conflicts, and changing or cancelling one leaves the others alone. Retires the working rule "one confirmed booking per event". Sessions stay `📋 Backlog` — this is simultaneous spaces under one event. See [[booking]] |
+| Event Coordinator Lead oversight | 🎯 Release 1 | [[week-7-customer-changes\|Week 7 C5]]: an unassigned queue, review of basic event information, and visibility of all coordinator assignments and active events under the Lead's supervision, with notification on assignment and reassignment. The assignment half is core feature 5; the oversight half is new |
+| Operational safety check | 🎯 Release 1 | [[week-7-customer-changes\|Week 7 C6]]: a Safety Officer approves, rejects or requests changes **before** the event proceeds to preparation; an unapproved event cannot proceed. A new role and a new gate in front of confirmation. See [[operational-safety-check]], [[safety-check]] |
 
 ### Equipment and technical support
 
@@ -104,7 +117,7 @@ The `🧩` marker exists because the briefing forbids treating the 20 as isolate
 
 | Area | Scope | Rationale |
 |---|---|---|
-| Event confirmation | 🧩 Adjacent | No feature names it, but [#98](https://github.com/SinYang13/IS212-2026/discussions/98) requires it **directly**: not a standalone feature, yet "the Release 1 workflow should support an Event Coordinator confirming an event once the required/essential arrangements… have been completed", reaching `Confirmed` and reflecting it to relevant users. The mechanism is the team's. This is now a customer-stated in-release obligation, not an inherited one |
+| Event confirmation | 🧩 Adjacent | No feature names it, but [#98](https://github.com/SinYang13/IS212-2026/discussions/98) requires it **directly**: not a standalone feature, yet "the Release 1 workflow should support an Event Coordinator confirming an event once the required/essential arrangements… have been completed", reaching `Confirmed` and reflecting it to relevant users. The mechanism is the team's. This is now a customer-stated in-release obligation, not an inherited one. [[week-7-customer-changes\|Week 7 C6]] adds a second gate: the event cannot proceed to preparation, and so cannot be confirmed, until the Safety Officer has approved it — see [[operational-safety-check]] |
 | Event readiness tracking | 🧩 Adjacent | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) blocks confirmation while an essential arrangement is incomplete — a committed hard rule. Feature 6 requires status changes to be "consistent with the actions performed on the event", so the gate is inherited. The minimum is the gate, not a readiness dashboard |
 | Outstanding action tracking | 📋 Backlog | Not named. The list-and-chase surface is deferred; only the block itself is required |
 
@@ -133,6 +146,8 @@ The `🧩` marker exists because the briefing forbids treating the 20 as isolate
 | Area | Scope | Rationale |
 |---|---|---|
 | Notification system | 🎯 Release 1 | Core feature 20 |
+| Hold-expiry warning | 🎯 Release 1 | [[week-7-customer-changes\|Week 7 C4]]: the Coordinator is informed before or when a tentative hold expires. A narrow, time-triggered exception — it is **not** the Reminder system below |
+| Safety-check notifications (proposed) | 🧩 Adjacent | Telling the Safety Officer an event is ready for a check and the Coordinator the outcome. The notice states neither; both are the team's proposal, pulled in by feature 20 and by [[week-7-customer-changes\|Week 7 C6]] (a check nobody hears about cannot gate anything). See [[notifications]] |
 | Reminder system | 📋 Backlog | Not named. Feature 20 lists event-driven triggers only; [#40](https://github.com/SinYang13/IS212-2026/discussions/40) and [#47](https://github.com/SinYang13/IS212-2026/discussions/47) stay open but unbuilt |
 
 ### Discovery, records and reporting
@@ -159,13 +174,16 @@ The customer's non-negotiable rules (catalogued in [[index]]) do not all land in
 
 | Rule | Ref | Scope |
 |---|---|---|
-| Venues book in AM / PM / Night slots | [#50](https://github.com/SinYang13/IS212-2026/discussions/50) | 🎯 — the time model under features 9, 12, 14 |
+| ~~Venues book in AM / PM / Night slots~~ **Superseded** | [#50](https://github.com/SinYang13/IS212-2026/discussions/50), [#128](https://github.com/SinYang13/IS212-2026/discussions/128) | The smallest unit of booking is now 15 minutes ([[week-7-customer-changes\|Week 7 C1]]); the slot model it described no longer applies. Kept here because it was a committed rule and the index listed it |
 | Double-booking blocked outright, not warned | [#35](https://github.com/SinYang13/IS212-2026/discussions/35) | 🎯 — feature 14 |
 | Equipment collectable D-1; available again Return Day + 1 | [#5](https://github.com/SinYang13/IS212-2026/discussions/5), [#113](https://github.com/SinYang13/IS212-2026/discussions/113) | 🎯 — features 16, 17. **The rule is committed; its key input is not.** [#113](https://github.com/SinYang13/IS212-2026/discussions/113) states there is no fixed default return day and leaves capture to the team, and while [[schema]] now carries `equipment_reservation.return_date` (migrated 2026-09-09), the column is **nullable with no default**, so feature 16 still cannot compute availability for any reservation that leaves it unset. Storage is solved; population is not. See [[discussions-sept-8-critical-diffs]] |
 | Singapore time only; English only | [#36](https://github.com/SinYang13/IS212-2026/discussions/36), [#28](https://github.com/SinYang13/IS212-2026/discussions/28) | 🎯 — non-functional, always binds |
 | Confirmation blocked while an essential arrangement is incomplete | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) | 🧩 — inherited via feature 6, no feature of its own |
 | Only the assigned Event Coordinator may cancel, at any stage | [#68](https://github.com/SinYang13/IS212-2026/discussions/68) | 🧩 — cancellation is a status, not a feature |
-| One active hold **or** confirmed booking per venue and overlapping period | [#41](https://github.com/SinYang13/IS212-2026/discussions/41) | Split — confirmed-booking half 🎯 (feature 14); tentative-hold half 📋 |
+| One active hold **or** confirmed booking per venue and overlapping period | [#41](https://github.com/SinYang13/IS212-2026/discussions/41) | 🎯 — confirmed-booking half is feature 14; the tentative-hold half moved in with [[week-7-customer-changes\|Week 7 C4]]. An expired hold is no longer "active" |
+| Setup and turnaround time counts in availability and conflict detection | [[week-7-customer-changes\|Week 7 C1]] | 🎯 — replaces the one-adjacent-slot rule of [#123](https://github.com/SinYang13/IS212-2026/discussions/123) |
+| Every hold has an expiry; an expired hold is never a confirmed booking | [[week-7-customer-changes\|Week 7 C4]] | 🎯 |
+| An event cannot proceed to preparation until the Safety Officer approves | [[week-7-customer-changes\|Week 7 C6]] | 🎯 — a gate in front of confirmation |
 | Waiting-list acceptance window is 3 days | [#44](https://github.com/SinYang13/IS212-2026/discussions/44) | 📋 — waiting list is out |
 | Events auto-complete 7 days after end date | [#71](https://github.com/SinYang13/IS212-2026/discussions/71) | 📋 — `completed` is a feature 6 status, but automatic closure is not required |
 
@@ -185,4 +203,4 @@ The customer's non-negotiable rules (catalogued in [[index]]) do not all land in
 
 ## Related pages
 
-[[week-4-customer-briefing]] · [[event-planning-venue-booking-system]] · [[open-questions]] · [[customer-brief-no-1]] · [[event-lifecycle]] · [[event-readiness]] · [[attendee-registration]] · [[access-control]] · [[venue-booking]] · [[equipment-management]] · [[technical-support]] · [[reporting]] · [[non-functional-requirements]] · [[domain-model]]
+[[week-4-customer-briefing]] · [[week-7-customer-changes]] · [[week-7-change-impact-review]] · [[event-planning-venue-booking-system]] · [[open-questions]] · [[customer-brief-no-1]] · [[event-lifecycle]] · [[event-readiness]] · [[attendee-registration]] · [[access-control]] · [[venue-booking]] · [[equipment-management]] · [[technical-support]] · [[reporting]] · [[non-functional-requirements]] · [[domain-model]]

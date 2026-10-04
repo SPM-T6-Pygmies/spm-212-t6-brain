@@ -686,3 +686,54 @@ A related SPM-33 decision was made the same day: a request's clarification threa
 
 **Updated:** [[event-request]] (state diagram, withdrawal paragraph, Submitted / Returned / Withdrawn rows).
 
+
+## 2026-10-04
+
+### Week 7 change-impact review
+
+Applied `raw/Managing Changes – A Guide.md` to `raw/Week 7 Customer Changes.md`, which adds six mandatory Release 1 changes. Each was checked against the `SPM - IS212` Linear board (53 tickets read) and against [[schema]]. Filed [[week-7-change-impact-review]]. **Review only:** no Linear edits, no DDL applied, and Week 7 not ingested into the standing wiki.
+
+**Two changes contradict settled answers.**
+
+- **C1** (per-venue setup/turnaround in minutes; 10:00–12:00 + 30 + 45 ⇒ 9:30–12:45) reverses [#123](https://github.com/SinYang13/IS212-2026/discussions/123)'s one-adjacent-slot rule and [#108](https://github.com/SinYang13/IS212-2026/discussions/108). The review takes **minutes on top of slots**: slots stay the selection unit, and conflicts are computed over padded `tstzrange` windows. That closes E1 and E3 on [[schema]].
+- **C5** (Event Coordinator Lead) takes over the EOM's assignment duties from [#101](https://github.com/SinYang13/IS212-2026/discussions/101) and adds the cross-coordinator oversight that SPM-99 AC3 had ruled out.
+
+**`raw/IS212 2026 Discussions Oct 1.md`.** The Lead-vs-EOM question was expected to be answered here, but the export adds only [#124](https://github.com/SinYang13/IS212-2026/discussions/124), [#125](https://github.com/SinYang13/IS212-2026/discussions/125) and [#126](https://github.com/SinYang13/IS212-2026/discussions/126) (unanswered: the 12nn–1pm gap), with no edits to existing answers. The question stays open as Q1, and the four reopens it would trigger (SPM-130, 29, 16, 98) are marked conditional.
+
+**Most urgent:** SPM-50 (In Review) needs the safety-check gate before its PR merges; otherwise C6 forces a Scenario 3 reopen. SPM-46 and SPM-57 are also under review with ACs the changes affect.
+
+**Not done:** full ingestion of Week 7 and Oct 1, which the review's Follow-ups list. That includes a proposed `CLAUDE.md` change: `🎯 Release 1` is defined by the Week 4 core-20 table alone, so it cannot currently mark Week 7's mandatory changes.
+
+**Updated:** [[index]] (Reviews row, page count, ingestion status), [[week-7-change-impact-review]] (new).
+
+### Week 7, the Oct 1 export and #127–#129 ingested
+
+Full ingest of `raw/Week 7 Customer Changes.md` and `raw/IS212 2026 Discussions Oct 1.md`, which the review above had left undone, plus three discussions read live from the board because no export contains them: [[is212-discussions-2026-10-04-addendum]]. Sources added: [[week-7-customer-changes]], [[is212-discussions-2026-10-01]], [[is212-discussions-2026-10-04-addendum]]. `raw/Managing Changes – A Guide.md` is summarised under *Change management* in [[is212-g9-section]].
+
+**[#128](https://github.com/SinYang13/IS212-2026/discussions/128) overturned two readings in the review above.** It is the customer's own gloss on Week 7 (posted 2026-10-02, not in the Oct 1 export):
+
+- **C1:** "the change of 3 slots to **15mins as the smallest unit of booking**". The AM / PM / Night model is replaced, not padded. The review's "minutes on top of slots" was wrong. [#50](https://github.com/SinYang13/IS212-2026/discussions/50), [#107](https://github.com/SinYang13/IS212-2026/discussions/107), [#108](https://github.com/SinYang13/IS212-2026/discussions/108) and [#123](https://github.com/SinYang13/IS212-2026/discussions/123) are superseded; [#126](https://github.com/SinYang13/IS212-2026/discussions/126) is probably moot.
+- **C5:** the Lead "was already included as part of the requirement" and is the Operations Manager renamed, at least on the display end, who now also views all coordinators' assignments and active events. Q1 and Q2 are closed; the four conditional reopens (SPM-130, 29, 16, 98) become relabels.
+- Release 1 is now "the 26 core". C6 is "due to regulation".
+
+**Board movement.** Re-reading Linear showed the team had already moved: SPM-46's ACs are on the 15-minute grid (padding still missing), and SPM-50, 41, 57 and 104 reached Done. SPM-50 merged without the safety gate, so the gate is a new story (W7-18), not a pre-merge edit.
+
+**Scope marker.** At the user's direction, `CLAUDE.md` now lets `🎯 Release 1` cover a later customer change notice, and adds a `Week 7 CN` citation form. [[release-1-scope]] marks setup and turnaround, venue unavailability and tentative holding `🎯` (previously `🧩`, `🧩`, `📋`), adds multi-venue, the Lead's oversight and the safety check, and marks the slot rule superseded.
+
+**Pages created:** [[operational-safety-check]], [[safety-check]], [[venue-unavailability]]. **Pages revised for Week 7 and #128:** [[venue-booking]], [[booking]], [[venue]], [[venue-suitability]], [[change-impact-management]], [[user-roles]], [[user-account]], [[access-control]], [[client-organisation]], [[event-request]], [[event-request-workflow]], [[event]], [[event-lifecycle]], [[event-readiness]], [[notifications]], [[notification]], [[release-1-scope]], [[open-questions]], [[schema]] (E1–E3 revised; W1–W8 added; DDL unchanged), [[domain-model]], [[connectsphere-event-services]], [[event-planning-venue-booking-system]], [[index]].
+
+**[[week-7-change-impact-review]] revised** with a Revision section and corrected throughout: 15 new stories (45 pts), 24 edits, 6 relabels, no reopens, 8 open customer questions (Q11–Q13 are new).
+
+**Also from the board.** [#127](https://github.com/SinYang13/IS212-2026/discussions/127) (a separate Open / Closed registration status?) and [#129](https://github.com/SinYang13/IS212-2026/discussions/129) (Manager = Lead?) are unanswered; [#129](https://github.com/SinYang13/IS212-2026/discussions/129) is answered in substance by [#128](https://github.com/SinYang13/IS212-2026/discussions/128).
+
+**Follow-up.** Re-export the board to `raw/`, then re-ingest so [#127](https://github.com/SinYang13/IS212-2026/discussions/127)–[#129](https://github.com/SinYang13/IS212-2026/discussions/129) can be checked against a snapshot. Nothing was applied to Linear or the DDL.
+
+### Week 7 user stories extracted
+
+[[week-7-user-stories]] (new, `outputs/`) takes the user stories out of [[week-7-change-impact-review]] and puts them on one page. The 21 modified tickets are shown as whole cards with the Week 7 edits highlighted. Their text was re-read from Linear on 2026-10-04 so the edits apply to the current wording. The 15 new cards follow, grouped by project. Three affected tickets that are not stories (SPM-198 epic, SPM-143 bug, SPM-144 decision) are in a short table.
+
+**Drafted here, not in the review:** ACs for W7-16 and W7-17 (the review gave only titles), and one change to SPM-224 AC2. That AC still names AM / PM / Night ([#50](https://github.com/SinYang13/IS212-2026/discussions/50)), which [#128](https://github.com/SinYang13/IS212-2026/discussions/128) supersedes.
+
+**Quality pass:** eight cards need work or carry warnings, the main ones being SPM-45 (13 ACs, needs a split), W7-12 (role is "ConnectSphere"), SPM-219 (actor inferred) and SPM-49/53 (new AC depends on Q7).
+
+**Updated:** [[index]] (Reviews row). Nothing applied to Linear.

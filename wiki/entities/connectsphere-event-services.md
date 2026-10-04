@@ -4,6 +4,7 @@ type: entity
 sources:
   - "Customer Brief no. 1.md"
   - "IS212 2026 Discussions Aug 31.md"
+  - "Week 7 Customer Changes.md"
 tags: [entity, organisation, customer, connectsphere]
 ---
 
@@ -26,7 +27,7 @@ Because all owned venues are in Singapore, the system operates on **Singapore ti
 
 ## Internal roles
 
-The ~500 staff take on the roles of Event Coordinator, Venue Staff, and Technical Support Staff (Source: customer-brief-no-1). An **Event Operations Manager** role also exists in practice but appears only in the clarifications, not the brief. See [[user-roles]].
+The ~500 staff take on the roles of Event Coordinator, Venue Staff, and Technical Support Staff (Source: customer-brief-no-1). An **Event Operations Manager** role also exists in practice but appears only in the clarifications, not the brief. The Week 7 change notice then introduces two further internal roles, the **Event Coordinator Lead** and the **Safety Officer** ([[week-7-customer-changes|Week 7 C5–C6]]); whether the Lead replaces the Manager is unanswered. See [[user-roles]].
 
 ## Current state
 
