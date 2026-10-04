@@ -737,3 +737,22 @@ Full ingest of `raw/Week 7 Customer Changes.md` and `raw/IS212 2026 Discussions 
 **Quality pass:** eight cards need work or carry warnings, the main ones being SPM-45 (13 ACs, needs a split), W7-12 (role is "ConnectSphere"), SPM-219 (actor inferred) and SPM-49/53 (new AC depends on Q7).
 
 **Updated:** [[index]] (Reviews row). Nothing applied to Linear.
+
+### Week 7 user stories applied to Linear
+
+[[week-7-user-stories]] was applied to the `SPM - IS212` board on 2026-10-04.
+
+- **New:** 15 cards, SPM-250 to SPM-264, in Backlog with `User Stories` and `Release 1`, estimates, projects and parents (SPM-198 or SPM-47) as in the page. Relations added: the safety-check chain (SPM-260 blocks SPM-261, SPM-263 and SPM-264), SPM-253 blocks SPM-254, SPM-105 blocks SPM-251.
+- **Modified:** a change comment on all 21 modified tickets, plus SPM-198, SPM-143, SPM-144 and the relabel-only Done tickets (SPM-130, 29, 16, 98, 78, 150, 209). Descriptions were not edited.
+- **Reopened:** SPM-46 (In Review → Backlog), the only modified ticket that had passed Todo with its ACs changed after review started.
+- **Labelled `Release 1`:** SPM-23, 21, 105, 219, 71 and the SPM-198 epic. SPM-218 already had it.
+- **Estimates:** SPM-23 2→3, SPM-21 3→5, SPM-105 3→5, SPM-218 set to 3, SPM-219 set to 2.
+- **Left for the team:** SPM-198's 21-point estimate, the stale "do not pull into Release 1" text in the SPM-198, 218 and 219 descriptions, and the SPM-43 re-size.
+
+### Release 1 label audit applied to Linear
+
+[[release-1-label-audit]] (new, `outputs/`) checked the whole `SPM - IS212` board against [[release-1-scope]] and each ticket's own scope line. Fifteen tickets were `🎯` or `🧩` but missing the `Release 1` label, mostly older `🧩` tickets the Week 7 apply did not revisit.
+
+- **Labelled `Release 1` (add-only):** SPM-20, 33, 39, 40, 50, 54, 72, 101, 104, 109, 121, 164, 165 (stories), SPM-103 (spike) and SPM-144 (sub-task of SPM-50).
+- **Left for the team:** whether spikes SPM-106 and SPM-107 should carry the label.
+- **No wiki page changed** besides [[index]] (Reviews row); the register was already right.

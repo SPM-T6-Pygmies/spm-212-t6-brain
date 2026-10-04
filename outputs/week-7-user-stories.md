@@ -13,60 +13,60 @@ tags: [review, user-stories, backlog, release-1, week-7]
 
 This page collects every user story that [[week-7-change-impact-review]] touches, so they can be read in one place without the schema, test and method detail. It includes the 15 new cards and the existing tickets whose acceptance criteria change. Card text for existing tickets comes from the `SPM - IS212` Linear board as read on 2026-10-04. Each card was drafted and then checked against the user-story standard (INVEST, 3–7 binary ACs, no invented numbers). The results are in [[#Quality pass]].
 
-**Nothing here has been applied to Linear.** Re-read the board before pasting, because it moved three times on 2026-10-04.
+**Applied to Linear on 2026-10-04.** The 15 new cards are SPM-250 to SPM-264 (W7-01 = SPM-250, W7-02 = SPM-251, W7-03 = SPM-252, W7-04 = SPM-253, W7-05 = SPM-254, W7-07 = SPM-255, W7-08 = SPM-256, W7-09 = SPM-257, W7-12 to W7-18 = SPM-258 to SPM-264). Every modified ticket got a change comment. SPM-46 was reopened from In Review to Backlog. Descriptions were left alone, so the comments are the record of each change.
 
 ## How to read this page
 
-| Mark | Meaning |
-|---|---|
-| ✏️ **Modified** | An existing ticket. Only the highlighted text changes |
-| 🆕 **New** | A new card (W7-xx). All of it is new |
-| ==highlighted text== | Added or reworded by Week 7 |
-| ~~struck text~~ | Removed by Week 7. Strike it on the ticket rather than deleting it |
-| ⏸ | The AC waits on an open customer question. Leave it out of the build until the question is answered |
+| Mark                 | Meaning                                                                                             |
+| -------------------- | --------------------------------------------------------------------------------------------------- |
+| ✏️ **Modified**      | An existing ticket. Only the highlighted text changes                                               |
+| 🆕 **New**           | A new card (W7-xx). All of it is new                                                                |
+| ==highlighted text== | Added or reworded by Week 7                                                                         |
+| ~~struck text~~      | Removed by Week 7. Strike it on the ticket rather than deleting it                                  |
+| ⏸                    | The AC waits on an open customer question. Leave it out of the build until the question is answered |
 
 Unchanged ACs are kept in short form so each card reads whole. The ticket keeps their full wording and citations.
 
 ## At a glance
 
-| Card | Title | Kind | Status | Pts | Week 7 |
-|---|---|---|---|---|---|
-| SPM-46 | Submit a venue booking request | ✏️ | In Review | 5 | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C3]], [[week-7-customer-changes\|Week 7 C4]] |
-| SPM-23 | Configure venue turnaround and setup buffer | ✏️ | Backlog | 2 → **3** | [[week-7-customer-changes\|Week 7 C1]] |
-| SPM-19 | Automatic availability update on confirmation | ✏️ | Backlog | 5 | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C3]], [[week-7-customer-changes\|Week 7 C4]] |
-| SPM-20 | Cancel venue booking | ✏️ | Backlog | 3 | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C2]], [[week-7-customer-changes\|Week 7 C3]] |
-| SPM-21 | Indicate venue is unavailable | ✏️ | Backlog | 3 → **5** | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C2]] |
-| SPM-105 | Flag affected bookings for review | ✏️ | Backlog | 3 → **5** | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C2]], [[week-7-customer-changes\|Week 7 C3]] |
-| SPM-43 | View venue availability calendar | ✏️ | Todo | 5 (re-size) | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C2]], [[week-7-customer-changes\|Week 7 C4]] |
-| SPM-45 | Check venue suitability | ✏️ | Todo | 5 | [[week-7-customer-changes\|Week 7 C3]] |
-| SPM-22 | Review and decide on venue booking requests | ✏️ | Backlog | 3 | [[week-7-customer-changes\|Week 7 C3]] |
-| SPM-218 | Place a tentative hold | ✏️ | Backlog | – → **3** | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C4]] |
-| SPM-219 | Confirm or release a tentative hold | ✏️ | Backlog | – → **2** | [[week-7-customer-changes\|Week 7 C4]] |
-| SPM-224 | Book a venue per session (`📋 Backlog`) | ✏️ | Backlog | – | [[week-7-customer-changes\|Week 7 C1]] |
-| SPM-54 | Reschedule an event | ✏️ | Backlog | 8 | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C3]] |
-| SPM-55 | Cancel an event | ✏️ | Backlog | 8 | [[week-7-customer-changes\|Week 7 C2]], [[week-7-customer-changes\|Week 7 C3]], [[week-7-customer-changes\|Week 7 C4]] |
-| SPM-49 | Update event planning information | ✏️ | In Progress | 5 | [[week-7-customer-changes\|Week 7 C6]] |
-| SPM-53 | Revalidate arrangements after a significant change | ✏️ | Backlog | 8 | [[week-7-customer-changes\|Week 7 C6]] |
-| SPM-48 | Track my event's status | ✏️ | Backlog | 3 | [[week-7-customer-changes\|Week 7 C6]] |
-| SPM-62 | Notify the coordinator of the booking outcome | ✏️ | Backlog | 2 | [[week-7-customer-changes\|Week 7 C3]] |
-| SPM-63 | Notify venue staff of a cancelled booking | ✏️ | Backlog | 2 | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C2]] |
-| SPM-71 | Notify the coordinator of an availability change | ✏️ | Backlog | 5 | [[week-7-customer-changes\|Week 7 C2]] |
-| SPM-111 | Notify the organiser that confirmation lapsed | ✏️ | Backlog | 2 | [[week-7-customer-changes\|Week 7 C6]] |
-| W7-01 | Search venues by padded availability | 🆕 | — | 3 | [[week-7-customer-changes\|Week 7 C1]] |
-| W7-02 | Request a replacement venue | 🆕 | — | 5 | [[week-7-customer-changes\|Week 7 C2]] |
-| W7-03 | Book several venues for one event | 🆕 | — | 3 | [[week-7-customer-changes\|Week 7 C3]] |
-| W7-04 | Expire an unconfirmed hold | 🆕 | — | 3 | [[week-7-customer-changes\|Week 7 C4]] |
-| W7-05 | Warn the coordinator of hold expiry | 🆕 | — | 2 | [[week-7-customer-changes\|Week 7 C4]] |
-| W7-07 | Review an unassigned request | 🆕 | — | 2 | [[week-7-customer-changes\|Week 7 C5]] |
-| W7-08 | Oversee coordinator assignments | 🆕 | — | 3 | [[week-7-customer-changes\|Week 7 C5]] |
-| W7-09 | Reassign an active event's coordinator | 🆕 | — | 3 | [[week-7-customer-changes\|Week 7 C5]] |
-| W7-12 | Safety Officer role | 🆕 | — | 2 | [[week-7-customer-changes\|Week 7 C6]] |
-| W7-13 | See events awaiting a safety check | 🆕 | — | 3 | [[week-7-customer-changes\|Week 7 C6]] |
-| W7-14 | Conduct an operational safety check | 🆕 | — | 5 | [[week-7-customer-changes\|Week 7 C6]] |
-| W7-15 | Return an event after a safety outcome | 🆕 | — | 5 | [[week-7-customer-changes\|Week 7 C6]] |
-| W7-16 | Notify the Safety Officer of an event ready for check | 🆕 | — | 2 | [[week-7-customer-changes\|Week 7 C6]] |
-| W7-17 | Notify the coordinator of the safety outcome | 🆕 | — | 2 | [[week-7-customer-changes\|Week 7 C6]] |
-| W7-18 | Block confirmation until the safety check is approved | 🆕 | — | 2 | [[week-7-customer-changes\|Week 7 C6]] |
+| Card    | Title                                                 | Kind | Status      | Pts         | Week 7                                                                                                                 |
+| ------- | ----------------------------------------------------- | ---- | ----------- | ----------- | ---------------------------------------------------------------------------------------------------------------------- |
+| SPM-46  | Submit a venue booking request                        | ✏️   | In Review   | 5           | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C3]], [[week-7-customer-changes\|Week 7 C4]] |
+| SPM-23  | Configure venue turnaround and setup buffer           | ✏️   | Backlog     | 2 → **3**   | [[week-7-customer-changes\|Week 7 C1]]                                                                                 |
+| SPM-19  | Automatic availability update on confirmation         | ✏️   | Backlog     | 5           | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C3]], [[week-7-customer-changes\|Week 7 C4]] |
+| SPM-20  | Cancel venue booking                                  | ✏️   | Backlog     | 3           | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C2]], [[week-7-customer-changes\|Week 7 C3]] |
+| SPM-21  | Indicate venue is unavailable                         | ✏️   | Backlog     | 3 → **5**   | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C2]]                                         |
+| SPM-105 | Flag affected bookings for review                     | ✏️   | Backlog     | 3 → **5**   | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C2]], [[week-7-customer-changes\|Week 7 C3]] |
+| SPM-43  | View venue availability calendar                      | ✏️   | Todo        | 5 (re-size) | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C2]], [[week-7-customer-changes\|Week 7 C4]] |
+| SPM-45  | Check venue suitability                               | ✏️   | Todo        | 5           | [[week-7-customer-changes\|Week 7 C3]]                                                                                 |
+| SPM-22  | Review and decide on venue booking requests           | ✏️   | Backlog     | 3           | [[week-7-customer-changes\|Week 7 C3]]                                                                                 |
+| SPM-218 | Place a tentative hold                                | ✏️   | Backlog     | – → **3**   | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C4]]                                         |
+| SPM-219 | Confirm or release a tentative hold                   | ✏️   | Backlog     | – → **2**   | [[week-7-customer-changes\|Week 7 C4]]                                                                                 |
+| SPM-224 | Book a venue per session (`📋 Backlog`)               | ✏️   | Backlog     | –           | [[week-7-customer-changes\|Week 7 C1]]                                                                                 |
+| SPM-54  | Reschedule an event                                   | ✏️   | Backlog     | 8           | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C3]]                                         |
+| SPM-55  | Cancel an event                                       | ✏️   | Backlog     | 8           | [[week-7-customer-changes\|Week 7 C2]], [[week-7-customer-changes\|Week 7 C3]], [[week-7-customer-changes\|Week 7 C4]] |
+| SPM-49  | Update event planning information                     | ✏️   | In Progress | 5           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
+| SPM-53  | Revalidate arrangements after a significant change    | ✏️   | Backlog     | 8           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
+| SPM-48  | Track my event's status                               | ✏️   | Backlog     | 3           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
+| SPM-62  | Notify the coordinator of the venue booking outcome   | ✏️   | Backlog     | 2           | [[week-7-customer-changes\|Week 7 C3]]                                                                                 |
+| SPM-63  | Notify venue staff of a cancelled booking             | ✏️   | Backlog     | 2           | [[week-7-customer-changes\|Week 7 C1]], [[week-7-customer-changes\|Week 7 C2]]                                         |
+| SPM-71  | Notify the coordinator of an availability change      | ✏️   | Backlog     | 5           | [[week-7-customer-changes\|Week 7 C2]]                                                                                 |
+| SPM-111 | Notify the organiser that confirmation lapsed         | ✏️   | Backlog     | 2           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
+| W7-01   | Search venues by padded availability                  | 🆕   | —           | 3           | [[week-7-customer-changes\|Week 7 C1]]                                                                                 |
+| W7-02   | Request a replacement venue                           | 🆕   | —           | 5           | [[week-7-customer-changes\|Week 7 C2]]                                                                                 |
+| W7-03   | Book several venues for one event                     | 🆕   | —           | 3           | [[week-7-customer-changes\|Week 7 C3]]                                                                                 |
+| W7-04   | Expire an unconfirmed hold                            | 🆕   | —           | 3           | [[week-7-customer-changes\|Week 7 C4]]                                                                                 |
+| W7-05   | Warn the coordinator of hold expiry                   | 🆕   | —           | 2           | [[week-7-customer-changes\|Week 7 C4]]                                                                                 |
+| W7-07   | Review an unassigned request                          | 🆕   | —           | 2           | [[week-7-customer-changes\|Week 7 C5]]                                                                                 |
+| W7-08   | Oversee coordinator assignments                       | 🆕   | —           | 3           | [[week-7-customer-changes\|Week 7 C5]]                                                                                 |
+| W7-09   | Reassign an active event's coordinator                | 🆕   | —           | 3           | [[week-7-customer-changes\|Week 7 C5]]                                                                                 |
+| W7-12   | Safety Officer role                                   | 🆕   | —           | 2           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
+| W7-13   | See events awaiting a safety check                    | 🆕   | —           | 3           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
+| W7-14   | Conduct an operational safety check                   | 🆕   | —           | 5           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
+| W7-15   | Return an event after a safety outcome                | 🆕   | —           | 5           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
+| W7-16   | Notify the Safety Officer of an event ready for check | 🆕   | —           | 2           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
+| W7-17   | Notify the coordinator of the safety outcome          | 🆕   | —           | 2           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
+| W7-18   | Block confirmation until the safety check is approved | 🆕   | —           | 2           | [[week-7-customer-changes\|Week 7 C6]]                                                                                 |
 
 There are **21 modified stories** and **15 new cards (45 pts)**. W7-06 was withdrawn because the Lead is the Operations Manager renamed ([#128](https://github.com/SinYang13/IS212-2026/discussions/128)). W7-10 and W7-11 are held in reserve until Q3 is answered. Three affected tickets are not stories (an epic, a bug and a decision card). They are listed under [[#Not stories]].
 
@@ -520,11 +520,11 @@ As the assigned Event Coordinator, I want confirmation refused until the event's
 
 These tickets also change, but they are not user stories:
 
-| Ticket | Kind | Change |
-|---|---|---|
-| SPM-198 Tentative Venue Holding | Epic | `📋 Backlog` → `🎯 Release 1` ([[week-7-customer-changes\|Week 7 C4]]). Remove "do not pull into a Release 1 sprint", add the `Release 1` label, and remove the 21-point estimate, because epics are not estimated. Children: SPM-218, SPM-219, W7-04, W7-05 |
-| SPM-143 Refuse reassignment once Approved | Bug | "Operations Manager" → Lead. Point its out-of-scope note at W7-09 |
-| SPM-144 Decide arrangement essentiality | Decision | Record that the safety check is a mandatory gate for **every** event, not an arrangement type that can be marked non-essential ([[week-7-customer-changes\|Week 7 C6]]; "due to regulation", [#128](https://github.com/SinYang13/IS212-2026/discussions/128)) |
+| Ticket                                    | Kind     | Change                                                                                                                                                                                                                                                        |
+| ----------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SPM-198 Tentative Venue Holding           | Epic     | `📋 Backlog` → `🎯 Release 1` ([[week-7-customer-changes\|Week 7 C4]]). Remove "do not pull into a Release 1 sprint", add the `Release 1` label, and remove the 21-point estimate, because epics are not estimated. Children: SPM-218, SPM-219, W7-04, W7-05  |
+| SPM-143 Refuse reassignment once Approved | Bug      | "Operations Manager" → Lead. Point its out-of-scope note at W7-09                                                                                                                                                                                             |
+| SPM-144 Decide arrangement essentiality   | Decision | Record that the safety check is a mandatory gate for **every** event, not an arrangement type that can be marked non-essential ([[week-7-customer-changes\|Week 7 C6]]; "due to regulation", [#128](https://github.com/SinYang13/IS212-2026/discussions/128)) |
 
 **Relabel only (Done, no AC change):** SPM-130, 29, 16, 98 and 78 take the Lead's new title. SPM-150's title still says "slot". SPM-209 (`📋 Backlog`) needs a wording change only: it should measure utilisation in time, not slots.
 
