@@ -756,3 +756,21 @@ Full ingest of `raw/Week 7 Customer Changes.md` and `raw/IS212 2026 Discussions 
 - **Labelled `Release 1` (add-only):** SPM-20, 33, 39, 40, 50, 54, 72, 101, 104, 109, 121, 164, 165 (stories), SPM-103 (spike) and SPM-144 (sub-task of SPM-50).
 - **Left for the team:** whether spikes SPM-106 and SPM-107 should carry the label.
 - **No wiki page changed** besides [[index]] (Reviews row); the register was already right.
+
+## 2026-10-07
+
+### Equipment team decisions recorded
+
+SPM-18 was split into SPM-273 (see equipment needing attention), SPM-274 (reserve equipment), SPM-275 (hold equipment until return), and SPM-17 was trimmed to "Mark equipment out of service". Five team decisions came with it and are now on the wiki. Each decision row keeps its `🔶 Team decision` marker and citation.
+
+| Question | Decision |
+|---|---|
+| Pooled vs serialised ([#13](https://github.com/SinYang13/IS212-2026/discussions/13)) | Pooled, one record per type holding the number owned (as built in SPM-40) |
+| Transfer and preparation time ([#2](https://github.com/SinYang13/IS212-2026/discussions/2)) | The D-1 collection day covers it; no transfer-duration field |
+| Return date ([#113](https://github.com/SinYang13/IS212-2026/discussions/113)) | The event's date, set automatically and following the date if it changes |
+| Equipment status ([#23](https://github.com/SinYang13/IS212-2026/discussions/23)) | Release 1 records only a per-type count of units out of service; the three values and defect logging on return ([#86](https://github.com/SinYang13/IS212-2026/discussions/86)) are 📋 Backlog |
+| Partial reservation ([#90](https://github.com/SinYang13/IS212-2026/discussions/90)) | Allowed across lines; a single line is all-or-nothing |
+
+**Updated:** [[equipment-item]] (rows, resolved callouts for [#13](https://github.com/SinYang13/IS212-2026/discussions/13) and [#2](https://github.com/SinYang13/IS212-2026/discussions/2)), [[equipment-reservation]] (rows, resolved callout for [#113](https://github.com/SinYang13/IS212-2026/discussions/113)), [[equipment-management]], [[release-1-scope]] (maintenance-status minimum and the D-1 / Return Day + 1 row), [[open-questions]], [[domain-model]], [[event-readiness]].
+
+**Corrected:** EQ2 in [[release-1-candidate-user-stories]] no longer routes a change to a reserved line through a change request; it follows [#114](https://github.com/SinYang13/IS212-2026/discussions/114), as SPM-41 and SPM-108 do.
