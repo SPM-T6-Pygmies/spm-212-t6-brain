@@ -491,7 +491,7 @@ Decisions the customer **settled**, verified against `raw/IS212 2026 Discussions
 | ~~Venue availability is slotted AM/PM/Night, not continuous~~ — **superseded**: the smallest unit of booking is 15 minutes | ~~[#50](https://github.com/SinYang13/IS212-2026/discussions/50)~~, [#128](https://github.com/SinYang13/IS212-2026/discussions/128) | [[venue]] |
 | Approval ≠ Confirmation; confirmation is blocked while an essential arrangement is incomplete | [#80](https://github.com/SinYang13/IS212-2026/discussions/80) | [[event]] |
 | Equipment has two coexisting availability rules — transfer time governs pre-event availability, Return Day + 1 governs post-event availability | [#2](https://github.com/SinYang13/IS212-2026/discussions/2), [#5](https://github.com/SinYang13/IS212-2026/discussions/5) | [[equipment-item]] |
-| Equipment reservation allows partial fulfilment, line by line | [#90](https://github.com/SinYang13/IS212-2026/discussions/90) | [[equipment-reservation]] |
+| Equipment reservation allows partial fulfilment, line by line. Each line itself is all-or-nothing (team decision, 2026-10-07) | [#90](https://github.com/SinYang13/IS212-2026/discussions/90) | [[equipment-reservation]] |
 | No formal equipment approval workflow — coordinator records, TSS reviews and reserves directly | [#19](https://github.com/SinYang13/IS212-2026/discussions/19) | [[equipment-reservation]] |
 | Session is a first-class child of Event, with its own venue, equipment, timing and attendance limit | [#74](https://github.com/SinYang13/IS212-2026/discussions/74) | [[session]] |
 | Venue suitability checking is distinct from search/filtering | [#83](https://github.com/SinYang13/IS212-2026/discussions/83) | [[venue]] |
@@ -528,8 +528,8 @@ Every "Team decision required" callout across the fourteen domain-object pages, 
 | Change Request | How a reschedule's re-review workflow is sequenced and what status changes it produces | [#16](https://github.com/SinYang13/IS212-2026/discussions/16) | [[change-request]] |
 | Client Organisation | Whether a primary-contact or organisation-administrator role exists | [#65](https://github.com/SinYang13/IS212-2026/discussions/65), [#81](https://github.com/SinYang13/IS212-2026/discussions/81) | [[client-organisation]] |
 | Client Organisation | What fields the organisation record carries beyond membership and event history | [[event-planning-venue-booking-system\|brief §4]] | [[client-organisation]] |
-| Equipment Item | Pooled vs. serialised inventory model (quantity must always be known) | [#13](https://github.com/SinYang13/IS212-2026/discussions/13) | [[equipment-item]] |
-| Equipment Item | How transfer time, preparation time and current location are represented | [#2](https://github.com/SinYang13/IS212-2026/discussions/2) | [[equipment-item]] |
+| Equipment Item | Pooled vs. serialised inventory model (quantity must always be known) — **decided:** pooled, one record per type (SPM-40) | [#13](https://github.com/SinYang13/IS212-2026/discussions/13) | [[equipment-item]] |
+| Equipment Item | How transfer time, preparation time and current location are represented — **decided 2026-10-07:** the D-1 collection day covers transfer and preparation | [#2](https://github.com/SinYang13/IS212-2026/discussions/2) | [[equipment-item]] |
 | Equipment Item | Whether a maintenance record carries an expected-return date, and re-availability automation | [#23](https://github.com/SinYang13/IS212-2026/discussions/23) | [[equipment-item]] |
 | Equipment Reservation | How the reschedule re-review workflow is implemented, sequenced and status-tracked | [#16](https://github.com/SinYang13/IS212-2026/discussions/16) | [[equipment-reservation]] |
 | Event | Whether a major post-confirmation change formally returns the event to Planning, or is represented some other way | [#70](https://github.com/SinYang13/IS212-2026/discussions/70) | [[event]] |

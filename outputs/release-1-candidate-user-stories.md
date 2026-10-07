@@ -211,7 +211,8 @@ EV1 (+ Reassign companion), EV3a, EV3b and EV3c in [[user-stories-proposed-rewri
 **AC:**
 - Can record one or more equipment requirement lines against an event, each with a type and quantity ([[event]] Attributes — "Equipment requirements"; [[event-request-workflow]] Step 8)
 - Can edit a requirement line before Technical Support Staff have reserved against it
-- Given a requirement is changed after equipment has already been reserved, then it is treated as a significant change and routed through **CH1**/**CH2** ([#4](https://github.com/SinYang13/IS212-2026/discussions/4))
+- Given a requirement is changed after equipment has already been reserved, then the change is saved, the line goes back to Technical Support Staff for a re-check, and the reserved equipment stays held — no change request is involved ([#114](https://github.com/SinYang13/IS212-2026/discussions/114))
+  - *Corrected 2026-10-07.* This AC originally routed the change through **CH1**/**CH2** ([#4](https://github.com/SinYang13/IS212-2026/discussions/4)). [#114](https://github.com/SinYang13/IS212-2026/discussions/114) allows requirements to change after reservation with a Technical Support re-check, and SPM-41 (AC8) and SPM-108 were built and written that way.
 - Technical Support Staff are notified that a new or changed requirement needs review ([[notifications]])
 
 *Together with E2 in [[user-stories-proposed-rewrites]] (the Technical Support Staff-side matching, availability check and reservation), this closes core feature 15 end to end.*
