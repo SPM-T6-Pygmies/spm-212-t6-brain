@@ -774,3 +774,24 @@ SPM-18 was split into SPM-273 (see equipment needing attention), SPM-274 (reserv
 **Updated:** [[equipment-item]] (rows, resolved callouts for [#13](https://github.com/SinYang13/IS212-2026/discussions/13) and [#2](https://github.com/SinYang13/IS212-2026/discussions/2)), [[equipment-reservation]] (rows, resolved callout for [#113](https://github.com/SinYang13/IS212-2026/discussions/113)), [[equipment-management]], [[release-1-scope]] (maintenance-status minimum and the D-1 / Return Day + 1 row), [[open-questions]], [[domain-model]], [[event-readiness]].
 
 **Corrected:** EQ2 in [[release-1-candidate-user-stories]] no longer routes a change to a reserved line through a change request; it follows [#114](https://github.com/SinYang13/IS212-2026/discussions/114), as SPM-41 and SPM-108 do.
+
+## 2026-10-18
+
+### Release 1 backlog re-groom: change and revalidation cluster
+
+A story-quality pass on the open Release 1 cards found the change-request → revalidation → reschedule cluster carried several responsibilities per card, with notify/flag/act steps duplicated across cards. The team settled who does what, and Linear was re-cut to match.
+
+| Question | Decision |
+|---|---|
+| Who starts a change request? | The Event Organiser, in the system ([#102](https://github.com/SinYang13/IS212-2026/discussions/102)). The Coordinator does not raise them; Coordinator-initiated reschedules are settled internally |
+| Which changes are change requests? | Significant ones only: date/time (incl. sessions), venue requirements, attendance, equipment ([#4](https://github.com/SinYang13/IS212-2026/discussions/4)). Programme/agenda and misc details are not |
+| Who acts on a flagged venue booking? | The Coordinator: re-request it as an ordinary booking request, which Venue Staff decide in their usual flow, or clear the flag if it still fits |
+| Original booking after replacement | `Released` with a replaced-by link; no new state |
+| Postponement | Follows the reschedule workflow; no separate flow |
+| Equipment replace | No separate action; type is handled by Technical Support Staff ([#114](https://github.com/SinYang13/IS212-2026/discussions/114)) |
+
+**Linear:** SPM-52 re-scoped (13 → 3 pts); SPM-100, SPM-105, SPM-108, SPM-109, SPM-71, SPM-251 and SPM-55 rewritten; SPM-53 and SPM-54 cancelled as covered; new SPM-309 – SPM-319.
+
+**Gap closed:** no card carried flagging on venue unavailability ([[week-7-customer-changes|Week 7 C2]]) — SPM-21 handed it to SPM-105, which only covered attribute edits. Now SPM-313.
+
+**Updated:** [[change-request]], [[booking]], [[equipment-reservation]], [[event-lifecycle]].

@@ -97,6 +97,8 @@ The distinguishing property of postponement is that the event record survives �
 
 > [!question]- Team decision required — status for "postponed, date unknown"
 > The customer did not name a status for "postponed, date unknown", but has now confirmed outright that the case **occurs** — an event may be postponed with no new date known ([#121](https://github.com/SinYang13/IS212-2026/discussions/121)), which upgrades this from a reading of [#69](https://github.com/SinYang13/IS212-2026/discussions/69) to a stated fact. The team must therefore decide whether it is a distinct status, a flag on an existing status, or a return to `Planning` (or `Blocked`) with dates cleared. The settled status set above still contains no such value, so today a confirmed customer scenario has no representation.
+>
+> **Team decision (2026-10-18):** postponement follows the reschedule workflow — an Organiser change request to the date/time — and gets no flow or card of its own (see SPM-54's cancellation note).
 
 ## Rejection and Resubmission
 
